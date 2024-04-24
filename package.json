@@ -7,9 +7,16 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare",
     "lint": "eslint .",
-    "typecheck": "nuxt typecheck"
+    "typecheck": "nuxt typecheck",
+    "lint:spelling": "cspell **/*.md --config=./cspell.json",
+    "lint:markdown": "markdownlint-cli2 \"content/**/*.md\" --config \".markdownlint.json\"",
+    "lint:eslint": "eslint .",
+    "lint:prettier": "prettier --check .",
+    "fix:prettier": "prettier --write .",
+    "prepare": "husky",
+    "postinstall": "nuxt prepare",
+    "ci:check": "bun run lint:eslint && bun run lint:prettier && bun run lint:spelling && bun run lint:markdown"
   },
   "dependencies": {
     "@iconify-json/heroicons": "^1.1.20",

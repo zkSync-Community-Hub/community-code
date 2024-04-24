@@ -19,6 +19,17 @@ export default defineNuxtConfig({
   ui: {
     icons: ['heroicons', 'simple-icons']
   },
+  image: {
+    quality: 90,
+    format: ['avif', 'webp'],
+  },
+  fonts: {
+    families: [
+      { name: 'Raleway', provider: 'google' },
+      { name: 'Montserrat', provider: 'google' },
+      { name: 'Fira Mono', provider: 'google' },
+    ],
+  },
   routeRules: {
     '/api/search.json': { prerender: true },
   },
@@ -27,5 +38,37 @@ export default defineNuxtConfig({
   },
   typescript: {
     strict: false
-  }
+  },
+  content: {
+    highlight: {
+      langs: [
+        'asm',
+        'c++',
+        'go',
+        'graphql',
+        'groovy',
+        'java',
+        'jsx',
+        'python',
+        'rust',
+        'solidity',
+        'swift',
+        'toml',
+        'xml',
+      ],
+      theme: {
+        default: 'github-light',
+        light: 'github-light',
+        dark: 'github-dark',
+        sepia: 'monokai',
+      },
+    },
+  },
+  runtimeConfig: {
+    public: {
+      mdc: {
+        useNuxtImage: true,
+      },
+    },
+  },
 })

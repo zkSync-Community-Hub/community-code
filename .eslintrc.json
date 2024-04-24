@@ -1,0 +1,20 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true
+  },
+  "extends": ["eslint:recommended", "plugin:vue/vue3-essential", "@nuxt/eslint-config"],
+  "plugins": ["vue"],
+  "rules": {
+    "quote-props": ["error", "as-needed"],
+    "vue/html-self-closing": [
+      "error",
+      {
+        "html": {
+          "void": "always"
+        }
+      }
+    ]
+  }
+}
