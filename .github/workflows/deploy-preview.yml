@@ -1,0 +1,35 @@
+name: "preview builder 👀"
+on:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build_and_preview:
+    env:
+      NUXT_UI_PRO_LICENSE: ${{ secrets.NUXT_UI_PRO_LICENSE }}
+      NUXT_PUBLIC_SITE_URL: ${{ secrets.NUXT_PUBLIC_SITE_URL }}
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event.pull_request.head.repo.full_name == github.repository }}
+    runs-on: ubuntu-latest
+    outputs:
+      output_urls: "${{ steps.preview_deploy.outputs.urls }}"
+    steps:
+      - uses: actions/checkout@v4 # v4
+
+      - uses: oven-sh/setup-bun@v1
+
+      - name: "Install dependencies"
+        run: bun install
+
+      - name: "Deploy target: staging"
+        run: bun run generate
+
+      - uses: untitaker/hyperlink@0.1.32
+        with:
+          args: .output/public/ --sources content/
+
+      - name: "Deploy preview"
+        uses: matter-labs/action-hosting-deploy@main
+        with:
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_ZKSYNC_DOCS_STAGING_5EB09 }}"
+          projectId: zksync-docs-staging-5eb09
