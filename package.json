@@ -26,7 +26,7 @@
     "@nuxt/image": "^1.6.0",
     "@nuxt/ui-pro": "^1.1.0",
     "nuxt": "^3.11.2",
-    "nuxt-og-image": "^2.2.4"
+    "nuxt-og-image": "^3.0.0-rc"
   },
   "devDependencies": {
     "@nuxt/eslint-config": "^0.2.0",
