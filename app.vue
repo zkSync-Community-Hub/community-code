@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import type { ParsedContent } from '@nuxt/content/dist/runtime/types'
+import type { ParsedContent } from '@nuxt/content/dist/runtime/types';
 
-const { seo } = useAppConfig()
+const { seo } = useAppConfig();
 
-const { data: navigation } = await useAsyncData('navigation', () => fetchContentNavigation())
+const { data: navigation } = await useAsyncData('navigation', () => fetchContentNavigation());
 const { data: files } = useLazyFetch<ParsedContent[]>('/api/search.json', {
   default: () => [],
-  server: false
-})
+  server: false,
+});
 
 useHead({
   meta: [
@@ -28,7 +28,7 @@ useHead({
   htmlAttrs: {
     lang: 'en',
   },
-})
+});
 
 useSeoMeta({
   titleTemplate: `%s - ${seo?.siteName}`,
@@ -42,18 +42,18 @@ useSeoMeta({
   twitterSite: '@zksync',
   twitterCreator: '@the_matter_labs',
   twitterImageAlt: 'zkSync — Accelerating the mass adoption of crypto for personal sovereignty.',
-})
+});
 
-defineOgImage({component: 'OgImageDocs'})
+defineOgImage({ component: 'OgImageDocs' });
 
-provide('navigation', navigation)
+provide('navigation', navigation);
 </script>
 
 <template>
   <div>
     <NuxtLoadingIndicator />
 
-    <Header />
+    <AppHeader />
 
     <UMain>
       <NuxtLayout>
@@ -61,10 +61,13 @@ provide('navigation', navigation)
       </NuxtLayout>
     </UMain>
 
-    <Footer />
+    <AppFooter />
 
     <ClientOnly>
-      <LazyUContentSearch :files="files" :navigation="navigation" />
+      <LazyUContentSearch
+        :files="files"
+        :navigation="navigation"
+      />
     </ClientOnly>
 
     <UNotifications />

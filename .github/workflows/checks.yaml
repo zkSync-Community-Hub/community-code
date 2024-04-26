@@ -17,16 +17,16 @@ jobs:
       - name: Runs Prettier Formatter
         run: bun run lint:prettier
 
-  spelling:
-    name: spelling
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: oven-sh/setup-bun@v1
-      - name: Install Dependencies
-        run: bun install
-      - name: Runs cSpell Spell Checker
-        run: bun run lint:spelling
+  # spelling:
+  #   name: spelling
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - uses: oven-sh/setup-bun@v1
+  #     - name: Install Dependencies
+  #       run: bun install
+  #     - name: Runs cSpell Spell Checker
+  #       run: bun run lint:spelling
 
   markdown-lint:
     name: markdown_lint

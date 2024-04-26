@@ -12,12 +12,12 @@
   >
     <defs>
       <linearGradient
+        id="ffflux-gradient"
         gradientTransform="rotate(327, 0.5, 0.5)"
         x1="50%"
         y1="0%"
         x2="50%"
         y2="100%"
-        id="ffflux-gradient"
       >
         <stop
           stop-color="hsl(39, 93%, 53%)"

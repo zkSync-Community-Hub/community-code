@@ -1,5 +1,3 @@
 {
-  "extends": [
-    "github>nuxt/renovate-config-nuxt"
-  ]
+  "extends": ["github>nuxt/renovate-config-nuxt"]
 }
