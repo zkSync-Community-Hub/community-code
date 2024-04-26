@@ -21,7 +21,7 @@ useSeoMeta({
       :links="page.features.links"
     >
       <UPageGrid>
-        <NuxtLink
+        <SiteLink
           v-for="(guide, index) of guides"
           :key="index"
           :to="`/tutorials/${guide._dir}`"
@@ -55,7 +55,7 @@ useSeoMeta({
               />
             </div>
           </UCard>
-        </NuxtLink>
+        </SiteLink>
       </UPageGrid>
     </ULandingSection>
   </div>

@@ -13,7 +13,7 @@ const { data: guides } = await useAsyncData('tutorials', () =>
           description="Explore all the community contributed guides for zkSync"
           icon="i-zksync-logo"
         />
-        <NuxtLink
+        <SiteLink
           v-for="(guide, index) of guides"
           :key="index"
           :to="`/tutorials/${guide._dir}`"
@@ -33,7 +33,7 @@ const { data: guides } = await useAsyncData('tutorials', () =>
               class="mb-2 mr-2"
             />
           </div>
-        </NuxtLink>
+        </SiteLink>
       </UPageBody>
     </UPage>
   </UContainer>

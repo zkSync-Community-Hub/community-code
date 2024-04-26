@@ -63,12 +63,12 @@ provide('navigation', navigation);
 
     <AppFooter />
 
-    <ClientOnly>
+    <!-- <ClientOnly>
       <LazyUContentSearch
         :files="files"
         :navigation="navigation"
       />
-    </ClientOnly>
+    </ClientOnly> -->
 
     <UNotifications />
   </div>

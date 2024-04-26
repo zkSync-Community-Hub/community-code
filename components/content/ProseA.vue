@@ -1,5 +1,5 @@
 <template>
-  <NuxtLink
+  <SiteLink
     :rel="isExternalLink ? 'noopener noreferrer' : ''"
     :href="href"
     :target="isExternalLink ? '_blank' : target"
@@ -12,7 +12,7 @@
       name="i-heroicons-arrow-up-right-20-solid"
       class="absolute -right-2.5 top-0.5 h-3 w-3 text-xs font-light"
     />
-  </NuxtLink>
+  </SiteLink>
 </template>
 
 <script setup lang="ts">

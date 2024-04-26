@@ -37,9 +37,9 @@ export default defineNuxtConfig({
       { name: 'Fira Mono', provider: 'google' },
     ],
   },
-  routeRules: {
-    '/api/search.json': { prerender: true },
-  },
+  // routeRules: {
+  //   '/api/search.json': { prerender: true },
+  // },
   devtools: {
     enabled: true,
   },
