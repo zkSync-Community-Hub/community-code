@@ -20,7 +20,7 @@ jobs:
       - name: "Install dependencies"
         run: bun install
 
-      - name: "Deploy target: staging"
+      - name: "Deploy target: preview"
         run: bun run generate
 
       - uses: untitaker/hyperlink@0.1.32
@@ -31,5 +31,5 @@ jobs:
         uses: matter-labs/action-hosting-deploy@main
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_ZKSYNC_DOCS_STAGING_5EB09 }}"
-          projectId: zksync-docs-staging-5eb09
+          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_COMMUNITY_COOKBOOK_STAGING }}"
+          projectId: community-cookbook-staging

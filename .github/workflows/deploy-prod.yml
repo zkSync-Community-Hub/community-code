@@ -22,7 +22,7 @@ jobs:
 
       - name: "Install dependencies"
         run: bun install
-      - name: "Deploy target: staging"
+      - name: "Deploy target: production 🚀"
         run: bun run generate
         # TODO: ask about below
         # env:
@@ -32,9 +32,9 @@ jobs:
       - uses: matter-labs/action-hosting-deploy@main
         with:
           repoToken: "${{ secrets.GITHUB_TOKEN }}"
-          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_ZKSYNC_DOCS }}"
+          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_COMMUNITY_COOKBOOK }}"
           target: prod
-          projectId: zksync-docs
+          projectId: community-cookbook
           channelId: live
 
       # TODO: re-enable once we are closer to production deployment
