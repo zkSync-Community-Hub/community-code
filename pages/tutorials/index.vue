@@ -2,7 +2,6 @@
 const { data: guides } = await useAsyncData('tutorials', () =>
   queryContent('tutorials').where({ _extension: 'yml' }).find()
 );
-console.log('guides', guides.value);
 </script>
 
 <template>
@@ -18,7 +17,7 @@ console.log('guides', guides.value);
           v-for="(guide, index) of guides"
           :key="index"
           :to="`/tutorials/${guide._dir}`"
-          class="grid grid-cols-2 items-center gap-4 border-b border-gray-800 p-4 hover:bg-zkSlate-900"
+          class="grid grid-cols-2 items-center gap-4 border-b border-gray-100 p-4 hover:bg-zkSlate-100 dark:border-gray-800 dark:hover:bg-zkSlate-900"
         >
           <div>
             {{ guide.title }}
@@ -35,27 +34,6 @@ console.log('guides', guides.value);
             />
           </div>
         </NuxtLink>
-        <!-- <div
-            v-for="(guide, index) of guides"
-            :key="index"
-            class="grid grid-cols-2 gap-4 border-b border-gray-800 p-4"
-          >
-
-            <div>
-              {{ guide.title }}
-            </div>
-            <div class="text-right">
-              <UBadge
-                v-for="tag in guide.tags"
-                :key="tag"
-                :label="tag"
-                color="blue"
-                size="sm"
-                variant="subtle"
-                class="mb-2 mr-2"
-              />
-            </div>
-          </div> -->
       </UPageBody>
     </UPage>
   </UContainer>

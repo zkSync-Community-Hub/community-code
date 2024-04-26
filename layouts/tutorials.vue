@@ -1,9 +1,16 @@
 <script setup lang="ts">
 const route = useRoute();
 
-const { data: info } = await useAsyncData(`${route.path}-info`, () =>
-  queryContent(`/tutorials/${route.params.slug[0]}/_info`).findOne()
-);
+if (!route.path) {
+  throw new Error('Route path is not defined');
+}
+console.log('PATH', route);
+
+const { data: info } = await useAsyncData(`${route.path}-info`, () => {
+  console.log('ROUTE', route.fullPath);
+  return queryContent(`${route.fullPath}/_info`).findOne();
+});
+
 const { data: navigation } = await useAsyncData(`${route.path}-sidenav`, () => {
   const query = queryContent().where({
     _path: { $contains: route.path },
@@ -14,24 +21,60 @@ const { data: navigation } = await useAsyncData(`${route.path}-sidenav`, () => {
   return fetchContentNavigation(query);
 });
 
-const links = computed(() => {
-  const links = navigation.value[0].children[0].children.map((item) => ({
-    label: item.title,
-    to: item._path,
-  }));
-  return [
-    {
-      label: 'Tutorials',
-      icon: 'i-heroicons-arrow-left-circle',
-      to: '/tutorials',
-    },
-    {
-      label: info.value?.title || 'Guide',
-      collapsible: false,
-      children: links,
-    },
-  ];
-});
+// const links = computed(() => {
+//   const pageLinks = navigation.value;
+//   return [
+//     {
+//       label: 'Tutorials',
+//       icon: 'i-heroicons-arrow-left-circle',
+//       to: '/tutorials',
+//     },
+//     {
+//       label: info.value?.title || 'Guide',
+//       collapsible: false,
+//       children: pageLinks[0].children[0].children.map((item) => ({
+//         label: item.title,
+//         to: item._path,
+//       })),
+//     },
+//   ];
+// });
+console.log('WHY INFO', info.value);
+const links = [
+  {
+    label: 'Tutorials',
+    icon: 'i-heroicons-arrow-left-circle',
+    to: '/tutorials',
+  },
+  {
+    label: info.value?.title || 'Guide',
+    collapsible: false,
+    children: navigation.value[0].children[0].children.map((item) => ({
+      label: item.title,
+      to: item._path,
+    })),
+  },
+];
+
+const communityLinks = [
+  {
+    icon: 'i-heroicons-academic-cap-solid',
+    label: 'Contribute to the Cookbook',
+    to: 'https://github.com/zkSync-Community-Hub/cookbook',
+  },
+  {
+    icon: 'i-heroicons-chat-bubble-oval-left-ellipsis-16-solid',
+    label: 'Chat on Discord',
+    to: 'https://join.zksync.dev/',
+    target: '_blank',
+  },
+  {
+    icon: 'i-heroicons-user-group-20-solid',
+    label: 'Developer Forum',
+    to: 'https://github.com/zkSync-Community-Hub/zkync-developers/discussions',
+    target: '_blank',
+  },
+];
 </script>
 
 <template>
@@ -40,6 +83,8 @@ const links = computed(() => {
       <template #left>
         <UAside>
           <UDashboardSidebarLinks :links="links" />
+          <UDivider class="my-4" />
+          <UPageLinks :links="communityLinks" />
         </UAside>
       </template>
 
