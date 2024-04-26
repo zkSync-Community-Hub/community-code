@@ -1,4 +1,8 @@
-dist
-node_modules
 .output
 .nuxt
+*.d.ts
+**/node_modules/**
+**/build/**
+**/dist/**
+**/coverage/**
+**/.*/**

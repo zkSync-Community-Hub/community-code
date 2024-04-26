@@ -1,31 +1,30 @@
+import { getIconCollections } from '@egoist/tailwindcss-icons';
+import { zksyncIcons } from './assets/zksync-icons';
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   extends: ['@nuxt/ui-pro'],
-  modules: [
-    '@nuxt/content',
-    '@nuxt/ui',
-    '@nuxt/fonts',
-    '@nuxthq/studio',
-    'nuxt-og-image',
-    '@nuxt/image',
-  ],
+  modules: ['@nuxt/content', '@nuxt/ui', '@nuxt/fonts', '@nuxthq/studio', 'nuxt-og-image', '@nuxt/image'],
   app: {
     head: {
-      link: [
-        { rel: 'stylesheet', href: '/main.css' },
-      ],
+      link: [{ rel: 'stylesheet', href: '/main.css' }],
     },
   },
   hooks: {
     // Define `@nuxt/ui` components as global to use them in `.md` (feel free to add those you need)
     'components:extend': (components) => {
-      const globals = components.filter((c) => ['UButton', 'UIcon'].includes(c.pascalName))
+      const globals = components.filter((c) => ['UButton', 'UIcon'].includes(c.pascalName));
 
-      globals.forEach((c) => c.global = true)
-    }
+      globals.forEach((c) => (c.global = true));
+    },
   },
   ui: {
-    icons: ['heroicons', 'simple-icons']
+    icons: {
+      collections: {
+        zksync: zksyncIcons,
+        ...getIconCollections(['heroicons', 'simple-icons', 'logos', 'devicon']),
+      },
+    },
   },
   image: {
     quality: 90,
@@ -42,10 +41,10 @@ export default defineNuxtConfig({
     '/api/search.json': { prerender: true },
   },
   devtools: {
-    enabled: true
+    enabled: true,
   },
   typescript: {
-    strict: false
+    strict: false,
   },
   content: {
     highlight: {
@@ -79,4 +78,4 @@ export default defineNuxtConfig({
       },
     },
   },
-})
+});
