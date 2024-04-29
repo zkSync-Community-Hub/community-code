@@ -1,0 +1,19 @@
+{
+  "recommendations": [
+    "bradlc.vscode-tailwindcss",
+    "christian-kohler.npm-intellisense",
+    "christian-kohler.path-intellisense",
+    "DavidAnson.vscode-markdownlint",
+    "dbaeumer.vscode-eslint",
+    "editorconfig.editor",
+    "esbenp.prettier-vscode",
+    "mikestead.dotenv",
+    "nuxt.mdc",
+    "rvest.vs-code-prettier-eslint",
+    "simonsiefke.svg-preview",
+    "streetsidesoftware.code-spell-checker",
+    "vue.volar",
+    "yoavbls.pretty-ts-errors"
+  ],
+  "unwantedRecommendations": ["vue.vscode-typescript-vue-plugin"]
+}

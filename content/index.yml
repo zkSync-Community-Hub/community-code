@@ -1,0 +1,13 @@
+title: 'zkSync Community Cookbook'
+description:
+  Nuxt UI Pro is a collection of premium Vue components built on top of Nuxt UI to create beautiful & responsive Nuxt
+  applications in minutes.
+navigation: false
+features:
+  title: 'All-in-one docs template'
+  links:
+    - label: 'Explore community guides'
+      trailingIcon: 'i-heroicons-arrow-right-20-solid'
+      color: 'gray'
+      to: '/tutorials'
+      size: lg

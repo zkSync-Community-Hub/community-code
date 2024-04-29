@@ -1,0 +1,15 @@
+// zkSync-related words
+boojum
+MatterLabs
+Zeek
+zkcast
+ZKEVM
+zkevm
+zkforge
+zkout
+zksolc
+zkstack
+zkSync
+zksync
+zksync-cli
+zkvyper
