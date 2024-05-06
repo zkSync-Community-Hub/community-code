@@ -45,7 +45,7 @@ useSeoMeta({
   description: info.value.summary,
   ogDescription: info.value.summary,
   ogType: 'article',
-  author: info.value.author.name,
+  author: info.value.authors[0].name,
 });
 
 const { data: navigation } = await useAsyncData(`${route.path}-sidenav`, () => {
@@ -113,6 +113,11 @@ const communityLinks = [
         />
         <div class="grid grid-cols-8 gap-4 py-5">
           <div class="col-span-5">
+            <AuthorsList
+              class="mb-4"
+              :authors="info.authors"
+              :with-links="true"
+            />
             <p>
               {{ info.description }}
             </p>
@@ -131,20 +136,6 @@ const communityLinks = [
           </div>
 
           <div class="col-span-3">
-            <div>
-              <a
-                :href="info.author.url"
-                target="_blank"
-                class="mb-4 flex w-auto items-center justify-normal hover:underline"
-              >
-                <UAvatar
-                  size="md"
-                  :src="info.author.avatar"
-                  :alt="info.author.name"
-                />
-                <span class="ml-3">{{ info.author.name }}</span>
-              </a>
-            </div>
             <UButton
               icon="i-simple-icons-github"
               size="sm"
