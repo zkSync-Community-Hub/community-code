@@ -1,9 +1,8 @@
 {
-  "name": "nuxt-ui-pro-template-docs",
-  "private": true,
+  "name": "community-code",
   "type": "module",
   "scripts": {
-    "build": "nuxt build",
+    "build": "nuxt generate",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
@@ -23,32 +22,28 @@
     "@iconify-json/heroicons": "^1.1.20",
     "@iconify-json/simple-icons": "^1.1.97",
     "@nuxt/content": "^2.12.1",
+    "@nuxt/eslint": "^0.3.10",
     "@nuxt/fonts": "^0.5.1",
     "@nuxt/image": "^1.6.0",
+    "@nuxt/ui": "^2.16.0",
     "@nuxt/ui-pro": "^1.1.0",
     "dayjs": "^1.11.10",
     "nuxt": "^3.11.2",
-    "nuxt-og-image": "^3.0.0-rc"
+    "nuxt-og-image": "^3.0.0-rc",
+    "rehype-katex": "^7.0.0",
+    "remark-math": "^6.0.0",
+    "vue-tsc": "^2.0.16"
   },
   "devDependencies": {
-    "@nuxt/eslint-config": "^0.2.0",
-    "@nuxthq/studio": "^1.0.13",
-    "@typescript-eslint/eslint-plugin": "^7.7.1",
-    "@typescript-eslint/parser": "^7.7.1",
-    "@vue/eslint-config-prettier": "^9.0.0",
-    "@vue/eslint-config-typescript": "^13.0.0",
     "@vue/test-utils": "^2.4.5",
     "cspell": "^8.7.0",
     "eslint": "^8.57.0",
-    "eslint-plugin-vue": "^9.25.0",
     "husky": "^9.0.11",
     "markdownlint": "^0.34.0",
     "markdownlint-cli2": "^0.13.0",
     "nuxt-headlessui": "^1.2.0",
     "prettier": "^3.2.5",
     "prettier-eslint": "^16.3.0",
-    "prettier-plugin-tailwindcss": "^0.5.14",
-    "vue-eslint-parser": "^9.4.2",
-    "vue-tsc": "^2.0.7"
+    "prettier-plugin-tailwindcss": "^0.5.14"
   }
 }
