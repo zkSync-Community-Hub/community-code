@@ -1,3 +1,4 @@
 Nuxt
 nuxt
 nuxthq
+nuxi
