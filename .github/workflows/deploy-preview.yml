@@ -3,6 +3,8 @@ on:
   pull_request:
   workflow_dispatch:
 
+permissions: write-all
+
 jobs:
   build_and_preview:
     env:
