@@ -3,7 +3,10 @@ on:
   pull_request:
   workflow_dispatch:
 
-permissions: write-all
+permissions:
+  checks: write
+  contents: read
+  pull-requests: write
 
 jobs:
   build_and_preview:
