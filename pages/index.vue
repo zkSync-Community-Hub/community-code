@@ -34,14 +34,10 @@ useSeoMeta({
 
             <p>{{ guide.summary }}</p>
 
-            <div class="my-4 flex w-auto items-center justify-normal">
-              <UAvatar
-                size="sm"
-                :src="guide.author.avatar"
-                :alt="guide.author.name"
-              />
-              <span class="ml-3">{{ guide.author.name }}</span>
-            </div>
+            <AuthorsList
+              class="my-4"
+              :authors="guide.authors"
+            />
 
             <div class="mt-4">
               <UBadge

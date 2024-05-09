@@ -1,8 +1,8 @@
 title: Simple Tutorial
-author:
-  name: Jane Doe
-  url: https://example.com
-  avatar: https://avatars.githubusercontent.com/u/812331?v=4
+authors:
+  - name: Jane Doe
+    url: https://example.com
+    avatar: https://avatars.githubusercontent.com/u/812331?v=4
 github_repo: https://github.com/zkSync-Community-Hub
 tags:
   - smart-contracts
