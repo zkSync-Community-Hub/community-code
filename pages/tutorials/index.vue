@@ -17,7 +17,7 @@ const { data: guides } = await useAsyncData('tutorials', () =>
           v-for="(guide, index) of guides"
           :key="index"
           :to="`/tutorials/${guide._dir}`"
-          class="grid grid-cols-2 items-center gap-4 border-b border-gray-100 p-4 hover:bg-zkSlate-100 dark:border-gray-800 dark:hover:bg-zkSlate-900"
+          class="hover:bg-zkSlate-100 dark:hover:bg-zkSlate-900 grid grid-cols-2 items-center gap-4 border-b border-gray-100 p-4 dark:border-gray-800"
         >
           <div>
             {{ guide.title }}
