@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "community-cookbook-staging"
+    "default": "community-cookbook-staging",
+    "prod": "community-cookbook-59807"
   }
 }
