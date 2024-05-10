@@ -59,8 +59,8 @@ const links = [
 const communityLinks = [
   {
     icon: 'i-heroicons-academic-cap-solid',
-    label: 'Contribute to the Cookbook',
-    to: 'https://github.com/zkSync-Community-Hub/cookbook',
+    label: 'Contribute to Community Code',
+    to: 'https://github.com/zkSync-Community-Hub/community-code',
   },
   {
     icon: 'i-heroicons-chat-bubble-oval-left-ellipsis-16-solid',

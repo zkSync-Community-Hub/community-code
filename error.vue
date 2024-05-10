@@ -31,7 +31,7 @@ provide('navigation', navigation);
 
 <template>
   <div>
-    <Header />
+    <HeaderComponent :links="[]" />
 
     <UMain>
       <UContainer>
@@ -41,7 +41,7 @@ provide('navigation', navigation);
       </UContainer>
     </UMain>
 
-    <Footer />
+    <FooterComponent />
 
     <ClientOnly>
       <LazyUContentSearch

@@ -1,125 +1,62 @@
-![nuxt-ui-docs-social-card](https://github.com/nuxt-ui-pro/docs/assets/739984/f64e13d9-9ae0-4e03-bf7f-6be4c36cd9ba)
+# Community Code
 
-# Nuxt UI Pro - Docs template
+Welcome to the ZKsync Community Code repository. This project serves as the community hub for ZKsync, providing comprehensive
+documentation for developers written by developers.
+Whether you're a beginner looking to get started with ZKsync or an experienced developer
+seeking advanced guides, you'll find the resources you need here.
 
-[![Nuxt UI Pro](https://img.shields.io/badge/Made%20with-Nuxt%20UI%20Pro-00DC82?logo=nuxt.js&labelColor=020420)](https://ui.nuxt.com/pro)
-[![Nuxt Studio](https://img.shields.io/badge/Open%20in%20Nuxt%20Studio-18181B?&logo=nuxt.js&logoColor=3BB5EC)](https://nuxt.studio/themes/docs)
+## Tools used
 
-- [Live demo](https://docs-template.nuxt.dev/)
-- [Play on Stackblitz](https://stackblitz.com/github/nuxt-ui-pro/docs)
-- [Documentation](https://ui.nuxt.com/pro/getting-started)
-- [Clone on Nuxt Studio](https://nuxt.studio/themes/docs)
+- [Vue](https://vuejs.org/)
+- [Nuxt](https://nuxt.com/)
+- [Nuxt Content](https://content.nuxt.com/)
+- [Nuxt UI & Nuxt UI Pro](https://ui.nuxt.com/)
+- [Tailwind](https://tailwindcss.com/)
+- [Bun](https://bun.sh/)
 
-## Quick Start
+## Local Setup
 
-```bash [Terminal]
-npx nuxi init -t github:nuxt-ui-pro/docs
-```
+This project uses bun to run, follow the [bun installation instructions](https://bun.sh/docs/installation). Once bun is
+installed, run the following command to install all project dependencies:
 
-## Setup
-
-Make sure to install the dependencies:
-
-```bash
-# npm
-npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
+```shell
 bun install
 ```
 
-## Development Server
+## Development
 
-Start the development server on `http://localhost:3000`:
+To run the project locally at `http://localhost:3000`
 
-```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm run dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
+```shell
+bun run dev -o
 ```
 
-## Production
+## Local Preview
 
-Build the application for production:
+To locally preview the production build, first run `bun run generate` to build the project, then run the following:
 
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm run build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-
-# bun
+```shell
 bun run preview
 ```
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+## Lint & Formatting
 
-## Nuxt Studio integration
+This project provides lint commands to check the project.
 
-Add `@nuxthq/studio` dependency to your package.json:
+### Markdown Linting
 
-```bash
-# npm
-npm install --save-dev @nuxthq/studio
+Markdown files are found in the `/content` directory. The following lint commands will run within that directory:
 
-# pnpm
-pnpm add -D @nuxthq/studio
-
-# yarn
-yarn add -D @nuxthq/studio
-
-# bun
-bun add -d @nuxthq/studio
+```shell
+bun run lint:spelling
+bun run lint:markdown
 ```
 
-Add this module to your `nuxt.config.ts`:
+### Linting
 
-```ts
-export default defineNuxtConfig({
-  ...
-  modules: [
-    ...
-    '@nuxthq/studio'
-  ]
-})
+The following commands are available to run linting on the project:
+
+```shell
+bun run lint:prettier
+bun run lint:eslint
 ```
-
-Read more on [Nuxt Studio docs](https://nuxt.studio/docs/projects/setup).
-
-## Renovate integration
-
-Install [Renovate GitHub app](https://github.com/apps/renovate/installations/select_target) on your repository and you are good to go.

@@ -17,7 +17,7 @@ useSeoMeta({
 <template>
   <div>
     <ULandingSection
-      title="Community Contributed Guides for zkSync"
+      :title="page.features.title"
       :links="page.features.links"
     >
       <UPageGrid>
@@ -25,7 +25,7 @@ useSeoMeta({
           v-for="(guide, index) of guides"
           :key="index"
           :to="`/tutorials/${guide._dir}`"
-          class="rounded-lg border-2 border-transparent transition-colors duration-200 ease-in-out hover:border-zkPurple-300"
+          class="hover:border-zkPurple-300 rounded-lg border-2 border-transparent transition-colors duration-200 ease-in-out"
         >
           <UCard>
             <span class="mb-4 inline-block text-lg font-semibold">
