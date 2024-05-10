@@ -29,6 +29,7 @@ useSeoMeta({
   titleTemplate: `%s - ${seo?.siteName}`,
   ogSiteName: seo?.siteName,
   ogUrl: 'https://docs.zksync.io/',
+  ogImage: '/social-card.png',
   ogImageAlt: 'zkSync — Accelerating the mass adoption of crypto for personal sovereignty.',
   ogDescription:
     'zkSync Docs bring you all information you need about our protocol, APIs, SDKs, ZK Stack, and hyperchains. Start with our guides and tutorials, or go deep into our architecture and protocol specification.',
@@ -39,7 +40,7 @@ useSeoMeta({
   twitterImageAlt: 'zkSync — Accelerating the mass adoption of crypto for personal sovereignty.',
 });
 
-defineOgImage({ component: 'OgImageDocs' });
+defineOgImage({ component: 'OgImageCommunityCode' });
 
 provide('navigation', navigation);
 </script>
