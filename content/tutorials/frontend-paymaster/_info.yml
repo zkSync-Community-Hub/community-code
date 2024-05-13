@@ -1,0 +1,25 @@
+title: Frontend quickstart with Paymaster
+author:
+  name: MatterLabs
+  url: https://matter-labs.io
+  avatar: https://avatars.githubusercontent.com/u/42489169?s=200&v=4
+github_repo: https://github.com/zkSync-Community-Hub
+tags:
+  - paymaster
+  - frontend
+  - vue.js
+  - tutorial
+summary: Build a frontend that allows users to interact smart contracts paying fees with ERC20 tokens on ZKsync.
+description:
+  This tutorial will guide you through the process of building a frontend that interacts with smart contracts on ZKsync.
+  The frontend will allow users to pay fees with any ERC20 tokens using a paymaster.
+what_you_will_learn:
+  - You'll learn how to build frontend
+  - You'll learn how to send transactions through a paymaster
+updated: 2024-05-09
+tools:
+  - zksync-cli
+  - zksync-ethers
+  - Hardhat
+related_tutorials:
+  - /tutorials/another-tutorial
