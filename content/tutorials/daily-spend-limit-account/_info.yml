@@ -1,0 +1,26 @@
+title: Native spend limit smart account
+author:
+  name: MatterLabs
+  url: https://matter-labs.io
+  avatar: https://avatars.githubusercontent.com/u/42489169?s=200&v=4
+github_repo: https://github.com/zkSync-Community-Hub
+tags:
+  - account abstraction
+  - smart contracts
+  - tutorial
+summary: Build a native smart contract account that has a daily spend limit.
+description:
+  This tutorial will guide you through the process of building a smart contract account that has a daily spend limit.
+  We'll create a factory contract that deploys new smart accounts and configure the account limit and test it works as
+  expected
+what_you_will_learn:
+  - You'll learn how to build a smart contract factory
+  - You'll learn how to build a smart contract account
+  - You'll learn how to send transactions through a smart contract account
+updated: 2024-05-09
+tools:
+  - zksync-cli
+  - zksync-ethers
+  - Hardhat
+related_tutorials:
+  - /tutorials/another-tutorial
