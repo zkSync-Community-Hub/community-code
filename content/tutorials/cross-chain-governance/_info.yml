@@ -8,10 +8,10 @@ tags:
   - smart contracts
   - L1-L2
   - tutorial
-summary: Build and deploy a smart contract in L1 and send transactions that update the state of a contract in ZKsync.
+summary: Build and deploy a smart contract in L1 and send transactions that update the state of a contract in zkSync.
 description:
-  In this tutorial we'll deploy a simple smart contract in ZKsync. Then we'll deploy another smart contract in L1 and
-  send transactions that update the state of the contract in ZKsync. We'll use the Mailbox
+  In this tutorial we'll deploy a simple smart contract in zkSync. Then we'll deploy another smart contract in L1 and
+  send transactions that update the state of the contract in zkSync. We'll use the Mailbox
 what_you_will_learn:
   - You'll learn how to deploy smart contracts in L1 and L2
   - You'll learn how to send transactions in L1 that interact with contracts in L2
