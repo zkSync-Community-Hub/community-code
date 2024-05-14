@@ -1,0 +1,23 @@
+title: theGraph quickstart
+author:
+  name: theGraph
+  url: https://thegraph.com/
+  avatar: https://avatars.githubusercontent.com/u/38020273?s=200&v=4
+github_repo: https://github.com/graphprotocol
+tags:
+  - guide
+  - theGraph
+summary: This page will guide you through the steps to index smart contract data using theGraph.
+description:
+  This guide outlines the process of indexing all transfers and approval events from the Wrapped ETH on zkSync Era
+  Network.
+what_you_will_learn:
+  - You'll learn how to use theGraph
+  - You'll learn how to create an indexer
+  - You'll learn how to index smart contract data
+updated: 2024-05-09
+tools:
+  - theGraph
+  - GraphQL
+related_tutorials:
+  - /tutorials/another-tutorial
