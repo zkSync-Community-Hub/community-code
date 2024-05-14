@@ -11,7 +11,7 @@ tags:
   - tutorial
 summary: Build a frontend that allows users to interact smart contracts with zero transaction fees wif they hold an NFT.
 description:
-  This tutorial will guide you through the process of building a frontend that interacts with smart contracts on ZKsync.
+  This tutorial will guide you through the process of building a frontend that interacts with smart contracts on zkSync.
   The frontend will enalbe gasless transactions for users that hold a specific NFT thanks to a paymaster.
 what_you_will_learn:
   - You'll learn how to build frontend

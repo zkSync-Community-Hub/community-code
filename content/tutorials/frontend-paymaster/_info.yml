@@ -9,9 +9,9 @@ tags:
   - frontend
   - vue.js
   - tutorial
-summary: Build a frontend that allows users to interact smart contracts paying fees with ERC20 tokens on ZKsync.
+summary: Build a frontend that allows users to interact smart contracts paying fees with ERC20 tokens on zkSync.
 description:
-  This tutorial will guide you through the process of building a frontend that interacts with smart contracts on ZKsync.
+  This tutorial will guide you through the process of building a frontend that interacts with smart contracts on zkSync.
   The frontend will allow users to pay fees with any ERC20 tokens using a paymaster.
 what_you_will_learn:
   - You'll learn how to build frontend
