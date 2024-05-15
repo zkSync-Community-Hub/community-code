@@ -40,7 +40,9 @@ useSeoMeta({
   twitterImageAlt: 'zkSync — Accelerating the mass adoption of crypto for personal sovereignty.',
 });
 
-defineOgImage({ component: 'OgImageCommunityCode' });
+defineOgImage({
+  component: 'OgImageZK',
+});
 
 provide('navigation', navigation);
 </script>
@@ -49,7 +51,7 @@ provide('navigation', navigation);
   <div>
     <NuxtLoadingIndicator />
 
-    <HeaderComponent :links="[]" />
+    <HeaderComponent />
 
     <UMain>
       <NuxtLayout>
