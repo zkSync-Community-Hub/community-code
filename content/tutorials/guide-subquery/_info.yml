@@ -1,8 +1,8 @@
 title: Indexing events with SubQuery
-author:
-  name: SubQuery
-  url: https://subquery.network
-  avatar: https://avatars.githubusercontent.com/u/77033664?s=200&v=4
+authors:
+  - name: SubQuery
+    url: https://subquery.network
+    avatar: https://avatars.githubusercontent.com/u/77033664?s=200&v=4
 github_repo: https://github.com/subquery
 tags:
   - guide

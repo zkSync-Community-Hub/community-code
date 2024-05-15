@@ -1,8 +1,8 @@
 title: How to deploy a contract
-author:
-  name: MatterLabs
-  url: https://matter-labs.io
-  avatar: https://avatars.githubusercontent.com/u/42489169?s=200&v=4
+authors:
+  - name: MatterLabs
+    url: https://matter-labs.io
+    avatar: https://avatars.githubusercontent.com/u/42489169?s=200&v=4
 github_repo: https://github.com/zkSync-Community-Hub
 tags:
   - hardhat

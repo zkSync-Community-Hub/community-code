@@ -1,8 +1,8 @@
 title: theGraph quickstart
-author:
-  name: theGraph
-  url: https://thegraph.com/
-  avatar: https://avatars.githubusercontent.com/u/38020273?s=200&v=4
+authors:
+  - name: theGraph
+    url: https://thegraph.com/
+    avatar: https://avatars.githubusercontent.com/u/38020273?s=200&v=4
 github_repo: https://github.com/graphprotocol
 tags:
   - guide

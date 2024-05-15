@@ -1,8 +1,8 @@
 title: Create an indexer with DipDup
-author:
-  name: DipDup
-  url: https://dipdup.io
-  avatar: https://avatars.githubusercontent.com/u/81768067?s=200&v=4
+authors:
+  - name: DipDup
+    url: https://dipdup.io
+    avatar: https://avatars.githubusercontent.com/u/81768067?s=200&v=4
 github_repo: https://github.com/dipdup-io
 tags:
   - guide
