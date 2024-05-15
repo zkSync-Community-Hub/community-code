@@ -16,10 +16,29 @@ useSeoMeta({
 
 <template>
   <div>
+    <IconOrbit class="absolute hidden md:block" />
     <ULandingSection
-      :title="page.features.title"
-      :links="page.features.links"
+      class="relative"
+      title=""
+      description="Build Together: Discover Community-Driven Guides and Tutorials for zkSync"
+      :links="[
+        {
+          label: 'Check out all the tutorials',
+          icon: 'i-zksync-zksync-logo',
+          trailingIcon: 'i-heroicons-arrow-right-20-solid',
+          to: '/tutorials',
+          size: 'xl',
+        },
+      ]"
     >
+      <template #headline>
+        <NuxtImg
+          src="/logos/zksync-icon.svg"
+          width="240"
+          class="invert filter dark:filter-none"
+        />
+      </template>
+
       <UPageGrid>
         <SiteLink
           v-for="(guide, index) of guides"
