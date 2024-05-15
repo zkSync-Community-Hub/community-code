@@ -4,10 +4,8 @@ const route = useRoute();
 if (!route.path) {
   throw new Error('Route path is not defined');
 }
-console.log('PATH', route);
 
 const { data: info } = await useAsyncData(`${route.path}-info`, () => {
-  console.log('ROUTE', route.fullPath);
   return queryContent(`${route.fullPath}/_info`).findOne();
 });
 
@@ -21,25 +19,6 @@ const { data: navigation } = await useAsyncData(`${route.path}-sidenav`, () => {
   return fetchContentNavigation(query);
 });
 
-// const links = computed(() => {
-//   const pageLinks = navigation.value;
-//   return [
-//     {
-//       label: 'Tutorials',
-//       icon: 'i-heroicons-arrow-left-circle',
-//       to: '/tutorials',
-//     },
-//     {
-//       label: info.value?.title || 'Guide',
-//       collapsible: false,
-//       children: pageLinks[0].children[0].children.map((item) => ({
-//         label: item.title,
-//         to: item._path,
-//       })),
-//     },
-//   ];
-// });
-console.log('WHY INFO', info.value);
 const links = [
   {
     label: 'Tutorials',
