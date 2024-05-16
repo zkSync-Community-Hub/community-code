@@ -23,7 +23,7 @@ jobs:
       - name: "Install dependencies"
         run: bun install
       - name: "Deploy target: staging"
-        run: bun run generate
+        run: bun run build
 
       - uses: matter-labs/action-hosting-deploy@main
         with:

@@ -29,7 +29,7 @@ jobs:
         run: bun install
 
       - name: "Deploy target: preview"
-        run: bun run generate
+        run: bun run build
 
       - uses: untitaker/hyperlink@0.1.32
         with:
