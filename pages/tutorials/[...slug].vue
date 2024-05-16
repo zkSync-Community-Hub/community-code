@@ -77,7 +77,7 @@ const links = [
 const communityLinks = [
   {
     icon: 'i-heroicons-academic-cap-solid',
-    label: 'Contribute to Community Code',
+    label: 'Contribute',
     to: 'https://github.com/zkSync-Community-Hub/community-code',
   },
   {
