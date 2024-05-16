@@ -12,8 +12,8 @@ description:
   This guide will help you create an indexer with DipDup and Python. DipDup is a tool that allows you to build a custom
   indexer for your project.
 what_you_will_learn:
-  - You'll learn how to use DipDup
-  - You'll learn how to create an indexer
+  - How to use DipDup
+  - How to create an indexer
 updated: 2024-05-09
 tools:
   - DipDup

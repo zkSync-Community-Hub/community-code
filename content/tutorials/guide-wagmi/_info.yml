@@ -12,9 +12,9 @@ description:
   This guide outlines how to use the wagmi library to create websites that interact with zkSync contracts. We provide
   some examples to help you get started.
 what_you_will_learn:
-  - You'll learn how to use wagmi to interact with zkSync
-  - You'll learn how to fetch data from zkSync contracts
-  - You'll learn how to send transactions to zkSync contracts
+  - How to use wagmi to interact with zkSync
+  - How to fetch data from zkSync contracts
+  - How to send transactions to zkSync contracts
 updated: 2024-05-09
 tools:
   - wagmi

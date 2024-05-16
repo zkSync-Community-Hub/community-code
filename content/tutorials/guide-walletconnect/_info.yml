@@ -11,8 +11,8 @@ summary: Learn how to use WalletConnect to create React apps that interact with 
 description:
   This guide outlines how to use WalletConnect and Web3Modal to create React apps that interact with contracts on zkSync
 what_you_will_learn:
-  - You'll learn how to use WalletConnect
-  - You'll learn how to use Web3Modal
+  - How to use WalletConnect
+  - How to use Web3Modal
 updated: 2024-05-09
 tools:
   - walletconnect

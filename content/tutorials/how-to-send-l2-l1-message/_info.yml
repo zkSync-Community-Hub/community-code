@@ -11,9 +11,9 @@ tags:
 summary: Learn how to send a message from zkSync to Ethereum L1.
 description: This how-to guide explains how to send an arbitrary message from zkSync to Ethereum L1.
 what_you_will_learn:
-  - You'll learn how L2-L1 communication works
-  - You'll learn how to send a message from zkSync to Ethereum L1.
-  - You'll learn how to verify the message on Ethereum L1.
+  - How L2-L1 communication works
+  - How to send a message from zkSync to Ethereum L1.
+  - How to verify the message on Ethereum L1.
 updated: 2024-05-09
 tools:
   - zksync-ethers

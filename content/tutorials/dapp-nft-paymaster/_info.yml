@@ -9,17 +9,18 @@ tags:
   - frontend
   - next.js
   - tutorial
+  - ERC721
 summary: Build a frontend that allows users to interact smart contracts with zero transaction fees wif they hold an NFT.
 description:
   This tutorial will guide you through the process of building a frontend that interacts with smart contracts on zkSync.
-  The frontend will enalbe gasless transactions for users that hold a specific NFT thanks to a paymaster.
+  The frontend will enable gasless transactions for users that hold a specific NFT thanks to a paymaster.
 what_you_will_learn:
-  - You'll learn how to build frontend
-  - You'll learn how to send transactions through a paymaster
+  - How to build frontend
+  - How to send transactions through a paymaster
 updated: 2024-05-09
 tools:
   - zksync-cli
   - zksync-ethers
   - Hardhat
+  - react
 related_tutorials:
-  - /tutorials/another-tutorial

@@ -11,9 +11,9 @@ tags:
 summary: Learn how to deploy a smart contract on zkSync.
 description: This how-to guide explains how to verify a smart contract on zkSync using Hardhat.
 what_you_will_learn:
-  - You'll learn how to compile smart contracts.
-  - You'll learn how to verify contracts.
-  - You'll learn how to verify contracts with constructor arguments.
+  - How to compile smart contracts.
+  - How to verify contracts.
+  - How to verify contracts with constructor arguments.
 updated: 2024-05-09
 tools:
   - hardhat-zksync-deploy

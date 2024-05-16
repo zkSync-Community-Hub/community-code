@@ -13,9 +13,9 @@ description:
   This how-to guide explains how to deploy a smart contract on zkSync using hardhat-zksync-deploy and
   hardhat-zksync-ethers.
 what_you_will_learn:
-  - You'll learn how to compile smart contracts
-  - You'll learn how to deploy contracts with hardhat-zksync-deploy
-  - You'll learn how to deploy contracts with hardhat-zksync-ethers
+  - How to compile smart contracts
+  - How to deploy contracts with hardhat-zksync-deploy
+  - How to deploy contracts with hardhat-zksync-ethers
 updated: 2024-05-09
 tools:
   - hardhat-zksync-deploy

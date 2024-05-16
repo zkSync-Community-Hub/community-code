@@ -11,8 +11,8 @@ tags:
 summary: Learn how to withdraw ERC20 tokens zkSync.
 description: This how-to guide explains how to create a script that withdraw any ERC20 token from zkSync to Ethereum.
 what_you_will_learn:
-  - You'll learn how L2 withdraw work
-  - You'll learn how to withdraw ERC20 tokens to zkSync
+  - How L2 withdraw work
+  - How to withdraw ERC20 tokens to zkSync
 updated: 2024-05-09
 tools:
   - zksync-ethers

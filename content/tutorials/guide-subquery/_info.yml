@@ -12,9 +12,9 @@ description:
   This guide outlines the process of indexing all transfers and approval events from the Wrapped ETH on zkSync Era
   Network.
 what_you_will_learn:
-  - You'll learn how to use Subquery
-  - You'll learn how to create an indexer
-  - You'll learn how to index smart contract events
+  - How to use Subquery
+  - How to create an indexer
+  - How to index smart contract events
 updated: 2024-05-09
 tools:
   - SubQuery

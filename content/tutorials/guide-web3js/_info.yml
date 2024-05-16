@@ -10,9 +10,9 @@ tags:
 summary: This page will guide you through the steps to use web3.js to interact with zkSync.
 description: This guide outlines how to use the zkSync web3.js plugin to interact with zkSync.
 what_you_will_learn:
-  - You'll learn how to install web3.js and the zkSync plugin
-  - You'll learn how to send RPC requests to zkSync
-  - You'll learn how to use zkSync-specific methods
+  - How to install web3.js and the zkSync plugin
+  - How to send RPC requests to zkSync
+  - How to use zkSync-specific methods
 updated: 2024-05-09
 tools:
   - web3.js

@@ -11,8 +11,8 @@ tags:
 summary: Learn how to deposit ERC20 tokens zkSync.
 description: This how-to guide explains how to create a script that deposits any ERC20 token to zkSync.
 what_you_will_learn:
-  - You'll learn how L2 deposits work
-  - You'll learn how to deposit ERC20 tokens to zkSync
+  - How L2 deposits work
+  - How to deposit ERC20 tokens to zkSync
 updated: 2024-05-09
 tools:
   - zksync-ethers

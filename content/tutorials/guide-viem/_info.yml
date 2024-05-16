@@ -12,9 +12,9 @@ description:
   This guide outlines how to use the zkSync viem plugin to interact with zkSync and use specific actions like sending
   transcations via paymasters.
 what_you_will_learn:
-  - You'll learn how to install viem and the zkSync plugin
-  - You'll learn how to send RPC requests to zkSync
-  - You'll learn how to use zkSync-specific methods
+  - How to install viem and the zkSync plugin
+  - How to send RPC requests to zkSync
+  - How to use zkSync-specific methods
 updated: 2024-05-09
 tools:
   - viem

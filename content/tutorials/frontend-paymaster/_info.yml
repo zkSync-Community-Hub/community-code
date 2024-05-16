@@ -14,8 +14,8 @@ description:
   This tutorial will guide you through the process of building a frontend that interacts with smart contracts on zkSync.
   The frontend will allow users to pay fees with any ERC20 tokens using a paymaster.
 what_you_will_learn:
-  - You'll learn how to build frontend
-  - You'll learn how to send transactions through a paymaster
+  - How to build frontend
+  - How to send transactions through a paymaster
 updated: 2024-05-09
 tools:
   - zksync-cli

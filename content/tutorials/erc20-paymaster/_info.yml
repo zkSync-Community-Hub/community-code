@@ -15,9 +15,9 @@ description:
   token in exchange for transaction fees. We'll use it to interact with a smart contract and pay the fees with an ERC20
   token.
 what_you_will_learn:
-  - You'll learn how to build a paymaster
-  - You'll learn how to send transactions through a paymaster
-  - You'll learn how to pay transaction fees with an ERC20 token
+  - How to build a paymaster
+  - How to send transactions through a paymaster
+  - How to pay transaction fees with an ERC20 token
 updated: 2024-05-09
 tools:
   - zksync-cli

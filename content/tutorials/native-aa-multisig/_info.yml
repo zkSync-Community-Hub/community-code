@@ -14,9 +14,9 @@ description:
   signatures to execute transactions. We'll create a factory contract that deploys new smart accounts and a multisig
   smart account that can only execute transactions if two signatures are provided.
 what_you_will_learn:
-  - You'll learn how to build a smart contract factory
-  - You'll learn how to build a smart contract account
-  - You'll learn how to send transactions through a smart contract account
+  - How to build a smart contract factory
+  - How to build a smart contract account
+  - How to send transactions through a smart contract account
 updated: 2024-05-09
 tools:
   - zksync-cli
