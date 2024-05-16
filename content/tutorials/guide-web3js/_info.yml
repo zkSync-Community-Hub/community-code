@@ -1,0 +1,20 @@
+title: Using web3.js to interact with zkSync
+authors:
+  - name: ChainSafe
+    url: https://web3js.org/
+    avatar: https://avatars.githubusercontent.com/u/27474093?s=200&v=4
+github_repo: https://github.com/ChainSafe
+tags:
+  - guide
+  - web3.js
+summary: This page will guide you through the steps to use web3.js to interact with zkSync.
+description: This guide outlines how to use the zkSync web3.js plugin to interact with zkSync.
+what_you_will_learn:
+  - How to install web3.js and the zkSync plugin
+  - How to send RPC requests to zkSync
+  - How to use zkSync-specific methods
+updated: 2024-05-09
+tools:
+  - web3.js
+related_tutorials:
+  - /tutorials/another-tutorial

@@ -43,7 +43,8 @@
     "swift",
     "typescript",
     "dict-zksync",
-    "dict-misc"
+    "dict-misc",
+    "dict-blockchain"
   ],
   "dictionaryDefinitions": [
     {
@@ -55,6 +56,11 @@
       "name": "dict-misc",
       "addWords": true,
       "path": "./cspell-config/cspell-misc.txt"
+    },
+    {
+      "name": "dict-blockchain",
+      "addWords": true,
+      "path": "./cspell-config/cspell-blockchain.txt"
     }
   ],
   "allowCompoundWords": true,

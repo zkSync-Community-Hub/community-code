@@ -1,8 +1,8 @@
 # Community Code
 
-Welcome to the ZKsync Community Code repository. This project serves as the community hub for ZKsync, providing comprehensive
+Welcome to the zkSync Community Code repository. This project serves as the community hub for zkSync, providing comprehensive
 documentation for developers written by developers.
-Whether you're a beginner looking to get started with ZKsync or an experienced developer
+Whether you're a beginner looking to get started with zkSync or an experienced developer
 seeking advanced guides, you'll find the resources you need here.
 
 ## Tools used

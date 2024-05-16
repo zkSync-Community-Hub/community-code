@@ -23,7 +23,7 @@ jobs:
       - name: "Install dependencies"
         run: bun install
       - name: "Deploy target: production 🚀"
-        run: bun run generate
+        run: bun run build
         # TODO: ask about below
         # env:
         #   RUDDERSTACK_WRITE_KEY: "${{ secrets.RUDDERSTACK_WRITE_KEY }}"

@@ -1,0 +1,21 @@
+title: How to test contracts with Hardhat
+authors:
+  - name: MatterLabs
+    url: https://matter-labs.io
+    avatar: https://avatars.githubusercontent.com/u/42489169?s=200&v=4
+github_repo: https://github.com/zkSync-Community-Hub
+tags:
+  - smart contracts
+  - how-to
+  - testing
+summary: Learn how to test smart contracts on with Hardhat
+description: This how-to guide explains how to test smart contracts on zkSync using Hardhat.
+what_you_will_learn:
+  - How to install era-test-node.
+  - How to write local tests for smart contracts.
+updated: 2024-05-09
+tools:
+  - zksync-ethers
+  - era-test-node
+related_tutorials:
+  - /tutorials/another-tutorial

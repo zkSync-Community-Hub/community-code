@@ -29,11 +29,7 @@ jobs:
         run: bun install
 
       - name: "Deploy target: preview"
-        run: bun run generate
-
-      - uses: untitaker/hyperlink@0.1.32
-        with:
-          args: .output/public/ --sources content/
+        run: bun run build
 
       - name: "Deploy preview"
         uses: matter-labs/action-hosting-deploy@main

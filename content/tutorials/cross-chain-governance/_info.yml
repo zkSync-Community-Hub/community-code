@@ -1,0 +1,22 @@
+title: Cross-chain governance
+authors:
+  - name: MatterLabs
+    url: https://matter-labs.io
+    avatar: https://avatars.githubusercontent.com/u/42489169?s=200&v=4
+github_repo: https://github.com/zkSync-Community-Hub
+tags:
+  - smart contracts
+  - L1-L2
+  - tutorial
+summary: Build and deploy a smart contract in L1 and send transactions that update the state of a contract in zkSync.
+description:
+  In this tutorial we'll deploy a simple smart contract in zkSync. Then we'll deploy another smart contract in L1 and
+  send transactions that update the state of the contract in zkSync. We'll use the Mailbox
+what_you_will_learn:
+  - How to deploy smart contracts in L1 and L2.
+  - How to send transactions in L1 that interact with contracts in L2.
+updated: 2024-05-09
+tools:
+  - zksync-cli
+  - zksync-ethers
+  - Hardhat
