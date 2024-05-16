@@ -31,10 +31,6 @@ jobs:
       - name: "Deploy target: preview"
         run: bun run build
 
-      - uses: untitaker/hyperlink@0.1.32
-        with:
-          args: .output/public/ --sources content/
-
       - name: "Deploy preview"
         uses: matter-labs/action-hosting-deploy@main
         with:
