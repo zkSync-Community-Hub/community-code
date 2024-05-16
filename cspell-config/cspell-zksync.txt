@@ -2,6 +2,7 @@
 boojum
 MatterLabs
 Zeek
+Zeeks
 zkcast
 ZKEVM
 zkevm
@@ -11,5 +12,9 @@ zksolc
 zkstack
 zkSync
 zksync
+!ZKsync
 zksync-cli
 zkvyper
+
+// developers
+itsacoyote
