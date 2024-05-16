@@ -10,7 +10,6 @@ jobs:
   build_and_deploy:
     env:
       NUXT_UI_PRO_LICENSE: ${{ secrets.NUXT_UI_PRO_LICENSE }}
-      NUXT_PUBLIC_SITE_URL: ${{ secrets.NUXT_PUBLIC_SITE_URL }}
     if: ${{ github.event.repository.full_name == github.repository }}
     runs-on: ubuntu-latest
     steps:

@@ -28,21 +28,16 @@ useHead({
 useSeoMeta({
   titleTemplate: `%s - ${seo?.siteName}`,
   ogSiteName: seo?.siteName,
-  ogUrl: 'https://docs.zksync.io/',
-  ogImage: '/social-card.png',
-  ogImageAlt: 'zkSync — Accelerating the mass adoption of crypto for personal sovereignty.',
+  ogUrl: 'https://code.zksync.io/',
   ogDescription:
     'zkSync Docs bring you all information you need about our protocol, APIs, SDKs, ZK Stack, and hyperchains. Start with our guides and tutorials, or go deep into our architecture and protocol specification.',
-  twitterImage: 'https://docs.zksync.io/social-card.png',
   twitterCard: 'summary_large_image',
   twitterSite: '@zksync',
   twitterCreator: '@the_matter_labs',
   twitterImageAlt: 'zkSync — Accelerating the mass adoption of crypto for personal sovereignty.',
 });
 
-defineOgImage({
-  component: 'OgImageZK',
-});
+defineOgImageComponent('OgImageZK');
 
 provide('navigation', navigation);
 </script>
