@@ -2,7 +2,7 @@ name: "deploy staging 🏗️"
 on:
   push:
     branches: [staging]
-
+  workflow_dispatch:
 env:
   NUXT_SITE_ENV: staging # used for NuxtSEO to disable things like indexing on staging
 
