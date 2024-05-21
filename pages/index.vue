@@ -1,16 +1,19 @@
 <script setup lang="ts">
+import type { NavItem } from '@nuxt/content/types';
+
 const { data: page } = await useAsyncData('index', () => queryContent('/').findOne());
 
-const { data: guides } = await useAsyncData('tutorials', () =>
-  queryContent('tutorials').where({ _extension: 'yml' }).find()
-);
+const navigation = inject<Ref<NavItem[]>>('navigation');
+
+const guides = computed(() => {
+  const tutorialPath = navigation?.value.find((item) => item._path === '/tutorials') ?? { children: [] };
+
+  return tutorialPath.children;
+});
 
 useSeoMeta({
   titleTemplate: '',
-  title: page.value.title,
-  ogTitle: page.value.title,
-  description: page.value.description,
-  ogDescription: page.value.description,
+  title: page.value?.title,
 });
 </script>
 
@@ -43,7 +46,7 @@ useSeoMeta({
         <SiteLink
           v-for="(guide, index) of guides"
           :key="index"
-          :to="`/tutorials/${guide._dir}`"
+          :to="guide._path"
           class="hover:border-zkPurple-300 rounded-lg border-2 border-transparent transition-colors duration-200 ease-in-out"
         >
           <UCard>

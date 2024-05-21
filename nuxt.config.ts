@@ -11,4 +11,9 @@ export default defineNuxtConfig({
       app: 'code',
     },
   },
+  content: {
+    navigation: {
+      fields: ['authors', 'tags', 'summary', 'updated', 'tools', 'featured', 'description'],
+    },
+  },
 });

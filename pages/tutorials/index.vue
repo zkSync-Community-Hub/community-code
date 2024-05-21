@@ -1,7 +1,13 @@
 <script setup lang="ts">
-const { data: guides } = await useAsyncData('tutorials', () =>
-  queryContent('tutorials').where({ _extension: 'yml' }).find()
-);
+import type { NavItem } from '@nuxt/content/types';
+
+const navigation = inject<Ref<NavItem[]>>('navigation');
+
+const guides = computed(() => {
+  const tutorialPath = navigation?.value.find((item) => item._path === '/tutorials') ?? { children: [] };
+
+  return tutorialPath.children;
+});
 </script>
 
 <template>
@@ -18,7 +24,7 @@ const { data: guides } = await useAsyncData('tutorials', () =>
           v-for="(guide, index) of guides"
           :key="index"
           :title="guide.title"
-          :to="`/tutorials/${guide._dir}`"
+          :to="guide._path"
           class="mb-4"
         >
           <template #description>
