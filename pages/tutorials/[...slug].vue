@@ -1,25 +1,32 @@
 <script setup lang="ts">
 import { withoutTrailingSlash } from 'ufo';
 import dayjs from 'dayjs';
+import type { NavItem } from '@nuxt/content/types';
 
 definePageMeta({
   layout: 'docs',
 });
 
 const route = useRoute();
+
 const { seo } = useAppConfig();
+const nav = inject<Ref<NavItem[]>>('navigation');
+
+const metadata = computed(() => {
+  return nav?.value
+    .find((item) => item._path === '/tutorials')
+    ?.children?.find((item) => item._path === `/tutorials/${route.params.slug[0]}`);
+});
 
 const isIndex = ref(route.params.slug.length < 2);
-const { data: info } = await useAsyncData(`${route.path}-info`, () =>
-  queryContent(`/tutorials/${route.params.slug[0]}/_info`).findOne()
-);
 
 const { data: page } = await useAsyncData(route.path, () => queryContent(route.path).findOne());
+
 if (!page.value) {
   throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true });
 }
 
-const { data: surround } = await useAsyncData(`${route.path}-surround`, () =>
+const { data: surroundLinks } = await useAsyncData(`${route.path}-surround`, () =>
   queryContent()
     .where({
       _extension: 'md',
@@ -30,32 +37,22 @@ const { data: surround } = await useAsyncData(`${route.path}-surround`, () =>
     .findSurround(withoutTrailingSlash(route.path + '/'))
 );
 
-const surroundLinks = computed(() => {
-  return surround.value.length > 0 ? surround.value.filter((item) => item?._type !== 'yaml') : [];
+const surround = computed(() => {
+  return surroundLinks.value ?? [];
 });
 
 const lastUpdated = computed(() => {
-  const date = info.value.updated || info.value.created;
+  const date = metadata.value?.updated || metadata.value?.created;
   return date ? dayjs(date, 'YYYY-MM-DD').format('MMM DD, YYYY') : '';
 });
 
 useSeoMeta({
-  title: info.value.title,
-  ogTitle: `${info.value.title} - ${seo?.siteName}`,
-  description: info.value.summary,
-  ogDescription: info.value.summary,
+  title: metadata.value?.title,
+  ogTitle: `${metadata.value?.title} - ${seo?.siteName}`,
+  description: metadata.value?.summary,
+  ogDescription: metadata.value?.summary,
   ogType: 'article',
-  author: info.value.authors[0].name,
-});
-
-const { data: navigation } = await useAsyncData(`${route.path}-sidenav`, () => {
-  const query = queryContent().where({
-    _path: { $contains: route.params.slug[0] },
-    _extension: 'md',
-    _partial: false,
-  });
-
-  return fetchContentNavigation(query);
+  author: metadata.value?.authors[0].name,
 });
 
 const links = [
@@ -65,9 +62,9 @@ const links = [
     to: '/tutorials',
   },
   {
-    label: info.value?.title || 'Guide',
+    label: metadata.value?.title || 'Guide',
     collapsible: false,
-    children: navigation.value[0].children[0].children.map((item) => ({
+    children: metadata.value?.children?.map((item) => ({
       label: item.title,
       to: item._path,
     })),
@@ -106,20 +103,20 @@ const communityLinks = [
         </UAside>
       </template>
 
-      <UPage v-if="isIndex && info">
+      <UPage v-if="isIndex && metadata">
         <UPageHeader
-          :title="page.title"
-          :description="page.description"
+          :title="page?.title"
+          :description="page?.description"
         />
         <div class="grid grid-cols-8 gap-4 py-5">
           <div class="col-span-5">
             <AuthorsList
               class="mb-4"
-              :authors="info.authors"
+              :authors="metadata.authors"
               :with-links="true"
             />
             <p>
-              {{ info.description }}
+              {{ metadata.description }}
             </p>
             <h3 class="mt-4 text-xl font-semibold">What you'll learn:</h3>
             <ul
@@ -127,7 +124,7 @@ const communityLinks = [
               class="list-inside list-disc"
             >
               <li
-                v-for="item in info.what_you_will_learn"
+                v-for="item in metadata.what_you_will_learn"
                 :key="item"
               >
                 {{ item }}
@@ -143,7 +140,7 @@ const communityLinks = [
               variant="solid"
               label="GitHub"
               target="_blank"
-              :to="info.github_repo"
+              :to="metadata.github_repo"
               :trailing="false"
             />
             <h3 class="my-2 text-xl font-semibold">Last Updated:</h3>
@@ -154,7 +151,7 @@ const communityLinks = [
               class="list-inside list-disc"
             >
               <li
-                v-for="item in info.tools"
+                v-for="item in metadata.tools"
                 :key="item"
               >
                 {{ item }}
@@ -163,7 +160,7 @@ const communityLinks = [
             <h3 class="my-2 text-xl font-semibold">Tags:</h3>
             <div class="flex flex-wrap">
               <UBadge
-                v-for="tag in info.tags"
+                v-for="tag in metadata.tags"
                 :key="tag"
                 :label="tag"
                 color="blue"
@@ -180,23 +177,23 @@ const communityLinks = [
       <UPage>
         <UPageHeader
           v-if="!isIndex"
-          :title="page.title"
-          :description="page.description"
+          :title="page?.title"
+          :description="page?.description"
         />
 
         <UPageBody prose>
           <ContentRenderer
-            v-if="page.body"
+            v-if="page?.body"
             :value="page"
           />
 
           <hr
-            v-if="surroundLinks.length > 0"
+            v-if="surround.length > 0"
             class="mb-4"
           />
 
           <UContentSurround
-            :surround="surroundLinks"
+            :surround
             :ui="{
               wrapper: 'grid gap-8 sm:grid-cols-2',
               icon: {
@@ -218,12 +215,12 @@ const communityLinks = [
         </UPageBody>
 
         <template
-          v-if="page.toc !== false"
+          v-if="page?.toc !== false"
           #right
         >
           <UContentToc
             title="Table of contents"
-            :links="page.body?.toc?.links"
+            :links="page?.body?.toc?.links"
           />
         </template>
       </UPage>

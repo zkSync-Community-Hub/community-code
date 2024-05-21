@@ -3,6 +3,7 @@ provideHeadlessUseId(() => useId());
 const { seo } = useAppConfig();
 
 const { data: navigation } = await useAsyncData('navigation', () => fetchContentNavigation());
+provide('navigation', navigation);
 
 useHead({
   meta: [
@@ -38,8 +39,6 @@ useSeoMeta({
 });
 
 defineOgImageComponent('OgImageZK');
-
-provide('navigation', navigation);
 </script>
 
 <template>
