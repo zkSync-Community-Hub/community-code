@@ -1,6 +1,7 @@
 // zkSync-related words
 boojum
-MatterLabs
+!MatterLabs
+Matter Labs
 Zeek
 Zeeks
 zkcast
