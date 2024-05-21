@@ -8,8 +8,6 @@ definePageMeta({
 });
 
 const route = useRoute();
-
-const { seo } = useAppConfig();
 const nav = inject<Ref<NavItem[]>>('navigation');
 
 const metadata = computed(() => {
@@ -46,13 +44,17 @@ const lastUpdated = computed(() => {
   return date ? dayjs(date, 'YYYY-MM-DD').format('MMM DD, YYYY') : '';
 });
 
+const { seo } = useAppConfig();
 useSeoMeta({
   title: metadata.value?.title,
   ogTitle: `${metadata.value?.title} - ${seo?.siteName}`,
   description: metadata.value?.summary,
   ogDescription: metadata.value?.summary,
+  twitterDescription: metadata.value?.summary,
   ogType: 'article',
-  author: metadata.value?.authors[0].name,
+  author: metadata.value?.authors
+    .map((author: { name: string; url: string; avatar: string }) => author.name)
+    .join(', '),
 });
 
 const links = [
