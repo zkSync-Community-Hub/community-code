@@ -33,6 +33,7 @@ useSeoMeta({
           size: 'xl',
         },
       ]"
+      :ui="{ description: 'backdrop-blur bg-background/65' }"
     >
       <template #headline>
         <NuxtImg
@@ -52,6 +53,7 @@ useSeoMeta({
           :ui="{ body: { base: 'justify-between' } }"
         >
           <div class="mt-auto">
+            <AuthorsList :authors="guide.authors" />
             <UBadge
               :label="guide.tags.join(', ')"
               color="blue"
@@ -59,7 +61,6 @@ useSeoMeta({
               variant="subtle"
               class="mb-2 mr-2"
             />
-            <AuthorsList :authors="guide.authors" />
           </div>
         </ULandingCard>
       </UPageGrid>

@@ -15,7 +15,6 @@ const metadata = computed(() => {
     .find((item) => item._path === '/tutorials')
     ?.children?.find((item) => item._path === `/tutorials/${route.params.slug[0]}`);
 });
-
 const isIndex = ref(route.params.slug.length < 2);
 
 const { data: page } = await useAsyncData(route.path, () => queryContent(route.path).findOne());
@@ -120,22 +119,25 @@ const communityLinks = [
             <p>
               {{ metadata.description }}
             </p>
-            <h3 class="mt-4 text-xl font-semibold">What you'll learn:</h3>
-            <ul
-              role="list"
-              class="list-inside list-disc"
-            >
-              <li
-                v-for="item in metadata.what_you_will_learn"
-                :key="item"
+            <template v-if="metadata.what_you_will_learn">
+              <h3 class="mt-4 text-xl font-semibold">What you'll learn:</h3>
+              <ul
+                role="list"
+                class="mt-2 list-inside list-disc space-y-1"
               >
-                {{ item }}
-              </li>
-            </ul>
+                <li
+                  v-for="item in metadata.what_you_will_learn"
+                  :key="item"
+                >
+                  {{ item }}
+                </li>
+              </ul>
+            </template>
           </div>
 
           <div class="col-span-3">
             <UButton
+              v-if="metadata.github_repo"
               icon="i-simple-icons-github"
               size="sm"
               color="white"
@@ -145,35 +147,39 @@ const communityLinks = [
               :to="metadata.github_repo"
               :trailing="false"
             />
-            <h3 class="my-2 text-xl font-semibold">Last Updated:</h3>
-            <p>{{ lastUpdated }}</p>
-            <h3 class="my-2 text-xl font-semibold">Tools:</h3>
-            <ul
-              role="list"
-              class="list-inside list-disc"
-            >
-              <li
-                v-for="item in metadata.tools"
-                :key="item"
+            <template v-if="metadata.tools">
+              <h3 class="my-2 text-lg font-semibold">Tools:</h3>
+              <ul
+                role="list"
+                class="list-inside list-none"
               >
-                {{ item }}
-              </li>
-            </ul>
-            <h3 class="my-2 text-xl font-semibold">Tags:</h3>
-            <div class="flex flex-wrap">
-              <UBadge
-                v-for="tag in metadata.tags"
-                :key="tag"
-                :label="tag"
-                color="blue"
-                size="sm"
-                variant="subtle"
-                class="mb-2 mr-2"
-              />
-            </div>
+                <li
+                  v-for="item in metadata.tools"
+                  :key="item"
+                >
+                  - {{ item }}
+                </li>
+              </ul>
+            </template>
+            <template v-if="metadata.tags">
+              <div class="mt-4 flex flex-wrap">
+                <UBadge
+                  v-for="tag in metadata.tags"
+                  :key="tag"
+                  :label="tag"
+                  color="blue"
+                  size="sm"
+                  variant="subtle"
+                  class="mb-2 mr-2"
+                />
+              </div>
+            </template>
+            <template v-if="metadata.updated">
+              <strong class="text-md my-2">Last Updated: </strong>{{ lastUpdated }}
+            </template>
           </div>
         </div>
-        <UDivider icon="i-zksync-logo" />
+        <UDivider icon="i-zksync-zksync-logo" />
       </UPage>
 
       <UPage>

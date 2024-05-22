@@ -24,5 +24,3 @@ tools:
   - zksync-cli
   - zksync-ethers
   - Hardhat
-related_tutorials:
-  - /tutorials/another-tutorial

@@ -17,5 +17,3 @@ updated: 2024-05-09
 tools:
   - zksync-ethers
   - era-test-node
-related_tutorials:
-  - /tutorials/another-tutorial
