@@ -8,7 +8,7 @@ const navigation = inject<Ref<NavItem[]>>('navigation');
 const guides = computed(() => {
   const tutorialPath = navigation?.value.find((item) => item._path === '/tutorials') ?? { children: [] };
 
-  return tutorialPath.children;
+  return tutorialPath.children?.filter((tutorial) => tutorial.featured);
 });
 
 useSeoMeta({
