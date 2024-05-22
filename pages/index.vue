@@ -43,37 +43,25 @@ useSeoMeta({
       </template>
 
       <UPageGrid>
-        <SiteLink
+        <ULandingCard
           v-for="(guide, index) of guides"
           :key="index"
           :to="guide._path"
-          class="hover:border-zkPurple-300 rounded-lg border-2 border-transparent transition-colors duration-200 ease-in-out"
+          :title="guide.title"
+          :description="guide.summary"
+          :ui="{ body: { base: 'justify-between' } }"
         >
-          <UCard>
-            <span class="mb-4 inline-block text-lg font-semibold">
-              {{ guide.title }}
-            </span>
-
-            <p>{{ guide.summary }}</p>
-
-            <AuthorsList
-              class="my-4"
-              :authors="guide.authors"
+          <div class="mt-auto">
+            <UBadge
+              :label="guide.tags.join(', ')"
+              color="blue"
+              size="sm"
+              variant="subtle"
+              class="mb-2 mr-2"
             />
-
-            <div class="mt-4">
-              <UBadge
-                v-for="tag in guide.tags"
-                :key="tag"
-                :label="tag"
-                color="blue"
-                size="sm"
-                variant="subtle"
-                class="mb-2 mr-2"
-              />
-            </div>
-          </UCard>
-        </SiteLink>
+            <AuthorsList :authors="guide.authors" />
+          </div>
+        </ULandingCard>
       </UPageGrid>
     </ULandingSection>
   </div>
