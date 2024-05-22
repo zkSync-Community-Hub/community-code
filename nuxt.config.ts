@@ -16,4 +16,7 @@ export default defineNuxtConfig({
       fields: ['authors', 'tags', 'summary', 'updated', 'tools', 'featured', 'description'],
     },
   },
+  routeRules: {
+    '/api/search.json': { prerender: true },
+  },
 });

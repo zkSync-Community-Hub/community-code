@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { ParsedContent } from '@nuxt/content/types';
+
 provideHeadlessUseId(() => useId());
 const { seo } = useAppConfig();
 
@@ -31,13 +33,18 @@ useSeoMeta({
 });
 
 defineOgImageComponent('OgImageZK');
+
+const { data: files } = useLazyFetch<ParsedContent[]>('/api/search.json', {
+  default: () => [],
+  server: false,
+});
 </script>
 
 <template>
   <div>
     <NuxtLoadingIndicator />
 
-    <HeaderComponent />
+    <HeaderComponent :search="true" />
 
     <UMain>
       <NuxtLayout>
@@ -46,6 +53,13 @@ defineOgImageComponent('OgImageZK');
     </UMain>
 
     <FooterComponent />
+
+    <ClientOnly>
+      <LazyUContentSearch
+        :files="files"
+        :navigation="navigation || []"
+      />
+    </ClientOnly>
 
     <UNotifications />
   </div>
