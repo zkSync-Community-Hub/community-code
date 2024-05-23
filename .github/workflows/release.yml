@@ -1,7 +1,9 @@
-name: "release 🚀"
-"on":
+name: release 🚀
+
+on:
   push:
     branches: [ main ]
+
 jobs:
   release:
     if: ${{ github.event.repository.full_name == github.repository }} && {{ !contains(github.event.head_commit.message, "skip ci") }}
@@ -12,6 +14,9 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
 
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 'latest'
       - uses: oven-sh/setup-bun@v1
 
       - name: "Install dependencies"
