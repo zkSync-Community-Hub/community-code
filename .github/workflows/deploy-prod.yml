@@ -13,15 +13,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4 # v4
         with:
-          fetch-depth: 0
-          # Whether to configure the token or SSH key with the local git config
-          # Default: true
           persist-credentials: false # <--- checking this in commit context
 
       - uses: oven-sh/setup-bun@v1
 
       - name: "Install dependencies"
-        run: bun install
+        run: bun install --production --frozen-lockfile
       - name: "Deploy target: production 🚀"
         run: bun run build
         # TODO: ask about below
