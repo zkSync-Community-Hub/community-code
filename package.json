@@ -32,6 +32,8 @@
     "vue-tsc": "^2.0.16"
   },
   "devDependencies": {
+    "@commitlint/cli": "^19.3.0",
+    "@commitlint/config-conventional": "^19.2.2",
     "@vue/test-utils": "^2.4.5",
     "cspell": "^8.7.0",
     "eslint": "^8.57.0",
