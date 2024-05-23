@@ -54,13 +54,16 @@ useSeoMeta({
         >
           <div class="mt-auto">
             <AuthorsList :authors="guide.authors" />
-            <UBadge
-              :label="guide.tags.join(', ')"
-              color="blue"
-              size="sm"
-              variant="subtle"
-              class="mb-2 mr-2"
-            />
+            <div class="mt-2">
+              <UBadge
+                v-for="tag of guide.tags"
+                :label="tag"
+                color="blue"
+                size="xs"
+                variant="subtle"
+                class="mr-2"
+              />
+            </div>
           </div>
         </ULandingCard>
       </UPageGrid>
