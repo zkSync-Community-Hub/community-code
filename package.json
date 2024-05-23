@@ -14,7 +14,8 @@
     "fix:prettier": "prettier --write .",
     "prepare": "husky",
     "postinstall": "nuxt prepare",
-    "ci:check": "bun run lint:eslint && bun run lint:prettier && bun run lint:spelling && bun run lint:markdown"
+    "ci:check": "bun run lint:eslint && bun run lint:prettier && bun run lint:spelling && bun run lint:markdown",
+    "release": "semantic-release"
   },
   "dependencies": {
     "@nuxt/content": "^2.12.1",
