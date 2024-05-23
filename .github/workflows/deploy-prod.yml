@@ -24,10 +24,6 @@ jobs:
         run: bun install
       - name: "Deploy target: production 🚀"
         run: bun run build
-        # TODO: ask about below
-        # env:
-        #   RUDDERSTACK_WRITE_KEY: "${{ secrets.RUDDERSTACK_WRITE_KEY }}"
-        #   RUDDERSTACK_DATA_PLANE_URL: "${{ secrets.RUDDERSTACK_DATA_PLANE_URL }}"
 
       - uses: matter-labs/action-hosting-deploy@main
         with:
