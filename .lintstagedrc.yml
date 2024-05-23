@@ -1,7 +1,7 @@
 '*.{js,ts,vue}':
   - prettier --list-different
   - eslint
-'*.{md}':
+'*.md':
   - cspell
   - markdownlint-cli2
 '*.{json,yml}':
