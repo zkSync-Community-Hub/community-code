@@ -13,7 +13,20 @@ export default defineNuxtConfig({
   },
   content: {
     navigation: {
-      fields: ['authors', 'tags', 'summary', 'updated', 'tools', 'featured', 'description'],
+      fields: [
+        'authors',
+        'tags',
+        'summary',
+        'updated',
+        'tools',
+        'featured',
+        'description',
+        'github_repo',
+        'what_you_will_learn',
+      ],
     },
+  },
+  routeRules: {
+    '/api/search.json': { prerender: true },
   },
 });

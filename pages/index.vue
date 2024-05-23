@@ -8,7 +8,7 @@ const navigation = inject<Ref<NavItem[]>>('navigation');
 const guides = computed(() => {
   const tutorialPath = navigation?.value.find((item) => item._path === '/tutorials') ?? { children: [] };
 
-  return tutorialPath.children;
+  return tutorialPath.children?.filter((tutorial) => tutorial.featured);
 });
 
 useSeoMeta({
@@ -33,6 +33,7 @@ useSeoMeta({
           size: 'xl',
         },
       ]"
+      :ui="{ description: 'backdrop-blur bg-background/65' }"
     >
       <template #headline>
         <NuxtImg
@@ -43,37 +44,29 @@ useSeoMeta({
       </template>
 
       <UPageGrid>
-        <SiteLink
+        <ULandingCard
           v-for="(guide, index) of guides"
           :key="index"
           :to="guide._path"
-          class="hover:border-zkPurple-300 rounded-lg border-2 border-transparent transition-colors duration-200 ease-in-out"
+          :title="guide.title"
+          :description="guide.summary"
+          :ui="{ body: { base: 'justify-between' } }"
         >
-          <UCard>
-            <span class="mb-4 inline-block text-lg font-semibold">
-              {{ guide.title }}
-            </span>
-
-            <p>{{ guide.summary }}</p>
-
-            <AuthorsList
-              class="my-4"
-              :authors="guide.authors"
-            />
-
-            <div class="mt-4">
+          <div class="mt-auto">
+            <AuthorsList :authors="guide.authors" />
+            <div class="mt-2">
               <UBadge
-                v-for="tag in guide.tags"
-                :key="tag"
+                v-for="(tag, index) of guide.tags"
+                :key="index"
                 :label="tag"
                 color="blue"
-                size="sm"
+                size="xs"
                 variant="subtle"
-                class="mb-2 mr-2"
+                class="mr-2"
               />
             </div>
-          </UCard>
-        </SiteLink>
+          </div>
+        </ULandingCard>
       </UPageGrid>
     </ULandingSection>
   </div>

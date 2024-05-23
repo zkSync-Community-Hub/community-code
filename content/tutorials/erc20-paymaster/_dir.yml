@@ -1,4 +1,5 @@
 title: Build an ERC20 custom paymaster
+featured: true
 authors:
   - name: MatterLabs
     url: https://matter-labs.io
@@ -23,5 +24,3 @@ tools:
   - zksync-cli
   - zksync-ethers
   - Hardhat
-related_tutorials:
-  - /tutorials/another-tutorial

@@ -1,4 +1,5 @@
 title: Native spend limit smart account
+featured: true
 authors:
   - name: porco-rosso
     url: https://linktr.ee/porcorossoj
@@ -22,4 +23,3 @@ tools:
   - zksync-cli
   - zksync-ethers
   - Hardhat
-related_tutorials:

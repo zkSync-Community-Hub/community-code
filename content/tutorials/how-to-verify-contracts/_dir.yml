@@ -18,5 +18,3 @@ updated: 2024-05-09
 tools:
   - hardhat-zksync-deploy
   - hardhat-zksync-verify
-related_tutorials:
-  - /tutorials/another-tutorial
