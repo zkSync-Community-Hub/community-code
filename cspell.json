@@ -12,7 +12,9 @@
     ".vscode/**",
     "cspell-config/**",
     "package.json",
-    ".**.**"
+    ".output/**",
+    ".husky/**",
+    ".nuxt/**"
   ],
   "caseSensitive": true,
   "dictionaries": [
