@@ -28,6 +28,7 @@
     "nuxt-headlessui": "^1.2.0",
     "dayjs": "^1.11.10",
     "nuxt": "^3.11.2",
+    "nuxt-gtag": "^2.0.6",
     "nuxt-og-image": "^3.0.0-rc.53",
     "rehype-katex": "^7.0.0",
     "remark-math": "^6.0.0",
