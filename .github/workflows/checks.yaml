@@ -5,6 +5,10 @@ on:
     branches: [main, staging]
   workflow_dispatch:
 
+env:
+  HUSKY: 0
+  CI: true
+
 jobs:
   format:
     name: code_format
