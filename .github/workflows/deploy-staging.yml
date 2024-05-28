@@ -3,8 +3,11 @@ on:
   push:
     branches: [staging]
   workflow_dispatch:
+
 env:
   NUXT_SITE_ENV: staging # used for NuxtSEO to disable things like indexing on staging
+  HUSKY: 0
+  CI: true
 
 jobs:
   build_and_deploy:
