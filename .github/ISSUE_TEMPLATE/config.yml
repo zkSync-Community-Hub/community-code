@@ -2,4 +2,4 @@ blank_issues_enabled: true
 contact_links:
     - name: zksync-developers Discussion
       url: https://github.com/zkSync-Community-Hub/zkync-developers/discussions
-      about: Please provide feedback, and ask questions here.
+      about: If you have any questions or need help beyond this project, please visit our Discussions page for zksync developers.

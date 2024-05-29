@@ -1,0 +1,49 @@
+name: Bug Report
+description: File a bug report.
+title: "[Bug]: "
+labels: ["bug", "triage"]
+assignees:
+  - @zkSync-Community-Hub/zksync-devrel
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this bug report! Please fill out as much as you can, the more details the better we can help to resolve the issue.
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: Also tell us, what did you expect to happen?
+      placeholder: Tell us what you see!
+      value: ""
+    validations:
+      required: true
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What did you expect to happen?
+      placeholder: Tell us what you expected!
+      value: ""
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Please share any relevant information about your environment.
+      placeholder: |
+        - Operating System: [e.g. macOS]
+        - Node version: [e.g., v18.17.0]
+        - Other relevant environment details:
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant log output
+      description: Please copy and paste any relevant log output. This will be automatically formatted into code, so no need for backticks.
+      render: shell
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct
+      description: By submitting this issue, you agree to follow our [Code of Conduct](https://github.com/zkSync-Community-Hub/community-code/blob/main/CODE_OF_CONDUCT.md).
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true

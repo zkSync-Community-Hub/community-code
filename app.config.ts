@@ -1,6 +1,6 @@
 export default defineAppConfig({
   seo: {
-    siteName: 'ZKsync Community Code',
+    siteName: 'zkSync Community Code',
   },
   header: {
     links: [
@@ -12,12 +12,5 @@ export default defineAppConfig({
         title: 'Community Code on GitHub',
       },
     ],
-  },
-  toc: {
-    bottom: {
-      edit: 'https://github.com/zkSync-Community-Hub/community-code/edit/staging/content',
-      feedback: 'https://github.com/zkSync-Community-Hub/community-code/issues/new',
-      links: [],
-    },
   },
 });
