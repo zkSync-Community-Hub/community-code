@@ -1,16 +1,32 @@
 # Community Code
 
-![License](https://img.shields.io/badge/license-MIT-blue)
-![License: Apache 2.0](https://img.shields.io/badge/license-Apache%202.0-orange)
-![Contributions Welcome](https://img.shields.io/badge/contributions-welcome-orange)
-[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](code_of_conduct.md)
+[![License](https://img.shields.io/badge/license-MIT-blue)](LICENSE-MIT)
+[![License: Apache 2.0](https://img.shields.io/badge/license-Apache%202.0-orange)](LICENSE-APACHE)
+[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](https://www.contributor-covenant.org/)
+[![Contributions Welcome](https://img.shields.io/badge/contributions-welcome-orange)](CONTRIBUTING.md)
+[![X (formerly Twitter) Follow](https://badgen.net/badge/twitter/@zksyncDevs/1DA1F2?icon&label)](https://x.com/zksyncDevs)
 
 Welcome to the zkSync Community Code repository. This project serves as the community hub for zkSync, providing comprehensive
 documentation for developers written by developers.
 Whether you're a beginner looking to get started with zkSync or an experienced developer
 seeking advanced guides, you'll find the resources you need here.
 
-## Tools used
+## 🚀 Quick Start
+
+1. **Install Bun:** Follow the [installation instructions](https://bun.sh/docs/installation).
+2. **Install Dependencies:**
+
+   ```sh
+   bun install
+   ```
+
+3. **Run Locally:** Start the development server at `http://localhost:3000`.
+
+   ```sh
+   bun run dev
+   ```
+
+## 🛠️ Built With
 
 - [Vue](https://vuejs.org/)
 - [Nuxt](https://nuxt.com/)
@@ -19,36 +35,27 @@ seeking advanced guides, you'll find the resources you need here.
 - [Tailwind](https://tailwindcss.com/)
 - [Bun](https://bun.sh/)
 
-## Local Setup
+## Local Preview 👀
 
-This project uses bun to run, follow the [bun installation instructions](https://bun.sh/docs/installation). Once bun is
-installed, run the following command to install all project dependencies:
-
-```shell
-bun install
-```
-
-## Development
-
-To run the project locally at `http://localhost:3000`
-
-```shell
-bun run dev -o
-```
-
-## Local Preview
-
-To locally preview the production build, first run `bun run generate` to build the project, then run the following:
+To locally preview the production build, first run `bun run build` to build the project, then run the following:
 
 ```shell
 bun run preview
 ```
 
-## Lint & Formatting
+## Lint & Formatting ✨
 
 This project provides lint commands to check the project.
 
-### Markdown Linting
+### Run CI Checks ✔️
+
+This command will run all of the lint commands together.
+
+```shell
+bun run ci:check
+```
+
+### Markdown Linting 📝
 
 Markdown files are found in the `/content` directory. The following lint commands will run within that directory:
 
@@ -57,11 +64,36 @@ bun run lint:spelling
 bun run lint:markdown
 ```
 
-### Linting
+### Linting 🧹
 
-The following commands are available to run linting on the project:
+The following commands are available to run code linting on the project:
 
 ```shell
 bun run lint:prettier
 bun run lint:eslint
 ```
+
+## 📜 Conventional Commits
+
+We follow the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/#summary) specification.
+Make sure your commit messages adhere to these guidelines.
+
+For documentation changes, we recommend using the "docs:" tag. For example:
+
+```sh
+git commit -m "docs: fix spelling error"
+```
+
+## 🤝 Contributions
+
+We welcome contributions from the community!
+Check out our [Contributing guide](CONTRIBUTING.md) to learn how to add your own guides to Code Community.
+
+## 👪 Join the community
+
+If you haven't already, join our community!
+We have [GitHub Discussions](https://github.com/zkSync-Community-Hub/zksync-developers/discussions)
+for developers to ask questions and share their work.
+We also have a [Discord server](https://join.zksync.dev/) for real-time conversations with the team and community.
+
+Be sure to [follow us on Twitter](https://x.com/zkSyncDevs) to keep up to date with announcements from the zkSync dev team.

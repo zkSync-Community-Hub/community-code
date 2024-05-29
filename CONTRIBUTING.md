@@ -91,12 +91,3 @@ git commit -m "docs: description of change made in commit"
 You can use `docs(fix):` for commits that make small edits instead of adding a new guide.
 
 For project code changes that are not document related, use the `fix:` label.
-
-## 👪 Join the community
-
-If you haven't already, join our community!
-We have [GitHub Discussions](https://github.com/zkSync-Community-Hub/zksync-developers/discussions)
-for developers to ask questions and share their work.
-We also have a [Discord server](https://join.zksync.dev/) for real-time conversations with the team and community.
-
-Be sure to [follow us on Twitter](https://x.com/zkSyncDevs) to keep up to date with announcements from the zkSync dev team.
