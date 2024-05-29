@@ -9,13 +9,6 @@ body:
     attributes:
       value: |
         We're constantly adding new features to the Code Community. If you have a feature you'd like to see, please fill out this form.
-  - type: input
-    id: guide
-    attributes:
-      label: Guide you're having trouble with
-      description: If this feature is related to a specific guide, please provide the link to the guide.
-      placeholder: https://code.community.com/guides/the-guide
-      value: ""
   - type: textarea
     id: description
     attributes:

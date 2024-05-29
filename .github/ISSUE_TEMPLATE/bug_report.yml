@@ -9,6 +9,13 @@ body:
     attributes:
       value: |
         Thanks for taking the time to fill out this bug report! Please fill out as much as you can, the more details the better we can help to resolve the issue.
+  - type: input
+    id: guide
+    attributes:
+      label: Guide you're having trouble with
+      description: If this feature is related to a specific guide, please provide the link to the guide.
+      placeholder: https://code.community.com/guides/the-guide
+      value: ""
   - type: textarea
     id: what-happened
     attributes:
