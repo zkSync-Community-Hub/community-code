@@ -4,9 +4,17 @@ We are always glad for new contributions from community members to spread the zk
 If you are interested in adding a new guide to the Community Code, this is the section for you.
 If you are looking to contribute project changes like fixing bugs, please checkout the [Readme](README.md).
 
+## Fork the project
+
+Make a [fork of the project](https://github.com/zkSync-Community-Hub/community-code/fork) and create your branches from the default `main` branch.
+
+If your PR is still a work in progress, consider putting it into a [Draft status](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/changing-the-stage-of-a-pull-request#converting-a-pull-request-to-a-draft).
+Once your PR is ready for review, switch it back to an active PR request
+and any reviewers already attached will automatically receive a notification.
+
 ## 📜 Writing a new guide
 
-To add your own guide to the project, we recommend you download the project from GitHub and setting it up on your local machine.
+To add your own guide to the project, we recommend you fork and download the project from GitHub and setting it up on your local machine.
 Follow the [Readme](README.md) instructions to get dependencies installed and run the project.
 
 It is highly recommended to review some of the documentation of the tools we use, especially Nuxt Content and Nuxt UI.
