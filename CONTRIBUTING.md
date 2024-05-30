@@ -79,15 +79,12 @@ to learn how to best write your guide for our community.
 Please [submit a PR of your branch to main on GitHub](https://github.com/zkSync-Community-Hub/community-code/compare).
 Provide a clear description of what you're contributing.
 
-#### Commit conventions
+## 📜 Commit conventions
 
-Our project uses [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) standards.
-If your submission is adding or editing a guide, we recommend using the following format:
+This project uses [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) standards.
+For changes that are **code related**, use the `fix:`, `feat:`, or `chore:` tags in your commits.
+For typo or document related changes, please use the `docs:` tag.
 
 ```sh
-git commit -m "docs: description of change made in commit"
+git commit -m "docs: fix typo in guide"
 ```
-
-You can use `docs(fix):` for commits that make small edits instead of adding a new guide.
-
-For project code changes that are not document related, use the `fix:` label.
