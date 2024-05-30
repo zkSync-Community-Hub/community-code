@@ -2,7 +2,7 @@
   - prettier --list-different
   - eslint
 '*.md':
-  - cspell
+  - cspell check
   - markdownlint-cli2
 '*.{json,yml}':
   - prettier --list-different
