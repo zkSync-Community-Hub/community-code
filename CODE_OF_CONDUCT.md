@@ -1,77 +1,87 @@
+# Code of Conduct
 
-# Contributor Covenant Code of Conduct
+Version: 1.1
 
-## Our Pledge
+Apache 2.0 license, derived from the Apache Foundation Code of Conduct.
+Also, CC BY-SA 3.0 derived from the Mozilla Community Participation Guidelines.
 
-We as members, contributors, and leaders pledge to make participation in our
-community a harassment-free experience for everyone, regardless of age, body
-size, visible or invisible disability, ethnicity, sex characteristics, gender
-identity and expression, level of experience, education, socio-economic status,
-nationality, personal appearance, race, caste, color, religion, or sexual
-identity and orientation.
+Our goal is to cultivate a safe, friendly, and inclusive space that benefits all participants in the zkSync ecosystem.
+This Code of Conduct outlines our shared values and expectations to help ensure that the community remains a positive and enriching environment for everyone.
 
-We pledge to act and interact in ways that contribute to an open, welcoming,
-diverse, inclusive, and healthy community.
+## When and how to use this Code of Conduct
 
-## Our Standards
+This is your guide for engaging as a participant in the zkSync ecosystem.
+It applies to all physical and digital spaces related to zkSync.
 
-Examples of behavior that contributes to a positive environment for our
-community include:
+## Expected behaviors
 
-* Demonstrating empathy and kindness toward other people
-* Being respectful of differing opinions, viewpoints, and experiences
-* Giving and gracefully accepting constructive feedback
-* Accepting responsibility and apologizing to those affected by our mistakes,
-  and learning from the experience
-* Focusing on what is best not just for us as individuals, but for the overall
-  community
+**Be ethical**:
+We endeavor to enrich the zkSync ecosystem, while not infringing on the rights and wellbeing of others.
+We also endeavor to enrich ourselves without causing harm to the zkSync community.
+We do not encourage tax evasion, promoting information leaks, speculating on tokens or token prices, or otherwise breaking the law.
 
-Examples of unacceptable behavior include:
+**Be kind and respectful**:
+Treat everyone with kindness, empathy, and respect.
+We all come from different backgrounds, perspectives and experiences,
+so let's celebrate our differences and foster a culture of openness and understanding.
+We may have strong feelings about other layer 1 and layer 2 blockchains,
+but that is no reason to disparage, defame, or slander any competitor to zkSync or what other chains are doing.
+Feel free to compare metrics and features, but keep to the facts and be respectful of all the builders in web3
+trying to advance freedom through blockchain technology!
 
-* The use of sexualized language or imagery, and sexual attention or advances of
-  any kind
-* Trolling, insulting or derogatory comments, and personal or political attacks
-* Public or private harassment
-* Publishing others' private information, such as a physical or email address,
-  without their explicit permission
-* Other conduct which could reasonably be considered inappropriate in a
-  professional setting
+**Share and learn**:
+Our community is a space for sharing knowledge, experiences, and ideas.
+Positively contribute to discussions, offer helpful feedback,
+be willing to educate others on your work and remain open to learning from others.
 
-## Enforcement Responsibilities
+**Give credit**:
+When sharing content or ideas that aren't your own, ensure you give proper credit to the original creator.
+Plagiarism and intellectual property infringement are strictly prohibited.
 
-Community leaders are responsible for clarifying and enforcing our standards of
-acceptable behavior and will take appropriate and fair corrective action in
-response to any behavior that they deem inappropriate, threatening, offensive,
-or harmful.
+**Respect privacy**:
+Always seek consent before sharing personal information about yourself or others.
+Respecting each other's privacy is vital to building trust within our community.
 
-Community leaders have the right and responsibility to remove, edit, or reject
-comments, commits, code, wiki edits, issues, and other contributions that are
-not aligned to this Code of Conduct, and will communicate reasons for moderation
-decisions when appropriate.
+**Be inquisitive and embrace continuous improvement**:
+We strive to improve from each experience, and are open to constructive criticism.
+We encourage questions, and redirect them to the appropriate channel if we do not have the answer.
 
-## Scope
+**Mind your language**:
+Communication is key.
+Use clear and considerate language in your interactions.
+We aim to create a welcoming environment for users of all ages, so please avoid excessive profanity or explicit content.
+Remember that zkSync community members are a diverse bunch.
+English is our primary working language, but to help others where English is not their first language,
+be succinct and avoid acronyms where possible.
 
-This Code of Conduct applies within all community spaces, and also applies when
-an individual is officially representing the community in public spaces.
-Examples of representing our community include using an official email address,
-posting via an official social media account, or acting as an appointed
-representative at an online or offline event.
+**Stay on topic**:
+While we encourage friendly conversations, please ensure your discussions remain relevant to the community's purpose.
+To keep our space focused and valuable, off-topic or irrelevant content may be redirected or removed.
+Specific topics that are not appropriate include offering to buy or sell any cryptocurrency or engage in price speculation.
 
-## Enforcement
+**No hate speech or harassment**:
+Let's maintain a constructive and uplifting atmosphere in all interactions.
+We have a zero-tolerance policy for any form of hate speech, bullying, harassment, or discrimination.
+This includes, but is not limited to:
 
-Instances of abusive, harassing, or otherwise unacceptable behavior may be
-reported to the community leaders responsible for enforcement at
-[INSERT CONTACT METHOD].
-All complaints will be reviewed and investigated promptly and fairly.
+- Violent threats or language directed against another person.
+- Sexist, racist, or otherwise discriminatory jokes and language.
+- Posting sexually explicit or violent material.
+- Posting (or threatening to post) other people's personally identifying information ("doxing").
+- Sharing private content without explicit consent, such as messages sent privately or non-publicly.
+- Personal insults.
+- Unwelcome sexual attention.
+- Excessive or unnecessary profanity.
+- Repeated harassment of others. In general, if someone asks you to stop, then stop.
+- Advocating for, or encouraging, any of the above behavior.
 
-All community leaders are obligated to respect the privacy and security of the
-reporter of any incident.
+**Have fun and connect**:
+Finally, remember that ZK Squad and the zkSync community is a place to connect, learn, and enjoy.
+Participate in a manner that encourages positive interactions and enhances the experiences of all.
 
-## Attribution
+## Managing violations
 
-This Code of Conduct is adapted from the [Contributor Covenant][homepage],
-version 2.1, available at
-[https://www.contributor-covenant.org/version/2/1/code_of_conduct.html][v2.1].
+If you come across inappropriate content or behavior, please report it without delay.
+By working together, we can maintain a positive and safe environment.
 
-[homepage]: https://www.contributor-covenant.org
-[v2.1]: https://www.contributor-covenant.org/version/2/1/code_of_conduct.html
+If you are the subject of, or witness to, any violations of this Code of Conduct, please contact us at community@zksync.io.

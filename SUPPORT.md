@@ -7,13 +7,16 @@ We have multiple channels available for you to request help.
 
 If you are in need of help with submitting your guide to the Community Code,
 first read through the [Contributing doc](CONTRIBUTING.md) to see if it may help answer some questions.
-If the answer is not found, you can go to the [zksync-developers Discussions](https://github.com/zkSync-Community-Hub/zksync-developers/discussions)
+If the answer is not found, submit an [issue in GitHub](https://github.com/zkSync-Community-Hub/community-code/issues).
+
+We also have resources available on the [zksync-developers Discussions](https://github.com/zkSync-Community-Hub/zksync-developers/discussions)
 where you can submit a question. We also have a [Discord community](https://join.zksync.dev/)
-that may help with any troubleshooting, check out the `#user-support` channel.
+that may help with any troubleshooting, check out the `🖥│dev-general` channel.
 
 If you have questions related to any of our zkSync tools,
 we recommend that you submit an Issue related to that project.
-You can find the list of our open-source repositories in the [Contribution Track](https://docs.zksync.io/build/resources/contribution-track)
+You can find the list of our open-source repositories in the
+[Contribution Track](https://docs.zksync.io/build/resources/contribution-track)
 on our zkSync Docs site.
 
 ## 🪲 Submit a bug report for a guide
