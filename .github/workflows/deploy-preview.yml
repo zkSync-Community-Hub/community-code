@@ -5,6 +5,7 @@ on:
 
 env:
   NUXT_SITE_ENV: staging # used for NuxtSEO to disable things like indexing on staging
+  NUXT_UI_PRO_LICENSE: ${{ secrets.NUXT_UI_PRO_LICENSE }}
   HUSKY: 0
   CI: true
 
@@ -15,8 +16,6 @@ permissions:
 
 jobs:
   build_and_preview:
-    env:
-      NUXT_UI_PRO_LICENSE: ${{ secrets.NUXT_UI_PRO_LICENSE }}
     if: ${{ github.event_name == 'workflow_dispatch' || github.event.pull_request.head.repo.full_name == github.repository }}
     runs-on: ubuntu-latest
     outputs:
