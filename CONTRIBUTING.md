@@ -23,6 +23,9 @@ and you can use components available from [Nuxt UI](https://ui.nuxt.com/componen
 
 ### Create a new section for your guide
 
+We have a template tutorial folder you can start from!
+You can copy the `/content/tutorials/_new-tutorial-template` to make setting up a new tutorial easy.
+
 Your new guide should have its own folder under `/content/tutorials`. The minimum files your directory should have are
 the `_dir.yml` and a `10.index.md`.
 
