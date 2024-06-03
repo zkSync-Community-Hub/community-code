@@ -76,7 +76,7 @@ const communityLinks = [
   {
     icon: 'i-heroicons-academic-cap-solid',
     label: 'Contribute',
-    to: 'https://github.com/zkSync-Community-Hub/community-code',
+    to: 'https://github.com/zkSync-Community-Hub/community-code/blob/main/CONTRIBUTING.md',
   },
   {
     icon: 'i-heroicons-chat-bubble-oval-left-ellipsis-16-solid',
@@ -88,6 +88,12 @@ const communityLinks = [
     icon: 'i-heroicons-user-group-20-solid',
     label: 'Developer Forum',
     to: 'https://github.com/zkSync-Community-Hub/zkync-developers/discussions',
+    target: '_blank',
+  },
+  {
+    icon: 'i-heroicons-bug-ant-solid',
+    label: 'Report a Bug',
+    to: `https://github.com/zkSync-Community-Hub/community-code/issues/new?template=bug_report&title=[BUG]: ${metadata.value.title}&guide=https://code.zksync.io${route.path}`,
     target: '_blank',
   },
 ];
