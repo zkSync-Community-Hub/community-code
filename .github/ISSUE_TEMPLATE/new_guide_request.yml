@@ -15,7 +15,6 @@ body:
       label: Description
       description: Please provide a brief description of the guide you would like to see.
       placeholder: Tell us what you would like to see!
-      value: ""
   - type: checkboxes
     id: terms
     attributes:

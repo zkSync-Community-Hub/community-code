@@ -15,14 +15,12 @@ body:
       label: Description
       description: Please provide a brief description of the feature you would like to see.
       placeholder: Tell us what you would like to see!
-      value: ""
   - type: textarea
     id: rationale
     attributes:
       label: Rationale
       description: Why do you think this feature would be beneficial to the community?
       placeholder: Tell us why you think this feature would be beneficial!
-      value: ""
   - type: checkboxes
     id: terms
     attributes:
