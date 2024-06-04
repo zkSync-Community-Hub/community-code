@@ -7,6 +7,10 @@ env:
   HUSKY: 0
   CI: true
 
+concurrency:
+  group: production
+  cancel-in-progress: true
+
 jobs:
   build_and_deploy:
     env:
