@@ -3,7 +3,7 @@ description: File a bug report.
 title: "[Bug]: "
 labels: ["bug", "triage"]
 assignees:
-  - @zkSync-Community-Hub/zksync-devrel
+  - zkSync-Community-Hub/zksync-devrel
 body:
   - type: markdown
     attributes:

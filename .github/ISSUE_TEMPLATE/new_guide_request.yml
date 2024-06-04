@@ -3,7 +3,7 @@ description: Use this form to request a guide you would like to see in Code Comm
 title: "[Guide]: "
 labels: ["guide", "triage"]
 assignees:
-  - @zkSync-Community-Hub/zksync-devrel
+  - zkSync-Community-Hub/zksync-devrel
 body:
   - type: markdown
     attributes:
