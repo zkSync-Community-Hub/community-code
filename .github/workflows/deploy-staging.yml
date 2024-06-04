@@ -14,6 +14,7 @@ jobs:
     env:
       NUXT_UI_PRO_LICENSE: ${{ secrets.NUXT_UI_PRO_LICENSE }}
     if: ${{ github.event.repository.full_name == github.repository }}
+    environment: staging
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4 # v4

@@ -13,7 +13,7 @@ jobs:
       NUXT_UI_PRO_LICENSE: ${{ secrets.NUXT_UI_PRO_LICENSE }}
     if: ${{ github.event.repository.full_name == github.repository }}
     runs-on: ubuntu-latest
-    environment: prod
+    environment: production
     steps:
       - uses: actions/checkout@v4 # v4
         with:
