@@ -1,7 +1,13 @@
 <script setup lang="ts">
-const { data: guides } = await useAsyncData('tutorials', () =>
-  queryContent('tutorials').where({ _extension: 'yml' }).find()
-);
+import type { NavItem } from '@nuxt/content/types';
+
+const navigation = inject<Ref<NavItem[]>>('navigation');
+
+const guides = computed(() => {
+  const tutorialPath = navigation?.value.find((item) => item._path === '/tutorials') ?? { children: [] };
+
+  return tutorialPath.children;
+});
 </script>
 
 <template>
@@ -13,27 +19,36 @@ const { data: guides } = await useAsyncData('tutorials', () =>
           description="Explore all the community contributed guides for zkSync"
           icon="i-zksync-logo"
         />
-        <SiteLink
+
+        <ULandingCard
           v-for="(guide, index) of guides"
           :key="index"
-          :to="`/tutorials/${guide._dir}`"
-          class="grid grid-cols-2 items-center gap-4 border-b border-gray-100 p-4 hover:bg-zkSlate-100 dark:border-gray-800 dark:hover:bg-zkSlate-900"
+          :title="guide.title"
+          :to="guide._path"
+          class="mb-4"
         >
-          <div>
-            {{ guide.title }}
-          </div>
-          <div class="text-right">
-            <UBadge
-              v-for="tag in guide.tags"
-              :key="tag"
-              :label="tag"
-              color="blue"
-              size="sm"
-              variant="subtle"
-              class="mb-2 mr-2"
-            />
-          </div>
-        </SiteLink>
+          <template #description>
+            <p>{{ guide.description }}</p>
+            <div class="flex justify-between gap-2">
+              <AuthorsList
+                class="mb-4"
+                :authors="guide.authors"
+                :with-links="true"
+              />
+              <div>
+                <UBadge
+                  v-for="tag in guide.tags"
+                  :key="tag"
+                  :label="tag"
+                  color="blue"
+                  size="sm"
+                  variant="subtle"
+                  class="mb-2 mr-2"
+                />
+              </div>
+            </div>
+          </template>
+        </ULandingCard>
       </UPageBody>
     </UPage>
   </UContainer>

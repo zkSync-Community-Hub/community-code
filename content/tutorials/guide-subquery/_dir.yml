@@ -1,0 +1,21 @@
+title: Indexing events with SubQuery
+authors:
+  - name: SubQuery
+    url: https://subquery.network
+    avatar: https://avatars.githubusercontent.com/u/77033664?s=200&v=4
+github_repo: https://github.com/subquery
+tags:
+  - guide
+  - SubQuery
+summary: This page will guide you through the steps to index smart contract events using SubQuery.
+description:
+  This guide outlines the process of indexing all transfers and approval events from the Wrapped ETH on zkSync Era
+  Network.
+what_you_will_learn:
+  - How to use Subquery
+  - How to create an indexer
+  - How to index smart contract events
+updated: 2024-05-09
+tools:
+  - SubQuery
+  - GraphQL

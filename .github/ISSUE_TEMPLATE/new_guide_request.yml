@@ -1,0 +1,25 @@
+name: New Guide Request
+description: Use this form to request a guide you would like to see in Code Community.
+title: "[Guide]: "
+labels: ["guide", "triage"]
+assignees:
+  - zkSync-Community-Hub/zksync-devrel
+body:
+  - type: markdown
+    attributes:
+      value: |
+        We're constantly adding new guides to the Code Community. If you have a guide you'd like to see, please fill out this form.
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Please provide a brief description of the guide you would like to see.
+      placeholder: Tell us what you would like to see!
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct
+      description: By submitting this issue, you agree to follow our [Code of Conduct](https://github.com/zkSync-Community-Hub/community-code/blob/main/CODE_OF_CONDUCT.md).
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true

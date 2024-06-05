@@ -1,0 +1,12 @@
+{
+  "branches": "main",
+  "debug": true,
+  "tagFormat": "${version}",
+  "addReleases": "top",
+  "npmPublish": false,
+  "plugins": [
+    "@semantic-release/commit-analyzer",
+    "@semantic-release/release-notes-generator",
+    "@semantic-release/github"
+  ]
+}

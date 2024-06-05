@@ -1,0 +1,26 @@
+title: Build an ERC20 custom paymaster
+featured: true
+authors:
+  - name: MatterLabs
+    url: https://matter-labs.io
+    avatar: https://avatars.githubusercontent.com/u/42489169?s=200&v=4
+github_repo: https://github.com/zkSync-Community-Hub
+tags:
+  - account abstraction
+  - paymaster
+  - smart contracts
+  - tutorial
+summary: Build a paymaster that accepts any ERC20 token in exchange for transaction fees.
+description:
+  This tutorial will guide you through the process of building a paymaster that accepts a fixed amount of any ERC20
+  token in exchange for transaction fees. We'll use it to interact with a smart contract and pay the fees with an ERC20
+  token.
+what_you_will_learn:
+  - How to build a paymaster
+  - How to send transactions through a paymaster
+  - How to pay transaction fees with an ERC20 token
+updated: 2024-05-09
+tools:
+  - zksync-cli
+  - zksync-ethers
+  - Hardhat

@@ -1,25 +1,29 @@
 <script setup lang="ts">
 import { withoutTrailingSlash } from 'ufo';
 import dayjs from 'dayjs';
+import type { NavItem } from '@nuxt/content/types';
 
 definePageMeta({
   layout: 'docs',
 });
 
 const route = useRoute();
-const { seo } = useAppConfig();
+const nav = inject<Ref<NavItem[]>>('navigation');
 
+const metadata = computed(() => {
+  return nav?.value
+    .find((item) => item._path === '/tutorials')
+    ?.children?.find((item) => item._path === `/tutorials/${route.params.slug[0]}`);
+});
 const isIndex = ref(route.params.slug.length < 2);
-const { data: info } = await useAsyncData(`${route.path}-info`, () =>
-  queryContent(`/tutorials/${route.params.slug[0]}/_info`).findOne()
-);
 
 const { data: page } = await useAsyncData(route.path, () => queryContent(route.path).findOne());
+
 if (!page.value) {
   throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true });
 }
 
-const { data: surround } = await useAsyncData(`${route.path}-surround`, () =>
+const { data: surroundLinks } = await useAsyncData(`${route.path}-surround`, () =>
   queryContent()
     .where({
       _extension: 'md',
@@ -30,32 +34,26 @@ const { data: surround } = await useAsyncData(`${route.path}-surround`, () =>
     .findSurround(withoutTrailingSlash(route.path + '/'))
 );
 
-const surroundLinks = computed(() => {
-  return surround.value.length > 0 ? surround.value.filter((item) => item?._type !== 'yaml') : [];
+const surround = computed(() => {
+  return surroundLinks.value ?? [];
 });
 
 const lastUpdated = computed(() => {
-  const date = info.value.updated || info.value.created;
+  const date = metadata.value?.updated || metadata.value?.created;
   return date ? dayjs(date, 'YYYY-MM-DD').format('MMM DD, YYYY') : '';
 });
 
+const { seo } = useAppConfig();
 useSeoMeta({
-  title: info.value.title,
-  ogTitle: `${info.value.title} - ${seo?.siteName}`,
-  description: info.value.summary,
-  ogDescription: info.value.summary,
+  title: metadata.value?.title,
+  ogTitle: `${metadata.value?.title} - ${seo?.siteName}`,
+  description: metadata.value?.summary,
+  ogDescription: metadata.value?.summary,
+  twitterDescription: metadata.value?.summary,
   ogType: 'article',
-  author: info.value.author.name,
-});
-
-const { data: navigation } = await useAsyncData(`${route.path}-sidenav`, () => {
-  const query = queryContent().where({
-    _path: { $contains: route.params.slug[0] },
-    _extension: 'md',
-    _partial: false,
-  });
-
-  return fetchContentNavigation(query);
+  author: metadata.value?.authors
+    .map((author: { name: string; url: string; avatar: string }) => author.name)
+    .join(', '),
 });
 
 const links = [
@@ -65,9 +63,9 @@ const links = [
     to: '/tutorials',
   },
   {
-    label: info.value?.title || 'Guide',
+    label: metadata.value?.title || 'Guide',
     collapsible: false,
-    children: navigation.value[0].children[0].children.map((item) => ({
+    children: metadata.value?.children?.map((item) => ({
       label: item.title,
       to: item._path,
     })),
@@ -77,8 +75,8 @@ const links = [
 const communityLinks = [
   {
     icon: 'i-heroicons-academic-cap-solid',
-    label: 'Contribute to the Cookbook',
-    to: 'https://github.com/zkSync-Community-Hub/cookbook',
+    label: 'Contribute',
+    to: 'https://github.com/zkSync-Community-Hub/community-code/blob/main/CONTRIBUTING.md',
   },
   {
     icon: 'i-heroicons-chat-bubble-oval-left-ellipsis-16-solid',
@@ -90,6 +88,12 @@ const communityLinks = [
     icon: 'i-heroicons-user-group-20-solid',
     label: 'Developer Forum',
     to: 'https://github.com/zkSync-Community-Hub/zkync-developers/discussions',
+    target: '_blank',
+  },
+  {
+    icon: 'i-heroicons-bug-ant-solid',
+    label: 'Report a Bug',
+    to: `https://github.com/zkSync-Community-Hub/community-code/issues/new?template=bug_report&title=[BUG]: ${metadata.value.title}&guide=https://code.zksync.io${route.path}`,
     target: '_blank',
   },
 ];
@@ -106,106 +110,104 @@ const communityLinks = [
         </UAside>
       </template>
 
-      <UPage v-if="isIndex && info">
+      <UPage v-if="isIndex && metadata">
         <UPageHeader
-          :title="page.title"
-          :description="page.description"
+          :title="page?.title"
+          :description="page?.description"
         />
         <div class="grid grid-cols-8 gap-4 py-5">
           <div class="col-span-5">
+            <AuthorsList
+              class="mb-4"
+              :authors="metadata.authors"
+              :with-links="true"
+            />
             <p>
-              {{ info.description }}
+              {{ metadata.description }}
             </p>
-            <h3 class="mt-4 text-xl font-semibold">What you'll learn:</h3>
-            <ul
-              role="list"
-              class="list-inside list-disc"
-            >
-              <li
-                v-for="item in info.what_you_will_learn"
-                :key="item"
+            <template v-if="metadata.what_you_will_learn">
+              <h3 class="mt-4 text-xl font-semibold">What you'll learn:</h3>
+              <ul
+                role="list"
+                class="mt-2 list-inside list-disc space-y-1"
               >
-                {{ item }}
-              </li>
-            </ul>
+                <li
+                  v-for="item in metadata.what_you_will_learn"
+                  :key="item"
+                >
+                  {{ item }}
+                </li>
+              </ul>
+            </template>
           </div>
 
           <div class="col-span-3">
-            <div>
-              <a
-                :href="info.author.url"
-                target="_blank"
-                class="mb-4 flex w-auto items-center justify-normal hover:underline"
-              >
-                <UAvatar
-                  size="md"
-                  :src="info.author.avatar"
-                  :alt="info.author.name"
-                />
-                <span class="ml-3">{{ info.author.name }}</span>
-              </a>
-            </div>
             <UButton
+              v-if="metadata.github_repo"
               icon="i-simple-icons-github"
               size="sm"
               color="white"
               variant="solid"
               label="GitHub"
               target="_blank"
-              :to="info.github_repo"
+              :to="metadata.github_repo"
               :trailing="false"
             />
-            <h3 class="my-2 text-xl font-semibold">Last Updated:</h3>
-            <p>{{ lastUpdated }}</p>
-            <h3 class="my-2 text-xl font-semibold">Tools:</h3>
-            <ul
-              role="list"
-              class="list-inside list-disc"
-            >
-              <li
-                v-for="item in info.tools"
-                :key="item"
+            <template v-if="metadata.tools">
+              <h3 class="my-2 text-lg font-semibold">Tools:</h3>
+              <ul
+                role="list"
+                class="list-inside list-none"
               >
-                {{ item }}
-              </li>
-            </ul>
-            <h3 class="my-2 text-xl font-semibold">Tags:</h3>
-            <div class="flex flex-wrap">
-              <UBadge
-                v-for="tag in info.tags"
-                :key="tag"
-                :label="tag"
-                color="blue"
-                size="sm"
-                variant="subtle"
-                class="mb-2 mr-2"
-              />
-            </div>
+                <li
+                  v-for="item in metadata.tools"
+                  :key="item"
+                >
+                  - {{ item }}
+                </li>
+              </ul>
+            </template>
+            <template v-if="metadata.tags">
+              <div class="mt-4 flex flex-wrap">
+                <UBadge
+                  v-for="tag in metadata.tags"
+                  :key="tag"
+                  :label="tag"
+                  color="blue"
+                  size="sm"
+                  variant="subtle"
+                  class="mb-2 mr-2"
+                />
+              </div>
+            </template>
+            <template v-if="metadata.updated">
+              <strong class="text-md my-2">Last Updated: </strong>{{ lastUpdated }}
+            </template>
           </div>
         </div>
-        <UDivider icon="i-zksync-logo" />
+        <UDivider icon="i-zksync-zksync-logo" />
       </UPage>
 
       <UPage>
         <UPageHeader
           v-if="!isIndex"
-          :title="page.title"
-          :description="page.description"
+          :title="page?.title"
+          :description="page?.description"
         />
 
         <UPageBody prose>
           <ContentRenderer
-            v-if="page.body"
+            v-if="page?.body"
             :value="page"
           />
 
           <hr
-            v-if="surroundLinks.length > 0"
+            v-if="surround.length > 0"
             class="mb-4"
           />
 
           <UContentSurround
-            :surround="surroundLinks"
+            :surround
             :ui="{
               wrapper: 'grid gap-8 sm:grid-cols-2',
               icon: {
@@ -227,12 +229,12 @@ const communityLinks = [
         </UPageBody>
 
         <template
-          v-if="page.toc !== false"
+          v-if="page?.toc !== false"
           #right
         >
           <UContentToc
             title="Table of contents"
-            :links="page.body?.toc?.links"
+            :links="page?.body?.toc?.links"
           />
         </template>
       </UPage>

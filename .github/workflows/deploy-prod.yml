@@ -3,38 +3,39 @@ on:
   push:
     branches: [main]
 
+env:
+  HUSKY: 0
+  CI: true
+
+concurrency:
+  group: production
+  cancel-in-progress: true
+
 jobs:
   build_and_deploy:
     env:
       NUXT_UI_PRO_LICENSE: ${{ secrets.NUXT_UI_PRO_LICENSE }}
     if: ${{ github.event.repository.full_name == github.repository }}
     runs-on: ubuntu-latest
-    environment: prod
+    environment: production
     steps:
       - uses: actions/checkout@v4 # v4
         with:
-          fetch-depth: 0
-          # Whether to configure the token or SSH key with the local git config
-          # Default: true
           persist-credentials: false # <--- checking this in commit context
 
       - uses: oven-sh/setup-bun@v1
 
       - name: "Install dependencies"
-        run: bun install
+        run: bun install --production --frozen-lockfile
       - name: "Deploy target: production 🚀"
-        run: bun run generate
-        # TODO: ask about below
-        # env:
-        #   RUDDERSTACK_WRITE_KEY: "${{ secrets.RUDDERSTACK_WRITE_KEY }}"
-        #   RUDDERSTACK_DATA_PLANE_URL: "${{ secrets.RUDDERSTACK_DATA_PLANE_URL }}"
+        run: bun run build
 
       - uses: matter-labs/action-hosting-deploy@main
         with:
           repoToken: "${{ secrets.GITHUB_TOKEN }}"
-          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_COMMUNITY_COOKBOOK }}"
+          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_COMMUNITY_COOKBOOK_59807 }}"
           target: prod
-          projectId: community-cookbook
+          projectId: community-cookbook-59807
           channelId: live
 
       # TODO: re-enable once we are closer to production deployment

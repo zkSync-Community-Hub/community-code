@@ -1,0 +1,21 @@
+title: Create an indexer with DipDup
+featured: true
+authors:
+  - name: DipDup
+    url: https://dipdup.io
+    avatar: https://avatars.githubusercontent.com/u/81768067?s=200&v=4
+github_repo: https://github.com/dipdup-io
+tags:
+  - guide
+  - dipdup
+summary: This page will guide you through the steps to get your first DipDup indexer up and running in a few minutes.
+description:
+  This guide will help you create an indexer with DipDup and Python. DipDup is a tool that allows you to build a custom
+  indexer for your project.
+what_you_will_learn:
+  - How to use DipDup
+  - How to create an indexer
+updated: 2024-05-09
+tools:
+  - DipDup
+  - Python

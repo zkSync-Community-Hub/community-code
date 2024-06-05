@@ -1,0 +1,25 @@
+title: Dapp with gated NFT paymaster
+authors:
+  - name: MatterLabs
+    url: https://matter-labs.io
+    avatar: https://avatars.githubusercontent.com/u/42489169?s=200&v=4
+github_repo: https://github.com/zkSync-Community-Hub
+tags:
+  - paymaster
+  - frontend
+  - next.js
+  - tutorial
+  - ERC721
+summary: Build a frontend that allows users to interact smart contracts with zero transaction fees wif they hold an NFT.
+description:
+  This tutorial will guide you through the process of building a frontend that interacts with smart contracts on zkSync.
+  The frontend will enable gasless transactions for users that hold a specific NFT thanks to a paymaster.
+what_you_will_learn:
+  - How to build frontend
+  - How to send transactions through a paymaster
+updated: 2024-05-09
+tools:
+  - zksync-cli
+  - zksync-ethers
+  - Hardhat
+  - react

@@ -1,0 +1,31 @@
+name: Feature Request
+description: Is there a feature you would like to see in Code Community? Let us know!
+title: "[Feature]: "
+labels: ["feature", "triage"]
+assignees:
+  - zkSync-Community-Hub/zksync-devrel
+body:
+  - type: markdown
+    attributes:
+      value: |
+        We're constantly adding new features to the Code Community. If you have a feature you'd like to see, please fill out this form.
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Please provide a brief description of the feature you would like to see.
+      placeholder: Tell us what you would like to see!
+  - type: textarea
+    id: rationale
+    attributes:
+      label: Rationale
+      description: Why do you think this feature would be beneficial to the community?
+      placeholder: Tell us why you think this feature would be beneficial!
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct
+      description: By submitting this issue, you agree to follow our [Code of Conduct](https://github.com/zkSync-Community-Hub/community-code/blob/main/CODE_OF_CONDUCT.md).
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true

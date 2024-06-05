@@ -1,29 +1,14 @@
 <script setup lang="ts">
-import type { ParsedContent } from '@nuxt/content/dist/runtime/types';
+import type { ParsedContent } from '@nuxt/content/types';
 
+provideHeadlessUseId(() => useId());
 const { seo } = useAppConfig();
 
 const { data: navigation } = await useAsyncData('navigation', () => fetchContentNavigation());
-const { data: files } = useLazyFetch<ParsedContent[]>('/api/search.json', {
-  default: () => [],
-  server: false,
-});
+provide('navigation', navigation);
 
 useHead({
-  meta: [
-    { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-    {
-      name: 'keywords',
-      content:
-        'Documentation, Developers, Era, zkSync, ZK Stack, Matter Labs, rollup, ZK rollup, zero confirmation, ZKP, zero-knowledge proofs, Ethereum, crypto, blockchain, permissionless, L2, secure payments, scalable',
-    },
-    {
-      name: 'description',
-      content:
-        'zkSync Docs bring you all information you need about our protocol, APIs, SDKs, ZK Stack, and hyperchains. Start with our guides and tutorials, or go deep into our architecture and protocol specification.',
-    },
-    { name: 'author', content: 'https://matter-labs.io' },
-  ],
+  meta: [{ name: 'viewport', content: 'width=device-width, initial-scale=1' }],
   link: [{ rel: 'icon', href: '/favicon.ico' }],
   htmlAttrs: {
     lang: 'en',
@@ -33,27 +18,33 @@ useHead({
 useSeoMeta({
   titleTemplate: `%s - ${seo?.siteName}`,
   ogSiteName: seo?.siteName,
-  ogUrl: 'https://docs.zksync.io/',
-  ogImageAlt: 'zkSync — Accelerating the mass adoption of crypto for personal sovereignty.',
+  ogUrl: 'https://code.zksync.io/',
+  description:
+    'Build together with the zkSync Community. Learn how to build amazing smart contracts and dApps on zkSync Era.',
   ogDescription:
-    'zkSync Docs bring you all information you need about our protocol, APIs, SDKs, ZK Stack, and hyperchains. Start with our guides and tutorials, or go deep into our architecture and protocol specification.',
-  twitterImage: 'https://docs.zksync.io/social-card.png',
+    'Build together with the zkSync Community. Learn how to build amazing smart contracts and dApps on zkSync Era.',
+  twitterTitle: `%s`,
+  twitterDescription:
+    'Build together with the zkSync Community. Learn how to build amazing smart contracts and dApps on zkSync Era.',
   twitterCard: 'summary_large_image',
   twitterSite: '@zksync',
-  twitterCreator: '@the_matter_labs',
-  twitterImageAlt: 'zkSync — Accelerating the mass adoption of crypto for personal sovereignty.',
+  twitterCreator: '@zkSyncDevs',
+  twitterImageAlt: 'Hyperscaling Ethereum with ZK tech.',
 });
 
-defineOgImage({ component: 'OgImageDocs' });
+defineOgImageComponent('OgImageZK');
 
-provide('navigation', navigation);
+const { data: files } = useLazyFetch<ParsedContent[]>('/api/search.json', {
+  default: () => [],
+  server: false,
+});
 </script>
 
 <template>
   <div>
     <NuxtLoadingIndicator />
 
-    <AppHeader />
+    <HeaderComponent :search="true" />
 
     <UMain>
       <NuxtLayout>
@@ -61,14 +52,14 @@ provide('navigation', navigation);
       </NuxtLayout>
     </UMain>
 
-    <AppFooter />
+    <FooterComponent />
 
-    <!-- <ClientOnly>
+    <ClientOnly>
       <LazyUContentSearch
         :files="files"
-        :navigation="navigation"
+        :navigation="navigation || []"
       />
-    </ClientOnly> -->
+    </ClientOnly>
 
     <UNotifications />
   </div>

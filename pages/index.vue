@@ -1,61 +1,72 @@
 <script setup lang="ts">
+import type { NavItem } from '@nuxt/content/types';
+
 const { data: page } = await useAsyncData('index', () => queryContent('/').findOne());
 
-const { data: guides } = await useAsyncData('tutorials', () =>
-  queryContent('tutorials').where({ _extension: 'yml' }).find()
-);
+const navigation = inject<Ref<NavItem[]>>('navigation');
+
+const guides = computed(() => {
+  const tutorialPath = navigation?.value.find((item) => item._path === '/tutorials') ?? { children: [] };
+
+  return tutorialPath.children?.filter((tutorial) => tutorial.featured);
+});
 
 useSeoMeta({
   titleTemplate: '',
-  title: page.value.title,
-  ogTitle: page.value.title,
-  description: page.value.description,
-  ogDescription: page.value.description,
+  title: page.value?.title,
 });
 </script>
 
 <template>
   <div>
+    <IconOrbit class="absolute hidden md:block" />
     <ULandingSection
-      title="Community Contributed Guides for zkSync"
-      :links="page.features.links"
+      class="relative"
+      title=""
+      description="Build Together: Discover Community-Driven Guides and Tutorials for zkSync"
+      :links="[
+        {
+          label: 'Check out all the tutorials',
+          icon: 'i-zksync-zksync-logo',
+          trailingIcon: 'i-heroicons-arrow-right-20-solid',
+          to: '/tutorials',
+          size: 'xl',
+        },
+      ]"
+      :ui="{ description: 'backdrop-blur bg-background/65' }"
     >
+      <template #headline>
+        <NuxtImg
+          src="/logos/zksync-icon.svg"
+          width="240"
+          class="invert filter dark:filter-none"
+        />
+      </template>
+
       <UPageGrid>
-        <SiteLink
+        <ULandingCard
           v-for="(guide, index) of guides"
           :key="index"
-          :to="`/tutorials/${guide._dir}`"
-          class="rounded-lg border-2 border-transparent transition-colors duration-200 ease-in-out hover:border-zkPurple-300"
+          :to="guide._path"
+          :title="guide.title"
+          :description="guide.summary"
+          :ui="{ body: { base: 'justify-between' } }"
         >
-          <UCard>
-            <span class="mb-4 inline-block text-lg font-semibold">
-              {{ guide.title }}
-            </span>
-
-            <p>{{ guide.summary }}</p>
-
-            <div class="my-4 flex w-auto items-center justify-normal">
-              <UAvatar
-                size="sm"
-                :src="guide.author.avatar"
-                :alt="guide.author.name"
-              />
-              <span class="ml-3">{{ guide.author.name }}</span>
-            </div>
-
-            <div class="mt-4">
+          <div class="mt-auto">
+            <AuthorsList :authors="guide.authors" />
+            <div class="mt-2">
               <UBadge
-                v-for="tag in guide.tags"
-                :key="tag"
+                v-for="(tag, index) of guide.tags"
+                :key="index"
                 :label="tag"
                 color="blue"
-                size="sm"
+                size="xs"
                 variant="subtle"
-                class="mb-2 mr-2"
+                class="mr-2"
               />
             </div>
-          </UCard>
-        </SiteLink>
+          </div>
+        </ULandingCard>
       </UPageGrid>
     </ULandingSection>
   </div>

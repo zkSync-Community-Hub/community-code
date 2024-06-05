@@ -1,125 +1,99 @@
-![nuxt-ui-docs-social-card](https://github.com/nuxt-ui-pro/docs/assets/739984/f64e13d9-9ae0-4e03-bf7f-6be4c36cd9ba)
+# Community Code
 
-# Nuxt UI Pro - Docs template
+[![License](https://img.shields.io/badge/license-MIT-blue)](LICENSE-MIT)
+[![License: Apache 2.0](https://img.shields.io/badge/license-Apache%202.0-orange)](LICENSE-APACHE)
+[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](https://www.contributor-covenant.org/)
+[![Contributions Welcome](https://img.shields.io/badge/contributions-welcome-orange)](CONTRIBUTING.md)
+[![X (formerly Twitter) Follow](https://badgen.net/badge/twitter/@zksyncDevs/1DA1F2?icon&label)](https://x.com/zksyncDevs)
 
-[![Nuxt UI Pro](https://img.shields.io/badge/Made%20with-Nuxt%20UI%20Pro-00DC82?logo=nuxt.js&labelColor=020420)](https://ui.nuxt.com/pro)
-[![Nuxt Studio](https://img.shields.io/badge/Open%20in%20Nuxt%20Studio-18181B?&logo=nuxt.js&logoColor=3BB5EC)](https://nuxt.studio/themes/docs)
+Welcome to the zkSync Community Code repository. This project serves as the community hub for zkSync, providing comprehensive
+documentation for developers written by developers.
+Whether you're a beginner looking to get started with zkSync or an experienced developer
+seeking advanced guides, you'll find the resources you need here.
 
-- [Live demo](https://docs-template.nuxt.dev/)
-- [Play on Stackblitz](https://stackblitz.com/github/nuxt-ui-pro/docs)
-- [Documentation](https://ui.nuxt.com/pro/getting-started)
-- [Clone on Nuxt Studio](https://nuxt.studio/themes/docs)
+## 🚀 Quick Start
 
-## Quick Start
+1. **Install Bun:** Follow the [installation instructions](https://bun.sh/docs/installation).
+2. **Install Dependencies:**
 
-```bash [Terminal]
-npx nuxi init -t github:nuxt-ui-pro/docs
-```
+   ```sh
+   bun install
+   ```
 
-## Setup
+3. **Run Locally:** Start the development server at `http://localhost:3000`.
 
-Make sure to install the dependencies:
+   ```sh
+   bun run dev
+   ```
 
-```bash
-# npm
-npm install
+## 🛠️ Built With
 
-# pnpm
-pnpm install
+- [Vue](https://vuejs.org/)
+- [Nuxt](https://nuxt.com/)
+- [Nuxt Content](https://content.nuxt.com/)
+- [Nuxt UI & Nuxt UI Pro](https://ui.nuxt.com/)
+- [Tailwind](https://tailwindcss.com/)
+- [Bun](https://bun.sh/)
 
-# yarn
-yarn install
+## Local Preview 👀
 
-# bun
-bun install
-```
+To locally preview the production build, first run `bun run build` to build the project, then run the following:
 
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm run dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm run build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-
-# bun
+```shell
 bun run preview
 ```
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+## Lint & Formatting ✨
 
-## Nuxt Studio integration
+This project provides lint commands to check the project.
 
-Add `@nuxthq/studio` dependency to your package.json:
+### Run CI Checks ✔️
 
-```bash
-# npm
-npm install --save-dev @nuxthq/studio
+This command will run all of the lint commands together.
 
-# pnpm
-pnpm add -D @nuxthq/studio
-
-# yarn
-yarn add -D @nuxthq/studio
-
-# bun
-bun add -d @nuxthq/studio
+```shell
+bun run ci:check
 ```
 
-Add this module to your `nuxt.config.ts`:
+### Markdown Linting 📝
 
-```ts
-export default defineNuxtConfig({
-  ...
-  modules: [
-    ...
-    '@nuxthq/studio'
-  ]
-})
+Markdown files are found in the `/content` directory. The following lint commands will run within that directory:
+
+```shell
+bun run lint:spelling
+bun run lint:markdown
 ```
 
-Read more on [Nuxt Studio docs](https://nuxt.studio/docs/projects/setup).
+### Linting 🧹
 
-## Renovate integration
+The following commands are available to run code linting on the project:
 
-Install [Renovate GitHub app](https://github.com/apps/renovate/installations/select_target) on your repository and you are good to go.
+```shell
+bun run lint:prettier
+bun run lint:eslint
+```
+
+## 📜 Conventional Commits
+
+We follow the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/#summary) specification.
+Make sure your commit messages adhere to these guidelines.
+
+For documentation changes, we recommend using the "docs:" tag. For example:
+
+```sh
+git commit -m "docs: fix spelling error"
+```
+
+## 🤝 Contributions
+
+We welcome contributions from the community!
+Check out our [Contributing guide](CONTRIBUTING.md) to learn how to add your own guides to Code Community.
+
+## 👪 Join the community
+
+If you haven't already, join our community!
+We have [GitHub Discussions](https://github.com/zkSync-Community-Hub/zksync-developers/discussions)
+for developers to ask questions and share their work.
+We also have a [Discord server](https://join.zksync.dev/) for real-time conversations with the team and community.
+
+Be sure to [follow us on Twitter](https://x.com/zkSyncDevs) to keep up to date with announcements from the zkSync dev team.

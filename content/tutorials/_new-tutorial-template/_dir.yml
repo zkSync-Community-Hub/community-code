@@ -1,0 +1,17 @@
+title: New tutorial example
+authors:
+  - name: Jane Doe
+    url: https://google.com
+    avatar: https://i.pravatar.cc/300
+github_repo: https://github.com
+tags:
+  - smart contracts
+summary: Provide a tweet-sized summary that describes the tutorial.
+description:
+  Provide a brief description of the tutorial. This description should be a few sentences long and should give the
+  reader an idea of what the tutorial is about.
+what_you_will_learn:
+  - How to write a tutorial
+updated: 2024-05-09
+tools:
+  - code-community

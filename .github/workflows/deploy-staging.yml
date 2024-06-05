@@ -2,13 +2,23 @@ name: "deploy staging 🏗️"
 on:
   push:
     branches: [staging]
+  workflow_dispatch:
+
+env:
+  NUXT_SITE_ENV: staging # used for NuxtSEO to disable things like indexing on staging
+  HUSKY: 0
+  CI: true
+
+concurrency:
+  group: staging
+  cancel-in-progress: true
 
 jobs:
   build_and_deploy:
     env:
       NUXT_UI_PRO_LICENSE: ${{ secrets.NUXT_UI_PRO_LICENSE }}
-      NUXT_PUBLIC_SITE_URL: ${{ secrets.NUXT_PUBLIC_SITE_URL }}
     if: ${{ github.event.repository.full_name == github.repository }}
+    environment: staging
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4 # v4
@@ -18,9 +28,9 @@ jobs:
       - uses: oven-sh/setup-bun@v1
 
       - name: "Install dependencies"
-        run: bun install
+        run: bun install --production --frozen-lockfile
       - name: "Deploy target: staging"
-        run: bun run generate
+        run: bun run build
 
       - uses: matter-labs/action-hosting-deploy@main
         with:

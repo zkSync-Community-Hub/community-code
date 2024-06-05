@@ -1,0 +1,18 @@
+title: How to deposit ERC20 to zkSync
+authors:
+  - name: MatterLabs
+    url: https://matter-labs.io
+    avatar: https://avatars.githubusercontent.com/u/42489169?s=200&v=4
+github_repo: https://github.com/zkSync-Community-Hub
+tags:
+  - hardhat
+  - how-to
+  - erc20
+summary: Learn how to deposit ERC20 tokens zkSync.
+description: This how-to guide explains how to create a script that deposits any ERC20 token to zkSync.
+what_you_will_learn:
+  - How L2 deposits work
+  - How to deposit ERC20 tokens to zkSync
+updated: 2024-05-09
+tools:
+  - zksync-ethers
