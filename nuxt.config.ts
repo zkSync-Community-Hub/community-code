@@ -28,6 +28,9 @@ export default defineNuxtConfig({
   },
   routeRules: {
     '/api/search.json': { prerender: true },
+    '*-surround': { robots: false },
+    '/*/*-surround': { robots: false },
+    '/tutorials/*/_dir': { robots: false },
   },
   $production: process.env.NUXT_SITE_ENV
     ? {}
