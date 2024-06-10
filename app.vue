@@ -18,7 +18,7 @@ useHead({
 useSeoMeta({
   titleTemplate: `%s - ${seo?.siteName}`,
   ogSiteName: seo?.siteName,
-  ogUrl: 'https://code.zksync.io/',
+  ogUrl: 'https://code.zksync.io',
   description:
     'Build together with the zkSync Community. Learn how to build amazing smart contracts and dApps on zkSync Era.',
   ogDescription:
