@@ -20,15 +20,15 @@ useSeoMeta({
   ogSiteName: seo?.siteName,
   ogUrl: 'https://code.zksync.io',
   description:
-    'Build together with the zkSync Community. Learn how to build amazing smart contracts and dApps on zkSync Era.',
+    'Build together with the ZKsync Community. Learn how to build amazing smart contracts and dApps on ZKsync Era.',
   ogDescription:
-    'Build together with the zkSync Community. Learn how to build amazing smart contracts and dApps on zkSync Era.',
+    'Build together with the ZKsync Community. Learn how to build amazing smart contracts and dApps on ZKsync Era.',
   twitterTitle: `%s`,
   twitterDescription:
-    'Build together with the zkSync Community. Learn how to build amazing smart contracts and dApps on zkSync Era.',
+    'Build together with the ZKsync Community. Learn how to build amazing smart contracts and dApps on ZKsync Era.',
   twitterCard: 'summary_large_image',
   twitterSite: '@zksync',
-  twitterCreator: '@zkSyncDevs',
+  twitterCreator: '@ZKsyncDevs',
   twitterImageAlt: 'Hyperscaling Ethereum with ZK tech.',
 });
 

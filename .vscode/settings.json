@@ -19,5 +19,13 @@
     },
     "editor.tabCompletion": "onlySnippets"
   },
-  "eslint.experimental.useFlatConfig": true
+  "eslint.experimental.useFlatConfig": true,
+  "workbench.colorCustomizations": {
+    "statusBar.background": "#8257a6",
+    "statusBar.foreground": "#e7e7e7",
+    "statusBarItem.hoverBackground": "#9b78b8",
+    "statusBarItem.remoteBackground": "#8257a6",
+    "statusBarItem.remoteForeground": "#e7e7e7"
+  },
+  "peacock.color": "#8257a6"
 }

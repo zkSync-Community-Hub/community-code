@@ -5,19 +5,19 @@ Version: 1.1
 Apache 2.0 license, derived from the Apache Foundation Code of Conduct.
 Also, CC BY-SA 3.0 derived from the Mozilla Community Participation Guidelines.
 
-Our goal is to cultivate a safe, friendly, and inclusive space that benefits all participants in the zkSync ecosystem.
+Our goal is to cultivate a safe, friendly, and inclusive space that benefits all participants in the ZKsync ecosystem.
 This Code of Conduct outlines our shared values and expectations to help ensure that the community remains a positive and enriching environment for everyone.
 
 ## When and how to use this Code of Conduct
 
-This is your guide for engaging as a participant in the zkSync ecosystem.
-It applies to all physical and digital spaces related to zkSync.
+This is your guide for engaging as a participant in the ZKsync ecosystem.
+It applies to all physical and digital spaces related to ZKsync.
 
 ## Expected behaviors
 
 **Be ethical**:
-We endeavor to enrich the zkSync ecosystem, while not infringing on the rights and wellbeing of others.
-We also endeavor to enrich ourselves without causing harm to the zkSync community.
+We endeavor to enrich the ZKsync ecosystem, while not infringing on the rights and wellbeing of others.
+We also endeavor to enrich ourselves without causing harm to the ZKsync community.
 We do not encourage tax evasion, promoting information leaks, speculating on tokens or token prices, or otherwise breaking the law.
 
 **Be kind and respectful**:
@@ -25,7 +25,7 @@ Treat everyone with kindness, empathy, and respect.
 We all come from different backgrounds, perspectives and experiences,
 so let's celebrate our differences and foster a culture of openness and understanding.
 We may have strong feelings about other layer 1 and layer 2 blockchains,
-but that is no reason to disparage, defame, or slander any competitor to zkSync or what other chains are doing.
+but that is no reason to disparage, defame, or slander any competitor to ZKsync or what other chains are doing.
 Feel free to compare metrics and features, but keep to the facts and be respectful of all the builders in web3
 trying to advance freedom through blockchain technology!
 
@@ -50,7 +50,7 @@ We encourage questions, and redirect them to the appropriate channel if we do no
 Communication is key.
 Use clear and considerate language in your interactions.
 We aim to create a welcoming environment for users of all ages, so please avoid excessive profanity or explicit content.
-Remember that zkSync community members are a diverse bunch.
+Remember that ZKsync community members are a diverse bunch.
 English is our primary working language, but to help others where English is not their first language,
 be succinct and avoid acronyms where possible.
 
@@ -76,7 +76,7 @@ This includes, but is not limited to:
 - Advocating for, or encouraging, any of the above behavior.
 
 **Have fun and connect**:
-Finally, remember that ZK Squad and the zkSync community is a place to connect, learn, and enjoy.
+Finally, remember that ZK Squad and the ZKsync community is a place to connect, learn, and enjoy.
 Participate in a manner that encourages positive interactions and enhances the experiences of all.
 
 ## Managing violations

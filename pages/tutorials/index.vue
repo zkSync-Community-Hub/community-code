@@ -16,7 +16,7 @@ const guides = computed(() => {
       <UPageBody prose>
         <UPageHeader
           title="Community Guides"
-          description="Explore all the community contributed guides for zkSync"
+          description="Explore all the community contributed guides for ZKsync"
           icon="i-zksync-logo"
         />
 

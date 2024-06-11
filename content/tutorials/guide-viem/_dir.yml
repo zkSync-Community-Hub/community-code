@@ -8,14 +8,14 @@ github_repo: https://github.com/matter-labs
 tags:
   - guide
   - viem
-summary: This page will explain how to use the viem/zksync plugin to interact with zkSync.
+summary: This page will explain how to use the viem/zksync plugin to interact with ZKsync.
 description:
-  This guide outlines how to use the zkSync viem plugin to interact with zkSync and use specific actions like sending
+  This guide outlines how to use the ZKsync viem plugin to interact with ZKsync and use specific actions like sending
   transcations via paymasters.
 what_you_will_learn:
-  - How to install viem and the zkSync plugin
+  - How to install viem and the ZKsync plugin
   - How to send RPC requests to zkSync
-  - How to use zkSync-specific methods
+  - How to use ZKsync-specific methods
 updated: 2024-05-09
 tools:
   - viem

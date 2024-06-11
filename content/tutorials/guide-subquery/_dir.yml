@@ -9,7 +9,7 @@ tags:
   - SubQuery
 summary: This page will guide you through the steps to index smart contract events using SubQuery.
 description:
-  This guide outlines the process of indexing all transfers and approval events from the Wrapped ETH on zkSync Era
+  This guide outlines the process of indexing all transfers and approval events from the Wrapped ETH on ZKsync Era
   Network.
 what_you_will_learn:
   - How to use Subquery

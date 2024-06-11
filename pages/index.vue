@@ -23,7 +23,7 @@ useSeoMeta({
     <ULandingSection
       class="relative"
       title=""
-      description="Build Together: Discover Community-Driven Guides and Tutorials for zkSync"
+      description="Build Together: Discover Community-Driven Guides and Tutorials for ZKsync"
       :links="[
         {
           label: 'Check out all the tutorials',
