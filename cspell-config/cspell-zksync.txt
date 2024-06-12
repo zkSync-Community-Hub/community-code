@@ -11,9 +11,9 @@ zkforge
 zkout
 zksolc
 zkstack
-zkSync
+!zkSync
 zksync
-!ZKsync
+ZKsync
 zksync-cli
 zkvyper
 

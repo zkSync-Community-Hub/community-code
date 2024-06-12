@@ -1,11 +1,11 @@
 <!--
 
-Thank you for contributing to the zkSync Code Community!
+Thank you for contributing to the ZKsync Code Community!
 
 Before submitting the PR, please make sure you do the following:
 
-- Read the [Contributing Guide](https://github.com/zkSync-Community-Hub/community-code/blob/main/CONTRIBUTING.md).
-- Understand our [Code of Conduct](https://github.com/zkSync-Community-Hub/community-code/blob/main/CODE_OF_CONDUCT.md)
+- Read the [Contributing Guide](https://github.com/ZKsync-Community-Hub/community-code/blob/main/CONTRIBUTING.md).
+- Understand our [Code of Conduct](https://github.com/ZKsync-Community-Hub/community-code/blob/main/CODE_OF_CONDUCT.md)
 
 -->
 

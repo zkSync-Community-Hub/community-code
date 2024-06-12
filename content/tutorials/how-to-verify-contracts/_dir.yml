@@ -1,15 +1,15 @@
 title: Verify contracts with Hardhat
 authors:
-  - name: MatterLabs
+  - name: Matter Labs
     url: https://matter-labs.io
     avatar: https://avatars.githubusercontent.com/u/42489169?s=200&v=4
-github_repo: https://github.com/zkSync-Community-Hub
+github_repo: https://github.com/ZKsync-Community-Hub
 tags:
   - hardhat
   - contract verification
   - how-to
-summary: Learn how to deploy a smart contract on zkSync.
-description: This how-to guide explains how to verify a smart contract on zkSync using Hardhat.
+summary: Learn how to deploy a smart contract on ZKsync.
+description: This how-to guide explains how to verify a smart contract on ZKsync using Hardhat.
 what_you_will_learn:
   - How to compile smart contracts.
   - How to verify contracts.
