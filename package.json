@@ -18,6 +18,7 @@
     "release": "semantic-release"
   },
   "dependencies": {
+    "@matterlabs/docs-nuxt-template": "2.3.0",
     "@nuxt/content": "^2.12.1",
     "@nuxt/eslint": "^0.3.10",
     "@nuxt/fonts": "^0.5.1",
@@ -25,10 +26,10 @@
     "@nuxt/ui": "^2.16.0",
     "@nuxt/ui-pro": "^1.1.0",
     "@nuxtjs/seo": "^2.0.0-rc.10",
-    "nuxt-headlessui": "^1.2.0",
     "dayjs": "^1.11.10",
     "nuxt": "^3.11.2",
     "nuxt-gtag": "^2.0.6",
+    "nuxt-headlessui": "^1.2.0",
     "nuxt-og-image": "^3.0.0-rc.53",
     "rehype-katex": "^7.0.0",
     "remark-math": "^6.0.0",
