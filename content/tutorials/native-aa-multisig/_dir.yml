@@ -1,9 +1,9 @@
 title: Native multisig smart account
 authors:
-  - name: MatterLabs
+  - name: Matter Labs
     url: https://matter-labs.io
     avatar: https://avatars.githubusercontent.com/u/42489169?s=200&v=4
-github_repo: https://github.com/zkSync-Community-Hub
+github_repo: https://github.com/ZKsync-Community-Hub
 tags:
   - account abstraction
   - smart contracts

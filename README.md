@@ -6,9 +6,9 @@
 [![Contributions Welcome](https://img.shields.io/badge/contributions-welcome-orange)](CONTRIBUTING.md)
 [![X (formerly Twitter) Follow](https://badgen.net/badge/twitter/@zksyncDevs/1DA1F2?icon&label)](https://x.com/zksyncDevs)
 
-Welcome to the zkSync Community Code repository. This project serves as the community hub for zkSync, providing comprehensive
+Welcome to the ZKsync Community Code repository. This project serves as the community hub for ZKsync, providing comprehensive
 documentation for developers written by developers.
-Whether you're a beginner looking to get started with zkSync or an experienced developer
+Whether you're a beginner looking to get started with ZKsync or an experienced developer
 seeking advanced guides, you'll find the resources you need here.
 
 ## 🚀 Quick Start
@@ -92,8 +92,8 @@ Check out our [Contributing guide](CONTRIBUTING.md) to learn how to add your own
 ## 👪 Join the community
 
 If you haven't already, join our community!
-We have [GitHub Discussions](https://github.com/zkSync-Community-Hub/zksync-developers/discussions)
+We have [GitHub Discussions](https://github.com/ZKsync-Community-Hub/zksync-developers/discussions)
 for developers to ask questions and share their work.
 We also have a [Discord server](https://join.zksync.dev/) for real-time conversations with the team and community.
 
-Be sure to [follow us on Twitter](https://x.com/zkSyncDevs) to keep up to date with announcements from the zkSync dev team.
+Be sure to [follow us on Twitter](https://x.com/ZKsyncDevs) to keep up to date with announcements from the ZKsync dev team.

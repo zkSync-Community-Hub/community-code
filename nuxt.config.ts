@@ -1,6 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  extends: [['github:matter-labs/docs-nuxt-template', { install: true }]],
+  extends: [['@matterlabs/docs-nuxt-template']],
   modules: ['@nuxt/content', '@nuxt/ui', '@nuxt/eslint', '@nuxtjs/seo', 'nuxt-gtag'],
   site: {
     name: 'Community Code',
@@ -28,6 +28,11 @@ export default defineNuxtConfig({
   },
   routeRules: {
     '/api/search.json': { prerender: true },
+    '*-surround': { robots: false },
+    '/*/*-surround': { robots: false },
+    '/tutorials/*/_dir': { robots: false },
+    '/_nuxt': { robots: false },
+    '/api/*': { robots: false },
   },
   $production: process.env.NUXT_SITE_ENV
     ? {}

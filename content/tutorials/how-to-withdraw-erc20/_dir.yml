@@ -1,18 +1,18 @@
-title: How to withdraw ERC20 tokens from zkSync
+title: How to withdraw ERC20 tokens from ZKsync
 authors:
-  - name: MatterLabs
+  - name: Matter Labs
     url: https://matter-labs.io
     avatar: https://avatars.githubusercontent.com/u/42489169?s=200&v=4
-github_repo: https://github.com/zkSync-Community-Hub
+github_repo: https://github.com/ZKsync-Community-Hub
 tags:
   - hardhat
   - how-to
   - erc20
-summary: Learn how to withdraw ERC20 tokens zkSync.
-description: This how-to guide explains how to create a script that withdraw any ERC20 token from zkSync to Ethereum.
+summary: Learn how to withdraw ERC20 tokens ZKsync.
+description: This how-to guide explains how to create a script that withdraw any ERC20 token from ZKsync to Ethereum.
 what_you_will_learn:
   - How L2 withdraw work
-  - How to withdraw ERC20 tokens to zkSync
+  - How to withdraw ERC20 tokens to ZKsync
 updated: 2024-05-09
 tools:
   - zksync-ethers

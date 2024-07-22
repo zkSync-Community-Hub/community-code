@@ -1,18 +1,18 @@
-title: How to deposit Ether to zkSync
+title: How to deposit Ether to ZKsync
 authors:
-  - name: MatterLabs
+  - name: Matter Labs
     url: https://matter-labs.io
     avatar: https://avatars.githubusercontent.com/u/42489169?s=200&v=4
-github_repo: https://github.com/zkSync-Community-Hub
+github_repo: https://github.com/ZKsync-Community-Hub
 tags:
   - hardhat
   - how-to
   - Ether
-summary: Learn how to deposit Ether to zkSync.
-description: This how-to guide explains how to create a script that deposits Ether to zkSync.
+summary: Learn how to deposit Ether to ZKsync.
+description: This how-to guide explains how to create a script that deposits Ether to ZKsync.
 what_you_will_learn:
   - How L2 deposits work
-  - How to deposit Ether to zkSync
+  - How to deposit Ether to ZKsync
 updated: 2024-05-09
 tools:
   - zksync-ethers

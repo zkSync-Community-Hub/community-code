@@ -1,18 +1,18 @@
-title: How to withdraw Ether from zkSync
+title: How to withdraw Ether from ZKsync
 authors:
-  - name: MatterLabs
+  - name: Matter Labs
     url: https://matter-labs.io
     avatar: https://avatars.githubusercontent.com/u/42489169?s=200&v=4
-github_repo: https://github.com/zkSync-Community-Hub
+github_repo: https://github.com/ZKsync-Community-Hub
 tags:
   - hardhat
   - how-to
   - Ether
-summary: Learn how to withdraw Ether from zkSync.
-description: This how-to guide explains how to create a script that withdraws Ether from zkSync.
+summary: Learn how to withdraw Ether from ZKsync.
+description: This how-to guide explains how to create a script that withdraws Ether from ZKsync.
 what_you_will_learn:
   - How L2 withdrawals work
-  - How to withdraw Ether from zkSync
+  - How to withdraw Ether from ZKsync
 updated: 2024-05-09
 tools:
   - zksync-ethers

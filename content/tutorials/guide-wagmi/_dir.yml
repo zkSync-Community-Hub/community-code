@@ -1,4 +1,4 @@
-title: Using wagmi with zkSync
+title: Using wagmi with ZKsync
 authors:
   - name: MatterLabs
     url: https://matter-labs.io
@@ -7,14 +7,14 @@ github_repo: https://github.com/matter-labs
 tags:
   - guide
   - wagmi
-summary: Learn how to use the Wagmi toolkit to create websites that interact with contracts on zkSync
+summary: Learn how to use the Wagmi toolkit to create websites that interact with contracts on ZKsync
 description:
-  This guide outlines how to use the wagmi library to create websites that interact with zkSync contracts. We provide
+  This guide outlines how to use the wagmi library to create websites that interact with ZKsync contracts. We provide
   some examples to help you get started.
 what_you_will_learn:
-  - How to use wagmi to interact with zkSync
-  - How to fetch data from zkSync contracts
-  - How to send transactions to zkSync contracts
+  - How to use wagmi to interact with ZKsync
+  - How to fetch data from ZKsync contracts
+  - How to send transactions to ZKsync contracts
 updated: 2024-05-09
 tools:
   - wagmi

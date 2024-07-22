@@ -1,12 +1,12 @@
 # How to Contribute Guides to Community Code
 
-We are always glad for new contributions from community members to spread the zkSync knowledge!
+We are always glad for new contributions from community members to spread the ZKsync knowledge!
 If you are interested in adding a new guide to the Community Code, this is the section for you.
 If you are looking to contribute project changes like fixing bugs, please checkout the [Readme](README.md).
 
 ## Fork the project
 
-Make a [fork of the project](https://github.com/zkSync-Community-Hub/community-code/fork) and create your branches from the default `main` branch.
+Make a [fork of the project](https://github.com/ZKsync-Community-Hub/community-code/fork) and create your branches from the default `main` branch.
 
 If your PR is still a work in progress, consider putting it into a [Draft status](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/changing-the-stage-of-a-pull-request#converting-a-pull-request-to-a-draft).
 Once your PR is ready for review, switch it back to an active PR request
@@ -24,7 +24,7 @@ and you can use components available from [Nuxt UI](https://ui.nuxt.com/componen
 ### Create a new section for your guide
 
 We have a template tutorial folder you can start from!
-You can copy the `/content/tutorials/_new-tutorial-template` to make setting up a new tutorial easy.
+You can copy the `tutorial-template` from `/template` to make setting up a new tutorial easy.
 
 Your new guide should have its own folder under `/content/tutorials`. The minimum files your directory should have are
 the `_dir.yml` and a `10.index.md`.
@@ -73,7 +73,7 @@ In markdown, the syntax changes to the following:
 You can refer to the Nuxt Content documentation on [Vue Components](https://content.nuxt.com/usage/markdown#vue-components)
 to learn further how to customize and use vue components in markdown.
 We have additional custom components aside from Nuxt UI that you can use.
-You can discover these in our [zkSync Docs Contribution Styleguide](https://docs.zksync.io/build/contributing-to-documentation/documentation-styleguide#markdown-and-vue).
+You can discover these in our [ZKsync Docs Contribution Styleguide](https://docs.zksync.io/build/contributing-to-documentation/documentation-styleguide#markdown-and-vue).
 
 ## 💈 Writing styleguide
 
@@ -82,12 +82,12 @@ This means our readers may be non-native English speakers.
 To help everyone learn and grow with our Community Code,
 we adhere to industry best practices to ensure inclusivity.
 
-Check out and read through our [zkSync Docs Contribution Styleguide](https://docs.zksync.io/build/contributing-to-documentation/documentation-styleguide#writing-style)
+Check out and read through our [ZKsync Docs Contribution Styleguide](https://docs.zksync.io/build/contributing-to-documentation/documentation-styleguide#writing-style)
 to learn how to best write your guide for our community.
 
 ## 📥 Submitting your guide
 
-Please [submit a PR of your branch to main on GitHub](https://github.com/zkSync-Community-Hub/community-code/compare).
+Please [submit a PR of your branch to main on GitHub](https://github.com/ZKsync-Community-Hub/community-code/compare).
 Provide a clear description of what you're contributing.
 
 ## 📜 Commit conventions
