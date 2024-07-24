@@ -29,15 +29,13 @@
     "@nuxt/ui-pro": "^1.1.0",
     "@nuxtjs/seo": "^2.0.0-rc.10",
     "dayjs": "^1.11.10",
-    "ethers": "^6.0.0",
     "nuxt": "^3.11.2",
     "nuxt-gtag": "^2.0.6",
     "nuxt-headlessui": "^1.2.0",
     "nuxt-og-image": "^3.0.0-rc.53",
     "rehype-katex": "^7.0.0",
     "remark-math": "^6.0.0",
-    "vue-tsc": "^2.0.16",
-    "zksync-ethers": "^6.10.0"
+    "vue-tsc": "^2.0.16"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.3.0",
@@ -46,6 +44,7 @@
     "@vue/test-utils": "^2.4.5",
     "cspell": "^8.7.0",
     "eslint": "^8.57.0",
+    "ethers": "^6.13.1",
     "hardhat": "^2.22.6",
     "husky": "^9.0.11",
     "lint-staged": "^15.2.4",
@@ -54,6 +53,7 @@
     "pm2": "^5.4.2",
     "prettier": "^3.2.5",
     "prettier-eslint": "^16.3.0",
-    "prettier-plugin-tailwindcss": "^0.5.14"
+    "prettier-plugin-tailwindcss": "^0.5.14",
+    "zksync-ethers": "^6.11.0"
   }
 }
