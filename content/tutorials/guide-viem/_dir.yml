@@ -1,4 +1,4 @@
-title: Using viem with zkSync
+title: Using viem with ZKsync
 featured: true
 authors:
   - name: MatterLabs
@@ -14,7 +14,7 @@ description:
   transcations via paymasters.
 what_you_will_learn:
   - How to install viem and the ZKsync plugin
-  - How to send RPC requests to zkSync
+  - How to send RPC requests to ZKsync
   - How to use ZKsync-specific methods
 updated: 2024-05-09
 tools:
