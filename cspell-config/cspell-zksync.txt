@@ -8,6 +8,7 @@ zkcast
 ZKEVM
 zkevm
 zkforge
+zknode
 zkout
 zksolc
 zkstack

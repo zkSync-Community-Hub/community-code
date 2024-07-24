@@ -1,0 +1,24 @@
+name: Playwright Tests
+
+on:
+  pull_request:
+
+jobs:
+  test-tutorials:
+    timeout-minutes: 20
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        tutorial:
+          - "tests/how-to-test-contracts.spec.ts" 
+
+    steps:
+    - uses: actions/checkout@v4
+    - uses: oven-sh/setup-bun@v1
+    - name: Install Dependencies
+      run: bun install --frozen-lockfile
+    - uses: actions/setup-node@v4
+    - name: Install Playwright Browsers
+      run: bun playwright install chromium --with-deps
+    - name: Run test for ${{ matrix.tutorial }}
+      run: bun test:github ${{ matrix.tutorial }}
