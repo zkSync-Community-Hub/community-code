@@ -1,0 +1,29 @@
+title: Integrate Permissionless Multi-signer Paymaster in your Dapp
+featured: true
+authors:
+  - name: Zyfi
+    url: https://zyfi.org
+    avatar: https://avatars.githubusercontent.com/u/94560147?s=200&v=4
+github_repo: https://github.com/ondefy/permissionless-multisigner-paymaster
+tags:
+  - paymaster
+  - gas sponsorship
+  - tutorial
+  - eip-712
+summary:
+  Integrate Zyfi's signature based permissionless multi-signer paymaster in your Dapp to sponsor gas funds for your
+  users.
+description:
+  Zyfi's new permissionless paymaster allows protocols to integrate paymaster into their ecosytem without the need to
+  deploy paymaster or trusting 3rd party.
+
+what_you_will_learn:
+  - How permissionless multisignature paymaster works
+  - How to integrate this paymaster in your Dapp
+  - How to sign EIP-712 signature data required for this paymaster
+  - How to send transactions through this paymaster
+updated: 2024-07-26
+tools:
+  - zksync-cli
+  - zksync-ethers
+  - Hardhat

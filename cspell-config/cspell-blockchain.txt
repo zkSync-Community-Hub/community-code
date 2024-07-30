@@ -1,6 +1,7 @@
 Aave
 abis
 arithmetization
+arrayify
 BoxUups
 Buterin
 dapp
@@ -67,3 +68,4 @@ Zeeve
 Zerion
 Zetta
 Zonic
+Zyfi
