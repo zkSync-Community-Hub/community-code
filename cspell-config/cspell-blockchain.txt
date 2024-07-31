@@ -41,6 +41,8 @@ Pyth
 Pythnet
 Rabby
 regenesis
+Reth
+reth
 satoshi
 sepolia
 Sepolia
