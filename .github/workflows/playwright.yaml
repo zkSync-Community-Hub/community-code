@@ -10,6 +10,7 @@ jobs:
     strategy:
       matrix:
         tutorial:
+          - "tests/erc20-paymaster.spec.ts" 
           - "tests/how-to-test-contracts.spec.ts" 
 
     steps:

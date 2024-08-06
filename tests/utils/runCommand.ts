@@ -3,17 +3,21 @@ import { execSync } from 'node:child_process';
 import { clickCopyButton } from './button';
 import fs from 'fs';
 import { join } from 'path';
+import os from 'os';
+import pty from 'node-pty';
 
 export async function runCommand(
   page: Page,
   buttonName: string,
   goToFolder: string = 'tests-output',
   projectFolder: string = 'hardhat-project',
-  preCommand?: string
+  preCommand?: string,
+  useSetCommand?: string,
+  prompts?: string
 ) {
   const copied = await clickCopyButton(page, buttonName);
   console.log('COPIED', copied);
-  let command = copied;
+  let command = useSetCommand ?? copied;
   const newHardhatProject = command.includes('npx hardhat init');
 
   if (newHardhatProject) {
@@ -31,7 +35,11 @@ export async function runCommand(
       command = `cd ${goToFolder} && ${command}`;
     }
 
-    run(command);
+    if (prompts) {
+      await runWithPrompts(page, command, prompts);
+    } else {
+      run(command);
+    }
   }
 }
 
@@ -76,4 +84,36 @@ function copyFolder(source: string, destination: string) {
   };
 
   copyRecursive(source, destination);
+}
+
+export async function runWithPrompts(page: Page, command: string, prompts: string) {
+  const shell = os.platform() === 'win32' ? 'powershell.exe' : 'bash';
+
+  const ptyProcess = pty.spawn(shell, [], {
+    name: 'xterm-color',
+    cols: 80,
+    rows: 30,
+    cwd: process.cwd(),
+    env: process.env,
+  });
+
+  const promptsArray = prompts.split('|').map((pair) => {
+    const [prompt, answer] = pair.split(':');
+    return { prompt, answer };
+  });
+
+  ptyProcess.onData((data) => {
+    process.stdout.write(data);
+
+    for (let index = 0; index < promptsArray.length; index++) {
+      const promptObject = promptsArray[index];
+      if (data.includes(promptObject.prompt)) {
+        ptyProcess.write(promptObject.answer + '\r');
+      }
+    }
+  });
+
+  ptyProcess.write(command + '\r');
+
+  await page.waitForTimeout(5000);
 }
