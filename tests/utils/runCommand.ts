@@ -103,11 +103,12 @@ export async function runWithPrompts(page: Page, command: string, prompts: strin
   });
 
   ptyProcess.onData((data) => {
-    process.stdout.write(data);
+    console.log('DATA:', data);
 
     for (let index = 0; index < promptsArray.length; index++) {
       const promptObject = promptsArray[index];
       if (data.includes(promptObject.prompt)) {
+        console.log('FOUND PROMPT:', promptObject.prompt);
         ptyProcess.write(promptObject.answer + '\r');
       }
     }
@@ -115,5 +116,6 @@ export async function runWithPrompts(page: Page, command: string, prompts: strin
 
   ptyProcess.write(command + '\r');
 
-  await page.waitForTimeout(5000);
+  await page.waitForTimeout(35000);
+  console.log('waited 35 seconds');
 }
