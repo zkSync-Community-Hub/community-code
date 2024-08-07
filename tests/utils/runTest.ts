@@ -1,12 +1,38 @@
-import type { Page } from '@playwright/test';
+import type { BrowserContext, Page } from '@playwright/test';
 
 import { runCommand } from './runCommand';
 import { getTestActions } from './getTestActions';
 import { visit } from './visit';
 import { compareToFile, modifyFile, writeToFile } from './files';
 import { checkIfBalanceIsZero } from './queries';
+import { setupFolders, startLocalServer, stopServers } from './setup';
+import { getConfig } from '../configs/config';
+import type { IStepConfig } from './types';
 
-export async function runTest(page: Page, url: string) {
+export async function setupAndRunTest(
+  page: Page,
+  context: BrowserContext,
+  folderName: string,
+  pageUrls: string[],
+  tutorialName: string
+) {
+  // SETUP
+  await startLocalServer(page);
+  await context.grantPermissions(['clipboard-read', 'clipboard-write']);
+  await setupFolders(folderName);
+
+  const config = getConfig(tutorialName);
+
+  // TEST
+  for (const pageUrl of pageUrls) {
+    await runTest(page, pageUrl, config!);
+  }
+
+  // SHUT DOWN ANY RUNNING PROJECTS
+  stopServers();
+}
+
+export async function runTest(page: Page, url: string, config: IStepConfig) {
   await visit(page, url);
   console.log('GETTING TEST ACTIONS');
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -16,42 +42,47 @@ export async function runTest(page: Page, url: string) {
   for (const step of steps) {
     console.log('STEP:', step);
     await page.waitForTimeout(1000);
-    switch (step['data-name']) {
+    const stepID = step['id'];
+    const stepData = config[stepID];
+    switch (stepData.action) {
       case 'runCommand':
         await runCommand(
           page,
-          step.id,
-          step['data-command-folder'],
-          step['data-project-folder'],
-          step['data-pre-command']
+          stepID,
+          stepData.commandFolder,
+          stepData.projectFolder,
+          stepData.preCommand,
+          stepData.useSetCommand,
+          stepData.prompts
         );
         break;
       case 'wait':
-        await page.waitForTimeout(Number.parseInt(step['data-timeout']));
+        await page.waitForTimeout(stepData.timeout);
         break;
       case 'writeToFile':
-        await writeToFile(page, step.id, step['data-filepath']);
+        await writeToFile(page, stepID, stepData.filepath);
         break;
       case 'modifyFile':
         await modifyFile(
           page,
-          step.id,
-          step['data-filepath'],
-          Number.parseInt(step['data-add-spaces-before']),
-          step['data-add-spaces-after'],
-          Number.parseInt(step['data-at-line']),
-          step['data-remove-lines'],
-          step['data-use-set-data']
+          stepID,
+          stepData.filepath,
+          stepData.addSpacesBefore,
+          stepData.addSpacesAfter,
+          stepData.atLine,
+          stepData.removeLines,
+          stepData.useSetData,
+          stepData.getContractId
         );
         break;
       case 'compareToFile':
-        await compareToFile(page, step.id, step['data-filepath']);
+        await compareToFile(page, stepID, stepData.filepath);
         break;
       case 'checkIfBalanceIsZero':
-        await checkIfBalanceIsZero(step['data-network-url'], step['data-address']);
+        await checkIfBalanceIsZero(stepData.networkUrl, stepData.address);
         break;
       default:
-        console.log('STEP NOT FOUND:', step);
+        console.log('STEP NOT FOUND:', stepData);
     }
   }
 }

@@ -1,7 +1,7 @@
 import { type Page, expect } from '@playwright/test';
 
 export async function getTestActions(page: Page) {
-  const testActions = await page.$$eval('span[data-name]', (elements: Element[]) => {
+  const testActions = await page.$$eval('span[data-test-action]', (elements: Element[]) => {
     return elements.map((el) => {
       const dataAttributes: {
         [key: string]: string;

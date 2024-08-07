@@ -15,10 +15,21 @@ export async function modifyFile(
   addSpacesBefore?: number,
   addSpacesAfter?: number,
   atLine?: number,
-  removeLines?: string,
-  useSetData?: string
+  removeLines?: number[],
+  useSetData?: string,
+  deploymentFilePath?: string
 ) {
   let contentText = useSetData;
+
+  if (deploymentFilePath) {
+    const contractId = getContractId(deploymentFilePath);
+    if (contentText?.includes('<*GET_CONTRACT_ID*>')) {
+      contentText = contentText.replace('<*GET_CONTRACT_ID*>', contractId);
+    } else {
+      contentText = contractId;
+    }
+  }
+
   if (!contentText) {
     contentText = await clickCopyButton(page, buttonName);
   }
@@ -31,9 +42,8 @@ export async function modifyFile(
   } else {
     const lines = readFileSync(filePath, 'utf8').split('\n');
     if (removeLines) {
-      const removeLinesArray = JSON.parse(removeLines);
-      removeLinesArray.forEach((lineNumber: string) => {
-        lines[Number.parseInt(lineNumber) - 1] = '~~~REMOVE~~~';
+      removeLines.forEach((lineNumber: number) => {
+        lines[lineNumber - 1] = '~~~REMOVE~~~';
       });
     }
     if (atLine) {
@@ -65,4 +75,10 @@ export function compareOutputs(expected: string, actual: string) {
     }
     expect(trimmedLineA).toEqual(trimmedLineB);
   });
+}
+
+function getContractId(deploymentFilePath: string) {
+  const deploymentFile = readFileSync(deploymentFilePath, { encoding: 'utf8' });
+  const json = JSON.parse(deploymentFile);
+  return json.entries[0].address;
 }
