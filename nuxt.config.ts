@@ -11,6 +11,12 @@ export default defineNuxtConfig({
       app: 'code',
     },
   },
+  components: [
+    {
+      path: '~/components',
+      global: true,
+    },
+  ],
   content: {
     navigation: {
       fields: [
