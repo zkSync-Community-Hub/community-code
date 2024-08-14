@@ -15,17 +15,17 @@ useHead({
   },
 });
 
+const seoDescription =
+  'Build together with the ZKsync Community. Learn how to build amazing smart contracts and dApps on ZKsync Era.';
+
 useSeoMeta({
   titleTemplate: `%s - ${seo?.siteName}`,
   ogSiteName: seo?.siteName,
   ogUrl: 'https://code.zksync.io',
-  description:
-    'Build together with the ZKsync Community. Learn how to build amazing smart contracts and dApps on ZKsync Era.',
-  ogDescription:
-    'Build together with the ZKsync Community. Learn how to build amazing smart contracts and dApps on ZKsync Era.',
+  description: seoDescription,
+  ogDescription: seoDescription,
   twitterTitle: `%s`,
-  twitterDescription:
-    'Build together with the ZKsync Community. Learn how to build amazing smart contracts and dApps on ZKsync Era.',
+  twitterDescription: seoDescription,
   twitterCard: 'summary_large_image',
   twitterSite: '@zksync',
   twitterCreator: '@ZKsyncDevs',

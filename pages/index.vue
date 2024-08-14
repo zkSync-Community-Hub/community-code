@@ -39,7 +39,7 @@ useSeoMeta({
         <NuxtImg
           src="/logos/zksync-icon.svg"
           width="240"
-          class="invert filter dark:filter-none"
+          class="mt-[-1em] filter dark:invert"
         />
       </template>
 
