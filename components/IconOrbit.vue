@@ -138,16 +138,7 @@
 
 <script setup lang="ts"></script>
 
-<style scoped lang="scss">
-$orbitItemSize: 1.6em;
-$map: (
-  ring-0: 4,
-  ring-1: 3,
-  ring-2: 8,
-  ring-3: 3,
-);
-$lastRing: 3;
-
+<style scoped>
 * {
   box-sizing: border-box;
 }
@@ -165,9 +156,9 @@ html {
 }
 
 .orbit-icon {
-  width: $orbitItemSize;
-  height: $orbitItemSize;
-  line-height: $orbitItemSize;
+  width: 1.6em;
+  height: 1.6em;
+  line-height: 1.6em;
   font-size: 1.2em;
   border-radius: 50%;
   background: #ccc;
@@ -176,85 +167,215 @@ html {
   display: block;
 }
 
-$orbit-ring-left: 50%;
-$orbit-ring-top: 18%;
-
 .orbit-wrap {
   height: 40em;
   list-style: none;
   font-size: 1.3em;
-
-  > li {
-    position: absolute;
-    left: $orbit-ring-left;
-    top: $orbit-ring-top;
-    transform: translate(-50%, -50%);
-  }
+}
+.orbit-wrap > li {
+  position: absolute;
+  left: 50%;
+  top: 18%;
+  transform: translate(-50%, -50%);
 }
 
 ul[class^='ring'] {
-  @extend %ring;
   transition: all 300ms ease-in-out;
   box-shadow: none !important;
-
-  li:not(.black-hole) {
-    @extend %orbiting-object;
-    transition: all 300ms ease-in-out;
-  }
 }
-
-@mixin orbit-item($numItems, $numRing) {
-  @for $s from 1 through $numItems + 1 {
-    // Spread items over the ring
-    $deg: calc(380deg / $numItems);
-
-    .ring-#{$numRing} > *:nth-of-type(#{$s}) {
-      transform: rotate($s * $deg) translate(21em - ($numRing * 4)) rotate(-$s * $deg);
-    }
-  }
+ul[class^='ring'] li:not(.black-hole) {
+  transition: all 300ms ease-in-out;
 }
 
 .light img {
   background: rgb(215, 241, 251) !important;
 }
 
-// Render rings
-@for $i from 0 through $lastRing {
-  .ring-#{$i} {
-    $size: 42em - ($i * 8);
-    $randomized: random(15);
-    // decrease each ring in size
-    width: $size;
-    height: $size;
-    animation: clockwiseRotate (75s - ($i * $randomized)) linear infinite;
-
-    i,
-    img {
-      animation: counterClockwiseRotate (75s - ($i * $randomized)) linear infinite;
-      width: 60px;
-      height: 35px;
-      background: rgba(148, 148, 148, 0.826);
-    }
-
-    .black-hole {
-      transform: none !important;
-      position: absolute;
-      // background: black;
-      width: $size - 0.2em;
-      height: $size - 0.2em;
-      position: absolute;
-      top: 2px;
-      left: 2px;
-      border-radius: 50%;
-      box-sizing: content-box;
-    }
-  }
-
-  @include orbit-item(map-get($map, ring-#{$i}), $i);
+.ring-0 {
+  width: 42em;
+  height: 42em;
+  animation: clockwiseRotate 75s linear infinite;
+}
+.ring-0 i,
+.ring-0 img {
+  animation: counterClockwiseRotate 75s linear infinite;
+  width: 60px;
+  height: 35px;
+  background: rgba(148, 148, 148, 0.826);
+}
+.ring-0 .black-hole {
+  transform: none !important;
+  position: absolute;
+  width: 41.8em;
+  height: 41.8em;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  border-radius: 50%;
+  box-sizing: content-box;
 }
 
-%ring {
-  // border: solid 1px rgb(125 116 153 / 60%);
+.ring-0 > *:nth-of-type(1) {
+  transform: rotate(95deg) translate(21em) rotate(-95deg);
+}
+
+.ring-0 > *:nth-of-type(2) {
+  transform: rotate(190deg) translate(21em) rotate(-190deg);
+}
+
+.ring-0 > *:nth-of-type(3) {
+  transform: rotate(285deg) translate(21em) rotate(-285deg);
+}
+
+.ring-0 > *:nth-of-type(4) {
+  transform: rotate(380deg) translate(21em) rotate(-380deg);
+}
+
+.ring-0 > *:nth-of-type(5) {
+  transform: rotate(475deg) translate(21em) rotate(-475deg);
+}
+
+.ring-1 {
+  width: 34em;
+  height: 34em;
+  animation: clockwiseRotate 63s linear infinite;
+}
+.ring-1 i,
+.ring-1 img {
+  animation: counterClockwiseRotate 63s linear infinite;
+  width: 60px;
+  height: 35px;
+  background: rgba(148, 148, 148, 0.826);
+}
+.ring-1 .black-hole {
+  transform: none !important;
+  position: absolute;
+  width: 33.8em;
+  height: 33.8em;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  border-radius: 50%;
+  box-sizing: content-box;
+}
+
+.ring-1 > *:nth-of-type(1) {
+  transform: rotate(126.6666666667deg) translate(17em) rotate(-126.6666666667deg);
+}
+
+.ring-1 > *:nth-of-type(2) {
+  transform: rotate(253.3333333333deg) translate(17em) rotate(-253.3333333333deg);
+}
+
+.ring-1 > *:nth-of-type(3) {
+  transform: rotate(380deg) translate(17em) rotate(-380deg);
+}
+
+.ring-1 > *:nth-of-type(4) {
+  transform: rotate(506.6666666667deg) translate(17em) rotate(-506.6666666667deg);
+}
+
+.ring-2 {
+  width: 26em;
+  height: 26em;
+  animation: clockwiseRotate 63s linear infinite;
+}
+.ring-2 i,
+.ring-2 img {
+  animation: counterClockwiseRotate 63s linear infinite;
+  width: 60px;
+  height: 35px;
+  background: rgba(148, 148, 148, 0.826);
+}
+.ring-2 .black-hole {
+  transform: none !important;
+  position: absolute;
+  width: 25.8em;
+  height: 25.8em;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  border-radius: 50%;
+  box-sizing: content-box;
+}
+
+.ring-2 > *:nth-of-type(1) {
+  transform: rotate(47.5deg) translate(13em) rotate(-47.5deg);
+}
+
+.ring-2 > *:nth-of-type(2) {
+  transform: rotate(95deg) translate(13em) rotate(-95deg);
+}
+
+.ring-2 > *:nth-of-type(3) {
+  transform: rotate(142.5deg) translate(13em) rotate(-142.5deg);
+}
+
+.ring-2 > *:nth-of-type(4) {
+  transform: rotate(190deg) translate(13em) rotate(-190deg);
+}
+
+.ring-2 > *:nth-of-type(5) {
+  transform: rotate(237.5deg) translate(13em) rotate(-237.5deg);
+}
+
+.ring-2 > *:nth-of-type(6) {
+  transform: rotate(285deg) translate(13em) rotate(-285deg);
+}
+
+.ring-2 > *:nth-of-type(7) {
+  transform: rotate(332.5deg) translate(13em) rotate(-332.5deg);
+}
+
+.ring-2 > *:nth-of-type(8) {
+  transform: rotate(380deg) translate(13em) rotate(-380deg);
+}
+
+.ring-2 > *:nth-of-type(9) {
+  transform: rotate(427.5deg) translate(13em) rotate(-427.5deg);
+}
+
+.ring-3 {
+  width: 18em;
+  height: 18em;
+  animation: clockwiseRotate 60s linear infinite;
+}
+.ring-3 i,
+.ring-3 img {
+  animation: counterClockwiseRotate 60s linear infinite;
+  width: 60px;
+  height: 35px;
+  background: rgba(148, 148, 148, 0.826);
+}
+.ring-3 .black-hole {
+  transform: none !important;
+  position: absolute;
+  width: 17.8em;
+  height: 17.8em;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  border-radius: 50%;
+  box-sizing: content-box;
+}
+
+.ring-3 > *:nth-of-type(1) {
+  transform: rotate(126.6666666667deg) translate(9em) rotate(-126.6666666667deg);
+}
+
+.ring-3 > *:nth-of-type(2) {
+  transform: rotate(253.3333333333deg) translate(9em) rotate(-253.3333333333deg);
+}
+
+.ring-3 > *:nth-of-type(3) {
+  transform: rotate(380deg) translate(9em) rotate(-380deg);
+}
+
+.ring-3 > *:nth-of-type(4) {
+  transform: rotate(506.6666666667deg) translate(9em) rotate(-506.6666666667deg);
+}
+
+ul[class^='ring'] {
   background: linear-gradient(
     to bottom right,
     rgba(184, 39, 252, 0.5) 0%,
@@ -270,14 +391,14 @@ ul[class^='ring'] {
   box-sizing: content-box;
 }
 
-%orbiting-object {
+ul[class^='ring'] li:not(.black-hole) {
   display: block;
   position: absolute;
   top: 50%;
   left: 50%;
-  width: $orbitItemSize;
-  height: $orbitItemSize;
-  margin: calc(-1 * $orbitItemSize / 2);
+  width: 1.6em;
+  height: 1.6em;
+  margin: -0.8em;
 }
 
 /*
@@ -293,6 +414,7 @@ ul[class^='ring'] {
   background: transparent;
   border-radius: 50%;
 }
+
 .orbit-center__icon {
   transform: rotateZ(-360deg);
   transition: all 300ms ease-in-out;
@@ -309,7 +431,6 @@ animations
     transform: rotate(360deg);
   }
 }
-
 @keyframes counterClockwiseRotate {
   0% {
     transform: rotate(0deg);
