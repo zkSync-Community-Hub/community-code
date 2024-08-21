@@ -27,7 +27,7 @@ useSeoMeta({
       :links="[
         {
           label: 'Check out all the tutorials',
-          icon: 'i-zksync-zksync-logo',
+          icon: 'i-zkicon-zksync',
           trailingIcon: 'i-heroicons-arrow-right-20-solid',
           to: '/tutorials',
           size: 'xl',
@@ -39,7 +39,7 @@ useSeoMeta({
         <NuxtImg
           src="/logos/zksync-icon.svg"
           width="240"
-          class="invert filter dark:filter-none"
+          class="mt-[-1em] filter dark:invert"
         />
       </template>
 

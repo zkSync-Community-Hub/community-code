@@ -185,7 +185,7 @@ const communityLinks = [
             </template>
           </div>
         </div>
-        <UDivider icon="i-zksync-zksync-logo" />
+        <UDivider icon="i-zkicon-zksync" />
       </UPage>
 
       <UPage>

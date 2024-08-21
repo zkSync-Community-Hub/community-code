@@ -17,7 +17,7 @@ const guides = computed(() => {
         <UPageHeader
           title="Community Guides"
           description="Explore all the community contributed guides for ZKsync"
-          icon="i-zksync-logo"
+          icon="i-zkicon-zksync"
         />
 
         <ULandingCard

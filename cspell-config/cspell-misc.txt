@@ -97,7 +97,9 @@ vue
 Vue
 Zerion
 zext
+ZKBT
 ZKEVM
+zkicon
 zkout
 zksolc
 zkvyper
