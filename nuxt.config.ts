@@ -40,6 +40,13 @@ export default defineNuxtConfig({
     '/_nuxt': { robots: false },
     '/api/*': { robots: false },
   },
+  experimental: {
+    defaults: {
+      nuxtLink: {
+        trailingSlash: 'remove',
+      },
+    },
+  },
   $production: process.env.NUXT_SITE_ENV
     ? {}
     : {
