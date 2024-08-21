@@ -1,0 +1,20 @@
+title: How to send an L1->L2 transaction
+authors:
+  - name: Matter Labs
+    url: https://matter-labs.io
+    avatar: https://avatars.githubusercontent.com/u/42489169?s=200&v=4
+github_repo: https://github.com/ZKsync-Community-Hub
+tags:
+  - smart contracts
+  - how-to
+  - L2-L1 communication
+summary: Learn how to send a transaction from Ethereum that to ZKsync
+description:
+  This how-to guide explains how to send a transaction from Ethereum that interacts with a contract deployed on ZKsync.
+what_you_will_learn:
+  - How L1-L2 communication works
+  - How to send a transaction from ZKsync Ethereum to ZKsync.
+updated: 2024-08-18
+tools:
+  - zksync-ethers
+  - zksync-contracts
