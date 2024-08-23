@@ -8,9 +8,8 @@ tags:
   - smart contracts
   - how-to
   - L2-L1 communication
-summary: Learn how to send a transaction from Ethereum that to ZKsync
-description:
-  This how-to guide explains how to send a transaction from Ethereum that interacts with a contract deployed on ZKsync.
+summary: Learn how to send a transaction from Ethereum to ZKsync
+description: This how-to guide shows how to send a transaction from Ethereum to a contract on ZKsync.
 what_you_will_learn:
   - How L1-L2 communication works
   - How to send a transaction from ZKsync Ethereum to ZKsync.
