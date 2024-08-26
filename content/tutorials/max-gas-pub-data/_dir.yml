@@ -16,7 +16,7 @@ what_you_will_learn:
   - Understand ZKSync Era's pubdata cost model.
   - Deploy a voting contract on ZKSync Era.
   - Experiment with different gas settings on transactions.
-updated: 2024-08-14
+updated: 2024-08-26
 tools:
   - zksync-cli
   - hardhat
