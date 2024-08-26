@@ -7,20 +7,17 @@ authors:
 github_repo: https://github.com/ZKsync-Community-Hub
 tags:
   - ZKsync Era Pubdata
-  - guide
-  - Pubdata costs
-summary: Create, customize, and run your first ZK chain locally.
+  - Fee Model
+summary: ZKsync Era Pubdata Cost Model Explained
 description:
-  In this tutorial, you will get familiar with the ZK Inception CLI. You will create a local Elastic Chain ecosystem and
-  deploy a contract to a ZK chain. Next, you will create a new ZK chain that uses a custom ERC20 base token.
+  This guide aims to explain how ZKSync Era handles pubdata costs, highlighting the differences from Ethereum's gas
+  model and exploring the implications for users and developers.
 what_you_will_learn:
-  - How to create and locally run an Elastic Chain ecosystem.
-  - How to create a ZK chain and deploy a contract to it.
-  - How to setup a ZK chain with a custom base token.
+  - Understand ZKSync Era's pubdata cost model.
+  - Deploy a voting contract on ZKSync Era.
+  - Experiment with different gas settings on transactions.
 updated: 2024-08-14
 tools:
-  - zk_inception
-  - hardhat
-  - cast
   - zksync-cli
+  - hardhat
   - zksync-ethers
