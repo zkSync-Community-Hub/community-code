@@ -1,4 +1,4 @@
-import { type Page } from '@playwright/test';
+import type { Page } from '@playwright/test';
 
 export async function clickButtonByText(page: Page, selector: string | RegExp) {
   await page.locator('button').getByText(selector).click();
