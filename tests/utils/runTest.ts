@@ -3,11 +3,12 @@ import type { BrowserContext, Page } from '@playwright/test';
 import { runCommand } from './runCommand';
 import { getTestActions } from './getTestActions';
 import { visit } from './visit';
-import { compareToFile, modifyFile, writeToFile } from './files';
+import { compareToFile, extractDataToEnv, modifyFile, writeToFile } from './files';
 import { checkIfBalanceIsZero } from './queries';
 import { setupFolders, startLocalServer, stopServers } from './setup';
 import { getConfig } from '../configs/config';
 import type { IStepConfig } from './types';
+import { clickButtonByText } from './button';
 
 export async function setupAndRunTest(
   page: Page,
@@ -25,7 +26,7 @@ export async function setupAndRunTest(
 
   // TEST
   for (const pageUrl of pageUrls) {
-    await runTest(page, pageUrl, config!);
+    await runTest(page, `http://localhost:3000/tutorials${pageUrl}`, config!);
   }
 
   // SHUT DOWN ANY RUNNING PROJECTS
@@ -40,10 +41,14 @@ export async function runTest(page: Page, url: string, config: IStepConfig) {
 
   console.log('STARTING TEST');
   for (const step of steps) {
-    console.log('STEP:', step);
+    console.log('STEP:', step.id);
     await page.waitForTimeout(1000);
     const stepID = step['id'];
     const stepData = config[stepID];
+    if (!stepData) {
+      console.log('STEP DATA NOT FOUND:', stepID);
+      continue;
+    }
     switch (stepData.action) {
       case 'runCommand':
         await runCommand(
@@ -53,7 +58,10 @@ export async function runTest(page: Page, url: string, config: IStepConfig) {
           stepData.projectFolder,
           stepData.preCommand,
           stepData.useSetCommand,
-          stepData.prompts
+          stepData.prompts,
+          stepData.saveOutput,
+          stepData.checkForOutput,
+          stepData.expectError
         );
         break;
       case 'wait':
@@ -80,6 +88,12 @@ export async function runTest(page: Page, url: string, config: IStepConfig) {
         break;
       case 'checkIfBalanceIsZero':
         await checkIfBalanceIsZero(stepData.networkUrl, stepData.address);
+        break;
+      case 'extractDataToEnv':
+        extractDataToEnv(stepData.dataFilepath, stepData.envFilepath, stepData.regex, stepData.variableName);
+        break;
+      case 'clickButtonByText':
+        clickButtonByText(page, stepData.buttonText);
         break;
       default:
         console.log('STEP NOT FOUND:', stepData);
