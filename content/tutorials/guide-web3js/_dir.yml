@@ -17,7 +17,7 @@ what_you_will_learn:
   - How to setup a Web3.js project using ZKsync CLI
   - How to install Web3.js and the ZKsync plugin in an existing project
   - How to send RPC requests to ZKsync
-updated: 2024-05-09
+updated: 2024-08-29
 tools:
   - Web3.js
   - ZKsync CLI
