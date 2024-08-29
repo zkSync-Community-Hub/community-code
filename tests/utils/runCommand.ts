@@ -1,10 +1,11 @@
 import type { Page } from '@playwright/test';
-import { execSync } from 'node:child_process';
+import { exec } from 'node:child_process';
 import { clickCopyButton } from './button';
 import fs from 'fs';
 import { join } from 'path';
 import os from 'os';
 import pty from 'node-pty';
+import { expect } from '@playwright/test';
 
 export async function runCommand(
   page: Page,
@@ -13,7 +14,10 @@ export async function runCommand(
   projectFolder: string = 'hardhat-project',
   preCommand?: string,
   useSetCommand?: string,
-  prompts?: string
+  prompts?: string,
+  saveOutput?: string,
+  checkForOutput?: string,
+  expectError?: string
 ) {
   const copied = await clickCopyButton(page, buttonName);
   console.log('COPIED', copied);
@@ -21,7 +25,7 @@ export async function runCommand(
   const newHardhatProject = command.includes('npx hardhat init');
 
   if (newHardhatProject) {
-    createNewHHProject(goToFolder, projectFolder);
+    await createNewHHProject(goToFolder, projectFolder);
   } else {
     if (preCommand) {
       if (preCommand.includes('<COMMAND>')) {
@@ -38,25 +42,53 @@ export async function runCommand(
     if (prompts) {
       await runWithPrompts(page, command, prompts);
     } else {
-      run(command);
+      await run(command, saveOutput, checkForOutput, expectError);
     }
   }
+  await page.waitForTimeout(1500);
 }
 
-function run(command: string) {
-  console.log('COMMAND', command);
+async function run(command: string, saveOutput?: string, checkForOutput?: string, expectError?: string): Promise<void> {
+  console.log('RUNNING COMMAND:', command);
 
-  const commandOutput = execSync(command, {
-    encoding: 'utf-8',
+  return new Promise<void>((resolve, reject) => {
+    exec(command, { encoding: 'utf-8' }, (error, stdout, stderr) => {
+      console.log('EXPECT ERROR', expectError);
+
+      if (error) {
+        if (expectError) {
+          const hasError = [error.message, stdout, stderr].some((message) => message.includes(expectError));
+          console.log('HAS ERROR', hasError);
+          if (hasError) {
+            resolve();
+          } else {
+            console.log('ERROR:', error);
+            reject(new Error('Unexpected error: ' + error.message));
+          }
+        } else {
+          console.log('ERROR:', error);
+          reject(new Error('Unexpected error: ' + error.message));
+        }
+      } else {
+        if (checkForOutput) {
+          expect(stdout).toContain(checkForOutput);
+        }
+
+        if (saveOutput && stdout) {
+          fs.writeFileSync(saveOutput, stdout);
+        }
+
+        resolve();
+      }
+    });
   });
-  console.log('COMMAND OUTPUT', commandOutput);
 }
 
-function createNewHHProject(goToFolder: string, projectFolder: string) {
+async function createNewHHProject(goToFolder: string, projectFolder: string) {
   const repoDir = 'hardhat';
   if (!fs.existsSync(join(goToFolder, repoDir))) {
     const command = `cd ${goToFolder} && git clone https://github.com/NomicFoundation/hardhat.git`;
-    run(command);
+    await run(command);
   }
   const folderToCopy = 'packages/hardhat-core/sample-projects/typescript';
 

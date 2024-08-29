@@ -82,3 +82,11 @@ function getContractId(deploymentFilePath: string) {
   const json = JSON.parse(deploymentFile);
   return json.entries[0].address;
 }
+
+export function extractDataToEnv(dataFilepath: string, envFilepath: string, regex: RegExp, variableName: string) {
+  const file = readFileSync(dataFilepath, { encoding: 'utf8' });
+  const regexMatches = file.match(regex);
+  const data = regexMatches?.[0];
+  console.log('DATA FROM REGEX:', data);
+  appendFileSync(envFilepath, `${variableName}=${data}\n`);
+}
