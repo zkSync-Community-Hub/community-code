@@ -1,4 +1,4 @@
-title: Using web3.js to interact with ZKsync
+title: Using Web3.js to interact with ZKsync
 featured: false
 authors:
   - name: ChainSafe
@@ -7,13 +7,17 @@ authors:
 github_repo: https://github.com/ChainSafe
 tags:
   - guide
-  - web3.js
-summary: This page will guide you through the steps to use web3.js to interact with ZKsync.
-description: This guide outlines how to use the ZKsync web3.js plugin to interact with ZKsync.
+  - Web3.js
+summary:
+  This guide will teach you how to set up and use Web3.js to interact with ZKsync, leveraging the ZKsync Web3.js plugin.
+description:
+  Learn how to use the ZKsync Web3.js plugin to interact with ZKsync. This guide covers setting up a new Web3.js project
+  with ZKsync CLI, integrating ZKsync into an existing project, and sending RPC requests to ZKsync.
 what_you_will_learn:
-  - How to install web3.js and the ZKsync plugin
+  - How to setup a Web3.js project using ZKsync CLI
+  - How to install Web3.js and the ZKsync plugin in an existing project
   - How to send RPC requests to ZKsync
-  - How to use ZKsync-specific methods
 updated: 2024-05-09
 tools:
-  - web3.js
+  - Web3.js
+  - ZKsync CLI
