@@ -1,0 +1,19 @@
+title: Sign With WebAuthn
+featured: true
+authors:
+  - name: MatterLabs
+    url: https://matter-labs.io
+    avatar: https://avatars.githubusercontent.com/u/42489169?s=200&v=4
+github_repo: https://github.com/ZKsync-Community-Hub
+tags:
+  - webauthn
+  - account recovery
+  - p256verify precompile
+summary: Use webauthn to sign transactions
+description: In this tutorial, you will use webauthn to sign txns
+what_you_will_learn:
+  - How to use webauthn to sign txns
+updated: 2024-09-03
+tools:
+  - webauthn
+  - zksync-ethers
