@@ -20,7 +20,7 @@
     "release": "semantic-release"
   },
   "dependencies": {
-    "@matterlabs/docs-nuxt-template": "2.8.3",
+    "@matterlabs/docs-nuxt-template": "2.8.4",
     "@iconify-json/heroicons": "^1.2.0",
     "@iconify-json/simple-icons": "^1.2.1",
     "@iconify-json/vscode-icons": "^1.2.0",
