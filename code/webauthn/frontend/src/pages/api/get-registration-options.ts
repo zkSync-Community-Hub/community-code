@@ -30,7 +30,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       res.status(500).json({ error });
     }
   } else {
-    console.log('MUST USED GET METHOD');
+    console.log('MUST USE POST METHOD');
     res.status(500);
   }
 }
