@@ -1,8 +1,8 @@
-import { type BytesLike, defaultAbiCoder } from 'ethers/lib/utils';
+import { defaultAbiCoder } from 'ethers/lib/utils';
 import { bufferFromBase64url } from './string';
 import { EIP712Signer, type Provider, utils } from 'zksync-ethers';
 import type { AuthenticatorAssertionResponseJSON } from '@simplewebauthn/types';
-import { BigNumber, ethers } from 'ethers';
+import { BigNumber } from 'ethers';
 import { bufferToHex } from '@passwordless-id/webauthn/dist/esm/utils';
 import type { TransactionRequest } from 'zksync-ethers/build/types';
 
@@ -12,10 +12,9 @@ const halfN = n.div(2);
 export async function signAndSend(
   provider: Provider,
   transaction: TransactionRequest,
-  authenticationResponse: AuthenticatorAssertionResponseJSON,
-  signedTxHash: BytesLike
+  authenticationResponse: AuthenticatorAssertionResponseJSON
 ) {
-  const signature = await getSignatureFromAuthResponse(authenticationResponse, signedTxHash);
+  const signature = await getSignatureFromAuthResponse(authenticationResponse);
   const newTx = {
     ...transaction,
     customData: {
@@ -33,14 +32,13 @@ export async function send(transaction: TransactionRequest, provider: Provider) 
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export async function getSignatureFromAuthResponse(response: any, signedTxHash: BytesLike) {
+export async function getSignatureFromAuthResponse(response: any) {
   const authenticatorDataBuffer = bufferFromBase64url(response.authenticatorData);
   const clientDataBuffer = bufferFromBase64url(response.clientDataJSON);
   const rs = getRS(response.signature);
-  const bytes32Value = ethers.utils.arrayify(signedTxHash);
   const signature = defaultAbiCoder.encode(
-    ['bytes', 'bytes', 'bytes32[2]', 'bytes32'],
-    [authenticatorDataBuffer, clientDataBuffer, rs, bytes32Value]
+    ['bytes', 'bytes', 'bytes32[2]'],
+    [authenticatorDataBuffer, clientDataBuffer, rs]
   );
   return signature;
 }

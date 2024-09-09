@@ -52,7 +52,7 @@ export default function Transfer() {
       const tx = await getTransaction(receiverAddress, ACCOUNT_ADDRESS, transferValue, data, provider);
       const signedTxHash = getDataToSign(tx);
       const authResponse = await authenticate(signedTxHash.toString());
-      const receipt = await signAndSend(provider, tx, authResponse, signedTxHash);
+      const receipt = await signAndSend(provider, tx, authResponse);
       console.log('RECEIPT:', receipt);
       updateBalances();
     } catch (error) {
