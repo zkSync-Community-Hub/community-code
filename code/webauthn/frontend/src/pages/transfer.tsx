@@ -50,8 +50,8 @@ export default function Transfer() {
     try {
       const data = '0x';
       const tx = await getTransaction(receiverAddress, ACCOUNT_ADDRESS, transferValue, data, provider);
-      const { data: dataToSign, signedTxHash } = getDataToSign(tx);
-      const authResponse = await authenticate(dataToSign);
+      const signedTxHash = getDataToSign(tx);
+      const authResponse = await authenticate(signedTxHash.toString());
       const receipt = await signAndSend(provider, tx, authResponse, signedTxHash);
       console.log('RECEIPT:', receipt);
       updateBalances();

@@ -32,12 +32,11 @@ const config: HardhatUserConfig = {
   zksolc: {
     version: 'latest',
     settings: {
-      enableEraVMExtensions: true,
-      // isSystem: true, // ⚠️ Make sure to include this line
+      enableEraVMExtensions: true, // ⚠️ Make sure to include this line
     },
   },
   solidity: {
-    version: '0.8.17',
+    version: '0.8.20',
   },
 };
 

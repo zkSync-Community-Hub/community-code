@@ -26,7 +26,7 @@ export function toBase64(input: string | Buffer): string {
   return padString(input).replace(/-/g, '+').replace(/_/g, '/');
 }
 
-function base64ToBase64Url(base64: string): string {
+export function base64ToBase64Url(base64: string): string {
   return base64.replace(/\+/g, '-').replace(/\//g, '_').replace(/=/g, '');
 }
 

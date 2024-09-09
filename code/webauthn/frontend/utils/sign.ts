@@ -1,5 +1,5 @@
 import { type BytesLike, defaultAbiCoder } from 'ethers/lib/utils';
-import { bufferFromBase64url, hexToBase64Url, parseHex } from './string';
+import { bufferFromBase64url } from './string';
 import { EIP712Signer, type Provider, utils } from 'zksync-ethers';
 import type { AuthenticatorAssertionResponseJSON } from '@simplewebauthn/types';
 import { BigNumber, ethers } from 'ethers';
@@ -47,9 +47,8 @@ export async function getSignatureFromAuthResponse(response: any, signedTxHash: 
 
 export function getDataToSign(transaction: TransactionRequest) {
   const signedTxHash = EIP712Signer.getSignedDigest(transaction);
-  const message = parseHex(signedTxHash.toString());
-  const data = hexToBase64Url(message);
-  return { data, signedTxHash };
+  console.log('SIGNED TX HASH:', signedTxHash);
+  return signedTxHash;
 }
 
 export function getRS(signatureBase64Url: string): Array<BigNumber> {
