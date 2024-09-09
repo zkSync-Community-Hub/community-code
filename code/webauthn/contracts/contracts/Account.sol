@@ -94,7 +94,7 @@ contract Account is IAccount, IERC1271 {
         ) {
             magic = ACCOUNT_VALIDATION_SUCCESS_MAGIC;
         } else {
-            bool valid = validateWebAuthnSignature(_transaction.signature);
+            bool valid = validateWebAuthnSignature(_transaction.signature, txHash);
             if(valid){
                 magic = ACCOUNT_VALIDATION_SUCCESS_MAGIC;
             } else {
@@ -116,11 +116,6 @@ contract Account is IAccount, IERC1271 {
         address to = address(uint160(_transaction.to));
         uint128 value = Utils.safeCastToU128(_transaction.value);
         bytes memory data = _transaction.data;
-
-        // // Call SpendLimit contract to ensure that ETH `value` doesn't exceed the daily spending limit
-        // if (value > 0) {
-        //     _checkSpendingLimit(address(ETH_TOKEN_SYSTEM_CONTRACT), value);
-        // }
 
         if (to == address(DEPLOYER_SYSTEM_CONTRACT)) {
             uint32 gas = Utils.safeCastToU32(gasleft());
@@ -244,40 +239,58 @@ contract Account is IAccount, IERC1271 {
         returns (
             bytes memory authenticatorData,
             bytes memory clientData,
-            bytes32[2] memory rs
+            bytes32[2] memory rs,
+            bytes32 signedMessage
         )
     {
-        (authenticatorData, clientData, rs) = abi.decode(
+        (authenticatorData, 
+        clientData, 
+        rs,
+        signedMessage
+        ) = abi.decode(
             webauthnSignature,
-            (bytes, bytes, bytes32[2])
+            (bytes, 
+            bytes, 
+            bytes32[2],
+            bytes32
+            )
         );
+      
     }
 
     function validateWebAuthnSignature(
         // bytes32 challenge,
-        bytes memory webauthnSignature
+        bytes memory webauthnSignature,
+        bytes32 txHash
     ) private view returns (bool valid) {
         if(r1Owner.length == 0){
             return false;
         }
         bytes32[2] memory pubKey = abi.decode(r1Owner, (bytes32[2]));
-        valid = _validateWebAuthnSignature(webauthnSignature, pubKey);
+        valid = _validateWebAuthnSignature(txHash, webauthnSignature, pubKey);
     }
 
 
       function _validateWebAuthnSignature(
         // bytes32 challenge,
+        bytes32 txHash,
         bytes memory webauthnSignature,
         bytes32[2] memory pubKey
     ) private view returns (bool valid) {
         (
             bytes memory authenticatorData,
             bytes memory clientData,
-            bytes32[2] memory rs
+            bytes32[2] memory rs,
+            bytes32 signedMessage
         ) = _decodeWebauthnSignature(webauthnSignature);
 
         // malleability check
         if (rs[1] > lowSmax) {
+            return false;
+        }
+
+        // check if the signed message is the same as the transaction hash
+        if(txHash != signedMessage){
             return false;
         }
 

@@ -10,13 +10,14 @@ import { containerStyles, inputStyles } from './register';
 import { formatEther } from 'ethers/lib/utils';
 
 // Update this with your deployed smart contract account address
-const ACCOUNT_ADDRESS = '0xaD375A498Ba639C76079c98dCD647aC40490C158';
+const ACCOUNT_ADDRESS = '0x<YOUR_ACCOUNT_ADDRESS>';
 
 export default function Transfer() {
   const [transferValue, setTransferValue] = useState<string>('1');
   const [smartAccountBalance, setSmartAccountBalance] = useState<string>();
   const [receiverAccountBalance, setReceiverAccountBalance] = useState<string>();
   const [receiverAddress, setReceiverAddress] = useState<string>('0xa61464658AfeAf65CccaaFD3a512b69A83B77618');
+  const provider = new Provider('http://localhost:8011');
 
   useEffect(() => {
     updateBalances();
@@ -29,7 +30,6 @@ export default function Transfer() {
     setReceiverAccountBalance(formatEther(bal2));
   }
 
-  const provider = new Provider('http://localhost:8011');
   async function authenticate(challenge: string) {
     const resp = await fetch('http://localhost:3000/api/generate-authentication-options', {
       method: 'POST',
@@ -45,14 +45,14 @@ export default function Transfer() {
     return authResp.response;
   }
 
-  async function webAuthn(e: any) {
+  async function sendTransfer(e: any) {
     e.preventDefault();
     try {
       const data = '0x';
       const tx = await getTransaction(receiverAddress, ACCOUNT_ADDRESS, transferValue, data, provider);
-      const dataToSign = getDataToSign(tx);
+      const { data: dataToSign, signedTxHash } = getDataToSign(tx);
       const authResponse = await authenticate(dataToSign);
-      const receipt = await signAndSend(provider, tx, authResponse);
+      const receipt = await signAndSend(provider, tx, authResponse, signedTxHash);
       console.log('RECEIPT:', receipt);
       updateBalances();
     } catch (error) {
@@ -109,7 +109,7 @@ export default function Transfer() {
             <button
               type="submit"
               style={buttonStyles}
-              onClick={webAuthn}
+              onClick={sendTransfer}
             >
               Transfer ETH
             </button>

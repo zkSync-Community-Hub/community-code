@@ -12,7 +12,7 @@ export async function getTransaction(to: string, from: string, value: string, da
     value: ethers.utils.parseEther(value),
     data,
     gasPrice,
-    gasLimit: BigInt(20000000), // constant 20M since estimateGas() causes an error and this tx consumes more than 15M at most
+    gasLimit: BigInt(20000000),
     chainId,
     nonce,
     type: 113,

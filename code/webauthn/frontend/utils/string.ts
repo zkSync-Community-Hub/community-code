@@ -3,7 +3,6 @@ export function hexToBase64Url(hex: string): string {
 }
 
 export function bufferFromBase64url(base64url: string): Buffer {
-  console.log('base64url', base64url);
   return Buffer.from(toBase64(base64url), 'base64');
 }
 

@@ -57,9 +57,6 @@ export default function Register() {
     const x = bufferToHex(publicKey.get(-2) as Buffer);
     const y = bufferToHex(publicKey.get(-3) as Buffer);
 
-    console.log('public key x:', x);
-    console.log('public key y:', y);
-
     return x.concat(parseHex(y));
   }
 
