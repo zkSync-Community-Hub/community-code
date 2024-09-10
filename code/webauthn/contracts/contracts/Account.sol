@@ -10,6 +10,7 @@ import '@openzeppelin/contracts/utils/cryptography/ECDSA.sol';
 import '@matterlabs/zksync-contracts/l2/system-contracts/Constants.sol';
 // to call non-view function of system contracts
 import '@matterlabs/zksync-contracts/l2/system-contracts/libraries/SystemContractsCaller.sol';
+import "@openzeppelin/contracts/utils/Base64.sol";
 
 contract Account is IAccount, IERC1271 {
   // to get transaction hash
@@ -27,12 +28,20 @@ contract Account is IAccount, IERC1271 {
   // maximum value for 's' in a secp256r1 signature
   bytes32 constant lowSmax = 0x7fffffff800000007fffffffffffffffde737d56d38bcf4279dce5617e3192a8;
 
+  // webauthn user flags
+  bytes1 constant AUTH_DATA_MASK = 0x05;
+  
   bytes4 constant EIP1271_SUCCESS_RETURN_VALUE = 0x1626ba7e;
 
   modifier onlyBootloader() {
     require(msg.sender == BOOTLOADER_FORMAL_ADDRESS, 'Only bootloader can call this method');
     // Continue execution if called from the bootloader.
     _;
+  }
+
+  modifier onlySelf() {
+      require(msg.sender == address(this), "Only the contract itself allowed to call this function");
+      _;
   }
 
   constructor(address _owner) {
@@ -118,11 +127,7 @@ contract Account is IAccount, IERC1271 {
     }
   }
 
-  function executeTransactionFromOutside(Transaction calldata _transaction) external payable {
-    bytes4 magic = _validateTransaction(bytes32(0), _transaction);
-    require(magic == ACCOUNT_VALIDATION_SUCCESS_MAGIC, 'NOT VALIDATED');
-    _executeTransaction(_transaction);
-  }
+  function executeTransactionFromOutside(Transaction calldata _transaction) external payable {}
 
   function isValidSignature(bytes32 _hash, bytes memory _signature) public view override returns (bytes4 magic) {
     magic = EIP1271_SUCCESS_RETURN_VALUE;
@@ -196,9 +201,7 @@ contract Account is IAccount, IERC1271 {
     _transaction.processPaymasterInput();
   }
 
-  // WARNING: This function is not safe. Anyone can call it and change the owner of the account.
-  // It is only used for testing purposes
-  function updateR1Owner(bytes memory _r1Owner) external {
+  function updateR1Owner(bytes memory _r1Owner) external onlySelf {
     r1Owner = _r1Owner;
   }
 
@@ -230,6 +233,11 @@ contract Account is IAccount, IERC1271 {
     // malleability check
     if (rs[1] > lowSmax) {
       return false;
+    }
+
+    // check if the webauthn user flags are set
+    if (authenticatorData[32] & AUTH_DATA_MASK != AUTH_DATA_MASK) {
+        return false;
     }
 
     bytes32 clientDataHash = sha256(clientData);
@@ -278,58 +286,31 @@ contract Account is IAccount, IERC1271 {
     }
     return result;
   }
+
   function txHashToBase64Url(bytes32 txHash) public pure returns (string memory) {
-    bytes memory alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_';
+        // Convert txHash to hex string
+        bytes memory hexString = new bytes(66);  // '0x' + 64 hex characters
+        hexString[0] = '0';
+        hexString[1] = 'x';
+        bytes memory hexChars = "0123456789abcdef";
+        for (uint256 i = 0; i < 32; i++) {
+            uint8 b = uint8(txHash[i]);
+            hexString[2 + i * 2] = hexChars[b >> 4];
+            hexString[3 + i * 2] = hexChars[b & 0x0f];
+        }
+        
+        // Encode to base64
+        string memory base64String = Base64.encode(hexString);
 
-    // Convert txHash to hex string
-    bytes memory hexString = new bytes(66); // '0x' + 64 hex characters
-    hexString[0] = '0';
-    hexString[1] = 'x';
-    bytes memory hexChars = '0123456789abcdef';
-    for (uint256 i = 0; i < 32; i++) {
-      uint8 b = uint8(txHash[i]);
-      hexString[2 + i * 2] = hexChars[b >> 4];
-      hexString[3 + i * 2] = hexChars[b & 0x0f];
+        // Convert to base64url (replace '+' with '-' and '/' with '_')
+        bytes memory base64Bytes = bytes(base64String);
+        for (uint256 i = 0; i < base64Bytes.length; i++) {
+            if (base64Bytes[i] == '+') base64Bytes[i] = '-';
+            if (base64Bytes[i] == '/') base64Bytes[i] = '_';
+        }
+        
+        return string(slice(base64Bytes, 0, 58));
     }
-
-    // Encode hex string to base64Url
-    bytes memory data = hexString;
-    uint256 fullGroups = data.length / 3;
-    uint256 resultLength = 4 * ((data.length + 2) / 3);
-
-    bytes memory result = new bytes(resultLength);
-    uint256 resultIndex = 0;
-    uint256 dataIndex = 0;
-
-    // Convert full groups
-    for (uint256 i = 0; i < fullGroups; i++) {
-      uint256 n = (uint256(uint8(data[dataIndex++])) << 16) |
-        (uint256(uint8(data[dataIndex++])) << 8) |
-        uint256(uint8(data[dataIndex++]));
-
-      result[resultIndex++] = alphabet[n >> 18];
-      result[resultIndex++] = alphabet[(n >> 12) & 0x3F];
-      result[resultIndex++] = alphabet[(n >> 6) & 0x3F];
-      result[resultIndex++] = alphabet[n & 0x3F];
-    }
-
-    // Handle padding
-    uint256 remainder = data.length % 3;
-    if (remainder > 0) {
-      uint256 n = 0;
-      for (uint256 i = 0; i < remainder; i++) {
-        n |= uint256(uint8(data[dataIndex++])) << (16 - 8 * i);
-      }
-
-      result[resultIndex++] = alphabet[n >> 18];
-      result[resultIndex++] = alphabet[(n >> 12) & 0x3F];
-
-      if (remainder == 2) {
-        result[resultIndex++] = alphabet[(n >> 6) & 0x3F];
-      }
-    }
-    return string(slice(result, 0, 58));
-  }
 
   fallback() external {
     // fallback of default account shouldn't be called by bootloader under no circumstances

@@ -38,7 +38,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
     } as types.Eip712Meta,
     value: ethers.parseEther(transferAmount),
     gasPrice: await provider.getGasPrice(),
-    gasLimit: BigInt(20000000), // constant 20M since estimateGas() causes an error and this tx consumes more than 15M at most
+    gasLimit: BigInt(20000000),
     data: '0x',
   };
   console.log(`ETH transfer tx 1: ${ethTransferTx}`);

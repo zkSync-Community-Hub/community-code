@@ -37,10 +37,13 @@ npm run compile
 npm run transfer
 ```
 
-From the logged output of the `transfer` script, copy the account address after "SC Account deployed on address" and save it to your `.env` file:
+From the logged output of the `transfer` script, copy the private key after "SC Account owner pk:"
+and the account address after "SC Account deployed on address"
+and save them to the `ACCOUNT_PK` and `ACCOUNT_ADDRESS` variables your `.env` file.
 
 ```env
 ACCOUNT_ADDRESS=0x...
+ACCOUNT_PK=0x...
 ```
 
 You'll come back to this later.
@@ -70,6 +73,7 @@ Your final `.env` file should look like this:
 WALLET_PRIVATE_KEY=0x7726827caac94a7f9e1b160f7ea819f172f7b6f9d2a97f992c38edeab82d4110
 RECEIVER_ACCOUNT=0xa61464658AfeAf65CccaaFD3a512b69A83B77618
 ACCOUNT_ADDRESS=0x<YOUR_ACCOUNT_ADDRESS_HERE>
+ACCOUNT_PK=0x<YOUR_ACCOUNT_PRIVATE_KEY_HERE>
 NEW_R1_OWNER_PUBLIC_KEY=0x<YOUR_PUB_KEY_HERE>
 ```
 
