@@ -328,14 +328,7 @@ contract Account is IAccount, IERC1271 {
         result[resultIndex++] = alphabet[(n >> 6) & 0x3F];
       }
     }
-
-    // Resize result to remove any unused padding
-    bytes memory finalResult = new bytes(resultIndex);
-    for (uint256 i = 0; i < resultIndex; i++) {
-      finalResult[i] = result[i];
-    }
-
-    return string(slice(finalResult, 0, 58));
+    return string(slice(result, 0, 58));
   }
 
   fallback() external {
