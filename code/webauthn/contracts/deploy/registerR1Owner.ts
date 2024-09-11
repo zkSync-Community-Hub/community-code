@@ -26,7 +26,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   const data = contract.interface.encodeFunctionData('updateR1Owner', [NEW_R1_OWNER_PUBLIC_KEY]);
   const transferAmount = '0';
 
-  const ethTransferTx = {
+  const registerTx = {
     from: ACCOUNT_ADDRESS,
     to: ACCOUNT_ADDRESS,
     chainId: (await provider.getNetwork()).chainId,
@@ -40,19 +40,19 @@ export default async function (hre: HardhatRuntimeEnvironment) {
     gasLimit: BigInt(20000000),
     data,
   };
-  const signedTxHash = EIP712Signer.getSignedDigest(ethTransferTx);
+  const signedTxHash = EIP712Signer.getSignedDigest(registerTx);
   console.log(`Signed tx hash: ${signedTxHash}`);
   const signature = ethers.concat([ethers.Signature.from(wallet.signingKey.sign(signedTxHash)).serialized]);
 
   console.log(`Signature: ${signature}`);
-  ethTransferTx.customData = {
-    ...ethTransferTx.customData,
+  registerTx.customData = {
+    ...registerTx.customData,
     customSignature: signature,
   };
 
   // make the call
   console.log('Registering new R1 Owner');
-  const sentTx = await provider.broadcastTransaction(types.Transaction.from(ethTransferTx).serialized);
+  const sentTx = await provider.broadcastTransaction(types.Transaction.from(registerTx).serialized);
   await sentTx.wait();
   console.log('Registration completed!');
 

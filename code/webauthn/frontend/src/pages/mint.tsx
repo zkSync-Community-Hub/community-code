@@ -1,22 +1,26 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Provider } from 'zksync-ethers';
+import type { Provider } from 'zksync-ethers';
 import { getDataToSign, signAndSend } from '../../utils/sign';
-import { getTransaction } from '../../utils/getTransaction';
-import React from 'react';
+import { getTransaction } from '../../utils/tx';
+import React, { useEffect, useState } from 'react';
 import { Layout } from '../components/Layout';
 import { buttonStyles } from '.';
 import { containerStyles } from './register';
 import { ethers } from 'ethers';
 import { authenticate } from '../../utils/webauthn';
 import * as NFT_ABI_JSON from '../../../contracts/artifacts-zk/contracts/MyNFT.sol/MyNFT.json';
+import { BUTTON_COLORS, NFT_CONTRACT_ADDRESS } from '../../utils/constants';
+import { useAccount } from '@/hooks/useAccount';
 
-// Update this with your deployed smart contract account address and NFT contract address
-const ACCOUNT_ADDRESS = '0x<YOUR_ACCOUNT_ADDRESS>';
-const NFT_CONTRACT_ADDRESS = '0x<YOUR_NFT_CONTRACT_ADDRESS>';
-
-export default function Mint() {
+export default function Mint({ provider }: { provider: Provider }) {
+  const [isMounted, setIsMounted] = useState<boolean>(false);
   const [mintedSVG, setMintedSVG] = React.useState<string | null>(null);
-  const provider = new Provider('http://localhost:8011');
+
+  const account = useAccount();
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   async function mint(e: any) {
     e.preventDefault();
@@ -26,7 +30,7 @@ export default function Mint() {
       const functionArgs: any[] = [];
       const data = contract.interface.encodeFunctionData(functionName, functionArgs);
       const transferValue = '0';
-      const tx = await getTransaction(NFT_CONTRACT_ADDRESS, ACCOUNT_ADDRESS, transferValue, data, provider);
+      const tx = await getTransaction(NFT_CONTRACT_ADDRESS, account!, transferValue, data, provider);
       const signedTxHash = getDataToSign(tx);
       const authResponse = await authenticate(signedTxHash.toString());
       const receipt = await signAndSend(provider, tx, authResponse);
@@ -53,39 +57,46 @@ export default function Mint() {
       setMintedSVG(svg);
     } catch (error) {
       console.log('ERROR:', error);
+      alert('Error minting NFT');
     }
   }
 
   return (
     <Layout>
-      <div style={{ ...containerStyles, marginBottom: '2rem' }}>
-        <button
-          style={buttonStyles}
-          onClick={mint}
-        >
-          Mint a Zeek NFT
-        </button>
-      </div>
-      {mintedSVG && (
+      {account && isMounted ? (
         <>
-          <h3 style={{ textAlign: 'center' }}>🎉 You minted a ZEEK NFT! 🎉</h3>
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              flexDirection: 'column',
-              maxWidth: '400px',
-              maxHeight: '400px',
-              margin: '2rem auto',
-            }}
-          >
-            <img
-              src={mintedSVG}
-              alt="Minted NFT"
-            />
+          <div style={{ ...containerStyles, marginBottom: '2rem' }}>
+            <button
+              style={{ ...buttonStyles, background: BUTTON_COLORS[3] }}
+              onClick={mint}
+            >
+              Mint a Zeek NFT
+            </button>
           </div>
+          {mintedSVG && (
+            <>
+              <h3 style={{ textAlign: 'center' }}>🎉 You minted a ZEEK NFT! 🎉</h3>
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  flexDirection: 'column',
+                  maxWidth: '400px',
+                  maxHeight: '400px',
+                  margin: '2rem auto',
+                }}
+              >
+                <img
+                  src={mintedSVG}
+                  alt="Minted NFT"
+                />
+              </div>
+            </>
+          )}
         </>
+      ) : (
+        <h3 style={{ textAlign: 'center' }}>Create an account first.</h3>
       )}
     </Layout>
   );

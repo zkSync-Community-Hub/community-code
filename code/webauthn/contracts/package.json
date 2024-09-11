@@ -8,6 +8,7 @@
   "scripts": {
     "deploy": "hardhat deploy-zksync --script deploy.ts",
     "deploy:NFT": "hardhat deploy-zksync --script deployMyNFT.ts",
+    "deploy:paymaster": "hardhat deploy-zksync --script deployPaymaster.ts",
     "transfer": "hardhat deploy-zksync --script deployAndTransfer.ts",
     "register": "hardhat deploy-zksync --script registerR1Owner.ts",
     "compile": "hardhat compile",

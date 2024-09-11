@@ -1,13 +1,27 @@
-import { platformAuthenticatorIsAvailable, startRegistration } from '@simplewebauthn/browser';
-import { bufferToHex, parseHex } from '../../utils/string';
-import * as cbor from 'cbor';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Layout } from '../components/Layout';
 import { buttonStyles } from './index';
+import { BUTTON_COLORS } from '../../utils/constants';
+import { useAccount } from '@/hooks/useAccount';
+import { platformAuthenticatorIsAvailable, startRegistration } from '@simplewebauthn/browser';
+import { getPublicKeyFromAuthenticatorData } from '../../utils/webauthn';
+import { registerKeyInAccount } from '../../utils/tx';
+import { useSetWallet, useWallet } from '@/hooks/useWallet';
+import { Wallet, type Provider } from 'zksync-ethers';
 
-export default function Register() {
+export default function Register({ provider }: { provider: Provider }) {
+  const [isMounted, setIsMounted] = useState<boolean>(false);
   const [registeredPublicKey, setRegisteredPublicKey] = useState<string>();
   const [userName, setUserName] = useState<string>();
+  const [accountPk, setAccountPk] = useState<string>();
+
+  const account = useAccount();
+  const accountWallet = useWallet();
+  const setWallet = useSetWallet();
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   async function registerNewPasskey(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
@@ -37,65 +51,87 @@ export default function Register() {
       const pubKeyFromAuth = getPublicKeyFromAuthenticatorData(regResp.response.authenticatorData!);
       console.log('PUB KEY FROM AUTH:', pubKeyFromAuth);
       setRegisteredPublicKey(pubKeyFromAuth);
+      await registerKeyInAccount(pubKeyFromAuth, account!, provider, accountWallet!);
     } catch (error) {
       console.log('ERROR:', error);
+      alert('Error registering new passkey');
     }
-  }
-
-  function getPublicKeyFromAuthenticatorData(authData: string): string {
-    const authDataBuffer = Buffer.from(authData, 'base64');
-    const credentialData = authDataBuffer.subarray(32 + 1 + 4 + 16, authDataBuffer.length); // RP ID Hash + Flags + Counter + AAGUID
-    const lbase = credentialData.subarray(0, 2).toString('hex');
-    const l = parseInt(lbase, 16);
-    const credentialPubKey = credentialData.subarray(2 + l, credentialData.length); // sizeof(L) + L
-    return getPublicKeyFromCredentialPublicKey(credentialPubKey);
-  }
-
-  function getPublicKeyFromCredentialPublicKey(credentialPublicKey: Uint8Array): string {
-    const publicKey: Map<-2 | -3 | -1 | 1 | 3, Buffer | number> = cbor.decode(credentialPublicKey);
-
-    const x = bufferToHex(publicKey.get(-2) as Buffer);
-    const y = bufferToHex(publicKey.get(-3) as Buffer);
-
-    return x.concat(parseHex(y));
   }
 
   return (
     <Layout>
       <h1 style={headerStyles}>Register a New Passkey</h1>
-      <form style={{ marginTop: '1rem' }}>
-        <div style={containerStyles}>
-          <label
-            style={labelStyles}
-            htmlFor="username"
-          >
-            Passkey Name:
-          </label>
+      {!account && isMounted && <p style={{ textAlign: 'center' }}>Please create an account first</p>}
+      {account && isMounted && !accountWallet && (
+        <form style={{ marginTop: '1rem' }}>
+          <p style={{ textAlign: 'center' }}>Add the private key for</p>
+          <p style={{ textAlign: 'center' }}>{account}</p>
+          <p style={{ textAlign: 'center' }}>or create a new account</p>
+          <div style={containerStyles}>
+            <label
+              style={labelStyles}
+              htmlFor="pk"
+            >
+              Private Key
+            </label>
 
-          <input
-            type="text"
-            name="username"
-            id="username"
-            placeholder="test-zksync-webauthn"
-            style={{ ...inputStyles, width: '300px', marginBottom: '1rem' }}
-            value={userName}
-            autoComplete="webauthn register"
-            onChange={(e) => setUserName(e.target.value)}
-          />
-        </div>
+            <input
+              type="text"
+              name="pk"
+              id="pk"
+              placeholder="0x..."
+              style={{ ...inputStyles, width: '300px', marginBottom: '1rem' }}
+              value={accountPk}
+              onChange={(e) => setAccountPk(e.target.value)}
+            />
+          </div>
 
-        <div style={{ ...containerStyles, marginBottom: '2rem' }}>
-          <button
-            type="submit"
-            style={buttonStyles}
-            onClick={registerNewPasskey}
-          >
-            Register New Passkey
-          </button>
-        </div>
-      </form>
+          <div style={{ ...containerStyles, marginBottom: '2rem' }}>
+            <button
+              type="submit"
+              style={{ ...buttonStyles, background: BUTTON_COLORS[1] }}
+              onClick={() => setWallet(new Wallet(accountPk!, provider))}
+            >
+              Add Private Key
+            </button>
+          </div>
+        </form>
+      )}
+      {account && isMounted && accountWallet && (
+        <form style={{ marginTop: '1rem' }}>
+          <div style={containerStyles}>
+            <label
+              style={labelStyles}
+              htmlFor="username"
+            >
+              Passkey Name:
+            </label>
 
-      <div style={containerStyles}>
+            <input
+              type="text"
+              name="username"
+              id="username"
+              placeholder="test-zksync-webauthn"
+              style={{ ...inputStyles, width: '300px', marginBottom: '1rem' }}
+              value={userName}
+              autoComplete="webauthn register"
+              onChange={(e) => setUserName(e.target.value)}
+            />
+          </div>
+
+          <div style={{ ...containerStyles, marginBottom: '2rem' }}>
+            <button
+              type="submit"
+              style={{ ...buttonStyles, background: BUTTON_COLORS[1] }}
+              onClick={registerNewPasskey}
+            >
+              Register New Passkey
+            </button>
+          </div>
+        </form>
+      )}
+
+      <div style={{ ...containerStyles, textAlign: 'center' }}>
         {registeredPublicKey && (
           <p
             style={{ cursor: 'pointer' }}
@@ -103,7 +139,7 @@ export default function Register() {
               navigator.clipboard.writeText(registeredPublicKey);
             }}
           >
-            Registered public key! Click me to copy.
+            🎉 Registered public key to account! 🎉
           </p>
         )}
       </div>

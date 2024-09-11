@@ -1,5 +1,7 @@
 import Link from 'next/link';
 import { Layout } from '../components/Layout';
+import { BUTTON_COLORS } from '../../utils/constants';
+import React from 'react';
 
 export default function Home() {
   return (
@@ -7,19 +9,31 @@ export default function Home() {
       <h1 style={{ textAlign: 'center', margin: '4rem 1rem' }}>Sign Txns with WebAuthn Demo</h1>
       <div style={containerStyles}>
         <Link
-          style={buttonStyles}
-          href="/register"
+          style={{
+            ...buttonStyles,
+            background: BUTTON_COLORS[0],
+          }}
+          href="/create-account"
         >
-          Register Account
+          Create Account
         </Link>
         <Link
-          style={buttonStyles}
+          style={{
+            ...buttonStyles,
+            background: BUTTON_COLORS[1],
+          }}
+          href="/register"
+        >
+          Register Passkey
+        </Link>
+        <Link
+          style={{ ...buttonStyles, background: BUTTON_COLORS[2] }}
           href="/transfer"
         >
           Transfer Funds
         </Link>
         <Link
-          style={buttonStyles}
+          style={{ ...buttonStyles, background: BUTTON_COLORS[3] }}
           href="/mint"
         >
           Mint NFT
@@ -31,17 +45,16 @@ export default function Home() {
 
 export const buttonStyles = {
   padding: '1rem 2rem',
-  backgroundColor: '#0621ba',
   borderRadius: '5px',
   textDecoration: 'none',
   cursor: 'pointer',
-  borderColor: 'transparent',
+  color: 'black',
+  border: '1px solid white',
   fontSize: '1.2rem',
   width: '300px',
   margin: 'auto',
   textAlign: 'center',
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-} as any;
+} as React.CSSProperties;
 
 const containerStyles = {
   display: 'flex',
@@ -49,5 +62,4 @@ const containerStyles = {
   flexDirection: 'column',
   gap: '1.5rem',
   marginTop: '1rem',
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-} as any;
+} as React.CSSProperties;
