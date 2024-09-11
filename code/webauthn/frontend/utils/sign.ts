@@ -45,7 +45,6 @@ export async function getSignatureFromAuthResponse(response: any) {
 
 export function getDataToSign(transaction: TransactionRequest) {
   const signedTxHash = EIP712Signer.getSignedDigest(transaction);
-  console.log('SIGNED TX HASH:', signedTxHash);
   return signedTxHash;
 }
 

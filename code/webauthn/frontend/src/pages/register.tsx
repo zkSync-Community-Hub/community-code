@@ -62,13 +62,14 @@ export default function Register() {
 
   return (
     <Layout>
+      <h1 style={headerStyles}>Register a New Passkey</h1>
       <form style={{ marginTop: '1rem' }}>
         <div style={containerStyles}>
           <label
-            style={{ marginRight: '1rem' }}
+            style={labelStyles}
             htmlFor="username"
           >
-            Passkey Name
+            Passkey Name:
           </label>
 
           <input
@@ -76,7 +77,7 @@ export default function Register() {
             name="username"
             id="username"
             placeholder="test-zksync-webauthn"
-            style={{ ...inputStyles, width: '400px', marginBottom: '1rem' }}
+            style={{ ...inputStyles, width: '300px', marginBottom: '1rem' }}
             value={userName}
             autoComplete="webauthn register"
             onChange={(e) => setUserName(e.target.value)}
@@ -112,12 +113,24 @@ export default function Register() {
 
 export const containerStyles = {
   display: 'flex',
-  justifyContent: 'center',
-};
+  flexDirection: 'column',
+} as React.CSSProperties;
 
 export const inputStyles = {
   padding: '0.5rem',
   fontSize: '1rem',
   border: '1px solid #3557f1',
   borderRadius: '0.5rem',
+  margin: 'auto',
 };
+
+export const labelStyles = {
+  margin: '1rem auto',
+  fontSize: '1.2rem',
+  width: '300px',
+};
+
+export const headerStyles = {
+  textAlign: 'center',
+  marginBottom: '2rem',
+} as React.CSSProperties;

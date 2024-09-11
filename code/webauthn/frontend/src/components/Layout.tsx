@@ -9,7 +9,7 @@ export function Layout({ children, isHome }: { children: React.ReactNode; isHome
   return (
     <div className={inter.className}>
       {!isHome && (
-        <div style={{ marginTop: '2rem' }}>
+        <div style={{ margin: '2rem 1rem' }}>
           <Link
             style={buttonStyles}
             href="/"

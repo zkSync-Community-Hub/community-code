@@ -40,7 +40,6 @@ export default async function (hre: HardhatRuntimeEnvironment) {
     gasLimit: BigInt(20000000),
     data,
   };
-  console.log(`tx: ${ethTransferTx}`);
   const signedTxHash = EIP712Signer.getSignedDigest(ethTransferTx);
   console.log(`Signed tx hash: ${signedTxHash}`);
   const signature = ethers.concat([ethers.Signature.from(wallet.signingKey.sign(signedTxHash)).serialized]);

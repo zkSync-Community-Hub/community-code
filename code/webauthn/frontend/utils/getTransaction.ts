@@ -12,7 +12,7 @@ export async function getTransaction(to: string, from: string, value: string, da
     value: ethers.utils.parseEther(value),
     data,
     gasPrice,
-    gasLimit: BigInt(20000000),
+    gasLimit: BigInt(2000000000),
     chainId,
     nonce,
     type: 113,

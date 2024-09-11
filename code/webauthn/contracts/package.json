@@ -7,6 +7,7 @@
   "repository": "https://github.com/matter-labs/zksync-hardhat-template.git",
   "scripts": {
     "deploy": "hardhat deploy-zksync --script deploy.ts",
+    "deploy:NFT": "hardhat deploy-zksync --script deployMyNFT.ts",
     "transfer": "hardhat deploy-zksync --script deployAndTransfer.ts",
     "register": "hardhat deploy-zksync --script registerR1Owner.ts",
     "compile": "hardhat compile",

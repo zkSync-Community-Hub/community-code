@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { startAuthentication } from '@simplewebauthn/browser';
 import { Provider } from 'zksync-ethers';
 import { getDataToSign, signAndSend } from '../../utils/sign';
 import { getTransaction } from '../../utils/getTransaction';
 import React, { useEffect, useState } from 'react';
 import { Layout } from '../components/Layout';
 import { buttonStyles } from '.';
-import { containerStyles, inputStyles } from './register';
+import { containerStyles, headerStyles, inputStyles, labelStyles } from './register';
 import { formatEther } from 'ethers/lib/utils';
+import { authenticate } from '../../utils/webauthn';
 
 // Update this with your deployed smart contract account address
 const ACCOUNT_ADDRESS = '0x<YOUR_ACCOUNT_ADDRESS>';
@@ -23,26 +23,16 @@ export default function Transfer() {
     updateBalances();
   }, []);
 
-  async function updateBalances() {
-    const bal1 = await provider.getBalance(ACCOUNT_ADDRESS);
-    const bal2 = await provider.getBalance(receiverAddress);
-    setSmartAccountBalance(formatEther(bal1));
-    setReceiverAccountBalance(formatEther(bal2));
-  }
-
-  async function authenticate(challenge: string) {
-    const resp = await fetch('http://localhost:3000/api/generate-authentication-options', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      },
-      body: JSON.stringify({ challenge }),
-    });
-    const data = await resp.json();
-    const options = data.options;
-    const authResp = await startAuthentication(options);
-    return authResp.response;
+  async function updateBalances(newReceiverAddress?: string) {
+    try {
+      const bal1 = await provider.getBalance(ACCOUNT_ADDRESS);
+      const bal2 = await provider.getBalance(newReceiverAddress ?? receiverAddress);
+      setSmartAccountBalance(formatEther(bal1));
+      setReceiverAccountBalance(formatEther(bal2));
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (_error) {
+      setReceiverAccountBalance('Loading...');
+    }
   }
 
   async function sendTransfer(e: any) {
@@ -60,73 +50,79 @@ export default function Transfer() {
     }
   }
 
+  async function handleReceiverAddressChange(e: React.ChangeEvent<HTMLInputElement>) {
+    setReceiverAddress(e.target.value);
+    await updateBalances(e.target.value);
+  }
+
   return (
     <Layout>
-      <div style={containerStyles}>
-        <form>
-          <div>
-            <label
-              style={{ marginRight: '1rem' }}
-              htmlFor="receiver-address"
-            >
-              Receiver Address
-            </label>
+      <h1 style={headerStyles}>Transfer Funds</h1>
+      <form style={{ marginBottom: '1rem' }}>
+        <div style={containerStyles}>
+          <label
+            style={labelStyles}
+            htmlFor="receiver-address"
+          >
+            Receiver Address:
+          </label>
+          <input
+            type="text"
+            name="receiver-address"
+            id="receiver-address"
+            placeholder="0x..."
+            style={{ ...inputStyles, width: '300px' }}
+            value={receiverAddress}
+            onChange={handleReceiverAddressChange}
+          />
+        </div>
+        <div style={containerStyles}>
+          <label
+            style={labelStyles}
+            htmlFor="transfer-value"
+          >
+            ETH Amount to Transfer:
+          </label>
+          <input
+            type="number"
+            name="transfer-value"
+            id="transfer-value"
+            min="0"
+            step="any"
+            inputMode="decimal"
+            placeholder="0.00"
+            style={{ ...inputStyles, width: '300px', marginBottom: '1rem' }}
+            onChange={(e) => setTransferValue(e.target.value)}
+          />
+        </div>
 
-            <input
-              type="text"
-              name="receiver-address"
-              id="receiver-address"
-              placeholder="0x..."
-              style={{ ...inputStyles, width: '400px', marginBottom: '1rem' }}
-              value={receiverAddress}
-              onChange={(e) => setReceiverAddress(e.target.value)}
-            />
-          </div>
-
-          <div>
-            <label
-              style={{ marginRight: '1rem' }}
-              htmlFor="transfer-value"
-            >
-              Amount to Transfer:
-            </label>
-            <input
-              type="number"
-              name="transfer-value"
-              id="transfer-value"
-              min="0"
-              step="any"
-              inputMode="decimal"
-              placeholder="0.00"
-              style={{ ...inputStyles, width: '180px' }}
-              // value={refund}
-              onChange={(e) => setTransferValue(e.target.value)}
-            />{' '}
-            ETH
-          </div>
-
-          <div style={{ ...containerStyles, marginBottom: '2rem' }}>
-            <button
-              type="submit"
-              style={buttonStyles}
-              onClick={sendTransfer}
-            >
-              Transfer ETH
-            </button>
-          </div>
-        </form>
+        <div style={{ ...containerStyles, marginBottom: '4rem' }}>
+          <button
+            type="submit"
+            style={buttonStyles}
+            onClick={sendTransfer}
+          >
+            Transfer ETH
+          </button>
+        </div>
+      </form>
+      <h3 style={{ textAlign: 'center' }}>Account Balances</h3>
+      <div style={centerStyles}>
+        <p>Smart Account Balance:</p>
+        <p> {smartAccountBalance} ETH</p>
       </div>
-
-      <div style={containerStyles}>Smart Account Balance: {smartAccountBalance} ETH</div>
-      <div style={containerStyles}>Receiver Account Balance: {receiverAccountBalance} ETH</div>
-      <div style={containerStyles}>
-        <button
-          style={buttonStyles}
-          onClick={updateBalances}
-        >
-          Update Balances
-        </button>
+      <div style={centerStyles}>
+        <p> Receiver Account Balance: </p>
+        <p>{receiverAccountBalance} ETH</p>
       </div>
     </Layout>
   );
 }
+
+const centerStyles = {
+  display: 'flex',
+  justifyContent: 'center',
+  flexDirection: 'column',
+  width: '300px',
+  margin: '1rem auto',
+} as React.CSSProperties;
