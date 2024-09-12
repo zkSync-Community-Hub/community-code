@@ -1,14 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import type { Provider } from 'zksync-ethers';
-import { getDataToSign, signAndSend } from '../../utils/sign';
 import { getTransaction } from '../../utils/tx';
 import React, { useEffect, useState } from 'react';
 import { Layout } from '../components/Layout';
 import { buttonStyles } from '.';
 import { containerStyles, headerStyles, inputStyles, labelStyles } from './register';
 import { formatEther } from 'ethers/lib/utils';
-import { authenticate } from '../../utils/webauthn';
-import { BUTTON_COLORS } from '../../utils/constants';
+import { authenticate, getDataToSign, signAndSend } from '../../utils/webauthn';
+import { BUTTON_COLORS } from '@/pages/index';
 import { useAccount } from '@/hooks/useAccount';
 
 export default function Transfer({ provider }: { provider: Provider }) {

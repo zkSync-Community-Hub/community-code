@@ -23,7 +23,7 @@ const storageLabel = 'smart-account-address';
 export const AccountProvider: FC<AccountProviderProps> = ({ children }) => {
   const [state, setState] = useState<AccountContext>(() => {
     if (typeof window !== 'undefined') {
-      return (sessionStorage.getItem(storageLabel) as AccountContext) || null;
+      return (localStorage.getItem(storageLabel) as AccountContext) || null;
     }
     return null;
   });
@@ -31,7 +31,7 @@ export const AccountProvider: FC<AccountProviderProps> = ({ children }) => {
   const setAccount = (account: AccountContext) => {
     setState(account);
     if (typeof window !== 'undefined') {
-      sessionStorage.setItem(storageLabel, account as string);
+      localStorage.setItem(storageLabel, account as string);
     }
   };
 

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Layout } from '../components/Layout';
-import { buttonStyles } from './index';
-import { BUTTON_COLORS } from '../../utils/constants';
+import { buttonStyles, BUTTON_COLORS } from './index';
 import { useAccount } from '@/hooks/useAccount';
 import { platformAuthenticatorIsAvailable, startRegistration } from '@simplewebauthn/browser';
 import { getPublicKeyFromAuthenticatorData } from '../../utils/webauthn';

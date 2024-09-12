@@ -21,6 +21,11 @@ export function bufferToHex(buffer: ArrayBufferLike): string {
   return formatHex(Buffer.from(buffer).toString('hex'));
 }
 
+export const arrayBufferToHex = (buffer: ArrayBufferLike) => {
+  return Array.from(new Uint8Array(buffer))
+    .map((byte) => byte.toString(16).padStart(2, '0'))
+    .join('');
+};
 export function toBase64(input: string | Buffer): string {
   input = input.toString();
   return padString(input).replace(/-/g, '+').replace(/_/g, '/');

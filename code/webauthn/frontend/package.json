@@ -9,14 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@github/webauthn-json": "^2.1.1",
-    "@passwordless-id/webauthn": "^1.5.0",
     "@simplewebauthn/browser": "^10.0.0",
     "@simplewebauthn/server": "^10.0.1",
-    "base64url": "^3.0.1",
     "cbor": "^9.0.2",
-    "crypto": "^1.0.1",
-    "elliptic": "^6.5.6",
     "ethers": "^5.7.2",
     "next": "14.2.5",
     "react": "^18",
@@ -24,7 +19,6 @@
     "zksync-ethers": "^5.1.0"
   },
   "devDependencies": {
-    "@types/elliptic": "^6.4.18",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

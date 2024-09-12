@@ -19,8 +19,10 @@ contract Account is IAccount, IERC1271 {
   // state variable for account owner
   address public owner;
 
+  // ANCHOR: r1Owner
   // the secp256r1 public key of the owner
   bytes public r1Owner;
+  // ANCHOR_END: r1Owner
 
   // P256Verify precompile address
   address constant P256 = 0x0000000000000000000000000000000000000100;
@@ -205,6 +207,7 @@ contract Account is IAccount, IERC1271 {
     r1Owner = _r1Owner;
   }
 
+  // ANCHOR: validateWebAuthnSignature
   function validateWebAuthnSignature(bytes memory webauthnSignature, bytes32 txHash) private view returns (bool valid) {
     if (r1Owner.length == 0) {
       return false;
@@ -212,13 +215,15 @@ contract Account is IAccount, IERC1271 {
     bytes32[2] memory pubKey = abi.decode(r1Owner, (bytes32[2]));
     valid = _validateWebAuthnSignature(txHash, webauthnSignature, pubKey);
   }
+  // ANCHOR_END: validateWebAuthnSignature
 
+  // ANCHOR: _validateWebAuthnSignature
   function _validateWebAuthnSignature(
     bytes32 txHash,
     bytes memory webauthnSignature,
     bytes32[2] memory pubKey
   ) public view returns (bool valid) {
-    (bytes memory authenticatorData, bytes memory clientData, bytes32[2] memory rs) = _decodeWebauthnSignature(
+    (bytes memory authenticatorData, bytes memory clientData, bytes32[2] memory rs) = _decodeWebAuthnSignature(
       webauthnSignature
     );
 
@@ -245,13 +250,15 @@ contract Account is IAccount, IERC1271 {
 
     valid = callVerifier(message, rs, pubKey);
   }
+  // ANCHOR_END: _validateWebAuthnSignature
 
-  function _decodeWebauthnSignature(
+  function _decodeWebAuthnSignature(
     bytes memory webauthnSignature
   ) private pure returns (bytes memory authenticatorData, bytes memory clientData, bytes32[2] memory rs) {
     (authenticatorData, clientData, rs) = abi.decode(webauthnSignature, (bytes, bytes, bytes32[2]));
   }
 
+  // ANCHOR: callVerifier
   function callVerifier(bytes32 hash, bytes32[2] memory rs, bytes32[2] memory pubKey) internal view returns (bool) {
     /**
      * Prepare the input format
@@ -272,6 +279,7 @@ contract Account is IAccount, IERC1271 {
 
     return abi.decode(output, (bool));
   }
+  // ANCHOR_END: callVerifier
 
   function extractChallengeFromClientData(bytes memory clientDataJSON) public pure returns (string memory) {
     bytes memory challengeSlice = slice(clientDataJSON, 36, 58);

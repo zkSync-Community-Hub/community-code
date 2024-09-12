@@ -1,15 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import type { Provider } from 'zksync-ethers';
-import { getDataToSign, signAndSend } from '../../utils/sign';
+import { getDataToSign, signAndSend, authenticate } from '../../utils/webauthn';
 import { getTransaction } from '../../utils/tx';
 import React, { useEffect, useState } from 'react';
 import { Layout } from '../components/Layout';
 import { buttonStyles } from '.';
 import { containerStyles } from './register';
 import { ethers } from 'ethers';
-import { authenticate } from '../../utils/webauthn';
 import * as NFT_ABI_JSON from '../../../contracts/artifacts-zk/contracts/MyNFT.sol/MyNFT.json';
-import { BUTTON_COLORS, NFT_CONTRACT_ADDRESS } from '../../utils/constants';
+import { BUTTON_COLORS, NFT_CONTRACT_ADDRESS } from '@/pages/index';
 import { useAccount } from '@/hooks/useAccount';
 
 export default function Mint({ provider }: { provider: Provider }) {

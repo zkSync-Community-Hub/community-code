@@ -1,21 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import { Layout } from '../components/Layout';
-import { buttonStyles } from './index';
-import { AA_FACTORY_ADDRESS, BUTTON_COLORS } from '../../utils/constants';
+import { buttonStyles, AA_FACTORY_ADDRESS, BUTTON_COLORS } from './index';
 import { containerStyles, headerStyles } from './register';
 import { type Provider, utils, Wallet } from 'zksync-ethers';
 import { ethers } from 'ethers';
 import * as factoryAbiJSON from '../../../contracts/artifacts-zk/contracts/AAFactory.sol/AAFactory.json';
 import { getPaymasterOverrides } from '../../utils/tx';
 import { useAccount, useSetAccount } from '@/hooks/useAccount';
-import { useSetWallet, useWallet } from '@/hooks/useWallet';
+import {
+  useSetWallet,
+  // useWallet
+} from '@/hooks/useWallet';
 
 export default function CreateAccount({ provider }: { provider: Provider }) {
   const [isMounted, setIsMounted] = useState<boolean>(false);
   const account = useAccount();
   const setAccount = useSetAccount();
   const setWallet = useSetWallet();
-  const accountWallet = useWallet();
+  // const accountWallet = useWallet();
 
   useEffect(() => {
     setIsMounted(true);
@@ -87,7 +89,7 @@ export default function CreateAccount({ provider }: { provider: Provider }) {
           <div>{account}</div>
         </div>
       )}
-      {accountWallet && (
+      {/* {accountWallet && (
         <div
           style={{
             display: 'flex',
@@ -98,7 +100,7 @@ export default function CreateAccount({ provider }: { provider: Provider }) {
           <div>Your current account private key is:</div>
           <div>{accountWallet?.privateKey}</div>
         </div>
-      )}
+      )} */}
     </Layout>
   );
 }

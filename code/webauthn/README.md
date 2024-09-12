@@ -1,7 +1,5 @@
 # Sign Transactions With Webauthn Example
 
-Note: this code is not secure. It is just intended as a proof of concept to demonstrate how signing transactions using secp256r1 signatures is possible.
-
 This demo requires Google Chrome and a device that supports webauthn.
 
 ## Running Locally
@@ -18,6 +16,16 @@ Run a local in-memory node with `era_test_node`:
 ```shell
 era_test_node run
 ```
+
+### Deploying the Contracts
+
+Deploy the AAFactory, paymaster, and NFT contracts:
+
+```shell
+npm run deploy
+```
+
+Once deployed, update the addresses in `frontend/utils/constants.ts`.
 
 ### Deploying a New Smart Account
 

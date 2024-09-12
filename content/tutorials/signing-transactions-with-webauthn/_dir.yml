@@ -1,0 +1,24 @@
+title: Signing Transactions With WebAuthn
+featured: true
+authors:
+  - name: MatterLabs
+    url: https://matter-labs.io
+    avatar: https://avatars.githubusercontent.com/u/42489169?s=200&v=4
+github_repo: https://github.com/ZKsync-Community-Hub
+tags:
+  - webauthn
+  - account abstraction
+summary: Use webauthn to sign transactions
+description: In this tutorial, you will learn how to use WebAuthn to sign transactions for smart accounts.
+what_you_will_learn:
+  - How to use WebAuthn
+  - How to send transactions with custom signatures
+  - How to validate WebAuthn signatures
+  - How to use the P256Verify precompile
+updated: 2024-09-12
+tools:
+  - WebAuthn
+  - zksync-ethers
+  - zksync-cli
+  - era_test_node
+  - hardhat
