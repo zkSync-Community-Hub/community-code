@@ -4,7 +4,7 @@ import { defaultAbiCoder } from 'ethers/lib/utils';
 import { EIP712Signer, type Provider, utils } from 'zksync-ethers';
 import type { AuthenticatorAssertionResponseJSON } from '@simplewebauthn/types';
 import { BigNumber } from 'ethers';
-import type { TransactionRequest } from 'zksync-ethers/build/types';
+import type { TransactionRequest } from 'zksync-ethers/src/types';
 import * as cbor from 'cbor';
 
 export async function authenticate(challenge: string) {

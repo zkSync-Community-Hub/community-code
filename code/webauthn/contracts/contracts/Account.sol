@@ -203,9 +203,11 @@ contract Account is IAccount, IERC1271 {
     _transaction.processPaymasterInput();
   }
 
+  // ANCHOR: updateR1Owner
   function updateR1Owner(bytes memory _r1Owner) external onlySelf {
     r1Owner = _r1Owner;
   }
+  // ANCHOR_END: updateR1Owner
 
   // ANCHOR: validateWebAuthnSignature
   function validateWebAuthnSignature(bytes memory webauthnSignature, bytes32 txHash) private view returns (bool valid) {

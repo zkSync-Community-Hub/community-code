@@ -4,7 +4,7 @@ import { buttonStyles, AA_FACTORY_ADDRESS, BUTTON_COLORS } from './index';
 import { containerStyles, headerStyles } from './register';
 import { type Provider, utils, Wallet } from 'zksync-ethers';
 import { ethers } from 'ethers';
-import * as factoryAbiJSON from '../../../contracts/artifacts-zk/contracts/AAFactory.sol/AAFactory.json';
+import factoryAbiJSON from '../../../contracts/artifacts-zk/contracts/AAFactory.sol/AAFactory.json';
 import { getPaymasterOverrides } from '../../utils/tx';
 import { useAccount, useSetAccount } from '@/hooks/useAccount';
 import {
@@ -36,7 +36,7 @@ export default function CreateAccount({ provider }: { provider: Provider }) {
   async function deployNewAccount() {
     const owner = Wallet.createRandom().connect(provider);
     const aaFactory = new ethers.Contract(AA_FACTORY_ADDRESS, factoryAbiJSON.abi, owner);
-    const salt = '0x0000000000000000000000000000000000000000000000000000000000000000';
+    const salt = ethers.utils.hexlify(ethers.utils.randomBytes(32));
     const overrides = await getPaymasterOverrides();
     const tx = await aaFactory.deployAccount(salt, owner.address, overrides);
     await tx.wait();

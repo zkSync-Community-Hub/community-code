@@ -7,7 +7,7 @@ import { Layout } from '../components/Layout';
 import { buttonStyles } from '.';
 import { containerStyles } from './register';
 import { ethers } from 'ethers';
-import * as NFT_ABI_JSON from '../../../contracts/artifacts-zk/contracts/MyNFT.sol/MyNFT.json';
+import NFT_ABI_JSON from '../../../contracts/artifacts-zk/contracts/MyNFT.sol/MyNFT.json';
 import { BUTTON_COLORS, NFT_CONTRACT_ADDRESS } from '@/pages/index';
 import { useAccount } from '@/hooks/useAccount';
 

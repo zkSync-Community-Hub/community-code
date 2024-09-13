@@ -1,7 +1,7 @@
 import { DEFAULT_GAS_PER_PUBDATA_LIMIT, getPaymasterParams } from 'zksync-ethers/build/utils';
 import { EIP712Signer, type Wallet, type Provider, utils, type types } from 'zksync-ethers';
 import { ethers } from 'ethers';
-import * as accountAbiJSON from '../../contracts/artifacts-zk/contracts/Account.sol/Account.json';
+import accountAbiJSON from '../../contracts/artifacts-zk/contracts/Account.sol/Account.json';
 import { PAYMASTER_ADDRESS } from '@/pages/index';
 
 export async function getTransaction(to: string, from: string, value: string, data: string, provider: Provider) {
@@ -42,20 +42,7 @@ export async function registerKeyInAccount(pubKey: string, account: string, prov
     const contract = new ethers.Contract(account, accountAbiJSON.abi, provider);
     const data = contract.interface.encodeFunctionData('updateR1Owner', [pubKey]);
     const transferAmount = '0';
-    const overrides = await getPaymasterOverrides();
-
-    const registerTx = {
-      to: account,
-      from: account,
-      chainId: (await provider.getNetwork()).chainId,
-      nonce: await provider.getTransactionCount(account),
-      type: 113,
-      customData: overrides.customData,
-      value: ethers.utils.parseEther(transferAmount),
-      gasPrice: await provider.getGasPrice(),
-      gasLimit: BigInt(2000000000),
-      data,
-    };
+    const registerTx = await getTransaction(account, account, transferAmount, data, provider);
     const signedTxHash = EIP712Signer.getSignedDigest(registerTx);
     const signingKey: ethers.utils.SigningKey = new ethers.utils.SigningKey(wallet.privateKey);
     const walletSignature = signingKey.signDigest(signedTxHash);
