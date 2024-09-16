@@ -47,10 +47,9 @@ export async function modifyFile(
       });
     }
     if (atLine) {
-      lines.splice(atLine - 1, 0, contentText);
+      lines.splice(atLine - 1, 0, spacesBefore + contentText + spacesAfter);
     }
-    let finalContent = lines.filter((line: string) => line !== '~~~REMOVE~~~').join('\n');
-    finalContent = spacesBefore + finalContent + spacesAfter;
+    const finalContent = lines.filter((line: string) => line !== '~~~REMOVE~~~').join('\n');
     writeFileSync(filePath, finalContent, 'utf8');
   }
 }

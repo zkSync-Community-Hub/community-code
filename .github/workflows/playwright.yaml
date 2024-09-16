@@ -13,6 +13,7 @@ jobs:
           - "tests/erc20-paymaster.spec.ts" 
           - "tests/how-to-test-contracts.spec.ts"
           - "tests/daily-spend-limit.spec.ts"
+          - "tests/native-aa-multisig.spec.ts"
 
     steps:
     - uses: actions/checkout@v4
