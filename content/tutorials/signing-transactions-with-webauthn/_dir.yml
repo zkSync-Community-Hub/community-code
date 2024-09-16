@@ -1,9 +1,9 @@
 title: Signing Transactions With WebAuthn
 featured: true
 authors:
-  - name: MatterLabs
-    url: https://matter-labs.io
-    avatar: https://avatars.githubusercontent.com/u/42489169?s=200&v=4
+  - name: sarahschwartz
+    url: https://github.com/sarahschwartz
+    avatar: https://avatars.githubusercontent.com/u/58856580?v=4
 github_repo: https://github.com/ZKsync-Community-Hub
 tags:
   - webauthn
