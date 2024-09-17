@@ -24,23 +24,17 @@ export const steps: IStepConfig = {
     action: 'writeToFile',
     filepath: 'tests-output/custom-aa-tutorial/hardhat.config.ts',
   },
-  'add-local-node': {
-    action: 'modifyFile',
-    filepath: 'tests-output/custom-aa-tutorial/hardhat.config.ts',
-    useSetData: "inMemoryNode: { url: 'http://127.0.0.1:8011', ethNetwork: 'localhost', zksync: true,},",
-    atLine: 22,
-  },
   'use-local-node': {
     action: 'modifyFile',
     filepath: 'tests-output/custom-aa-tutorial/hardhat.config.ts',
     useSetData: "  defaultNetwork: 'inMemoryNode',",
-    atLine: 14,
-    removeLines: [14],
+    atLine: 6,
+    removeLines: [6],
   },
   'start-local-node': {
     action: 'runCommand',
     commandFolder: 'tests-output/custom-aa-tutorial',
-    useSetCommand: "bun pm2 start 'era_test_node run' --name era-test-node",
+    useSetCommand: "bun pm2 start 'era_test_node fork sepolia-testnet' --name era-test-node",
   },
   'make-multisig-contract': {
     action: 'runCommand',
@@ -66,12 +60,12 @@ export const steps: IStepConfig = {
     action: 'writeToFile',
     filepath: 'tests-output/custom-aa-tutorial/deploy/deploy-factory.ts',
   },
-  'deploy-script-pk': {
+  'env-pk': {
     action: 'modifyFile',
-    filepath: 'tests-output/custom-aa-tutorial/deploy/deploy-factory.ts',
-    atLine: 8,
-    removeLines: [8],
-    useSetData: 'const wallet = new Wallet("0x7726827caac94a7f9e1b160f7ea819f172f7b6f9d2a97f992c38edeab82d4110");',
+    filepath: 'tests-output/custom-aa-tutorial/.env',
+    atLine: 1,
+    removeLines: [1],
+    useSetData: 'WALLET_PRIVATE_KEY=0x7726827caac94a7f9e1b160f7ea819f172f7b6f9d2a97f992c38edeab82d4110',
   },
   'compile-and-deploy-factory': {
     action: 'runCommand',
@@ -90,31 +84,31 @@ export const steps: IStepConfig = {
   'deposit-funds': {
     action: 'modifyFile',
     filepath: 'tests-output/custom-aa-tutorial/deploy/deploy-multisig.ts',
-    atLine: 39,
+    atLine: 41,
     addSpacesBefore: 1,
   },
   'create-deploy-tx': {
     action: 'modifyFile',
     filepath: 'tests-output/custom-aa-tutorial/deploy/deploy-multisig.ts',
-    atLine: 54,
+    atLine: 56,
     addSpacesBefore: 1,
   },
   'modify-deploy-tx': {
     action: 'modifyFile',
     filepath: 'tests-output/custom-aa-tutorial/deploy/deploy-multisig.ts',
-    atLine: 62,
+    atLine: 64,
     addSpacesBefore: 1,
   },
   'sign-deploy-tx': {
     action: 'modifyFile',
     filepath: 'tests-output/custom-aa-tutorial/deploy/deploy-multisig.ts',
-    atLine: 80,
+    atLine: 82,
     addSpacesBefore: 1,
   },
   'send-deploy-tx': {
     action: 'modifyFile',
     filepath: 'tests-output/custom-aa-tutorial/deploy/deploy-multisig.ts',
-    atLine: 90,
+    atLine: 95,
     addSpacesBefore: 1,
   },
   'final-deploy-script': {
@@ -131,31 +125,9 @@ export const steps: IStepConfig = {
   'deploy-multisig-account': {
     action: 'modifyFile',
     filepath: 'tests-output/custom-aa-tutorial/deploy/deploy-multisig.ts',
-    atLine: 6,
-    removeLines: [6],
+    atLine: 8,
+    removeLines: [8],
     useSetData: 'const AA_FACTORY_ADDRESS = process.env.AA_FACTORY_ADDRESS || "";',
-  },
-  'deploy-multisig-provider': {
-    action: 'modifyFile',
-    filepath: 'tests-output/custom-aa-tutorial/deploy/deploy-multisig.ts',
-    atLine: 9,
-    removeLines: [9],
-    useSetData: 'const provider = new Provider("http://localhost:8011");',
-  },
-  'deploy-multisig-pk': {
-    action: 'modifyFile',
-    filepath: 'tests-output/custom-aa-tutorial/deploy/deploy-multisig.ts',
-    atLine: 11,
-    removeLines: [11],
-    useSetData:
-      'const wallet = new Wallet("0x7726827caac94a7f9e1b160f7ea819f172f7b6f9d2a97f992c38edeab82d4110").connect(provider);',
-  },
-  'import-dotenv': {
-    action: 'modifyFile',
-    filepath: 'tests-output/custom-aa-tutorial/deploy/deploy-multisig.ts',
-    useSetData: `import dotenv from "dotenv";
-    dotenv.config();`,
-    atLine: 4,
   },
   'run-deploy-multisig': {
     action: 'runCommand',

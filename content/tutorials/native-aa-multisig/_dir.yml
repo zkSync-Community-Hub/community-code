@@ -17,7 +17,7 @@ what_you_will_learn:
   - How to build a smart contract factory
   - How to build a smart contract account
   - How to send transactions through a smart contract account
-updated: 2024-05-09
+updated: 2024-09-17
 tools:
   - zksync-cli
   - zksync-ethers
