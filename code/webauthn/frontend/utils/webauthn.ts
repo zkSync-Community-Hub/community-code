@@ -8,7 +8,7 @@ import type { TransactionRequest } from 'zksync-ethers/src/types';
 import * as cbor from 'cbor';
 
 export async function authenticate(challenge: string) {
-  const resp = await fetch('http://localhost:3000/api/generate-authentication-options', {
+  const resp = await fetch('http://localhost:3000/api/get-authentication-options', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

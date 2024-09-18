@@ -72,8 +72,8 @@ export default defineConfig({
 
   /* Run your local dev server before starting the tests */
   webServer: {
-    command: 'bun run dev',
-    url: 'http://localhost:3000',
+    command: 'PORT=3030 bun dev',
+    url: 'http://localhost:3030',
     reuseExistingServer: !process.env.CI,
     timeout: 120 * 1000,
   },

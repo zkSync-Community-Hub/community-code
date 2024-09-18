@@ -1,6 +1,7 @@
 import { steps as erc20PaymasterSteps } from './erc20-paymaster';
 import { steps as howToTestContractsSteps } from './how-to-test-contracts';
 import { steps as dailySpendLimitSteps } from './daily-spend-limit';
+import { steps as signingWithWebAuthnSteps } from './signing-txns-with-webauthn';
 
 export function getConfig(tutorialName: string) {
   let steps;
@@ -13,6 +14,9 @@ export function getConfig(tutorialName: string) {
       break;
     case 'daily-spend-limit':
       steps = dailySpendLimitSteps;
+      break;
+    case 'signing-txns-with-webauthn':
+      steps = signingWithWebAuthnSteps;
       break;
     default:
       break;

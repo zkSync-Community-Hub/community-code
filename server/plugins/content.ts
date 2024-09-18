@@ -16,10 +16,29 @@ export default defineNitroPlugin((nitroApp) => {
 
 function handleCodeImport(body: string) {
   const lines = body.split(EOL);
+  let inCodeBlock = false;
+  let codeBlockIndent = '';
+
   for (let i = 0; i < lines.length; i++) {
-    if (lines[i].includes(':code-import{filePath')) {
-      const filepath = lines[i].split('"')[1];
-      const newCode = getCodeFromFilepath(filepath);
+    const trimmedLine = lines[i].trim();
+
+    if (trimmedLine.startsWith('```')) {
+      inCodeBlock = !inCodeBlock;
+      if (inCodeBlock) {
+        const matches = lines[i].match(/^\s*/);
+        codeBlockIndent = matches ? matches[0] : '';
+      }
+    }
+
+    if (inCodeBlock && trimmedLine.includes(':code-import{filePath')) {
+      const filepath = trimmedLine.split('"')[1];
+      let newCode = getCodeFromFilepath(filepath);
+
+      newCode = newCode
+        .split(EOL)
+        .map((line) => codeBlockIndent + line)
+        .join(EOL);
+
       lines[i] = newCode;
     }
   }
@@ -37,13 +56,16 @@ function getCodeFromFilepath(filepath: string) {
   } else {
     const fullPath = join(process.cwd(), 'code', cleanPath);
     code = readFileSync(fullPath, 'utf8');
+    files.set(filepath, code);
   }
   const exampleComment = splitPath[1] || null;
   if (exampleComment) {
     code = extractCommentBlock(code, exampleComment);
   }
-  files.set(filepath, code);
-  return code;
+  // remove any other ANCHOR tags
+  const lines = code.split(EOL);
+  const trimmedLines = lines.filter((line) => !line.trimStart().startsWith('// ANCHOR'));
+  return trimmedLines.join(EOL);
 }
 
 function extractCommentBlock(content: string, comment: string | null) {
@@ -70,12 +92,6 @@ function extractCommentBlock(content: string, comment: string | null) {
     }
   }
   const newLines = lines.slice(lineStart, lineEnd);
-
-  // remove any other example tags
-  const trimmedLines = newLines.filter((line) => {
-    const thisLine = line.trimStart();
-    return thisLine.startsWith('// ANCHOR') === false;
-  });
-  const linesContent = trimmedLines.join(EOL);
+  const linesContent = newLines.join(EOL);
   return linesContent;
 }
