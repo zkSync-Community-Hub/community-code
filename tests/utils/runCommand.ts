@@ -95,7 +95,7 @@ async function createNewHHProject(goToFolder: string, projectFolder: string) {
   const destinationFolder = join(goToFolder, projectFolder);
   copyFolder(sourceFolder, destinationFolder);
   const installCommand = `cd ${destinationFolder} && npm init -y && npm install --save-dev "hardhat@^2.22.6" "@nomicfoundation/hardhat-toolbox@^5.0.0" `;
-  run(installCommand);
+  await run(installCommand);
 }
 
 function copyFolder(source: string, destination: string) {

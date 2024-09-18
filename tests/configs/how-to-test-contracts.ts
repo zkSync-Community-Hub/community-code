@@ -4,9 +4,17 @@ export const steps: IStepConfig = {
   'initialize-hardhat-project': {
     action: 'runCommand',
   },
-  'install-hh-zksync': {
+  'wait-for-initialization': {
+    action: 'wait',
+    timeout: 10000,
+  },
+  'install-deps': {
     action: 'runCommand',
     commandFolder: 'tests-output/hardhat-project',
+  },
+  'wait-for-deps': {
+    action: 'wait',
+    timeout: 10000,
   },
   'import-zksync-config': {
     action: 'modifyFile',
@@ -20,7 +28,7 @@ export const steps: IStepConfig = {
   },
   'wait-for-hh-node': {
     action: 'wait',
-    timeout: 15000,
+    timeout: 10000,
   },
   'test-hh-node': {
     action: 'checkIfBalanceIsZero',
@@ -30,7 +38,8 @@ export const steps: IStepConfig = {
   'zksync-hh-network': {
     action: 'modifyFile',
     filepath: 'tests-output/hardhat-project/hardhat.config.ts',
-    atLine: 7,
+    atLine: 6,
+    removeLines: [6],
   },
   'install-chai-ethers': {
     action: 'runCommand',
