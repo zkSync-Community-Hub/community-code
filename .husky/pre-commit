@@ -1,2 +1,4 @@
 
+bun install
+git add bun.lockb
 bun lint-staged
