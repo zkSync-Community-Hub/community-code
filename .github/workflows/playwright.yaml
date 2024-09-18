@@ -33,5 +33,5 @@ jobs:
         export TERM=xterm-256color
         export COLUMNS=80
         export LINES=24
-        script -q -c "bun test:github ${{ matrix.tutorial }}"
+        bun test:github ${{ matrix.tutorial }}
       

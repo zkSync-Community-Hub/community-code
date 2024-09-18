@@ -43,6 +43,7 @@ export const steps: IStepConfig = {
   'multisig-contract-code': {
     action: 'writeToFile',
     filepath: 'tests-output/custom-aa-tutorial/contracts/TwoUserMultisig.sol',
+    addSpacesAfter: false,
   },
   'make-factory-contract': {
     action: 'runCommand',
