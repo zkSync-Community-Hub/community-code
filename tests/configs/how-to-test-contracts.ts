@@ -20,7 +20,7 @@ export const steps: IStepConfig = {
   },
   'wait-for-hh-node': {
     action: 'wait',
-    timeout: 7000,
+    timeout: 15000,
   },
   'test-hh-node': {
     action: 'checkIfBalanceIsZero',
