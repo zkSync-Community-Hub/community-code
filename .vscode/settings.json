@@ -27,8 +27,5 @@
     "statusBarItem.remoteBackground": "#8257a6",
     "statusBarItem.remoteForeground": "#e7e7e7"
   },
-  "peacock.color": "#8257a6",
-  "[solidity]": {
-    "editor.defaultFormatter": "JuanBlanco.solidity"
-  }
+  "peacock.color": "#8257a6"
 }
