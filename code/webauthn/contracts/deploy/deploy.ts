@@ -1,6 +1,6 @@
 import { utils, Wallet, Provider } from 'zksync-ethers';
 import type { HardhatRuntimeEnvironment } from 'hardhat/types';
-import { Deployer } from '@matterlabs/hardhat-zksync-deploy';
+import { Deployer } from '@matterlabs/hardhat-zksync';
 // load env file
 import dotenv from 'dotenv';
 import { ethers } from 'ethers';

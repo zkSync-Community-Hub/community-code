@@ -20,17 +20,9 @@ const contractSteps: IStepConfig = {
     atLine: 1,
     removeLines: [1],
   },
-  'install-deps': {
-    action: 'runCommand',
-    commandFolder: 'tests-output/zksync-webauthn',
-  },
-  'wait-for-install': {
-    action: 'wait',
-    timeout: 5000,
-  },
   'remove-template-files': {
     action: 'runCommand',
-    commandFolder: 'tests-output/zksync-webauthn/contracts',
+    commandFolder: 'tests-output/zksync-webauthn',
   },
   'create-paymaster': {
     action: 'runCommand',
