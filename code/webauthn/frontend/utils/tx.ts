@@ -2,7 +2,6 @@ import { DEFAULT_GAS_PER_PUBDATA_LIMIT, getPaymasterParams } from 'zksync-ethers
 import { EIP712Signer, type Wallet, type Provider, utils, type types } from 'zksync-ethers';
 import { ethers } from 'ethers';
 import accountAbiJSON from '../../contracts/artifacts-zk/contracts/Account.sol/Account.json';
-import { PAYMASTER_ADDRESS } from '@/pages/index';
 
 export async function getTransaction(to: string, from: string, value: string, data: string, provider: Provider) {
   const gasPrice = await provider.getGasPrice();
@@ -24,6 +23,7 @@ export async function getTransaction(to: string, from: string, value: string, da
 }
 
 export async function getPaymasterOverrides() {
+  const PAYMASTER_ADDRESS = process.env.NEXT_PUBLIC_PAYMASTER_ADDRESS || '';
   const paymasterParams = getPaymasterParams(PAYMASTER_ADDRESS, {
     type: 'General',
     innerInput: new Uint8Array(),

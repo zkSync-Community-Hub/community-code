@@ -11,8 +11,8 @@ import { Wallet, type Provider } from 'zksync-ethers';
 export default function Register({ provider }: { provider: Provider }) {
   const [isMounted, setIsMounted] = useState<boolean>(false);
   const [registeredPublicKey, setRegisteredPublicKey] = useState<string>();
-  const [userName, setUserName] = useState<string>();
-  const [accountPk, setAccountPk] = useState<string>();
+  const [userName, setUserName] = useState<string>('');
+  const [accountPk, setAccountPk] = useState<string>('');
 
   const account = useAccount();
   const accountWallet = useWallet();

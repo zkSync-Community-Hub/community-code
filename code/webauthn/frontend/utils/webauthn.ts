@@ -62,7 +62,9 @@ export function getDataToSign(transaction: TransactionRequest) {
 }
 
 export function getRS(signatureBase64Url: string): Array<BigNumber> {
+  // The total number of points on the secp256r1 elliptic curve.
   const n = BigNumber.from('0xFFFFFFFF00000000FFFFFFFFFFFFFFFFBCE6FAADA7179E84F3B9CAC2FC632551');
+  // max value for lower half of the curve
   const halfN = n.div(2);
   const signatureBuffer = bufferFromBase64url(signatureBase64Url);
   const signatureParsed = derToRS(signatureBuffer);
@@ -71,6 +73,7 @@ export function getRS(signatureBase64Url: string): Array<BigNumber> {
   const second = BigNumber.from('0x' + arrayBufferToHex(signatureParsed[1]));
   const sig: Array<BigNumber> = [first, second];
 
+  // ensure that s is in the lower half of the curve
   if (sig[1].gt(halfN)) {
     sig[1] = n.sub(sig[1]);
   }

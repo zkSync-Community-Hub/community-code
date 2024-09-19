@@ -2,12 +2,6 @@ import Link from 'next/link';
 import { Layout } from '../components/Layout';
 import React from 'react';
 
-export const AA_FACTORY_ADDRESS = '0x<YOUR_AA_FACTORY_ADDRESS>';
-
-export const NFT_CONTRACT_ADDRESS = '0x<YOUR_NFT_CONTRACT_ADDRESS>';
-
-export const PAYMASTER_ADDRESS = '0x<YOUR_PAYMASTER_ADDRESS>';
-
 export const BUTTON_COLORS = [
   'linear-gradient(90deg, #69b7eb, #b3dbd3, #f4d6db)',
   'linear-gradient(90deg, #cfecd0, #ffc5ca)',
@@ -21,7 +15,7 @@ export const BUTTON_COLORS = [
 export default function Home() {
   return (
     <Layout isHome>
-      <h1 style={{ textAlign: 'center', margin: '4rem 1rem' }}>Sign Txns with WebAuthn Demo</h1>
+      <h1 style={{ textAlign: 'center', margin: '4rem 1rem' } as React.CSSProperties}>Sign Txns with WebAuthn Demo</h1>
       <div style={containerStyles}>
         <Link
           style={{

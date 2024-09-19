@@ -22,6 +22,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
           residentKey: 'required',
           userVerification: 'required',
         },
+        supportedAlgorithmIDs: [-7],
       });
 
       res.status(200).json({ options });

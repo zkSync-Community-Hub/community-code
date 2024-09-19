@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Layout } from '../components/Layout';
-import { buttonStyles, AA_FACTORY_ADDRESS, BUTTON_COLORS } from './index';
+import { buttonStyles, BUTTON_COLORS } from './index';
 import { containerStyles, headerStyles } from './register';
 import { type Provider, utils, Wallet } from 'zksync-ethers';
 import { ethers } from 'ethers';
@@ -11,6 +11,8 @@ import {
   useSetWallet,
   // useWallet
 } from '@/hooks/useWallet';
+
+const AA_FACTORY_ADDRESS = process.env.NEXT_PUBLIC_AA_FACTORY_ADDRESS || '';
 
 export default function CreateAccount({ provider }: { provider: Provider }) {
   const [isMounted, setIsMounted] = useState<boolean>(false);

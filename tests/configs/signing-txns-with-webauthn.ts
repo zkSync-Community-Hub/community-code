@@ -164,15 +164,6 @@ const frontendPart1Steps: IStepConfig = {
     variableName: 'NEXT_PUBLIC_PAYMASTER_ADDRESS',
     regex: /(?<=PAYMASTER CONTRACT ADDRESS:\s*)0x[a-fA-F0-9]{40}/i,
   },
-  'replace-deployed-contract-address': {
-    action: 'modifyFile',
-    filepath: 'tests-output/zksync-webauthn/frontend/src/pages/index.tsx',
-    atLine: 5,
-    removeLines: [5, 7, 9],
-    useSetData: `export const AA_FACTORY_ADDRESS = process.env.NEXT_PUBLIC_AA_FACTORY_ADDRESS || '';
-  export const NFT_CONTRACT_ADDRESS = process.env.NEXT_PUBLIC_NFT_CONTRACT_ADDRESS || '';
-  export const PAYMASTER_ADDRESS = process.env.NEXT_PUBLIC_PAYMASTER_ADDRESS || '';`,
-  },
   'make-layout-component': {
     action: 'runCommand',
     commandFolder: 'tests-output/zksync-webauthn/frontend',

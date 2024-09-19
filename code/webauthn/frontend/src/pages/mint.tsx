@@ -8,8 +8,10 @@ import { buttonStyles } from '.';
 import { containerStyles } from './register';
 import { ethers } from 'ethers';
 import NFT_ABI_JSON from '../../../contracts/artifacts-zk/contracts/MyNFT.sol/MyNFT.json';
-import { BUTTON_COLORS, NFT_CONTRACT_ADDRESS } from '@/pages/index';
+import { BUTTON_COLORS } from '@/pages/index';
 import { useAccount } from '@/hooks/useAccount';
+
+const NFT_CONTRACT_ADDRESS = process.env.NEXT_PUBLIC_NFT_CONTRACT_ADDRESS || '';
 
 export default function Mint({ provider }: { provider: Provider }) {
   const [isMounted, setIsMounted] = useState<boolean>(false);
