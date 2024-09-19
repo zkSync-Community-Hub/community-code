@@ -110,7 +110,7 @@ contract TwoUserMultisig is IAccount, IERC1271 {
             uint32 gas = Utils.safeCastToU32(gasleft());
 
             // Note, that the deployer contract can only be called
-            // with a "systemCall" flag.
+            // with a "enableEraVMExtensions" flag.
             SystemContractsCaller.systemCallWithPropagatedRevert(gas, to, value, data);
         } else {
             bool success;
@@ -215,8 +215,8 @@ contract TwoUserMultisig is IAccount, IERC1271 {
         // since it is where the length of the `_fullSignature` is stored
         assembly {
             let r := mload(add(_fullSignature, 0x20))
-   let s := mload(add(_fullSignature, 0x40))
-   let v := and(mload(add(_fullSignature, 0x41)), 0xff)
+            let s := mload(add(_fullSignature, 0x40))
+            let v := and(mload(add(_fullSignature, 0x41)), 0xff)
 
             mstore(add(signature1, 0x20), r)
             mstore(add(signature1, 0x40), s)

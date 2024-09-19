@@ -14,12 +14,17 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   // Getting the bytecodeHash of the account
   const bytecodeHash = utils.hashBytecode(aaArtifact.bytecode);
 
-  const factory = await deployer.deploy(factoryArtifact, [bytecodeHash], undefined, [
-    // Since the factory requires the code of the multisig to be available,
-    // we should pass it here as well.
-    aaArtifact.bytecode,
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  ] as any);
+  const factory = await deployer.deploy(
+    factoryArtifact,
+    [bytecodeHash],
+    undefined,
+    undefined, // Override transaction section
+    [
+      // Since the factory requires the code of the multisig to be available,
+      // we need to pass it here as well.
+      aaArtifact.bytecode,
+    ]
+  );
 
   const factoryAddress = await factory.getAddress();
 
