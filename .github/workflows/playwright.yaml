@@ -13,6 +13,7 @@ jobs:
           - "tests/erc20-paymaster.spec.ts" 
           - "tests/how-to-test-contracts.spec.ts"
           - "tests/daily-spend-limit.spec.ts"
+          - "tests/native-aa-multisig.spec.ts"
 
     steps:
     - uses: actions/checkout@v4
@@ -32,5 +33,5 @@ jobs:
         export TERM=xterm-256color
         export COLUMNS=80
         export LINES=24
-        script -q -c "bun test:github ${{ matrix.tutorial }}"
+        bun test:github ${{ matrix.tutorial }}
       

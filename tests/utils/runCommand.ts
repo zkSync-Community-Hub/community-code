@@ -53,10 +53,9 @@ async function run(command: string, saveOutput?: string, checkForOutput?: string
 
   return new Promise<void>((resolve, reject) => {
     exec(command, { encoding: 'utf-8' }, (error, stdout, stderr) => {
-      console.log('EXPECT ERROR', expectError);
-
       if (error) {
         if (expectError) {
+          console.log('EXPECT ERROR', expectError);
           const hasError = [error.message, stdout, stderr].some((message) => message.includes(expectError));
           console.log('HAS ERROR', hasError);
           if (hasError) {
@@ -96,7 +95,7 @@ async function createNewHHProject(goToFolder: string, projectFolder: string) {
   const destinationFolder = join(goToFolder, projectFolder);
   copyFolder(sourceFolder, destinationFolder);
   const installCommand = `cd ${destinationFolder} && npm init -y && npm install --save-dev "hardhat@^2.22.6" "@nomicfoundation/hardhat-toolbox@^5.0.0" `;
-  run(installCommand);
+  await run(installCommand);
 }
 
 function copyFolder(source: string, destination: string) {

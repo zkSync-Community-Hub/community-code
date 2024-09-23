@@ -6,6 +6,9 @@ export default defineNuxtConfig({
     name: 'Community Code',
     url: process.env.NUXT_SITE_ENV ? 'https://staging-code.zksync.io' : 'https://code.zksync.io',
   },
+  nitro: {
+    plugins: ['./plugins/content.ts'],
+  },
   runtimeConfig: {
     public: {
       app: 'code',
