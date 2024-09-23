@@ -3,9 +3,9 @@ import { clickCopyButton } from './button';
 import { expect, type Page } from '@playwright/test';
 import { EOL } from 'os';
 
-export async function writeToFile(page: Page, buttonName: string, filePath: string) {
+export async function writeToFile(page: Page, buttonName: string, filePath: string, addSpacesAfter: boolean = true) {
   const content = await clickCopyButton(page, buttonName);
-  writeFileSync(filePath, `${content}\n\n`);
+  writeFileSync(filePath, addSpacesAfter ? `${content}\n\n` : `${content.trimEnd()}\n`);
 }
 
 export async function modifyFile(
@@ -47,10 +47,9 @@ export async function modifyFile(
       });
     }
     if (atLine) {
-      lines.splice(atLine - 1, 0, contentText);
+      lines.splice(atLine - 1, 0, spacesBefore + contentText + spacesAfter);
     }
-    let finalContent = lines.filter((line: string) => line !== '~~~REMOVE~~~').join('\n');
-    finalContent = spacesBefore + finalContent + spacesAfter;
+    const finalContent = lines.filter((line: string) => line !== '~~~REMOVE~~~').join('\n');
     writeFileSync(filePath, finalContent, 'utf8');
   }
 }

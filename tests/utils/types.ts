@@ -43,6 +43,7 @@ export interface IWait {
 export interface IWriteToFile {
   action: 'writeToFile';
   filepath: string;
+  addSpacesAfter?: boolean;
 }
 
 export interface IModifyFile {

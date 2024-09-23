@@ -68,7 +68,7 @@ export async function runTest(page: Page, url: string, config: IStepConfig) {
         await page.waitForTimeout(stepData.timeout);
         break;
       case 'writeToFile':
-        await writeToFile(page, stepID, stepData.filepath);
+        await writeToFile(page, stepID, stepData.filepath, stepData.addSpacesAfter);
         break;
       case 'modifyFile':
         await modifyFile(
