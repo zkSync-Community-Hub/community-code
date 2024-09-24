@@ -1,6 +1,5 @@
 import { utils, Wallet, Provider } from 'zksync-ethers';
 import type { HardhatRuntimeEnvironment } from 'hardhat/types';
-import { Deployer } from '@matterlabs/hardhat-zksync';
 // load env file
 import dotenv from 'dotenv';
 import { ethers } from 'ethers';
@@ -12,29 +11,31 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   // @ts-expect-error target config file which can be testnet or local
   const provider = new Provider(hre.network.config.url);
   const wallet = new Wallet(DEPLOYER_PRIVATE_KEY, provider);
-  const deployer = new Deployer(hre, wallet);
 
   // deploy the AA Factory & test deploying an account
-  await deployAAFactory(deployer);
+  await deployAAFactory(hre.deployer);
   // deploy the NFT contract
-  await deployMyNFT(deployer);
+  await deployMyNFT(hre.deployer);
   // deploy the Paymaster contract
-  await deployPaymaster(deployer, wallet);
+  await deployPaymaster(hre.deployer, wallet);
 }
 
-async function deployAAFactory(deployer: Deployer) {
+async function deployAAFactory(deployer: HardhatRuntimeEnvironment['deployer']) {
   const factoryArtifact = await deployer.loadArtifact('AAFactory');
   const aaArtifact = await deployer.loadArtifact('Account');
 
-  const factory = await deployer.deploy(factoryArtifact, [utils.hashBytecode(aaArtifact.bytecode)], undefined, [
-    aaArtifact.bytecode,
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  ] as any);
+  const factory = await deployer.deploy(
+    factoryArtifact,
+    [utils.hashBytecode(aaArtifact.bytecode)],
+    undefined,
+    undefined,
+    [aaArtifact.bytecode]
+  );
   const factoryAddress = await factory.getAddress();
   console.log(`AA factory address: ${factoryAddress}`);
 }
 
-async function deployMyNFT(deployer: Deployer) {
+async function deployMyNFT(deployer: HardhatRuntimeEnvironment['deployer']) {
   const artifact = await deployer.loadArtifact('MyNFT');
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const constructorArguments: any[] = [];
@@ -46,7 +47,7 @@ async function deployMyNFT(deployer: Deployer) {
   console.log('DONE MINTING');
 }
 
-async function deployPaymaster(deployer: Deployer, wallet: Wallet) {
+async function deployPaymaster(deployer: HardhatRuntimeEnvironment['deployer'], wallet: Wallet) {
   const artifact = await deployer.loadArtifact('GeneralPaymaster');
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const constructorArguments: any[] = [];

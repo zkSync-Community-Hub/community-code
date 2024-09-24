@@ -6,8 +6,8 @@ This demo requires Google Chrome and a device that supports webauthn.
 
 ### Install Dependencies
 
+Use node version `20.16.0`.
 Run `npm install` in both the `frontend` and `contracts` folders.
-Node version 20 is required.
 
 ### Start a local node
 
@@ -19,13 +19,25 @@ era_test_node run
 
 ### Deploying the Contracts
 
+Make a `.env` file and add a private key for a [pre-configured rich wallet](https://docs.zksync.io/build/test-and-debug/in-memory-node#pre-configured-rich-wallets).
+
+```env
+WALLET_PRIVATE_KEY=<0x_YOUR_PRIVATE_KEY>
+```
+
 Deploy the AAFactory, paymaster, and NFT contracts:
 
 ```shell
 npm run deploy
 ```
 
-Once deployed, update the addresses in `frontend/utils/constants.ts`.
+Once deployed, create a `frontend/.env.local` file based example in `frontend/.env.example` and add the deployed addresses.
+
+```env
+NEXT_PUBLIC_AA_FACTORY_ADDRESS=<0x_YOUR_AA_CONTRACT_ADDRESS>
+NEXT_PUBLIC_NFT_CONTRACT_ADDRESS=<0x_YOUR_NFT_CONTRACT_ADDRESS>
+NEXT_PUBLIC_PAYMASTER_ADDRESS=<0x_YOUR_PAYMASTER_CONTRACT_ADDRESS>
+```
 
 ### Deploying a New Smart Account
 
