@@ -1,7 +1,8 @@
 import { DEFAULT_GAS_PER_PUBDATA_LIMIT, getPaymasterParams } from 'zksync-ethers/build/utils';
-import { type Wallet, type Provider, type types, SmartAccount } from 'zksync-ethers';
+import { type Wallet, type Provider, type types, utils } from 'zksync-ethers';
 import { ethers } from 'ethers';
 import accountAbiJSON from '../../contracts/artifacts-zk/contracts/Account.sol/Account.json';
+import { getDataToSign } from './webauthn';
 
 export async function getTransaction(to: string, from: string, value: string, data: string, provider: Provider) {
   const gasPrice = await provider.getGasPrice();
@@ -43,9 +44,21 @@ export async function registerKeyInAccount(pubKey: string, account: string, prov
     const data = contract.interface.encodeFunctionData('updateR1Owner', [pubKey]);
     const transferAmount = '0';
     const registerTx = await getTransaction(account, account, transferAmount, data, provider);
-    const smartAccount = new SmartAccount({ address: account, secret: wallet.privateKey }, provider);
-    await smartAccount.sendTransaction(registerTx);
+    const dataToSign = getDataToSign(registerTx);
+    const signingKey: ethers.utils.SigningKey = new ethers.utils.SigningKey(wallet.privateKey);
+    const walletSignature = signingKey.signDigest(dataToSign);
+    const sig = ethers.utils.joinSignature(walletSignature);
+    const signature = ethers.utils.concat([sig]);
+
+    registerTx.customData = {
+      ...registerTx.customData,
+      customSignature: signature,
+    };
+
+    const finalTx = utils.serialize(registerTx);
+    const sentTx = await provider.sendTransaction(finalTx);
+    await sentTx.wait();
   } catch (error) {
-    console.error('Error:', error);
+    console.error('Error registering key in account:', error);
   }
 }
