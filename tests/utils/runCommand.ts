@@ -29,7 +29,7 @@ export async function runCommand(
   } else {
     if (preCommand) {
       if (preCommand.includes('<COMMAND>')) {
-        command = preCommand.replace('<COMMAND>', copied);
+        command = preCommand.replace('<COMMAND>', copied.trimEnd());
       } else {
         command = preCommand + copied;
       }

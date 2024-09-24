@@ -26,7 +26,7 @@ export async function setupAndRunTest(
 
   // TEST
   for (const pageUrl of pageUrls) {
-    await runTest(page, `http://localhost:3000/tutorials${pageUrl}`, config!);
+    await runTest(page, `http://localhost:3030/tutorials${pageUrl}`, config!);
   }
 
   // SHUT DOWN ANY RUNNING PROJECTS
@@ -94,6 +94,12 @@ export async function runTest(page: Page, url: string, config: IStepConfig) {
         break;
       case 'clickButtonByText':
         clickButtonByText(page, stepData.buttonText);
+        break;
+      case 'visitURL':
+        await visit(page, stepData.url);
+        break;
+      case 'findText':
+        page.getByText(stepData.text);
         break;
       default:
         console.log('STEP NOT FOUND:', stepData);

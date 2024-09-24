@@ -10,7 +10,9 @@ export type IStep =
   | ICompareToFile
   | ICheckIfBalanceIsZero
   | IExtractDataToEnv
-  | IClickButtonByText;
+  | IClickButtonByText
+  | IVisitURL
+  | IFindText;
 
 export interface IRunCommand {
   action: 'runCommand';
@@ -81,4 +83,14 @@ export interface IExtractDataToEnv {
 export interface IClickButtonByText {
   action: 'clickButtonByText';
   buttonText: string;
+}
+
+export interface IVisitURL {
+  action: 'visitURL';
+  url: string;
+}
+
+export interface IFindText {
+  action: 'findText';
+  text: string;
 }

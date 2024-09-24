@@ -95,6 +95,7 @@ viem
 Viem
 vue
 Vue
+Yubikey
 Zerion
 zext
 ZKBT
