@@ -6,15 +6,8 @@
     controls
   >
     <source
-      v-if="videoPath"
-      :src="videoPath"
+      src="~/assets/webauthn-demo.mp4"
       type="video/mp4"
     />
   </video>
 </template>
-
-<script setup lang="ts">
-defineProps<{
-  videoPath: string;
-}>();
-</script>
