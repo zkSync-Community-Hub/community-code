@@ -24,11 +24,8 @@ jobs:
     - uses: actions/setup-node@v4
     - name: Install Playwright Browsers
       run: bun playwright install chromium --with-deps
-    - name: Install Era Test Node
-      run: |
-        curl --proto '=https' -sSf https://raw.githubusercontent.com/matter-labs/era-test-node/main/scripts/install.sh > install.sh
-        chmod +x install.sh
-        sudo ./install.sh
+    - name: Run Era Test Node
+      uses: dutterbutter/era-test-node-action@v1
     - name: Run test for ${{ matrix.tutorial }}
       run: |
         export TERM=xterm-256color
