@@ -3,7 +3,7 @@ import type { IStepConfig } from '../utils/types';
 export const steps: IStepConfig = {
   'initialize-project': {
     action: 'runCommand',
-    prompts: 'Private key of the wallet: |npm: ',
+    prompts: 'Private key of the wallet: |❯ npm: ',
   },
   'wait-for-init': {
     action: 'wait',
