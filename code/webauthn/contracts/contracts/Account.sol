@@ -284,7 +284,7 @@ contract Account is IAccount, IERC1271 {
   // ANCHOR_END: callVerifier
 
   function extractChallengeFromClientData(bytes memory clientDataJSON) public pure returns (string memory) {
-    bytes memory challengeSlice = slice(clientDataJSON, 36, 58);
+    bytes memory challengeSlice = slice(clientDataJSON, 36, 88);
     string memory challenge = string(challengeSlice);
     return challenge;
   }
@@ -319,7 +319,7 @@ contract Account is IAccount, IERC1271 {
             if (base64Bytes[i] == '/') base64Bytes[i] = '_';
         }
         
-        return string(slice(base64Bytes, 0, 58));
+        return string(base64Bytes);
     }
 
   fallback() external {
