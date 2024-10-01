@@ -1,5 +1,5 @@
-title: Interacting with Uniswap on a Fork of ZKsync Era Using `era_test_node` and Foundry
-featured: true
+title: Interacting with Uniswap on a Fork of ZKsync Era Using era_test_node and Foundry
+featured: false
 authors:
   - name: bxpana
     url: https://github.com/bxpana
@@ -13,11 +13,11 @@ tags:
   - tutorial
 summary: Set up a local ZKsync Era environment and perform token swaps using Foundry.
 description: |
-  In this tutorial, you will set up a local ZKsync Era environment using `era_test_node`, leverage Foundry's `cast` tool to interact with contracts, and perform token swaps on Uniswap. You will learn how to check balances, deposit ETH for WETH, transfer WETH, and swap tokens using Uniswap's Swap Router.
+  In this tutorial, you will set up a local ZKsync Era environment using era_test_node, leverage Foundry's cast tool to interact with contracts, and perform token swaps on Uniswap. You will learn how to check balances, deposit ETH for WETH, transfer WETH, and swap tokens using Uniswap's Swap Router.
 what_you_will_learn:
   - How to set up and fork a local ZKsync Era environment.
   - How to use environment variables to streamline your workflow.
-  - How to check balances using `cast`.
+  - How to check balances using cast.
   - How to deposit ETH for WETH and transfer WETH.
   - How to approve tokens and perform swaps on Uniswap using the Swap Router.
 updated: 2024-09-26
