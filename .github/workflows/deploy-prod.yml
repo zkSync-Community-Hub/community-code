@@ -6,6 +6,7 @@ on:
 env:
   HUSKY: 0
   CI: true
+  NUXT_SITE_ENV: production # used for NuxtSEO to disable things like indexing on staging
 
 concurrency:
   group: production

@@ -1,13 +1,15 @@
 {
-  "extends": [
-    "github>nuxt/renovate-config-nuxt",
-    "config:recommended",
-    "group:allNonMajor",
-    ":semanticCommitTypeAll(chore)"
-  ],
+  "extends": ["config:best-practices", ":semanticCommitTypeAll(chore)", "group:allNonMajor"],
   "timezone": "Europe/London",
-  "schedule": ["every weekend"],
+  "schedule": ["before 5am on monday"],
   "semanticCommits": "enabled",
+  "npm": {
+    "minimumReleaseAge": "1 week"
+  },
+  "lockFileMaintenance": {
+    "enabled": true,
+    "automerge": true
+  },
   "packageRules": [
     {
       "groupName": "Nuxt Dependencies",
@@ -15,12 +17,12 @@
       "matchPackageNames": [
         "@matterlabs/docs-nuxt-template",
         "@iconify-json/**",
-        "@nuxt**",
-        "nuxt**",
+        "/@*(nuxt)(js)*/",
         "vue-easy-lightbox",
-        "@docsearch/**",
         "rehype-katex",
         "remark-math",
+        "@tsparticles/**",
+        "@vite-pwa/nuxt",
         "dayjs"
       ]
     },
@@ -33,6 +35,7 @@
       "groupName": "Tooling Dependencies",
       "groupSlug": "tooling-deps",
       "matchPackageNames": [
+        "@playwright/test",
         "eslint",
         "@commitlint/**",
         "cspell",
