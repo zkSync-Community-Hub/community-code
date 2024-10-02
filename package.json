@@ -33,7 +33,7 @@
     "@nuxtjs/seo": "^2.0.0-rc.20",
     "dayjs": "^1.11.13",
     "nuxt": "^3.13.1",
-    "nuxt-gtag": "^2.1.0",
+    "nuxt-gtag": "^3.0.1",
     "nuxt-headlessui": "^1.2.0",
     "nuxt-og-image": "^3.0.0-rc.66",
     "rehype-katex": "^7.0.1",
