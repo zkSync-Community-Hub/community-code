@@ -21,15 +21,14 @@
         "vue-easy-lightbox",
         "rehype-katex",
         "remark-math",
-        "@tsparticles/**",
         "@vite-pwa/nuxt",
         "dayjs"
       ]
     },
     {
-      "groupName": "ZK Dependencies",
-      "groupSlug": "zk-deps",
-      "matchPackageNames": ["ethers", "hardhat", "zksync-ethers"]
+      "groupName": "web3",
+      "groupSlug": "web3-deps",
+      "matchPackageNames": ["/openzeppelin/", "/zksync/", "/hardhat/"]
     },
     {
       "groupName": "Tooling Dependencies",
