@@ -12,11 +12,11 @@
     "@simplewebauthn/browser": "^10.0.0",
     "@simplewebauthn/server": "^10.0.1",
     "cbor": "^9.0.2",
-    "ethers": "^5.7.2",
+    "ethers": "^6.13.3",
     "next": "14.2.5",
     "react": "^18",
     "react-dom": "^18",
-    "zksync-ethers": "^5.1.0"
+    "zksync-ethers": "^6.13.0"
   },
   "devDependencies": {
     "@types/node": "^20",
