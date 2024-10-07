@@ -20,10 +20,10 @@
     "release": "semantic-release"
   },
   "dependencies": {
-    "@matterlabs/docs-nuxt-template": "2.9.1",
+    "@matterlabs/docs-nuxt-template": "2.9.2",
     "@iconify-json/heroicons": "^1.2.0",
-    "@iconify-json/simple-icons": "^1.2.1",
-    "@iconify-json/vscode-icons": "^1.2.0",
+    "@iconify-json/simple-icons": "^1.2.6",
+    "@iconify-json/vscode-icons": "^1.2.2",
     "@nuxt/content": "^2.13.2",
     "@nuxt/eslint": "^0.5.5",
     "@nuxt/fonts": "^0.7.2",
@@ -32,10 +32,10 @@
     "@nuxt/ui-pro": "^1.4.1",
     "@nuxtjs/seo": "^2.0.0-rc.20",
     "dayjs": "^1.11.13",
-    "nuxt": "^3.13.1",
+    "nuxt": "^3.13.2",
     "nuxt-gtag": "^2.1.0",
     "nuxt-headlessui": "^1.2.0",
-    "nuxt-og-image": "^3.0.0-rc.66",
+    "nuxt-og-image": "^3.0.4",
     "rehype-katex": "^7.0.1",
     "remark-math": "^6.0.0",
     "vue-tsc": "^2.1.4"
