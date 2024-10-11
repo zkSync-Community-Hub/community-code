@@ -44,6 +44,7 @@ async function confirmConnection(notificationPage: Page) {
 
 // By default, only the last account will be selected. If you want to select a specific account, pass `accounts` parameter.
 export async function connectToDapp(notificationPage: Page, accounts?: string[]) {
+  console.log('ACCOUNTS:', accounts);
   if (accounts && accounts.length > 0) {
     await connectMultipleAccounts(notificationPage, accounts);
   }

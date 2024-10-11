@@ -138,6 +138,7 @@ export const steps: IStepConfig = {
   },
   'connect-to-dapp': {
     action: 'connectToDapp',
+    account: 'Account 1',
   },
   'select-ETH': {
     action: 'selectOption',
