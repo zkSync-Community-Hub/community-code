@@ -3,10 +3,8 @@ import { ERA_TEST_NODE } from './wallet-setup/config';
 import type { BrowserContext, Page } from '@playwright/test';
 
 export async function connectToDapp(metamask: MetaMask, account: string = 'Account 1') {
-  const pages = metamask.context.pages();
-  console.log('PAGES', pages);
-  const notificationPage = metamask.notificationPage;
-  console.log('NOTIFICATION PAGE', notificationPage);
+  const accountsList = metamask.notificationPage.page.locator('.choose-account-list');
+  console.log('ACCOUNTS LIST', accountsList);
   await metamask.connectToDapp([account]);
 }
 
