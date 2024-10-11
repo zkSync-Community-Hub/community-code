@@ -27,10 +27,6 @@ jobs:
       run: bun playwright install chromium --with-deps
     - name: Run Era Test Node
       uses: dutterbutter/era-test-node-action@v1
-    - name: Install xvfb
-      run: |
-        sudo apt-get install --no-install-recommends -y \
-        xvfb
     - name: Create Metamask Cache
       run: xvfb-run bun setup:mm
     - name: Run test for ${{ matrix.tutorial }}
@@ -39,11 +35,11 @@ jobs:
         export COLUMNS=80
         export LINES=24
         xvfb-run bun test:headful ${{ matrix.tutorial }}
-    - name: Archive Playwright report
-      uses: actions/upload-artifact@v3
-      if: failure()
+    - uses: actions/upload-artifact@v4
+      if: ${{ !cancelled() }}
       with:
-        name: playwright-report-headful
-        path: |
-          bridge-ui/playwright-report-headful/
-        if-no-files-found: error
+        name: playwright-report
+        path: playwright-report/
+        retention-days: 10
+
+  
