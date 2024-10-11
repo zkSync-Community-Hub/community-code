@@ -19,9 +19,12 @@ export async function runCommand(
   checkForOutput?: string,
   expectError?: string
 ) {
-  const copied = await clickCopyButton(page, buttonName);
-  console.log('COPIED', copied);
-  let command = useSetCommand ?? copied;
+  let command = useSetCommand;
+  if (!command) {
+    command = await clickCopyButton(page, buttonName);
+    console.log('COPIED', command);
+  }
+  const copied = command;
   const newHardhatProject = command.includes('npx hardhat init');
 
   if (newHardhatProject) {

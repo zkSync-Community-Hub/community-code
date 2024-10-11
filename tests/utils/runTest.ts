@@ -2,38 +2,46 @@ import type { BrowserContext, Page } from '@playwright/test';
 
 import { runCommand } from './runCommand';
 import { getTestActions } from './getTestActions';
-import { visit } from './visit';
+import { checkForText, visit } from './visit';
 import { compareToFile, extractDataToEnv, modifyFile, writeToFile } from './files';
 import { checkIfBalanceIsZero } from './queries';
 import { setupFolders, startLocalServer, stopServers } from './setup';
 import { getConfig } from '../configs/config';
 import type { IStepConfig } from './types';
-import { clickButtonByText } from './button';
+import { clickButtonByText, fillInput, selectOption } from './button';
+import type { MetaMask } from '@synthetixio/synpress/playwright';
+import { confirmTransaction, connectToDapp, switchNetwork } from './metamask';
 
 export async function setupAndRunTest(
   page: Page,
   context: BrowserContext,
-  folderName: string,
   pageUrls: string[],
-  tutorialName: string
+  folderName: string,
+  metamask?: MetaMask
 ) {
   // SETUP
   await startLocalServer(page);
   await context.grantPermissions(['clipboard-read', 'clipboard-write']);
   await setupFolders(folderName);
 
-  const config = getConfig(tutorialName);
+  const config = getConfig(folderName);
 
   // TEST
   for (const pageUrl of pageUrls) {
-    await runTest(page, `http://localhost:3030/tutorials${pageUrl}`, config!);
+    await runTest(page, `http://localhost:3030/tutorials${pageUrl}`, config!, metamask, context);
   }
 
   // SHUT DOWN ANY RUNNING PROJECTS
   stopServers();
 }
 
-export async function runTest(page: Page, url: string, config: IStepConfig) {
+export async function runTest(
+  page: Page,
+  url: string,
+  config: IStepConfig,
+  metamask?: MetaMask,
+  context?: BrowserContext
+) {
   await visit(page, url);
   console.log('GETTING TEST ACTIONS');
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -68,7 +76,7 @@ export async function runTest(page: Page, url: string, config: IStepConfig) {
         await page.waitForTimeout(stepData.timeout);
         break;
       case 'writeToFile':
-        await writeToFile(page, stepID, stepData.filepath, stepData.addSpacesAfter);
+        await writeToFile(page, stepID, stepData.filepath, stepData.addSpacesAfter, stepData.useSetData);
         break;
       case 'modifyFile':
         await modifyFile(
@@ -99,7 +107,22 @@ export async function runTest(page: Page, url: string, config: IStepConfig) {
         await visit(page, stepData.url);
         break;
       case 'findText':
-        page.getByText(stepData.text);
+        await checkForText(page, stepData.text);
+        break;
+      case 'confirmTransaction':
+        await confirmTransaction(context!, metamask!);
+        break;
+      case 'connectToDapp':
+        await connectToDapp(metamask!, stepData.account);
+        break;
+      case 'fillInput':
+        await fillInput(page, stepData.text);
+        break;
+      case 'selectOption':
+        await selectOption(page, stepData.index);
+        break;
+      case 'switchNetwork':
+        await switchNetwork(metamask!);
         break;
       default:
         console.log('STEP NOT FOUND:', stepData);

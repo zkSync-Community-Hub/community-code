@@ -7,3 +7,7 @@ export async function visit(page: Page, pathname: string) {
   await page.waitForTimeout(2000);
   return pageFinal;
 }
+
+export async function checkForText(page: Page, text: string) {
+  await page.waitForSelector(`text=${text}`, { timeout: 5000 });
+}

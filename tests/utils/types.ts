@@ -12,7 +12,12 @@ export type IStep =
   | IExtractDataToEnv
   | IClickButtonByText
   | IVisitURL
-  | IFindText;
+  | IFindText
+  | IConnectToDapp
+  | IConfirmTransaction
+  | ISwitchNetwork
+  | ISelectOption
+  | IFillInput;
 
 export interface IRunCommand {
   action: 'runCommand';
@@ -44,7 +49,12 @@ export interface IWriteToFile {
   action: 'writeToFile';
   filepath: string;
   addSpacesAfter?: boolean;
+  useSetData?: string;
 }
+
+export type IntArray = number[];
+export type RangeArray = [number, '-->', number];
+export type RangeOrIntArray = IntArray | RangeArray;
 
 export interface IModifyFile {
   action: 'modifyFile';
@@ -52,7 +62,7 @@ export interface IModifyFile {
   addSpacesBefore?: number;
   addSpacesAfter?: number;
   atLine?: number;
-  removeLines?: number[];
+  removeLines?: RangeOrIntArray;
   useSetData?: string;
   getContractId?: string;
 }
@@ -92,5 +102,29 @@ export interface IVisitURL {
 
 export interface IFindText {
   action: 'findText';
+  text: string;
+}
+
+export interface IConnectToDapp {
+  action: 'connectToDapp';
+  account?: string;
+}
+
+export interface IConfirmTransaction {
+  action: 'confirmTransaction';
+}
+
+export interface ISwitchNetwork {
+  action: 'switchNetwork';
+  networkName?: string;
+}
+
+export interface ISelectOption {
+  action: 'selectOption';
+  index: number;
+}
+
+export interface IFillInput {
+  action: 'fillInput';
   text: string;
 }
