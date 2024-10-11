@@ -23,8 +23,8 @@ async function selectAccounts(accountsToSelect: string[], accountLocators: Locat
 async function connectMultipleAccounts(notificationPage: Page, accounts: string[]) {
   // Wait for the accounts to be loaded as 'all()' doesnt not wait for the results - https://playwright.dev/docs/api/class-locator#locator-all
   // Additionally disable default account to reuse necessary delay
-  console.log('DISABLING DEFAULT ACCOUNT');
-  await notificationPage.locator(selectors.accountOption).locator(selectors.accountCheckbox).last().setChecked(false);
+  // console.log('DISABLING DEFAULT ACCOUNT');
+  // await notificationPage.locator(selectors.accountOption).locator(selectors.accountCheckbox).last().setChecked(false);
   console.log('GETTING ACCOUNT LOCATORS');
   const accountLocators = await notificationPage.locator(selectors.accountOption).all();
   console.log('accountLocators', accountLocators);
