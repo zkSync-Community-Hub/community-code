@@ -15,7 +15,7 @@ jobs:
           # - "tests/daily-spend-limit.spec.ts"
           # - "tests/signing-txns-with-webauthn.spec.ts"
           # - "tests/native-aa-multisig.spec.ts"
-          - "tests/frontend-paymaster.spec.ts"
+          - "frontend-paymaster"
 
     steps:
     - uses: actions/checkout@v4
@@ -34,7 +34,7 @@ jobs:
         export TERM=xterm-256color
         export COLUMNS=80
         export LINES=24
-        xvfb-run bun test:headful ${{ matrix.tutorial }}
+        xvfb-run bun test:headful tests/${{ matrix.tutorial }}.spec.ts
     - uses: actions/upload-artifact@v4
       if: always()
       with:

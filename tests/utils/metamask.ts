@@ -25,6 +25,10 @@ async function connectMultipleAccounts(notificationPage: Page, accounts: string[
   // Additionally disable default account to reuse necessary delay
   // console.log('DISABLING DEFAULT ACCOUNT');
   // await notificationPage.locator(selectors.accountOption).locator(selectors.accountCheckbox).last().setChecked(false);
+  const elements1 = await notificationPage.locator('.choose-account-list').all();
+  console.log('ELEMENTS1', elements1);
+  const elements2 = await notificationPage.locator('input').all();
+  console.log('INPUTS', elements2);
   console.log('GETTING ACCOUNT LOCATORS');
   const accountLocators = await notificationPage.locator(selectors.accountOption).all();
   console.log('accountLocators', accountLocators);
