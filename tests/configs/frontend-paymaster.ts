@@ -12,6 +12,10 @@ export const steps: IStepConfig = {
     commandFolder: 'tests-output/frontend-paymaster',
     prompts: 'Private key of the wallet: |❯ npm: ',
   },
+  'wait-for-init': {
+    action: 'wait',
+    timeout: 15000,
+  },
   'env-pk': {
     action: 'modifyFile',
     filepath: 'tests-output/frontend-paymaster/contracts/.env',
