@@ -12,6 +12,7 @@ zknode
 zkout
 zksolc
 zkstack
+zkstackup
 !zkSync
 zksync
 ZKsync
