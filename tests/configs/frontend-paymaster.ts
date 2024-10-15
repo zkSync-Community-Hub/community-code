@@ -25,7 +25,7 @@ export const steps: IStepConfig = {
   },
   'compile-contracts': {
     action: 'runCommand',
-    commandFolder: 'tests-output/frontend-paymaster',
+    commandFolder: 'tests-output/frontend-paymaster/contracts',
   },
   'update-hh-config': {
     action: 'modifyFile',
@@ -41,11 +41,11 @@ export const steps: IStepConfig = {
   },
   'make-frontend': {
     action: 'runCommand',
-    commandFolder: 'tests-output/frontend-paymaster/contracts',
+    commandFolder: 'tests-output/frontend-paymaster',
   },
   'install-deps': {
     action: 'runCommand',
-    commandFolder: 'tests-output/frontend-paymaster',
+    commandFolder: 'tests-output/frontend-paymaster/frontend',
   },
   'wait-for-install': {
     action: 'wait',

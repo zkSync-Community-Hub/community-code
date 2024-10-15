@@ -113,7 +113,7 @@ export async function runTest(
         await confirmTransaction(context!, metamask!);
         break;
       case 'connectToDapp':
-        await connectToDapp(metamask!.notificationPage.page, [stepData.account ?? 'Account 1']);
+        await connectToDapp(metamask!, stepData.account ?? 'Account 1');
         break;
       case 'fillInput':
         await fillInput(page, stepData.text);

@@ -1,60 +1,10 @@
 import type { MetaMask } from '@synthetixio/synpress/playwright';
 import { ERA_TEST_NODE } from './wallet-setup/config';
-import type { BrowserContext, Page, Locator } from '@playwright/test';
-import { z } from 'zod';
+import type { BrowserContext, Page } from '@playwright/test';
 
-const selectors = {
-  accountOption: '.choose-account-list .choose-account-list__list .choose-account-list__account',
-  accountCheckbox: 'input.choose-account-list__list-check-box',
-  confirmActionButton: `.page-container__footer [data-testid="page-container-footer-next"]}`,
-};
-
-async function selectAccounts(accountsToSelect: string[], accountLocators: Locator[], availableAccountNames: string[]) {
-  for (const account of accountsToSelect) {
-    console.log('account', account);
-    const accountNameIndex = availableAccountNames.findIndex((name) => name.startsWith(account));
-    console.log('accountNameIndex', accountNameIndex);
-    if (accountNameIndex < 0) throw new Error(`[ConnectToDapp] Account with name ${account} not found`);
-    await accountLocators[accountNameIndex]?.locator(selectors.accountCheckbox).check();
-    console.log('SELECTED ACCOUNT');
-  }
-}
-
-async function connectMultipleAccounts(notificationPage: Page, accounts: string[]) {
-  // Wait for the accounts to be loaded as 'all()' doesnt not wait for the results - https://playwright.dev/docs/api/class-locator#locator-all
-  // Additionally disable default account to reuse necessary delay
-  // console.log('DISABLING DEFAULT ACCOUNT');
-  // await notificationPage.locator(selectors.accountOption).locator(selectors.accountCheckbox).last().setChecked(false);
-  const elements1 = await notificationPage.locator('.choose-account-list').all();
-  console.log('ELEMENTS1', elements1);
-  const elements2 = await notificationPage.locator('input').all();
-  console.log('INPUTS', elements2);
-  console.log('GETTING ACCOUNT LOCATORS');
-  const accountLocators = await notificationPage.locator(selectors.accountOption).all();
-  console.log('accountLocators', accountLocators);
-  const accountNames = await allTextContents(accountLocators);
-  console.log('accountNames', accountNames);
-
-  await selectAccounts(accounts, accountLocators, accountNames);
-}
-
-async function confirmConnection(notificationPage: Page) {
-  // Click `Next`
-  await notificationPage.locator(selectors.confirmActionButton).click();
-  console.log('CLICKED NEXT BUTTON');
-  // Click `Connect`
-  await notificationPage.locator(selectors.confirmActionButton).click();
-  console.log('CLICKED CONNECT BUTTON');
-}
-
-// By default, only the last account will be selected. If you want to select a specific account, pass `accounts` parameter.
-export async function connectToDapp(notificationPage: Page, accounts?: string[]) {
-  console.log('ACCOUNTS:', accounts);
-  if (accounts && accounts.length > 0) {
-    await connectMultipleAccounts(notificationPage, accounts);
-  }
-  console.log('CONFIRMING CONNECTION');
-  await confirmConnection(notificationPage);
+export async function connectToDapp(metamask: MetaMask, account: string = 'Account 1') {
+  console.log('ACCOUNT', account);
+  await metamask.connectToDapp([account]);
 }
 
 export async function confirmTransaction(context: BrowserContext, metamask: MetaMask) {
@@ -89,11 +39,4 @@ export async function switchNetwork(metamask: MetaMask, networkName: string = ER
   await metamask.toggleDismissSecretRecoveryPhraseReminder();
   await metamask.addNetwork(ERA_TEST_NODE);
   await metamask.switchNetwork(networkName, true);
-}
-
-export async function allTextContents(locators: Locator[]) {
-  const names = await Promise.all(locators.map((locator) => locator.textContent()));
-
-  // We're making sure that the return type is `string[]` same as `locator.allTextContents()`.
-  return names.map((name) => z.string().parse(name));
 }
