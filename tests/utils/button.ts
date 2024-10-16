@@ -12,3 +12,11 @@ export async function clickCopyButton(page: Page, id: string) {
   const rawText: string = await page.evaluate('navigator.clipboard.readText()');
   return rawText;
 }
+
+export async function selectOption(page: Page, index: number) {
+  await page.selectOption('select', { index });
+}
+
+export async function fillInput(page: Page, text: string) {
+  await page.fill('input[type="text"]', text);
+}

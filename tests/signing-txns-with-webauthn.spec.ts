@@ -5,7 +5,6 @@ test('Signing Transactions With WebAuthn', async ({ page, context }) => {
   await setupAndRunTest(
     page,
     context,
-    'zksync-webauthn',
     [
       '/signing-transactions-with-webauthn/building-the-contracts',
       '/signing-transactions-with-webauthn/building-the-frontend',

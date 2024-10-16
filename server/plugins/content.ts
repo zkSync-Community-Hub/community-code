@@ -18,6 +18,7 @@ function handleCodeImport(body: string) {
   const lines = body.split(EOL);
   let inCodeBlock = false;
   let codeBlockIndent = '';
+  let removeESLintLines = false;
 
   for (let i = 0; i < lines.length; i++) {
     const trimmedLine = lines[i].trim();
@@ -31,22 +32,21 @@ function handleCodeImport(body: string) {
     }
 
     if (inCodeBlock && trimmedLine.includes(':code-import{filePath')) {
+      removeESLintLines = trimmedLine.includes('remove-linter');
       const filepath = trimmedLine.split('"')[1];
-      let newCode = getCodeFromFilepath(filepath);
-
-      newCode = newCode
-        .split(EOL)
-        .map((line) => codeBlockIndent + line)
-        .join(EOL);
-
+      let newCode = getCodeFromFilepath(filepath, removeESLintLines);
+      let split = newCode.split(EOL);
+      split = split.map((line) => codeBlockIndent + line);
+      newCode = split.join(EOL);
       lines[i] = newCode;
+      removeESLintLines = false;
     }
   }
 
   return lines.join(EOL);
 }
 
-function getCodeFromFilepath(filepath: string) {
+function getCodeFromFilepath(filepath: string, removeESLintLines: boolean) {
   const splitPath = filepath.split(':');
   const cleanPath = splitPath[0];
   const cache = files.get(cleanPath);
@@ -62,9 +62,15 @@ function getCodeFromFilepath(filepath: string) {
   if (exampleComment) {
     code = extractCommentBlock(code, exampleComment);
   }
-  // remove any other ANCHOR tags
+  // remove any other ANCHOR tags & eslint comments
   const lines = code.split(EOL);
-  const trimmedLines = lines.filter((line) => !line.trimStart().startsWith('// ANCHOR'));
+  const trimmedLines = lines.filter((line) => {
+    let include = !line.trimStart().startsWith('// ANCHOR');
+    if (removeESLintLines && include) {
+      include = !line.trimStart().startsWith('// eslint-');
+    }
+    return include;
+  });
   return trimmedLines.join(EOL);
 }
 

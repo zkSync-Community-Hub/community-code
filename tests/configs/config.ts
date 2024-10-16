@@ -3,6 +3,7 @@ import { steps as howToTestContractsSteps } from './how-to-test-contracts';
 import { steps as dailySpendLimitSteps } from './daily-spend-limit';
 import { steps as signingWithWebAuthnSteps } from './signing-txns-with-webauthn';
 import { steps as multisigSteps } from './native-aa-multisig';
+import { steps as frontendPaymasterSteps } from './frontend-paymaster';
 
 export function getConfig(tutorialName: string) {
   let steps;
@@ -21,6 +22,9 @@ export function getConfig(tutorialName: string) {
       break;
     case 'native-aa-multisig':
       steps = multisigSteps;
+      break;
+    case 'frontend-paymaster':
+      steps = frontendPaymasterSteps;
       break;
     default:
       break;
