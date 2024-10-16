@@ -34,13 +34,6 @@ export const steps: IStepConfig = {
     removeLines: [6],
     useSetData: '  defaultNetwork: "inMemoryNode",',
   },
-  'update-hh-config2': {
-    action: 'modifyFile',
-    filepath: 'tests-output/frontend-paymaster/contracts/hardhat.config.ts',
-    atLine: 35,
-    removeLines: [35],
-    useSetData: "    version: '1.5.4',",
-  },
   'deploy-greeter': {
     action: 'runCommand',
     commandFolder: 'tests-output/frontend-paymaster/contracts',
