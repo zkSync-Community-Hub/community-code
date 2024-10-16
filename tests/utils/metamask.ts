@@ -1,16 +1,10 @@
 import type { MetaMask } from '@synthetixio/synpress/playwright';
 import { ERA_TEST_NODE } from './wallet-setup/config';
 import type { BrowserContext, Page } from '@playwright/test';
-import { clickButtonByText } from './button';
 
-export async function connectToDapp(context: BrowserContext, account: string = 'Account 1') {
+export async function connectToDapp(metamask: MetaMask, account: string = 'Account 1') {
   console.log('ACCOUNT', account);
-  const walletPage = await getWalletPage(context);
-  console.log('GOT WALLET PAGE', walletPage.url());
-  await clickButtonByText(walletPage, 'Next');
-  console.log('CLICKED NEXT');
-  await clickButtonByText(walletPage, 'Confirm');
-  console.log('CLICKED CONFIRM');
+  await metamask.connectToDapp([account]);
 }
 
 export async function confirmTransaction(context: BrowserContext, metamask: MetaMask) {
