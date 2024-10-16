@@ -13,7 +13,7 @@ jobs:
           - "erc20-paymaster" 
           - "how-to-test-contracts"
           - "daily-spend-limit"
-          - signing-txns-with-webauthn"
+          - "signing-txns-with-webauthn"
           - "native-aa-multisig"
           - "frontend-paymaster"
 
