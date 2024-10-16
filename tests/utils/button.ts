@@ -2,9 +2,9 @@ import type { Page } from '@playwright/test';
 
 export async function clickButtonByText(page: Page, selector: string | RegExp) {
   const buttons = page.locator('button');
-  console.log('BUTTONS', buttons);
+  console.log('BUTTONS', buttons.all());
   const buttonByText = buttons.getByText(selector);
-  console.log('BUTTON BY TEXT', buttonByText);
+  console.log('BUTTON BY TEXT', buttonByText.all());
   await buttonByText.click();
   await page.waitForTimeout(1000);
 }

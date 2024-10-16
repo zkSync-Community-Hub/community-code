@@ -43,7 +43,7 @@ export const steps: IStepConfig = {
     action: 'runCommand',
     commandFolder: 'tests-output/frontend-paymaster',
   },
-  'install-deps': {
+  'install-frontend-deps': {
     action: 'runCommand',
     commandFolder: 'tests-output/frontend-paymaster/frontend',
   },
