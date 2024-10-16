@@ -10,11 +10,11 @@ jobs:
     strategy:
       matrix:
         tutorial:
-          - "tests/erc20-paymaster.spec.ts" 
-          - "tests/how-to-test-contracts.spec.ts"
-          - "tests/daily-spend-limit.spec.ts"
-          - "tests/signing-txns-with-webauthn.spec.ts"
-          - "tests/native-aa-multisig.spec.ts"
+          - "erc20-paymaster" 
+          - "how-to-test-contracts"
+          - "daily-spend-limit"
+          - signing-txns-with-webauthn"
+          - "native-aa-multisig"
           - "frontend-paymaster"
 
     steps:
