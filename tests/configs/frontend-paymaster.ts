@@ -46,6 +46,7 @@ export const steps: IStepConfig = {
   'install-frontend-deps': {
     action: 'runCommand',
     commandFolder: 'tests-output/frontend-paymaster/frontend',
+    useSetCommand: 'npm install ethers zksync-ethers',
   },
   'wait-for-install': {
     action: 'wait',
