@@ -26,12 +26,19 @@ async function clickScrollDownButton(page: Page) {
   await page.locator(`div[data-testid='signature-request-scroll-button']`).click();
 }
 
+const findNotificationPage = (p: Page) => {
+  console.log('URL:', p.url());
+  return p.url().includes('/notification.html');
+};
+
 async function getWalletPage(context: BrowserContext) {
   const pages = context.pages();
-  let walletPage = pages.find((p: Page) => p.url().includes('/notification.html'));
+  console.log('GOT ALL PAGES');
+  let walletPage = pages.find(findNotificationPage);
   if (!walletPage) {
+    console.log('NO WALLET PAGE...WAITING FOR PAGE EVENT');
     walletPage = await context.waitForEvent('page', {
-      predicate: (page: Page) => page.url().includes('/notification.html'),
+      predicate: findNotificationPage,
     });
   }
   return walletPage;
