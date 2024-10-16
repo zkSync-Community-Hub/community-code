@@ -113,6 +113,8 @@ export async function runTest(
         await confirmTransaction(context!, metamask!);
         break;
       case 'connectToDapp':
+        await page.waitForTimeout(4000);
+        console.log('Waited for 4 seconds');
         await connectToDapp(context!, stepData.account ?? 'Account 1');
         break;
       case 'fillInput':

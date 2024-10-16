@@ -39,6 +39,7 @@ async function getWalletPage(context: BrowserContext) {
     console.log('NO WALLET PAGE...WAITING FOR PAGE EVENT');
     walletPage = await context.waitForEvent('page', {
       predicate: findNotificationPage,
+      timeout: 6000,
     });
   }
   return walletPage;

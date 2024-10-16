@@ -1,7 +1,12 @@
 import type { Page } from '@playwright/test';
 
 export async function clickButtonByText(page: Page, selector: string | RegExp) {
-  await page.locator('button').getByText(selector).click();
+  const buttons = page.locator('button');
+  console.log('BUTTONS', buttons);
+  const buttonByText = buttons.getByText(selector);
+  console.log('BUTTON BY TEXT', buttonByText);
+  await buttonByText.click();
+  await page.waitForTimeout(1000);
 }
 
 export async function clickCopyButton(page: Page, id: string) {
