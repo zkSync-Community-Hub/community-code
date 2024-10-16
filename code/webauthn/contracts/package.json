@@ -28,7 +28,7 @@
     "hardhat": "^2.22.7",
     "mocha": "^10.7.0",
     "ts-node": "^10.9.2",
-    "typescript": "^5.5.4",
+    "typescript": "5.5.4",
     "zksync-ethers": "^6.11.0"
   }
 }
