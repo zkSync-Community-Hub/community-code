@@ -18,15 +18,15 @@ jobs:
           - "frontend-paymaster"
 
     steps:
-    - uses: actions/checkout@v4
-    - uses: oven-sh/setup-bun@v1
+    - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+    - uses: oven-sh/setup-bun@f4d14e03ff726c06358e5557344e1da148b56cf7 # v1
     - name: Install Dependencies
       run: bun install --frozen-lockfile
-    - uses: actions/setup-node@v4
+    - uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af # v4
     - name: Install Playwright Browsers
       run: bun playwright install chromium --with-deps
     - name: Run Era Test Node
-      uses: dutterbutter/era-test-node-action@v1
+      uses: dutterbutter/era-test-node-action@36ffd2eefd46dc16e7e2a8e1715124400ec0a3ba # v1
     - name: Create Metamask Cache
       run: xvfb-run bun setup:mm
     - name: Run test for ${{ matrix.tutorial }}
@@ -35,7 +35,7 @@ jobs:
         export COLUMNS=80
         export LINES=24
         xvfb-run bun test:headful tests/${{ matrix.tutorial }}.spec.ts
-    - uses: actions/upload-artifact@v4
+    - uses: actions/upload-artifact@b4b15b8c7c6ac21ea08fcf65892d2ee8f75cf882 # v4
       if: always()
       with:
         name: playwright-report-${{ matrix.tutorial }}
