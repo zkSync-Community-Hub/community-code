@@ -108,7 +108,7 @@ const frontendPart1Steps: IStepConfig = {
   'init-next-app': {
     action: 'runCommand',
     commandFolder: 'tests-output/zksync-webauthn',
-    preCommand: '<COMMAND> --ts --eslint --src-dir --use-npm --no-app --no-tailwind --import-alias "@/*" frontend',
+    preCommand: '<COMMAND> --use-npm --ts --app --src-dir --import-alias --no-tailwind --yes frontend',
   },
   'wait-for-nextjs-init': {
     action: 'wait',
