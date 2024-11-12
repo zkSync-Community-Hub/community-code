@@ -8,7 +8,6 @@ github_repo: https://github.com/ZKsync-Community-Hub
 tags:
   - account abstraction
   - smart contracts
-  - tutorial
 summary: Build a native smart contract account that has a daily spend limit.
 description:
   This tutorial will guide you through the process of building a smart contract account that has a daily spend limit.

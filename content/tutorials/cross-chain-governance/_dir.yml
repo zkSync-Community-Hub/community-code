@@ -7,8 +7,7 @@ authors:
 github_repo: https://github.com/ZKsync-Community-Hub
 tags:
   - smart contracts
-  - L1-L2
-  - tutorial
+  - cross-chain
 summary: Build and deploy a smart contract in L1 and send transactions that update the state of a contract in ZKsync.
 description:
   In this tutorial we'll deploy a simple smart contract in ZKsync. Then we'll deploy another smart contract in L1 and

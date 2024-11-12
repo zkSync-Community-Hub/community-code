@@ -6,7 +6,7 @@ authors:
 github_repo: https://github.com/graphprotocol
 tags:
   - guide
-  - theGraph
+  - the graph
 summary: This page will guide you through the steps to index smart contract data using theGraph.
 description:
   This guide outlines the process of indexing all transfers and approval events from the Wrapped ETH on ZKsync Era

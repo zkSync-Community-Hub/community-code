@@ -8,6 +8,7 @@ tags:
   - hardhat
   - how-to
   - erc20
+  - cross-chain
 summary: Learn how to deposit ERC20 tokens ZKsync.
 description: This how-to guide explains how to create a script that deposits any ERC20 token to ZKsync.
 what_you_will_learn:

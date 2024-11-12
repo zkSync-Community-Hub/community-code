@@ -7,8 +7,6 @@ authors:
 github_repo: https://github.com/ZKsync-Community-Hub
 tags:
   - elastic chain
-  - zk chain
-  - tutorial
 summary: Create, customize, and run your first ZK chain locally.
 description:
   In this tutorial, you will get familiar with the ZK Inception CLI. You will create a local Elastic Chain ecosystem and
