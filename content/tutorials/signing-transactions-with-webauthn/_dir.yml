@@ -6,8 +6,11 @@ authors:
     avatar: https://avatars.githubusercontent.com/u/58856580?v=4
 github_repo: https://github.com/ZKsync-Community-Hub
 tags:
-  - webauthn
   - account abstraction
+  - paymaster
+  - smart contracts
+  - frontend
+  - next.js
 summary: Learn how to use WebAuthn to sign transactions for smart accounts.
 description: In this tutorial, you will learn how to use WebAuthn to sign transactions for smart accounts.
 what_you_will_learn:
