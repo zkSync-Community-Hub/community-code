@@ -7,6 +7,7 @@ github_repo: https://github.com/matter-labs
 tags:
   - guide
   - walletconnect
+  - frontend
 summary: Learn how to use WalletConnect to create React apps that interact with contracts on ZKsync.
 description:
   This guide outlines how to use WalletConnect and Web3Modal to create React apps that interact with contracts on ZKsync

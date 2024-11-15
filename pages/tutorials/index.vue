@@ -24,7 +24,7 @@ const allTags = computed(() => {
 
 const uniqueTags = computed(() => [...new Set(allTags.value)]);
 
-const activeTag = ref(uniqueTags.value[0] || '');
+const activeTag = ref('');
 const isExpanded = ref(false);
 const defaultCount = 6;
 
