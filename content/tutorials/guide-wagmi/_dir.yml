@@ -7,6 +7,7 @@ github_repo: https://github.com/matter-labs
 tags:
   - guide
   - wagmi
+  - frontend
 summary: Learn how to use the Wagmi toolkit to create websites that interact with contracts on ZKsync
 description:
   This guide outlines how to use the wagmi library to create websites that interact with ZKsync contracts. We provide

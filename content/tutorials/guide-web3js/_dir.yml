@@ -8,6 +8,7 @@ github_repo: https://github.com/ChainSafe
 tags:
   - guide
   - web3.js
+  - frontend
 summary:
   This guide will teach you how to set up and use Web3.js to interact with ZKsync, leveraging the ZKsync Web3.js plugin.
 description:

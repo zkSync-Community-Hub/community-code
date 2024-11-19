@@ -8,6 +8,7 @@ github_repo: https://github.com/matter-labs
 tags:
   - guide
   - viem
+  - frontend
 summary: This page will explain how to use the viem/zksync plugin to interact with ZKsync.
 description:
   This guide outlines how to use the ZKsync viem plugin to interact with ZKsync and use specific actions like sending
