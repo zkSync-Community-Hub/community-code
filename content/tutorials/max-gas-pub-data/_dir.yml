@@ -1,5 +1,5 @@
 title: How Max Gas Per Pubdata Works on ZKsync Era
-featured: true
+featured: false
 authors:
   - name: MatterLabs
     url: https://matter-labs.io
@@ -16,7 +16,7 @@ what_you_will_learn:
   - Understand ZKSync Era's pubdata cost model.
   - Deploy a voting contract on ZKSync Era.
   - Experiment with different gas settings on transactions.
-updated: 2024-08-26
+updated: 2024-11-25
 tools:
   - zksync-cli
   - hardhat
