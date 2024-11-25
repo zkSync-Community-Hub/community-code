@@ -2,10 +2,20 @@ import { writeFileSync, appendFileSync, readFileSync } from 'node:fs';
 import { clickCopyButton } from './button';
 import { expect, type Page } from '@playwright/test';
 import { EOL } from 'os';
+import type { RangeOrIntArray } from './types';
 
-export async function writeToFile(page: Page, buttonName: string, filePath: string) {
-  const content = await clickCopyButton(page, buttonName);
-  writeFileSync(filePath, `${content}\n\n`);
+export async function writeToFile(
+  page: Page,
+  buttonName: string,
+  filePath: string,
+  addSpacesAfter: boolean = true,
+  useSetData?: string
+) {
+  let content = useSetData;
+  if (!content) {
+    content = await clickCopyButton(page, buttonName);
+  }
+  writeFileSync(filePath, addSpacesAfter ? `${content}\n\n` : `${content.trimEnd()}\n`);
 }
 
 export async function modifyFile(
@@ -15,7 +25,7 @@ export async function modifyFile(
   addSpacesBefore?: number,
   addSpacesAfter?: number,
   atLine?: number,
-  removeLines?: number[],
+  removeLines?: RangeOrIntArray,
   useSetData?: string,
   deploymentFilePath?: string
 ) {
@@ -42,15 +52,19 @@ export async function modifyFile(
   } else {
     const lines = readFileSync(filePath, 'utf8').split('\n');
     if (removeLines) {
-      removeLines.forEach((lineNumber: number) => {
-        lines[lineNumber - 1] = '~~~REMOVE~~~';
+      if (removeLines[1] === '-->' && removeLines.length === 3) {
+        const start = removeLines[0];
+        const end = removeLines[2];
+        removeLines = Array.from({ length: end - start + 1 }, (_, i) => i + start);
+      }
+      removeLines.forEach((lineNumber) => {
+        lines[(lineNumber as number) - 1] = '~~~REMOVE~~~';
       });
     }
     if (atLine) {
-      lines.splice(atLine - 1, 0, contentText);
+      lines.splice(atLine - 1, 0, spacesBefore + contentText + spacesAfter);
     }
-    let finalContent = lines.filter((line: string) => line !== '~~~REMOVE~~~').join('\n');
-    finalContent = spacesBefore + finalContent + spacesAfter;
+    const finalContent = lines.filter((line: string) => line !== '~~~REMOVE~~~').join('\n');
     writeFileSync(filePath, finalContent, 'utf8');
   }
 }
@@ -81,4 +95,12 @@ function getContractId(deploymentFilePath: string) {
   const deploymentFile = readFileSync(deploymentFilePath, { encoding: 'utf8' });
   const json = JSON.parse(deploymentFile);
   return json.entries[0].address;
+}
+
+export function extractDataToEnv(dataFilepath: string, envFilepath: string, regex: RegExp, variableName: string) {
+  const file = readFileSync(dataFilepath, { encoding: 'utf8' });
+  const regexMatches = file.match(regex);
+  const data = regexMatches?.[0];
+  console.log('DATA FROM REGEX:', data);
+  appendFileSync(envFilepath, `${variableName}=${data}\n`);
 }

@@ -7,7 +7,7 @@ github_repo: https://github.com/ZKsync-Community-Hub
 tags:
   - smart contracts
   - how-to
-  - L2-L1 communication
+  - cross-chain
 summary: Learn how to send a transaction from Ethereum that to ZKsync
 description:
   This how-to guide explains how to send a transaction from Ethereum that interacts with a contract deployed on ZKsync.

@@ -9,7 +9,7 @@ tags:
   - account abstraction
   - paymaster
   - smart contracts
-  - tutorial
+  - erc20
 summary: Build a paymaster that accepts any ERC20 token in exchange for transaction fees.
 description:
   This tutorial will guide you through the process of building a paymaster that accepts a fixed amount of any ERC20

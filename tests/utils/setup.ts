@@ -4,8 +4,8 @@ import type { Page } from '@playwright/test';
 
 export async function startLocalServer(page: Page) {
   console.log('STARTING...');
-  await page.waitForTimeout(15000);
-  console.log('WAITED 15 SECONDS FOR LOCAL SERVER TO START');
+  await page.waitForTimeout(20000);
+  console.log('WAITED 20 SECONDS FOR LOCAL SERVER TO START');
 }
 
 export function stopServers() {

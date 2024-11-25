@@ -5,13 +5,17 @@ on:
 
 jobs:
   test-tutorials:
-    timeout-minutes: 20
+    timeout-minutes: 12
     runs-on: ubuntu-latest
     strategy:
       matrix:
         tutorial:
-          - "tests/erc20-paymaster.spec.ts" 
-          - "tests/how-to-test-contracts.spec.ts"
+          - "erc20-paymaster" 
+          - "how-to-test-contracts"
+          - "daily-spend-limit"
+          - "signing-txns-with-webauthn"
+          - "native-aa-multisig"
+          - "frontend-paymaster"
 
     steps:
     - uses: actions/checkout@v4
@@ -21,10 +25,22 @@ jobs:
     - uses: actions/setup-node@v4
     - name: Install Playwright Browsers
       run: bun playwright install chromium --with-deps
+    - name: Run Era Test Node
+      uses: dutterbutter/era-test-node-action@v1
+    - name: Create Metamask Cache
+      run: xvfb-run bun setup:mm
     - name: Run test for ${{ matrix.tutorial }}
       run: |
         export TERM=xterm-256color
         export COLUMNS=80
         export LINES=24
-        script -q -c "bun test:github ${{ matrix.tutorial }}"
-      
+        xvfb-run bun test:headful tests/${{ matrix.tutorial }}.spec.ts
+    - uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: playwright-report-${{ matrix.tutorial }}
+        path: |
+          ${{ github.workspace }}/playwright-report/
+        retention-days: 10
+
+  

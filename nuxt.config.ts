@@ -1,10 +1,13 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   extends: [['@matterlabs/docs-nuxt-template']],
-  modules: ['@nuxt/content', '@nuxt/ui', '@nuxt/eslint', '@nuxtjs/seo', 'nuxt-gtag'],
+  modules: ['nuxt-gtag'],
   site: {
     name: 'Community Code',
-    url: process.env.NUXT_SITE_ENV ? 'https://staging-code.zksync.io' : 'https://code.zksync.io',
+    url: process.env.NUXT_SITE_ENV === 'production' ? 'https://code.zksync.io' : 'https://staging-code.zksync.io',
+  },
+  nitro: {
+    plugins: ['./plugins/content.ts'],
   },
   runtimeConfig: {
     public: {
@@ -33,7 +36,6 @@ export default defineNuxtConfig({
     },
   },
   routeRules: {
-    '/api/search.json': { prerender: true },
     '*-surround': { robots: false },
     '/*/*-surround': { robots: false },
     '/tutorials/*/_dir': { robots: false },
@@ -47,11 +49,12 @@ export default defineNuxtConfig({
       },
     },
   },
-  $production: process.env.NUXT_SITE_ENV
-    ? {}
-    : {
-        gtag: {
-          id: 'G-QHP3K0NN1M',
-        },
-      },
+  $production:
+    process.env.NUXT_SITE_ENV === 'production'
+      ? {
+          gtag: {
+            id: 'G-QHP3K0NN1M',
+          },
+        }
+      : { gtag: { enabled: false } },
 });

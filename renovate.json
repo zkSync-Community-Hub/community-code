@@ -1,3 +1,55 @@
 {
-  "extends": ["github>nuxt/renovate-config-nuxt"]
+  "extends": ["config:best-practices", ":semanticCommitTypeAll(chore)", "group:allNonMajor"],
+  "timezone": "Europe/London",
+  "schedule": ["before 5am on monday"],
+  "semanticCommits": "enabled",
+  "npm": {
+    "minimumReleaseAge": "1 week"
+  },
+  "lockFileMaintenance": {
+    "enabled": true,
+    "automerge": true
+  },
+  "packageRules": [
+    {
+      "groupName": "Nuxt Dependencies",
+      "groupSlug": "template-deps",
+      "matchPackageNames": [
+        "@matterlabs/docs-nuxt-template",
+        "@iconify-json/**",
+        "/@*(nuxt)(js)*/",
+        "vue-easy-lightbox",
+        "rehype-katex",
+        "remark-math",
+        "@vite-pwa/nuxt",
+        "dayjs"
+      ]
+    },
+    {
+      "groupName": "web3",
+      "groupSlug": "web3-deps",
+      "matchPackageNames": ["/openzeppelin/", "/zksync/", "/hardhat/"]
+    },
+    {
+      "groupName": "Tooling Dependencies",
+      "groupSlug": "tooling-deps",
+      "matchPackageNames": [
+        "@playwright/test",
+        "eslint",
+        "@commitlint/**",
+        "cspell",
+        "husky",
+        "lint-staged",
+        "semantic-release",
+        "markdownlint**",
+        "prettier**",
+        "typescript",
+        "vue-tsc",
+        "@playwright/test",
+        "@vue/test-utils",
+        "node-pty",
+        "pm2"
+      ]
+    }
+  ]
 }

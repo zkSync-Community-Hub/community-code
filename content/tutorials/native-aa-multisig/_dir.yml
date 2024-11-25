@@ -7,7 +7,6 @@ github_repo: https://github.com/ZKsync-Community-Hub
 tags:
   - account abstraction
   - smart contracts
-  - tutorial
 summary: Build a native smart contract account that requires multiple signatures.
 description:
   This tutorial will guide you through the process of building a smart contract account that requires two ECDSA
@@ -17,7 +16,7 @@ what_you_will_learn:
   - How to build a smart contract factory
   - How to build a smart contract account
   - How to send transactions through a smart contract account
-updated: 2024-05-09
+updated: 2024-09-17
 tools:
   - zksync-cli
   - zksync-ethers

@@ -56,8 +56,8 @@ useSeoMeta({
             <AuthorsList :authors="guide.authors" />
             <div class="mt-2">
               <UBadge
-                v-for="(tag, index) of guide.tags"
-                :key="index"
+                v-for="(tag, tagIndex) of guide.tags"
+                :key="tagIndex"
                 :label="tag"
                 color="blue"
                 size="xs"
