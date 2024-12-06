@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { headerLinks } from './header-links';
+
 provideHeadlessUseId(() => useId());
 const { seo } = useAppConfig();
 
@@ -37,7 +39,8 @@ defineOgImageComponent('OgImageZK');
   <div>
     <NuxtLoadingIndicator />
 
-    <HeaderComponent />
+    <!-- FIXME: Hack, we want to pass computed property while `useHeaderNav` expects an array -->
+    <HeaderComponent :links="computed(() => headerLinks()) as any" />
 
     <UMain>
       <NuxtLayout>

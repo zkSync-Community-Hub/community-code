@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { headerLinks } from './header-links';
 import type { NuxtError } from '#app';
 
 useSeoMeta({
@@ -26,7 +27,8 @@ provide('navigation', navigation);
 
 <template>
   <div>
-    <HeaderComponent />
+    <!-- FIXME: Hack, we want to pass computed property while `useHeaderNav` expects an array -->
+    <HeaderComponent :links="computed(() => headerLinks()) as any" />
 
     <UMain>
       <UContainer>
