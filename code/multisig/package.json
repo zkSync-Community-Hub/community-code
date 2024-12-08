@@ -18,7 +18,7 @@
     "@matterlabs/zksync-contracts": "^0.6.1",
     "@openzeppelin/contracts": "4.9.5",
     "@types/chai": "^5.0.0",
-    "@types/mocha": "^10.0.7",
+    "@types/mocha": "^10.0.8",
     "chai": "^5.1.1",
     "dotenv": "^16.4.5",
     "ethers": "^6.13.2",
