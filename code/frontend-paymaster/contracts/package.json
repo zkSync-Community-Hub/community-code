@@ -17,7 +17,7 @@
   "devDependencies": {
     "@matterlabs/hardhat-zksync": "^1.1.0",
     "@matterlabs/zksync-contracts": "^0.6.1",
-    "@openzeppelin/contracts": "^4.9.2",
+    "@openzeppelin/contracts": "4.9.6",
     "@nomicfoundation/hardhat-verify": "^2.0.9",
     "@types/chai": "^4.3.16",
     "@types/mocha": "^10.0.7",
@@ -28,6 +28,6 @@
     "mocha": "^10.7.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.5.4",
-    "zksync-ethers": "^6.11.0"
+    "zksync-ethers": "6.13.0"
   }
 }
