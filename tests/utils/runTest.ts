@@ -64,12 +64,14 @@ export async function runTest(
           stepID,
           stepData.commandFolder,
           stepData.projectFolder,
+          stepData.waitTime,
           stepData.preCommand,
           stepData.useSetCommand,
           stepData.prompts,
           stepData.saveOutput,
           stepData.checkForOutput,
-          stepData.expectError
+          stepData.expectError,
+          stepData.replaceString
         );
         break;
       case 'wait':
