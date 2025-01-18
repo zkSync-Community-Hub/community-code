@@ -16,6 +16,7 @@ jobs:
           - "signing-txns-with-webauthn"
           - "native-aa-multisig"
           - "frontend-paymaster"
+          - "zk-game"
 
     steps:
     - uses: actions/checkout@v4
@@ -28,7 +29,13 @@ jobs:
     - name: Run Era Test Node
       uses: dutterbutter/era-test-node-action@v1
     - name: Create Metamask Cache
+      if: matrix.tutorial == 'frontend-paymaster'
       run: xvfb-run bun setup:mm
+    - name: Install Cargo Prove
+      if: matrix.tutorial == 'zk-game'
+      run: |
+          curl -L https://sp1.succinct.xyz | bash
+          sp1up
     - name: Run test for ${{ matrix.tutorial }}
       run: |
         export TERM=xterm-256color
