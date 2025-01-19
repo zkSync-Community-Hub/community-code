@@ -34,9 +34,10 @@ jobs:
     - name: Install Cargo Prove
       if: matrix.tutorial == 'zk-game'
       run: |
-          curl -L https://sp1.succinct.xyz | bash
-          source /home/runner/.bashrc
-          sp1up
+        curl -L https://sp1.succinct.xyz | bash
+        ~/.sp1/bin/sp1up 
+        ~/.sp1/bin/cargo-prove prove --version
+        source ~/.bashrc
     - name: Run test for ${{ matrix.tutorial }}
       run: |
         export TERM=xterm-256color
