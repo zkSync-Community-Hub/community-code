@@ -1,6 +1,6 @@
-import { Address } from 'viem';
-import { Score } from '../utils/types';
-import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
+import type { Address } from 'viem';
+import type { Score } from '../utils/types';
+import { type Dispatch, type SetStateAction, useEffect, useRef, useState } from 'react';
 import { getPlayerHighScore } from '../utils/wagmi-config';
 import Draggable from 'react-draggable';
 

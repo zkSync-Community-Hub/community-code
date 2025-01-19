@@ -1,6 +1,6 @@
 import Draggable from 'react-draggable';
 import Spinner from './Spinner';
-import { Dispatch, MutableRefObject, SetStateAction, useEffect, useRef, useState } from 'react';
+import { type Dispatch, type MutableRefObject, type SetStateAction, useEffect, useRef, useState } from 'react';
 import { Action, ProofStatus } from '../utils/types';
 import init, { GameWrapper } from '../../wasm/game_wasm';
 import { submitProof } from '../utils/proofs';
@@ -34,6 +34,7 @@ export default function Brickles({ setShowBrickles, zIndex, handleBricklesWindow
     }
 
     initializeGame();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [canvasRef, gameRef]);
 
   // Game loop
@@ -63,6 +64,7 @@ export default function Brickles({ setShowBrickles, zIndex, handleBricklesWindow
         cancelAnimationFrame(requestRef.current);
       }
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [gameStatus, currentControl, gameRef.current]);
 
   // keyboard controls

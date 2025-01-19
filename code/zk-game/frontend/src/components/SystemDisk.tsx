@@ -2,7 +2,7 @@ import { useAccount } from 'wagmi';
 import { connectWithSSO, disconnectWallet, getHighScores } from '../utils/wagmi-config';
 import { useRef, useState } from 'react';
 import HighScores from './HighScores';
-import { Score } from '../utils/types';
+import type { Score } from '../utils/types';
 import Draggable from 'react-draggable';
 
 interface SystemDiskProps {

@@ -35,6 +35,7 @@ jobs:
       if: matrix.tutorial == 'zk-game'
       run: |
           curl -L https://sp1.succinct.xyz | bash
+          source /home/runner/.bashrc
           sp1up
     - name: Run test for ${{ matrix.tutorial }}
       run: |
