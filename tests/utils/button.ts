@@ -7,7 +7,9 @@ export async function clickButtonByText(page: Page, selector: string | RegExp) {
 export async function clickCopyButton(page: Page, id: string) {
   const buttonAriaLabel = 'Copy code to clipboard';
   const selector = `//*[@id='${id}']//following::button[@aria-label='${buttonAriaLabel}'][1]`;
-  const button = page.locator(selector).first();
+  const buttons = await page.locator(selector).all();
+  console.log('buttons', buttons);
+  const button = buttons[0];
   await button.click();
   const rawText: string = await page.evaluate('navigator.clipboard.readText()');
   return rawText;

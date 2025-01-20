@@ -31,6 +31,12 @@ jobs:
     - name: Create Metamask Cache
       if: matrix.tutorial == 'frontend-paymaster'
       run: xvfb-run bun setup:mm
+    - name: Install Rust Toolchain
+      if: matrix.tutorial == 'zk-game'
+      uses: actions-rs/toolchain@v1
+      with:
+            toolchain: 1.81.0
+            components: llvm-tools, rustc-dev
     - name: Install Cargo Prove
       if: matrix.tutorial == 'zk-game'
       run: |
