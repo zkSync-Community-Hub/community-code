@@ -26,8 +26,8 @@ jobs:
     - uses: actions/setup-node@v4
     - name: Install Playwright Browsers
       run: bun playwright install chromium --with-deps
-    - name: Run Era Test Node
-      uses: dutterbutter/era-test-node-action@v1
+    - name: Run ZKsync Anvil Node
+      uses: dutterbutter/anvil-zksync-action@latest
     - name: Create Metamask Cache
       if: matrix.tutorial == 'frontend-paymaster'
       run: xvfb-run bun setup:mm
