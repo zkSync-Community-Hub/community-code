@@ -43,7 +43,7 @@ jobs:
         curl -L https://sp1.succinct.xyz | bash
         ~/.sp1/bin/sp1up 
         ~/.sp1/bin/cargo-prove prove --version
-        source ~/.bashrc
+        echo "$HOME/.sp1/bin:${GITHUB_PATH}" >> $GITHUB_PATH
     - name: Run test for ${{ matrix.tutorial }}
       run: |
         export TERM=xterm-256color
