@@ -102,6 +102,15 @@ const contractSteps: IStepConfig = {
     commandFolder: 'tests-output/zksync-webauthn/contracts',
     saveOutput: 'tests-output/zksync-webauthn/contracts/deploy-output.txt',
   },
+  'wait-for-deploy': {
+    action: 'wait',
+    timeout: 8000,
+  },
+  'debug-123': {
+    action: 'runCommand',
+    commandFolder: 'tests-output/zksync-webauthn',
+    useSetCommand: 'tree .',
+  },
 };
 
 const frontendPart1Steps: IStepConfig = {
