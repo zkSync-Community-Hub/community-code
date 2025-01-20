@@ -59,9 +59,9 @@ export const steps: IStepConfig = {
   'use-local-network': {
     action: 'modifyFile',
     filepath: 'tests-output/custom-paymaster-tutorial/hardhat.config.ts',
-    atLine: 6,
-    removeLines: [6],
-    useSetData: '  defaultNetwork: "inMemoryNode",',
+    atLine: 8,
+    removeLines: [8],
+    useSetData: '  defaultNetwork: "anvilZKsync",',
   },
   'start-local-network': {
     action: 'runCommand',
@@ -97,7 +97,7 @@ export const steps: IStepConfig = {
     atLine: 7,
     removeLines: [7],
     getContractId:
-      'tests-output/custom-paymaster-tutorial/deployments-zk/inMemoryNode/contracts/MyPaymaster.sol/MyPaymaster.json',
+      'tests-output/custom-paymaster-tutorial/deployments-zk/anvilZKsync/contracts/MyPaymaster.sol/MyPaymaster.json',
     useSetData: "const PAYMASTER_ADDRESS = '<*GET_CONTRACT_ID*>';",
   },
   'token-address': {
@@ -106,7 +106,7 @@ export const steps: IStepConfig = {
     atLine: 10,
     removeLines: [10],
     getContractId:
-      'tests-output/custom-paymaster-tutorial/deployments-zk/inMemoryNode/contracts/MyERC20.sol/MyERC20.json',
+      'tests-output/custom-paymaster-tutorial/deployments-zk/anvilZKsync/contracts/MyERC20.sol/MyERC20.json',
     useSetData: "const TOKEN_ADDRESS = '<*GET_CONTRACT_ID*>';",
   },
   'run-use-paymaster': {

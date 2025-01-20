@@ -30,9 +30,9 @@ export const steps: IStepConfig = {
   'update-hh-config': {
     action: 'modifyFile',
     filepath: 'tests-output/frontend-paymaster/contracts/hardhat.config.ts',
-    atLine: 6,
-    removeLines: [6],
-    useSetData: '  defaultNetwork: "inMemoryNode",',
+    atLine: 8,
+    removeLines: [8],
+    useSetData: '  defaultNetwork: "anvilZKsync",',
   },
   'deploy-greeter': {
     action: 'runCommand',

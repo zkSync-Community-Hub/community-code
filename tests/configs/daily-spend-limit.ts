@@ -35,9 +35,9 @@ export const steps: IStepConfig = {
   'deploy-to-local-node': {
     action: 'modifyFile',
     filepath: 'tests-output/custom-spendlimit-tutorial/hardhat.config.ts',
-    atLine: 9,
-    removeLines: [9],
-    useSetData: '  defaultNetwork: "inMemoryNode",',
+    atLine: 8,
+    removeLines: [8],
+    useSetData: '  defaultNetwork: "anvilZKsync",',
   },
   'add-spend-limit-file': {
     action: 'runCommand',

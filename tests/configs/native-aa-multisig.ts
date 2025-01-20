@@ -27,9 +27,9 @@ export const steps: IStepConfig = {
   'use-local-node': {
     action: 'modifyFile',
     filepath: 'tests-output/custom-aa-tutorial/hardhat.config.ts',
-    useSetData: "  defaultNetwork: 'inMemoryNode',",
-    atLine: 6,
-    removeLines: [6],
+    atLine: 8,
+    removeLines: [8],
+    useSetData: '  defaultNetwork: "anvilZKsync",',
   },
   'start-local-node': {
     action: 'runCommand',
