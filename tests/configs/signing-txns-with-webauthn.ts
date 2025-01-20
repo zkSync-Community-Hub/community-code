@@ -108,7 +108,7 @@ const contractSteps: IStepConfig = {
   },
   'debug-123': {
     action: 'runCommand',
-    commandFolder: 'tests-output/zksync-webauthn',
+    commandFolder: 'tests-output/zksync-webauthn/contracts/artifacts-zk',
     useSetCommand: 'tree .',
   },
 };
