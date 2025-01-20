@@ -73,6 +73,7 @@ cp code/zk-game/contracts/contracts/SP1VerifierGroth16.sol tests-output/zk-game/
     action: 'runCommand',
     commandFolder: 'tests-output/zk-game/contracts',
     saveOutput: 'tests-output/zk-game/contracts/verifier.txt',
+    preCommand: 'npm install && ',
   },
   'paymaster-script': {
     action: 'writeToFile',
