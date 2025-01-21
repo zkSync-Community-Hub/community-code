@@ -1,6 +1,5 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
-import "hardhat/console.sol";
 
 /// @title Groth16 verifier template.
 /// @author Remco Bloemen
@@ -569,7 +568,6 @@ contract Groth16Verifier {
             // Also check returned value (both are either 1 or 0).
             success := and(success, mload(f))
         }
-        console.log("SUCCESS: ", success);
         if (!success) {
             // Either proof or verification key invalid.
             // We assume the contract is correctly generated, so the verification key is valid.

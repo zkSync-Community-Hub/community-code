@@ -2,7 +2,6 @@
 pragma solidity ^0.8.0;
 
 import {ISP1Verifier} from "./ISP1Verifier.sol";
-import "hardhat/console.sol";
 
 struct PublicValuesStruct {
     uint32 blocksDestroyed;
@@ -56,26 +55,20 @@ contract Brickles {
         bytes calldata _publicValues,
         bytes calldata _proofBytes
     ) public {
-        console.log("STARTING");
         require(_publicValues.length > 0, "Public values must be provided");
         require(_proofBytes.length > 0, "Proof must be provided");
-        console.log("DATA LOOKS OK");
         bytes memory input = abi.encodePacked(_proofBytes, _publicValues);
         bool proofIsNew = verifiedProofs[input] == address(0);
-        console.log("PROOF IS NEW", proofIsNew);
         require(proofIsNew, "Proof already used");
-        console.log("GOING TO VERIFY");
         ISP1Verifier(verifier).verifyProof(
             gameProgramVKey,
             _publicValues,
             _proofBytes
         );
-        console.log("DONE");
         PublicValuesStruct memory publicValues = abi.decode(
             _publicValues,
             (PublicValuesStruct)
         );
-        console.log("DECODED");
         require(publicValues.isValid, "Inputs Invalid");
         _submitScore(publicValues.blocksDestroyed, publicValues.timeElapsed);
         verifiedProofs[input] = msg.sender;

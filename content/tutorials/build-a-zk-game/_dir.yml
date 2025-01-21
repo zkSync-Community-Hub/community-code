@@ -14,10 +14,10 @@ tags:
   - wagmi
 summary: Build a game using ZK proofs and account abstraction.
 description:
-  In this tutorial, you will build a game where users can prove and verify their high scores on chain. You will also
+  In this tutorial, you will build a game where users can prove and verify their high scores onchain. You will also
   learn how to integrate ZKsync SSO.
 what_you_will_learn:
-  - How to generate and verify ZK proofs on chain
+  - How to generate and verify ZK proofs onchain
   - A way to use ZK proofs with a game
   - How to integrate ZKsync SSO
 updated: 2025-01-25

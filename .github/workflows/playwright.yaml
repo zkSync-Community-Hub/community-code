@@ -10,10 +10,10 @@ jobs:
     strategy:
       matrix:
         tutorial:
-          # - "erc20-paymaster" 
-          # - "how-to-test-contracts"
-          # - "daily-spend-limit"
-          # - "native-aa-multisig"
+          - "erc20-paymaster" 
+          - "how-to-test-contracts"
+          - "daily-spend-limit"
+          - "native-aa-multisig"
           - "signing-txns-with-webauthn"
           - "frontend-paymaster"
           - "zk-game"

@@ -3,7 +3,6 @@ pragma solidity ^0.8.20;
 
 import {ISP1Verifier, ISP1VerifierWithHash} from "./ISP1Verifier.sol";
 import {Groth16Verifier} from "./Groth16Verifier.sol";
-import "hardhat/console.sol";
 
 /// @title SP1 Verifier
 /// @author Succinct Labs
@@ -44,23 +43,15 @@ contract SP1Verifier is Groth16Verifier, ISP1VerifierWithHash {
     ) external view {
         bytes4 receivedSelector = bytes4(proofBytes[:4]);
         bytes4 expectedSelector = bytes4(VERIFIER_HASH());
-        console.log("ACTUAL VERIFIER HASH:");
-        console.logBytes4(receivedSelector);
         if (receivedSelector != expectedSelector) {
-            console.log("WRONG SELECTOR");
             revert WrongVerifierSelector(receivedSelector, expectedSelector);
         }
-        console.log("CORRECT SELECTOR");
+
         bytes32 publicValuesDigest = hashPublicValues(publicValues);
-        console.log("PUBLIC VALUES DIGEST:");
-        console.logBytes32(publicValuesDigest);
         uint256[2] memory inputs;
-        console.log("PROGRAM VKEY:");
-        console.logBytes32(programVKey);
         inputs[0] = uint256(programVKey);
         inputs[1] = uint256(publicValuesDigest);
         uint256[8] memory proof = abi.decode(proofBytes[4:], (uint256[8]));
-        console.log("GOT PROOF");
         this.Verify(proof, inputs);
     }
 }
