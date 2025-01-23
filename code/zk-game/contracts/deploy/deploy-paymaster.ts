@@ -1,18 +1,30 @@
+import { Wallet, Provider } from 'zksync-ethers';
+import type { HardhatRuntimeEnvironment } from 'hardhat/types';
+// load env file
+import dotenv from 'dotenv';
 import { parseEther } from 'ethers';
-import { deployContract, getWallet } from './utils';
+dotenv.config();
 
-export default async function () {
-  const contractArtifactName = 'GeneralPaymaster';
-  const owner = getWallet().address;
+const DEPLOYER_PRIVATE_KEY = process.env.WALLET_PRIVATE_KEY || '';
+
+export default async function (hre: HardhatRuntimeEnvironment) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const config: any = hre.network.config;
+  const provider = new Provider(config.url);
+  const wallet = new Wallet(DEPLOYER_PRIVATE_KEY, provider);
+  const owner = wallet.address;
+
+  const artifact = await hre.deployer.loadArtifact('GeneralPaymaster');
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const constructorArguments: any[] = [owner];
-  const contract = await deployContract(contractArtifactName, constructorArguments);
+  const contract = await hre.deployer.deploy(artifact, constructorArguments);
   const address = await contract.getAddress();
-  await fundPaymaster(address);
+  console.log('DEPLOYED PAYMASTER CONTRACT ADDRESS: ', address);
+
+  await fundPaymaster(address, wallet);
 }
 
-async function fundPaymaster(toAddress: string) {
-  const wallet = getWallet();
+async function fundPaymaster(toAddress: string, wallet: Wallet) {
   const tx = await wallet.sendTransaction({
     to: toAddress,
     value: parseEther('1'),
