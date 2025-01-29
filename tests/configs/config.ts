@@ -4,7 +4,6 @@ import { steps as dailySpendLimitSteps } from './daily-spend-limit';
 import { steps as signingWithWebAuthnSteps } from './signing-txns-with-webauthn';
 import { steps as multisigSteps } from './native-aa-multisig';
 import { steps as frontendPaymasterSteps } from './frontend-paymaster';
-import { steps as zkGameSteps } from './zk-game';
 
 export function getConfig(tutorialName: string) {
   let steps;
@@ -26,9 +25,6 @@ export function getConfig(tutorialName: string) {
       break;
     case 'frontend-paymaster':
       steps = frontendPaymasterSteps;
-      break;
-    case 'zk-game':
-      steps = zkGameSteps;
       break;
     default:
       break;
