@@ -15,7 +15,6 @@ EVM
 evmla
 geth
 graphcli
-Groth
 gwei
 !HardHat
 hasura
