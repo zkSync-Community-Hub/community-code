@@ -1,26 +1,23 @@
-import { utils, Wallet, Provider } from 'zksync-ethers';
-import type { HardhatRuntimeEnvironment } from 'hardhat/types';
-// load env file
-import dotenv from 'dotenv';
-import { ethers } from 'ethers';
-dotenv.config();
+import { deployer, ethers } from 'hardhat';
+import { utils } from 'zksync-ethers';
 
-const DEPLOYER_PRIVATE_KEY = process.env.WALLET_PRIVATE_KEY || '';
-
-export default async function (hre: HardhatRuntimeEnvironment) {
-  // @ts-expect-error target config file which can be testnet or local
-  const provider = new Provider(hre.network.config.url);
-  const wallet = new Wallet(DEPLOYER_PRIVATE_KEY, provider);
-
+async function main() {
   // deploy the AA Factory & test deploying an account
-  await deployAAFactory(hre.deployer);
+  await deployAAFactory();
   // deploy the NFT contract
-  await deployMyNFT(hre.deployer);
+  await deployMyNFT();
   // deploy the Paymaster contract
-  await deployPaymaster(hre.deployer, wallet);
+  await deployPaymaster();
 }
 
-async function deployAAFactory(deployer: HardhatRuntimeEnvironment['deployer']) {
+main()
+  .then(() => process.exit(0))
+  .catch((error) => {
+    console.error(error);
+    process.exit(1);
+  });
+
+async function deployAAFactory() {
   const factoryArtifact = await deployer.loadArtifact('AAFactory');
   const aaArtifact = await deployer.loadArtifact('Account');
 
@@ -35,7 +32,7 @@ async function deployAAFactory(deployer: HardhatRuntimeEnvironment['deployer']) 
   console.log(`AA factory address: ${factoryAddress}`);
 }
 
-async function deployMyNFT(deployer: HardhatRuntimeEnvironment['deployer']) {
+async function deployMyNFT() {
   const artifact = await deployer.loadArtifact('MyNFT');
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const constructorArguments: any[] = [];
@@ -47,7 +44,8 @@ async function deployMyNFT(deployer: HardhatRuntimeEnvironment['deployer']) {
   console.log('DONE MINTING');
 }
 
-async function deployPaymaster(deployer: HardhatRuntimeEnvironment['deployer'], wallet: Wallet) {
+async function deployPaymaster() {
+  const [wallet] = await ethers.getWallets();
   const artifact = await deployer.loadArtifact('GeneralPaymaster');
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const constructorArguments: any[] = [];

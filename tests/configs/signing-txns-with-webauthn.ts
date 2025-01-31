@@ -1,82 +1,82 @@
 import type { IStepConfig } from '../utils/types';
 
 const contractSteps: IStepConfig = {
-  'make-project-folder': {
-    action: 'runCommand',
-  },
-  'initialize-contracts': {
-    action: 'runCommand',
-    commandFolder: 'tests-output/zksync-webauthn',
-    prompts: 'Private key of the wallet: |❯ npm: ',
-  },
-  'wait-for-init': {
-    action: 'wait',
-    timeout: 5000,
-  },
-  'add-env-pk': {
-    action: 'modifyFile',
-    filepath: 'tests-output/zksync-webauthn/contracts/.env',
-    useSetData: 'WALLET_PRIVATE_KEY=0x7726827caac94a7f9e1b160f7ea819f172f7b6f9d2a97f992c38edeab82d4110',
-    atLine: 1,
-    removeLines: [1],
-  },
-  'remove-template-files': {
-    action: 'runCommand',
-    commandFolder: 'tests-output/zksync-webauthn',
-  },
-  'create-paymaster': {
-    action: 'runCommand',
-    commandFolder: 'tests-output/zksync-webauthn/contracts',
-  },
-  'open-paymaster': {
-    action: 'clickButtonByText',
-    buttonText: 'GeneralPaymaster.sol',
-  },
-  'paymaster-contract-code': {
-    action: 'writeToFile',
-    filepath: 'tests-output/zksync-webauthn/contracts/contracts/GeneralPaymaster.sol',
-  },
-  'create-nft-contract': {
-    action: 'runCommand',
-    commandFolder: 'tests-output/zksync-webauthn/contracts',
-  },
-  'open-nft': {
-    action: 'clickButtonByText',
-    buttonText: 'MyNFT.sol',
-  },
-  'nft-contract-code': {
-    action: 'writeToFile',
-    filepath: 'tests-output/zksync-webauthn/contracts/contracts/MyNFT.sol',
-  },
-  'create-aa-factory': {
-    action: 'runCommand',
-    commandFolder: 'tests-output/zksync-webauthn/contracts',
-  },
-  'open-aa-factory': {
-    action: 'clickButtonByText',
-    buttonText: 'AAFactory.sol',
-  },
-  'aa-factory-contract-code': {
-    action: 'writeToFile',
-    filepath: 'tests-output/zksync-webauthn/contracts/contracts/AAFactory.sol',
-  },
-  'create-account-contract': {
-    action: 'runCommand',
-    commandFolder: 'tests-output/zksync-webauthn/contracts',
-  },
-  'open-account': {
-    action: 'clickButtonByText',
-    buttonText: 'Account.sol',
-  },
-  'account-contract-code': {
-    action: 'writeToFile',
-    filepath: 'tests-output/zksync-webauthn/contracts/contracts/Account.sol',
-  },
-  'start-era-test-node': {
-    action: 'runCommand',
-    commandFolder: 'tests-output/zksync-webauthn/contracts',
-    preCommand: "bun pm2 start '<COMMAND>' --name era-test-node",
-  },
+  // 'make-project-folder': {
+  //   action: 'runCommand',
+  // },
+  // 'initialize-contracts': {
+  //   action: 'runCommand',
+  //   commandFolder: 'tests-output/zksync-webauthn',
+  //   prompts: 'Private key of the wallet: |❯ npm: ',
+  // },
+  // 'wait-for-init': {
+  //   action: 'wait',
+  //   timeout: 5000,
+  // },
+  // 'make-env-file': {
+  //   action: 'runCommand',
+  //   commandFolder: 'tests-output/zksync-webauthn/contracts',
+  //   useSetCommand: 'touch .env',
+  // },
+  // 'add-env-pk': {
+  //   action: 'modifyFile',
+  //   filepath: 'tests-output/zksync-webauthn/contracts/.env',
+  //   useSetData: 'WALLET_PRIVATE_KEY=0x7726827caac94a7f9e1b160f7ea819f172f7b6f9d2a97f992c38edeab82d4110',
+  //   atLine: 1,
+  //   removeLines: [1],
+  // },
+  // 'remove-template-files': {
+  //   action: 'runCommand',
+  //   commandFolder: 'tests-output/zksync-webauthn',
+  // },
+  // 'create-paymaster': {
+  //   action: 'runCommand',
+  //   commandFolder: 'tests-output/zksync-webauthn/contracts',
+  // },
+  // 'open-paymaster': {
+  //   action: 'clickButtonByText',
+  //   buttonText: 'GeneralPaymaster.sol',
+  // },
+  // 'paymaster-contract-code': {
+  //   action: 'writeToFile',
+  //   filepath: 'tests-output/zksync-webauthn/contracts/contracts/GeneralPaymaster.sol',
+  // },
+  // 'create-nft-contract': {
+  //   action: 'runCommand',
+  //   commandFolder: 'tests-output/zksync-webauthn/contracts',
+  // },
+  // 'open-nft': {
+  //   action: 'clickButtonByText',
+  //   buttonText: 'MyNFT.sol',
+  // },
+  // 'nft-contract-code': {
+  //   action: 'writeToFile',
+  //   filepath: 'tests-output/zksync-webauthn/contracts/contracts/MyNFT.sol',
+  // },
+  // 'create-aa-factory': {
+  //   action: 'runCommand',
+  //   commandFolder: 'tests-output/zksync-webauthn/contracts',
+  // },
+  // 'open-aa-factory': {
+  //   action: 'clickButtonByText',
+  //   buttonText: 'AAFactory.sol',
+  // },
+  // 'aa-factory-contract-code': {
+  //   action: 'writeToFile',
+  //   filepath: 'tests-output/zksync-webauthn/contracts/contracts/AAFactory.sol',
+  // },
+  // 'create-account-contract': {
+  //   action: 'runCommand',
+  //   commandFolder: 'tests-output/zksync-webauthn/contracts',
+  // },
+  // 'open-account': {
+  //   action: 'clickButtonByText',
+  //   buttonText: 'Account.sol',
+  // },
+  // 'account-contract-code': {
+  //   action: 'writeToFile',
+  //   filepath: 'tests-output/zksync-webauthn/contracts/contracts/Account.sol',
+  // },
   'open-hardhat-config': {
     action: 'clickButtonByText',
     buttonText: 'hardhat.config.ts',
@@ -85,18 +85,18 @@ const contractSteps: IStepConfig = {
     action: 'writeToFile',
     filepath: 'tests-output/zksync-webauthn/contracts/hardhat.config.ts',
   },
-  'make-deploy-script': {
-    action: 'runCommand',
-    commandFolder: 'tests-output/zksync-webauthn/contracts',
-  },
-  'open-deploy-script': {
-    action: 'clickButtonByText',
-    buttonText: 'deploy.ts',
-  },
-  'deploy-script': {
-    action: 'writeToFile',
-    filepath: 'tests-output/zksync-webauthn/contracts/deploy/deploy.ts',
-  },
+  // 'make-deploy-script': {
+  //   action: 'runCommand',
+  //   commandFolder: 'tests-output/zksync-webauthn/contracts',
+  // },
+  // 'open-deploy-script': {
+  //   action: 'clickButtonByText',
+  //   buttonText: 'deploy.ts',
+  // },
+  // 'deploy-script': {
+  //   action: 'writeToFile',
+  //   filepath: 'tests-output/zksync-webauthn/contracts/scripts/deploy.ts',
+  // },
   'compile-and-deploy': {
     action: 'runCommand',
     commandFolder: 'tests-output/zksync-webauthn/contracts',

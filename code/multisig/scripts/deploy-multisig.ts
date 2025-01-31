@@ -1,31 +1,24 @@
 // ANCHOR: min-script
-import { utils, Wallet, Provider, EIP712Signer, types } from 'zksync-ethers';
-import * as ethers from 'ethers';
-import type { HardhatRuntimeEnvironment } from 'hardhat/types';
-import dotenv from 'dotenv';
-dotenv.config();
+import { EIP712Signer, types, utils } from 'zksync-ethers';
+import { ethers } from 'hardhat';
 
 // Put the address of your AA factory
-const AA_FACTORY_ADDRESS = '<FACTORY_ADDRESS>'; //sepolia
+const AA_FACTORY_ADDRESS = process.env.AA_FACTORY_ADDRESS ?? '<FACTORY_ADDRESS>';
 
-export default async function (hre: HardhatRuntimeEnvironment) {
-  // @ts-expect-error target network in config file
-  const provider = new Provider(hre.network.config.url);
-  // Private key of the account used to deploy
-  const wallet = new Wallet(process.env.WALLET_PRIVATE_KEY!).connect(provider);
-
-  const factoryArtifact = await hre.artifacts.readArtifact('AAFactory');
-
-  const aaFactory = new ethers.Contract(AA_FACTORY_ADDRESS, factoryArtifact.abi, wallet);
+async function main() {
+  const [signer] = await ethers.getSigners();
+  const aaFactory = await ethers.getContractAt('AAFactory', AA_FACTORY_ADDRESS, signer);
+  console.log('AA factory address:', aaFactory.target);
 
   // The two owners of the multisig
-  const owner1 = Wallet.createRandom();
-  const owner2 = Wallet.createRandom();
+  const owner1 = ethers.Wallet.createRandom();
+  const owner2 = ethers.Wallet.createRandom();
+  console.log(`Owner 1: ${owner1.address}`);
+  console.log(`Owner 2: ${owner2.address}`);
 
   // For the simplicity of the tutorial, we will use zero hash as salt
   const salt = ethers.ZeroHash;
   const tx = await aaFactory.deployAccount(salt, owner1.address, owner2.address);
-
   await tx.wait();
 
   // Getting the address of the deployed contract account
@@ -44,6 +37,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   // ANCHOR: send-funds
   console.log('Sending funds to multisig account');
   // Send funds to the multisig account we just deployed
+  const [wallet] = await ethers.getWallets();
   await (
     await wallet.sendTransaction({
       to: multisigAddress,
@@ -53,6 +47,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
     })
   ).wait();
 
+  const provider = ethers.providerL2;
   let multisigBalance = await provider.getBalance(multisigAddress);
 
   console.log(`Multisig account balance is ${multisigBalance.toString()}`);
@@ -63,8 +58,8 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   let aaTx = await aaFactory.deployAccount.populateTransaction(
     salt,
     // These are accounts that will own the newly deployed account
-    Wallet.createRandom().address,
-    Wallet.createRandom().address
+    ethers.Wallet.createRandom().address,
+    ethers.Wallet.createRandom().address
   );
   // ANCHOR_END: create-deploy-tx
 
@@ -119,3 +114,10 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   console.log(`Multisig account balance is now ${multisigBalance.toString()}`);
   // ANCHOR_END: broadcast-tx
 }
+
+main()
+  .then(() => process.exit(0))
+  .catch((error) => {
+    console.error(error);
+    process.exit(1);
+  });

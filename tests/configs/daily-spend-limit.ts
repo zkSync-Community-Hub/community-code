@@ -25,12 +25,10 @@ export const steps: IStepConfig = {
     timeout: 5000,
   },
   'hardhat-config': {
-    action: 'writeToFile',
+    action: 'modifyFile',
     filepath: 'tests-output/daily-spend-limit/hardhat.config.ts',
-  },
-  'start-local-node': {
-    action: 'runCommand',
-    useSetCommand: "bun pm2 start 'era_test_node run' --name era-test-node",
+    atLine: 45,
+    removeLines: [45, '-->', 51],
   },
   'deploy-to-local-node': {
     action: 'modifyFile',
@@ -79,6 +77,11 @@ export const steps: IStepConfig = {
     action: 'runCommand',
     commandFolder: 'tests-output/daily-spend-limit',
   },
+  'make-env-file': {
+    action: 'runCommand',
+    commandFolder: 'tests-output/daily-spend-limit',
+    useSetCommand: 'touch .env',
+  },
   'modify-env-file': {
     action: 'modifyFile',
     filepath: 'tests-output/daily-spend-limit/.env',
@@ -88,7 +91,7 @@ export const steps: IStepConfig = {
   },
   'deploy-factory-script': {
     action: 'writeToFile',
-    filepath: 'tests-output/daily-spend-limit/deploy/deploy.ts',
+    filepath: 'tests-output/daily-spend-limit/scripts/deploy.ts',
   },
   'run-deploy-script': {
     action: 'runCommand',
@@ -119,7 +122,7 @@ export const steps: IStepConfig = {
   },
   'set-limit-script': {
     action: 'writeToFile',
-    filepath: 'tests-output/daily-spend-limit/deploy/setLimit.ts',
+    filepath: 'tests-output/daily-spend-limit/scripts/setLimit.ts',
   },
   'run-set-limit-script': {
     action: 'runCommand',
@@ -132,7 +135,7 @@ export const steps: IStepConfig = {
   },
   'add-transfer-script': {
     action: 'writeToFile',
-    filepath: 'tests-output/daily-spend-limit/deploy/transferETH.ts',
+    filepath: 'tests-output/daily-spend-limit/scripts/transferETH.ts',
   },
   'add-receiver-account': {
     action: 'modifyFile',

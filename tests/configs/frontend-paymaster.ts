@@ -16,23 +16,28 @@ export const steps: IStepConfig = {
     action: 'wait',
     timeout: 15000,
   },
+  'update-hh-config': {
+    action: 'modifyFile',
+    filepath: 'tests-output/frontend-paymaster/contracts/hardhat.config.ts',
+    atLine: 9,
+    removeLines: [9],
+    useSetData: '  defaultNetwork: "anvilZKsync",',
+  },
+  'compile-contracts': {
+    action: 'runCommand',
+    commandFolder: 'tests-output/frontend-paymaster/contracts',
+  },
+  'new-env-file': {
+    action: 'runCommand',
+    commandFolder: 'tests-output/frontend-paymaster/contracts',
+    useSetCommand: 'touch .env',
+  },
   'env-pk': {
     action: 'modifyFile',
     filepath: 'tests-output/frontend-paymaster/contracts/.env',
     atLine: 1,
     removeLines: [1],
     useSetData: 'WALLET_PRIVATE_KEY=0x7726827caac94a7f9e1b160f7ea819f172f7b6f9d2a97f992c38edeab82d4110',
-  },
-  'compile-contracts': {
-    action: 'runCommand',
-    commandFolder: 'tests-output/frontend-paymaster/contracts',
-  },
-  'update-hh-config': {
-    action: 'modifyFile',
-    filepath: 'tests-output/frontend-paymaster/contracts/hardhat.config.ts',
-    atLine: 8,
-    removeLines: [8],
-    useSetData: '  defaultNetwork: "anvilZKsync",',
   },
   'deploy-greeter': {
     action: 'runCommand',

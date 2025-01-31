@@ -15,7 +15,7 @@ description:
 what_you_will_learn:
   - How to deploy smart contracts in L1 and L2.
   - How to send transactions in L1 that interact with contracts in L2.
-updated: 2024-05-09
+updated: 2025-02-05
 tools:
   - zksync-cli
   - zksync-ethers

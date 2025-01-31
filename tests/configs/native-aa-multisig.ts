@@ -16,25 +16,18 @@ export const steps: IStepConfig = {
     action: 'runCommand',
     commandFolder: 'tests-output/native-aa-multisig',
   },
-  'install-deps': {
-    action: 'runCommand',
-    commandFolder: 'tests-output/native-aa-multisig',
-  },
   'hardhat-config': {
-    action: 'writeToFile',
+    action: 'modifyFile',
     filepath: 'tests-output/native-aa-multisig/hardhat.config.ts',
+    atLine: 45,
+    removeLines: [45, '-->', 51],
   },
   'use-local-node': {
     action: 'modifyFile',
     filepath: 'tests-output/native-aa-multisig/hardhat.config.ts',
-    atLine: 6,
-    removeLines: [6],
+    atLine: 9,
+    removeLines: [9],
     useSetData: '  defaultNetwork: "anvilZKsync",',
-  },
-  'start-local-node': {
-    action: 'runCommand',
-    commandFolder: 'tests-output/native-aa-multisig',
-    useSetCommand: "bun pm2 start 'era_test_node fork sepolia-testnet' --name era-test-node",
   },
   'make-multisig-contract': {
     action: 'runCommand',
@@ -53,13 +46,10 @@ export const steps: IStepConfig = {
     action: 'writeToFile',
     filepath: 'tests-output/native-aa-multisig/contracts/AAFactory.sol',
   },
-  'make-deploy-script': {
+  'make-env-file': {
     action: 'runCommand',
     commandFolder: 'tests-output/native-aa-multisig',
-  },
-  'deploy-script-code': {
-    action: 'writeToFile',
-    filepath: 'tests-output/native-aa-multisig/deploy/deploy-factory.ts',
+    useSetCommand: 'touch .env',
   },
   'env-pk': {
     action: 'modifyFile',
@@ -67,6 +57,14 @@ export const steps: IStepConfig = {
     atLine: 1,
     removeLines: [1],
     useSetData: 'WALLET_PRIVATE_KEY=0x7726827caac94a7f9e1b160f7ea819f172f7b6f9d2a97f992c38edeab82d4110',
+  },
+  'make-deploy-script': {
+    action: 'runCommand',
+    commandFolder: 'tests-output/native-aa-multisig',
+  },
+  'deploy-script-code': {
+    action: 'writeToFile',
+    filepath: 'tests-output/native-aa-multisig/scripts/deploy-factory.ts',
   },
   'compile-and-deploy-factory': {
     action: 'runCommand',
@@ -80,41 +78,52 @@ export const steps: IStepConfig = {
   },
   'deploy-multisig-code': {
     action: 'writeToFile',
-    filepath: 'tests-output/native-aa-multisig/deploy/deploy-multisig.ts',
+    filepath: 'tests-output/native-aa-multisig/scripts/deploy-multisig.ts',
   },
   'deposit-funds': {
     action: 'modifyFile',
-    filepath: 'tests-output/native-aa-multisig/deploy/deploy-multisig.ts',
-    atLine: 41,
+    filepath: 'tests-output/native-aa-multisig/scripts/deploy-multisig.ts',
+    atLine: 34,
     addSpacesBefore: 1,
   },
   'create-deploy-tx': {
     action: 'modifyFile',
-    filepath: 'tests-output/native-aa-multisig/deploy/deploy-multisig.ts',
-    atLine: 56,
+    filepath: 'tests-output/native-aa-multisig/scripts/deploy-multisig.ts',
+    atLine: 51,
     addSpacesBefore: 1,
   },
   'modify-deploy-tx': {
     action: 'modifyFile',
-    filepath: 'tests-output/native-aa-multisig/deploy/deploy-multisig.ts',
-    atLine: 64,
+    filepath: 'tests-output/native-aa-multisig/scripts/deploy-multisig.ts',
+    atLine: 59,
     addSpacesBefore: 1,
   },
   'sign-deploy-tx': {
     action: 'modifyFile',
-    filepath: 'tests-output/native-aa-multisig/deploy/deploy-multisig.ts',
-    atLine: 82,
+    filepath: 'tests-output/native-aa-multisig/scripts/deploy-multisig.ts',
+    atLine: 77,
     addSpacesBefore: 1,
   },
   'send-deploy-tx': {
     action: 'modifyFile',
-    filepath: 'tests-output/native-aa-multisig/deploy/deploy-multisig.ts',
-    atLine: 95,
+    filepath: 'tests-output/native-aa-multisig/scripts/deploy-multisig.ts',
+    atLine: 90,
     addSpacesBefore: 1,
+  },
+  'add-run-main': {
+    action: 'modifyFile',
+    filepath: 'tests-output/native-aa-multisig/scripts/deploy-multisig.ts',
+    atLine: 106,
+    useSetData: `main()
+  .then(() => process.exit(0))
+  .catch((error) => {
+    console.error(error);
+    process.exit(1);
+  });`,
   },
   'final-deploy-script': {
     action: 'compareToFile',
-    filepath: 'tests-output/native-aa-multisig/deploy/deploy-multisig.ts',
+    filepath: 'tests-output/native-aa-multisig/scripts/deploy-multisig.ts',
   },
   'get-deployed-account-address': {
     action: 'extractDataToEnv',
@@ -122,13 +131,6 @@ export const steps: IStepConfig = {
     regex: /0x[a-fA-F0-9]{40}/,
     variableName: 'AA_FACTORY_ADDRESS',
     envFilepath: 'tests-output/native-aa-multisig/.env',
-  },
-  'deploy-multisig-account': {
-    action: 'modifyFile',
-    filepath: 'tests-output/native-aa-multisig/deploy/deploy-multisig.ts',
-    atLine: 8,
-    removeLines: [8],
-    useSetData: 'const AA_FACTORY_ADDRESS = process.env.AA_FACTORY_ADDRESS || "";',
   },
   'run-deploy-multisig': {
     action: 'runCommand',
