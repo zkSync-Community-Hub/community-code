@@ -1,15 +1,10 @@
-import * as hre from 'hardhat';
-import { ethers, Interface, parseEther } from 'ethers';
+import { deployer, network, ethers } from 'hardhat';
 import { DEFAULT_GAS_PER_PUBDATA_LIMIT, getPaymasterParams } from 'zksync-ethers/build/utils';
 import { Provider, SmartAccount, type types, Wallet } from 'zksync-ethers';
-import dotenv from 'dotenv';
-dotenv.config();
 
 // Address of the contract to interact with
 const GAME_CONTRACT_ADDRESS = process.env.GAME_CONTRACT_ADDRESS ?? '0x...';
 const PAYMASTER_CONTRACT_ADDRESS = process.env.PAYMASTER_CONTRACT_ADDRESS ?? '0x...';
-if (!GAME_CONTRACT_ADDRESS || !PAYMASTER_CONTRACT_ADDRESS) throw '⛔️ Missing addresses for the contracts!';
-const DEPLOYER_PRIVATE_KEY = process.env.WALLET_PRIVATE_KEY || '';
 
 const exampleProofs: { publicValues: string; proofBytes: string }[] = [
   {
@@ -19,15 +14,15 @@ const exampleProofs: { publicValues: string; proofBytes: string }[] = [
 ];
 
 // An example of a script to interact with the contract
-export default async function () {
+async function main() {
   console.log(`Running script to interact with contract ${GAME_CONTRACT_ADDRESS}`);
 
   // Load compiled contract info
-  const contractArtifact = await hre.artifacts.readArtifact('Brickles');
+  const contractArtifact = await deployer.loadArtifact('Brickles');
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const config: any = hre.network.config;
+  const config: any = network.config;
   const provider = new Provider(config.url);
-  const deployerWallet = new Wallet(DEPLOYER_PRIVATE_KEY, provider);
+  const [deployerWallet] = await ethers.getWallets();
 
   // Initialize contract instance for interaction
   const contract = new ethers.Contract(GAME_CONTRACT_ADDRESS, contractArtifact.abi, deployerWallet);
@@ -57,7 +52,7 @@ export async function sendTx(address: string, pk: string, abi: any, provider: Pr
       GAME_CONTRACT_ADDRESS,
       address,
       '0',
-      new Interface(abi).encodeFunctionData('verifyProof', args),
+      new ethers.Interface(abi).encodeFunctionData('verifyProof', args),
       provider
     );
     const tx = await account.sendTransaction(rawTx);
@@ -75,7 +70,7 @@ export async function getTransaction(to: string, from: string, value: string, da
   return {
     to,
     from,
-    value: parseEther(value),
+    value: ethers.parseEther(value),
     data,
     gasPrice,
     gasLimit: BigInt(2000000000),
@@ -99,3 +94,10 @@ export async function getPaymasterOverrides() {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } as any;
 }
+
+main()
+  .then(() => process.exit(0))
+  .catch((error) => {
+    console.error(error);
+    process.exit(1);
+  });

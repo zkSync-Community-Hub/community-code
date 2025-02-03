@@ -6,10 +6,10 @@
   "license": "MIT",
   "repository": "https://github.com/matter-labs/zksync-hardhat-template.git",
   "scripts": {
-    "deploy:game": "hardhat deploy-zksync --script deploy-game.ts",
-    "deploy:verifier": "hardhat deploy-zksync --script deploy-verifier.ts",
-    "deploy:paymaster": "hardhat deploy-zksync --script deploy-paymaster.ts",
-    "interact": "hardhat deploy-zksync --script interact.ts",
+    "deploy:game": "hardhat run ./scripts/deploy-game.ts",
+    "deploy:verifier": "hardhat run ./scripts/deploy-verifier.ts",
+    "deploy:paymaster": "hardhat run ./scripts/ deploy-paymaster.ts",
+    "interact": "hardhat run ./scripts/interact.ts",
     "compile": "hardhat compile",
     "clean": "hardhat clean",
     "test": "hardhat test --network hardhat"
