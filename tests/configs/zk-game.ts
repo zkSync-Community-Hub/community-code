@@ -27,8 +27,8 @@ const contractSteps: IStepConfig = {
   'hh-config': {
     action: 'modifyFile',
     filepath: 'tests-output/zk-game/contracts/hardhat.config.ts',
-    atLine: 8,
-    removeLines: [8],
+    atLine: 9,
+    removeLines: [9],
   },
   'create-game-contract': {
     action: 'runCommand',
@@ -67,7 +67,7 @@ cp code/zk-game/contracts/contracts/SP1VerifierGroth16.sol tests-output/zk-game/
   },
   'verifier-script': {
     action: 'writeToFile',
-    filepath: 'tests-output/zk-game/contracts/deploy/deploy-verifier.ts',
+    filepath: 'tests-output/zk-game/contracts/scripts/deploy-verifier.ts',
   },
   'compile-and-deploy': {
     action: 'runCommand',
@@ -77,7 +77,7 @@ cp code/zk-game/contracts/contracts/SP1VerifierGroth16.sol tests-output/zk-game/
   },
   'paymaster-script': {
     action: 'writeToFile',
-    filepath: 'tests-output/zk-game/contracts/deploy/deploy-paymaster.ts',
+    filepath: 'tests-output/zk-game/contracts/scripts/deploy-paymaster.ts',
   },
   'deploy-paymaster': {
     action: 'runCommand',
@@ -86,7 +86,7 @@ cp code/zk-game/contracts/contracts/SP1VerifierGroth16.sol tests-output/zk-game/
   },
   'game-script': {
     action: 'writeToFile',
-    filepath: 'tests-output/zk-game/contracts/deploy/deploy-game.ts',
+    filepath: 'tests-output/zk-game/contracts/scripts/deploy-game.ts',
   },
   'get-verifier-address': {
     action: 'extractDataToEnv',
@@ -161,13 +161,13 @@ const programSteps: IStepConfig = {
   },
   'interact-code': {
     action: 'writeToFile',
-    filepath: 'tests-output/zk-game/contracts/deploy/interact.ts',
+    filepath: 'tests-output/zk-game/contracts/scripts/interact.ts',
   },
   'interact-proof-data': {
     action: 'modifyFile',
-    filepath: 'tests-output/zk-game/contracts/deploy/interact.ts',
-    atLine: 16,
-    removeLines: [16, 17],
+    filepath: 'tests-output/zk-game/contracts/scripts/interact.ts',
+    atLine: 11,
+    removeLines: [11, 12],
     useSetData: `    publicValues: '0x0000000000000000000000000000000000000000000000000000000000000006000000000000000000000000000000000000000000000000000000000000286e0000000000000000000000000000000000000000000000000000000000000001',
     proofBytes: '0x11b6a09d1fb37140d2f1c6e4bd713dca7f29d5b17ffa4d1c916e5fe9e4fe9fa1eada49d91dfda738aab01575f20d97df567a8c7b959c14b01e597d7f0dd9b8c0579333d103c98b45588d3f63ee289afaed5ce1675bb5373990d2b4dd647c3c0865917595294395e6776546e25017a4ed51476f13de3a5d58c3beadc9a24b23a19216b83a0cb80cd3ee284848402f44ccbfdf78a7f05921e4e0b56d04a064b94ddc2e1a560f74be6ace6e4d3ba893b8c8ecea5cb87230ba1ed61479b7f30e0cdcbdbe8b1111026c398a661aa9004739ebc8418dc9a6226e0cd149f74185cc2b3609c664c5170a5d8ecae5ee5e98bd8f2a91c68a4993846af2aec583aac158fd519618710f',`,
   },
