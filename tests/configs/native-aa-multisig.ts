@@ -19,8 +19,8 @@ export const steps: IStepConfig = {
   'hardhat-config': {
     action: 'modifyFile',
     filepath: 'tests-output/native-aa-multisig/hardhat.config.ts',
-    atLine: 45,
-    removeLines: [45, '-->', 51],
+    atLine: 51,
+    removeLines: [51, '-->', 57],
   },
   'use-local-node': {
     action: 'modifyFile',
