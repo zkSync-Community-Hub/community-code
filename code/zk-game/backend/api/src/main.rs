@@ -51,7 +51,7 @@ enum JobState {
 type JobStorage = Arc<RwLock<HashMap<String, JobState>>>;
 
 /// The ELF file for the Succinct RISC-V zkVM.
-pub const ELF: &[u8] = include_bytes!("../../elf/riscv32im-succinct-zkvm-elf");
+pub const ELF: &[u8] = include_bytes!("../../elf/sp1_program");
 
 #[post("/prove/async", data = "<input>")]
 async fn prove_async(input: Json<ProofInput>, jobs: &State<JobStorage>) -> Json<JobResponse> {

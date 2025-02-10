@@ -3,7 +3,7 @@ use game_lib::*;
 use sp1_sdk::{HashableKey, ProverClient, SP1Stdin};
 
 /// The ELF (executable and linkable format) file for the Succinct RISC-V zkVM.
-pub const ELF: &[u8] = include_bytes!("../../elf/riscv32im-succinct-zkvm-elf");
+pub const ELF: &[u8] = include_bytes!("../../elf/sp1_program");
 
 fn main() {
     // Setup the logger.
