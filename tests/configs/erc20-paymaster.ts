@@ -3,7 +3,7 @@ import type { IStepConfig } from '../utils/types';
 export const steps: IStepConfig = {
   'initialize-hardhat-project': {
     action: 'runCommand',
-    prompts: 'Private key of the wallet:0x7726827caac94a7f9e1b160f7ea819f172f7b6f9d2a97f992c38edeab82d4110|❯ npm: ',
+    prompts: 'Private key of the wallet: |❯ npm: ',
   },
   'wait-for-init': {
     action: 'wait',
@@ -18,99 +18,80 @@ export const steps: IStepConfig = {
   },
   'create-contract-file': {
     action: 'runCommand',
-    commandFolder: 'tests-output/custom-paymaster-tutorial',
+    commandFolder: 'tests-output/erc20-paymaster',
   },
   'add-paymaster-contract': {
     action: 'writeToFile',
-    filepath: 'tests-output/custom-paymaster-tutorial/contracts/MyPaymaster.sol',
+    filepath: 'tests-output/erc20-paymaster/contracts/MyPaymaster.sol',
   },
   'create-erc20-contract-file': {
     action: 'runCommand',
-    commandFolder: 'tests-output/custom-paymaster-tutorial',
+    commandFolder: 'tests-output/erc20-paymaster',
   },
   'add-erc20-contract': {
     action: 'writeToFile',
-    filepath: 'tests-output/custom-paymaster-tutorial/contracts/MyERC20.sol',
+    filepath: 'tests-output/erc20-paymaster/contracts/MyERC20.sol',
   },
   'create-deploy-file': {
     action: 'runCommand',
-    commandFolder: 'tests-output/custom-paymaster-tutorial',
+    commandFolder: 'tests-output/erc20-paymaster',
+  },
+  'add-env-file': {
+    action: 'runCommand',
+    commandFolder: 'tests-output/erc20-paymaster',
+    useSetCommand: 'touch .env',
   },
   'add-testing-private-key': {
     action: 'modifyFile',
-    filepath: 'tests-output/custom-paymaster-tutorial/.env',
+    filepath: 'tests-output/erc20-paymaster/.env',
     atLine: 1,
     removeLines: [1],
     useSetData: 'WALLET_PRIVATE_KEY=0x7726827caac94a7f9e1b160f7ea819f172f7b6f9d2a97f992c38edeab82d4110',
   },
   'add-deploy-script': {
     action: 'writeToFile',
-    filepath: 'tests-output/custom-paymaster-tutorial/deploy/deploy-paymaster.ts',
-  },
-  'create-ts-config': {
-    action: 'runCommand',
-    commandFolder: 'tests-output/custom-paymaster-tutorial',
-    useSetCommand: 'touch tsconfig.json',
+    filepath: 'tests-output/erc20-paymaster/scripts/deploy-paymaster.ts',
   },
   'compile-contracts': {
     action: 'runCommand',
-    commandFolder: 'tests-output/custom-paymaster-tutorial',
+    commandFolder: 'tests-output/erc20-paymaster',
   },
   'use-local-network': {
     action: 'modifyFile',
-    filepath: 'tests-output/custom-paymaster-tutorial/hardhat.config.ts',
-    atLine: 8,
-    removeLines: [8],
+    filepath: 'tests-output/erc20-paymaster/hardhat.config.ts',
+    atLine: 9,
+    removeLines: [9],
     useSetData: '  defaultNetwork: "anvilZKsync",',
-  },
-  'start-local-network': {
-    action: 'runCommand',
-    commandFolder: 'tests-output/custom-paymaster-tutorial',
-    useSetCommand: "bun pm2 start 'npx hardhat node-zksync' --name hh-zknode",
-  },
-  'wait-for-hh-node': {
-    action: 'wait',
-    timeout: 7000,
-  },
-  'temp-fix-import': {
-    action: 'modifyFile',
-    filepath: 'tests-output/custom-paymaster-tutorial/deploy/utils.ts',
-    atLine: 4,
-    removeLines: [4],
-    useSetData: "import * as dotenv from 'dotenv';",
   },
   'deploy-contracts': {
     action: 'runCommand',
-    commandFolder: 'tests-output/custom-paymaster-tutorial',
+    commandFolder: 'tests-output/erc20-paymaster',
+    saveOutput: 'tests-output/erc20-paymaster/deployed.txt',
   },
-  'create-deploy-paymaster-file': {
+  'create-use-paymaster-file': {
     action: 'runCommand',
-    commandFolder: 'tests-output/custom-paymaster-tutorial',
+    commandFolder: 'tests-output/erc20-paymaster',
   },
   'add-use-paymaster': {
     action: 'writeToFile',
-    filepath: 'tests-output/custom-paymaster-tutorial/deploy/use-paymaster.ts',
+    filepath: 'tests-output/erc20-paymaster/scripts/use-paymaster.ts',
   },
   'paymaster-address': {
-    action: 'modifyFile',
-    filepath: 'tests-output/custom-paymaster-tutorial/deploy/use-paymaster.ts',
-    atLine: 7,
-    removeLines: [7],
-    getContractId:
-      'tests-output/custom-paymaster-tutorial/deployments-zk/anvilZKsync/contracts/MyPaymaster.sol/MyPaymaster.json',
-    useSetData: "const PAYMASTER_ADDRESS = '<*GET_CONTRACT_ID*>';",
+    action: 'extractDataToEnv',
+    dataFilepath: 'tests-output/erc20-paymaster/deployed.txt',
+    regex: /(?<=MyPaymaster deployed to )0x[a-fA-F0-9]{40}/,
+    variableName: 'PAYMASTER_ADDRESS',
+    envFilepath: 'tests-output/erc20-paymaster/.env',
   },
   'token-address': {
-    action: 'modifyFile',
-    filepath: 'tests-output/custom-paymaster-tutorial/deploy/use-paymaster.ts',
-    atLine: 10,
-    removeLines: [10],
-    getContractId:
-      'tests-output/custom-paymaster-tutorial/deployments-zk/anvilZKsync/contracts/MyERC20.sol/MyERC20.json',
-    useSetData: "const TOKEN_ADDRESS = '<*GET_CONTRACT_ID*>';",
+    action: 'extractDataToEnv',
+    dataFilepath: 'tests-output/erc20-paymaster/deployed.txt',
+    regex: /(?<=MyERC20 deployed to )0x[a-fA-F0-9]{40}/,
+    variableName: 'TOKEN_ADDRESS',
+    envFilepath: 'tests-output/erc20-paymaster/.env',
   },
   'run-use-paymaster': {
     action: 'runCommand',
-    commandFolder: 'tests-output/custom-paymaster-tutorial',
+    commandFolder: 'tests-output/erc20-paymaster',
   },
 };

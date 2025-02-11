@@ -13,6 +13,11 @@ const contractSteps: IStepConfig = {
     action: 'wait',
     timeout: 5000,
   },
+  // 'make-env-file': {
+  //   action: 'runCommand',
+  //   commandFolder: 'tests-output/zksync-webauthn/contracts',
+  //   useSetCommand: 'touch .env',
+  // },
   'add-env-pk': {
     action: 'modifyFile',
     filepath: 'tests-output/zksync-webauthn/contracts/.env',
@@ -72,11 +77,6 @@ const contractSteps: IStepConfig = {
     action: 'writeToFile',
     filepath: 'tests-output/zksync-webauthn/contracts/contracts/Account.sol',
   },
-  'start-era-test-node': {
-    action: 'runCommand',
-    commandFolder: 'tests-output/zksync-webauthn/contracts',
-    preCommand: "bun pm2 start '<COMMAND>' --name era-test-node",
-  },
   'open-hardhat-config': {
     action: 'clickButtonByText',
     buttonText: 'hardhat.config.ts',
@@ -95,7 +95,7 @@ const contractSteps: IStepConfig = {
   },
   'deploy-script': {
     action: 'writeToFile',
-    filepath: 'tests-output/zksync-webauthn/contracts/deploy/deploy.ts',
+    filepath: 'tests-output/zksync-webauthn/contracts/scripts/deploy.ts',
   },
   'compile-and-deploy': {
     action: 'runCommand',
