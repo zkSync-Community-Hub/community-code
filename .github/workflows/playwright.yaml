@@ -13,8 +13,8 @@ jobs:
           - "erc20-paymaster" 
           - "how-to-test-contracts"
           - "daily-spend-limit"
-          - "signing-txns-with-webauthn"
           - "native-aa-multisig"
+          - "signing-txns-with-webauthn"
           - "frontend-paymaster"
 
     steps:
@@ -25,9 +25,10 @@ jobs:
     - uses: actions/setup-node@v4
     - name: Install Playwright Browsers
       run: bun playwright install chromium --with-deps
-    - name: Run Era Test Node
-      uses: dutterbutter/era-test-node-action@v1
+    - name: Run anvil-zksync
+      uses: dutterbutter/anvil-zksync-action@v1.1.0
     - name: Create Metamask Cache
+      if: matrix.tutorial == 'frontend-paymaster'
       run: xvfb-run bun setup:mm
     - name: Run test for ${{ matrix.tutorial }}
       run: |

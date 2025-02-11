@@ -19,7 +19,7 @@ what_you_will_learn:
   - How to build a paymaster
   - How to send transactions through a paymaster
   - How to pay transaction fees with an ERC20 token
-updated: 2024-05-09
+updated: 2025-02-05
 tools:
   - zksync-cli
   - zksync-ethers

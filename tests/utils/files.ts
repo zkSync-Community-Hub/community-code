@@ -102,5 +102,5 @@ export function extractDataToEnv(dataFilepath: string, envFilepath: string, rege
   const regexMatches = file.match(regex);
   const data = regexMatches?.[0];
   console.log('DATA FROM REGEX:', data);
-  appendFileSync(envFilepath, `${variableName}=${data}\n`);
+  appendFileSync(envFilepath, `\n${variableName}=${data}\n`);
 }
