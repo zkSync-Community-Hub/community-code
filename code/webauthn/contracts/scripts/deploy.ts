@@ -18,16 +18,11 @@ main()
   });
 
 async function deployAAFactory() {
-  const factoryArtifact = await deployer.loadArtifact('AAFactory');
-  const aaArtifact = await deployer.loadArtifact('Account');
+  const factoryArtifact = await ethers.getContractFactory('AAFactory');
+  const aaArtifact = await ethers.getContractFactory('Account');
 
-  const factory = await deployer.deploy(
-    factoryArtifact,
-    [utils.hashBytecode(aaArtifact.bytecode)],
-    undefined,
-    undefined,
-    [aaArtifact.bytecode]
-  );
+  const factory = await factoryArtifact.deploy(utils.hashBytecode(aaArtifact.bytecode), { libraries: {} });
+
   const factoryAddress = await factory.getAddress();
   console.log(`AA factory address: ${factoryAddress}`);
 }
