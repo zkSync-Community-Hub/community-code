@@ -16,6 +16,7 @@ jobs:
           - "native-aa-multisig"
           - "signing-txns-with-webauthn"
           - "frontend-paymaster"
+          - "zk-game"
 
     steps:
     - uses: actions/checkout@v4
@@ -30,6 +31,19 @@ jobs:
     - name: Create Metamask Cache
       if: matrix.tutorial == 'frontend-paymaster'
       run: xvfb-run bun setup:mm
+    - name: Install Rust Toolchain
+      if: matrix.tutorial == 'zk-game'
+      uses: actions-rs/toolchain@v1
+      with:
+            toolchain: 1.81.0
+            components: llvm-tools, rustc-dev
+    - name: Install Cargo Prove
+      if: matrix.tutorial == 'zk-game'
+      run: |
+        curl -L https://sp1.succinct.xyz | bash
+        ~/.sp1/bin/sp1up 
+        ~/.sp1/bin/cargo-prove prove --version
+        echo "$HOME/.sp1/bin:${GITHUB_PATH}" >> $GITHUB_PATH
     - name: Run test for ${{ matrix.tutorial }}
       run: |
         export TERM=xterm-256color

@@ -10,6 +10,8 @@ Ankr
 binop
 blake2s
 blake2s256
+Brickles
+brickles
 cccond
 ccret
 CHAINID
@@ -93,6 +95,7 @@ tlsv1
 tokio
 viem
 Viem
+vkey
 vue
 Vue
 Yubikey
