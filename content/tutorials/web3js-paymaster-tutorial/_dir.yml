@@ -1,0 +1,32 @@
+title: Building a ZKSync dApp with Stablecoin Gas Payments using Web3.js
+authors:
+  - name: Jovells
+    image: https://avatars.githubusercontent.com/u/100000000?v=4
+    twitter: https://twitter.com/jovells
+    github: https://github.com/jovells
+tags:
+  - web3.js
+  - paymaster
+  - gas-abstraction
+  - stablecoin
+  - react
+  - typescript
+level: intermediate
+duration: 45 minutes
+github_repo: https://github.com/Jovells/ZKSync-web3js-paymaster-demo
+summary: |
+  Learn how to build a dApp that allows users to pay transaction gas fees using stablecoins instead of ETH on ZKSync. 
+  This tutorial uses Web3.js and ZKSync's Paymaster feature to implement gas abstraction.
+description: |
+  This comprehensive guide walks through creating a decentralized application that leverages ZKSync's Paymaster feature 
+  for stablecoin gas payments. You'll learn how to integrate Web3.js with ZKSync plugins, implement smart contract 
+  interactions, and create a user interface for seamless gas abstraction.
+what_you_will_learn:
+  - How to integrate Web3.js with ZKSync plugins
+  - How to implement smart contract interactions
+  - How to create a user interface for seamless gas abstraction
+updated: 2024-12-21
+tools:
+  - Web3.js
+  - React
+  - MetaMask
