@@ -9,7 +9,10 @@ import {
   disconnect,
   readContract,
 } from '@wagmi/core';
-import { zksyncInMemoryNode } from '@wagmi/core/chains';
+import {
+  zksyncInMemoryNode,
+  // zksyncSepoliaTestnet
+} from '@wagmi/core/chains';
 import { type Abi, parseEther } from 'viem';
 import { zksyncSsoConnector, callPolicy } from 'zksync-sso/connector';
 import { ABI, GAME_CONTRACT_ADDRESS, PAYMASTER_CONTRACT_ADDRESS } from './constants';
@@ -22,7 +25,7 @@ const ssoConnector = zksyncSsoConnector({
   authServerUrl: 'http://localhost:3002/confirm',
   session: {
     expiry: '1 hour',
-    feeLimit: parseEther('0.1'),
+    feeLimit: parseEther('0.01'),
     contractCalls: [
       callPolicy({
         address: GAME_CONTRACT_ADDRESS,
@@ -123,7 +126,8 @@ export async function verifyProof(publicValues: string, proofBytes: string) {
     return;
   }
 
-  const txHash = await writeContract(config, {
+  const txData = {
+    from: account.address,
     abi: ABI,
     address: GAME_CONTRACT_ADDRESS,
     functionName: 'verifyProof',
@@ -132,7 +136,9 @@ export async function verifyProof(publicValues: string, proofBytes: string) {
     paymasterInput: getGeneralPaymasterInput({ innerInput: '0x' }),
     chainId: config.chains[0].id,
     connector: config.connectors[0],
-  });
+  };
+
+  const txHash = await writeContract(config, txData);
 
   const transactionReceipt = await waitForTransactionReceipt(config, {
     hash: txHash,

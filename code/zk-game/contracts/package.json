@@ -8,7 +8,7 @@
   "scripts": {
     "deploy:game": "hardhat run ./scripts/deploy-game.ts",
     "deploy:verifier": "hardhat run ./scripts/deploy-verifier.ts",
-    "deploy:paymaster": "hardhat run ./scripts/ deploy-paymaster.ts",
+    "deploy:paymaster": "hardhat run ./scripts/deploy-paymaster.ts",
     "interact": "hardhat run ./scripts/interact.ts",
     "compile": "hardhat compile",
     "clean": "hardhat clean",

@@ -1,11 +1,11 @@
 // ANCHOR: submit-proof
-import { API_URL } from './constants';
+import { HTTP_API_URL, WS_API_URL } from './constants';
 import type { Action } from './types';
 
 export async function submitProof(actionLog: Action[], blocksDestroyed: number, timeElapsed: number) {
   try {
     if (!blocksDestroyed || !timeElapsed || actionLog.length === 0) {
-      console.log('Invalid proof data');
+      alert('Invalid proof data');
       return;
     }
 
@@ -13,8 +13,8 @@ export async function submitProof(actionLog: Action[], blocksDestroyed: number, 
     if (!jobID) {
       return;
     }
-    const proofData = await getProofResult(jobID);
-    return proofData;
+    const result = await getProofResult(jobID);
+    return result.proof_data;
   } catch (error) {
     console.error('Error creating proof:', error);
   }
@@ -29,7 +29,7 @@ async function requestProof(actionLog: Action[], blocksDestroyed: number, timeEl
       blocks_destroyed: blocksDestroyed,
       time_elapsed: timeElapsed,
     });
-    const response = await fetch(`${API_URL}/prove/async`, {
+    const response = await fetch(`${HTTP_API_URL}/prove`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -42,50 +42,32 @@ async function requestProof(actionLog: Action[], blocksDestroyed: number, timeEl
     console.error('Error requesting proof:', error);
   }
 }
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+async function getProofResult(jobID: string): Promise<any> {
+  return new Promise((resolve, reject) => {
+    const wsEndpoint = `${WS_API_URL}/proof/${jobID}`;
+    const socket = new WebSocket(wsEndpoint);
 
-async function checkProof(jobID: string) {
-  try {
-    const response = await fetch(`${API_URL}/prove/status/${jobID}`);
-    const { status, proof_data: proofData } = await response.json();
-    return { status, proofData };
-  } catch (error) {
-    console.error('Error checking proof:', error);
-    alert('Error requesting proof. Please try again.');
-    return null;
-  }
-}
+    socket.addEventListener('message', (event) => {
+      const data = JSON.parse(event.data);
+      if (data.status === 'failed') {
+        reject(new Error('Proof generation failed'));
+      } else if (data.status === 'complete') {
+        socket.close();
+        resolve(data);
+      }
+    });
 
-function wait(seconds: number) {
-  return new Promise((resolve) => {
+    socket.addEventListener('error', (error) => {
+      console.error('WebSocket error:', error);
+      socket.close();
+      reject(error);
+    });
+
     setTimeout(() => {
-      resolve('resolved');
-    }, seconds);
+      socket.close();
+      reject(new Error('WebSocket connection timed out'));
+    }, 5 * 60000); // 5 min timeout
   });
-}
-
-async function getProofResult(jobID: string) {
-  const totalAttempts = 20;
-  let attempts = 0;
-  // wait 50 seconds
-  await wait(1000 * 50);
-  while (attempts < totalAttempts) {
-    const response = await checkProof(jobID);
-    if (!response) {
-      return;
-    }
-    const { status, proofData } = response;
-    if (status === 'failed') {
-      alert('Proof failed. Please try again.');
-      attempts = totalAttempts;
-      return;
-    }
-    if (status === 'complete') {
-      attempts = totalAttempts;
-      return proofData;
-    }
-    // wait 10 seconds
-    await wait(1000 * 10);
-    attempts++;
-  }
 }
 // ANCHOR_END: proof-helpers

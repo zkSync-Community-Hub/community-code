@@ -5,6 +5,7 @@ import type { Action, ProofStatus } from '../utils/types';
 import init, { GameWrapper } from '../../wasm/game_wasm';
 import { submitProof } from '../utils/proofs';
 import { verifyProof } from '../utils/wagmi-config';
+import { useAccount } from 'wagmi';
 
 interface BricklesProps {
   setShowBrickles: Dispatch<SetStateAction<boolean>>;
@@ -22,6 +23,7 @@ export default function Brickles({ setShowBrickles, zIndex, handleBricklesWindow
   const [recordedActions, setRecordedActions] = useState<Action[]>([]);
   const [finalScoreAndTime, setFinalScoreAndTime] = useState<[number, number]>([0, 0]);
   const nodeRef = useRef(null);
+  const account = useAccount();
 
   // Initialize Game
   useEffect(() => {
@@ -106,10 +108,15 @@ export default function Brickles({ setShowBrickles, zIndex, handleBricklesWindow
   }
 
   async function handleSaveOnChain() {
+    try {
     setProofStatus('Pending');
+    if(!account.isConnected) {
+      alert('Please connect your wallet to save your score on-chain.');
+      return;
+    }
     const proofData = await submitProof(recordedActions, finalScoreAndTime[0], finalScoreAndTime[1]);
     if (!proofData || !proofData.public_values || !proofData.proof) {
-      console.log('Missing proof data');
+      alert("Issue creating proof. Please try again.");
       setProofStatus('none');
       return;
     }
@@ -121,6 +128,11 @@ export default function Brickles({ setShowBrickles, zIndex, handleBricklesWindow
       setProofStatus('none');
       alert('Proof verification failed. Please try again.');
     }
+  } catch(error){
+    console.error('Error saving on chain:', error);
+    alert('An error occurred while saving on chain. Please try again.');
+    setProofStatus('none');
+  }
   }
 
   return (
