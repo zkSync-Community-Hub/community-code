@@ -88,4 +88,3 @@ fn main() {
     let final_solidity_proof = hex::encode(solidity_proof);
     println!("proof: 0x{}", final_solidity_proof);
 }
-

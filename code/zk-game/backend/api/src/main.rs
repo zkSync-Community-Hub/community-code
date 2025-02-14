@@ -8,10 +8,14 @@ use rocket::{
     http::{Header, Method, Status},
     serde::{json::*, Deserialize, Serialize},
     tokio,
-    tokio::sync::RwLock,
+    tokio::{
+        sync::RwLock,
+        time::{sleep, Duration},
+    },
     Request, Response, State,
 };
-use sp1_sdk::{ProverClient, SP1Stdin};
+use rocket_ws::{Message, Stream, WebSocket};
+use sp1_sdk::{HashableKey, ProverClient, SP1Stdin};
 use std::{collections::HashMap, sync::Arc};
 use uuid::Uuid;
 
@@ -28,6 +32,14 @@ struct ProofInput {
     action_log: Vec<Action>,
     blocks_destroyed: u32,
     time_elapsed: f32,
+}
+
+#[derive(Serialize, Deserialize, Debug, Clone)]
+#[serde(crate = "rocket::serde")]
+struct WebSocketMessage {
+    job_id: String,
+    status: String,
+    proof_data: Option<ProofResponse>,
 }
 
 #[derive(Serialize, Deserialize, Debug)]
@@ -53,8 +65,8 @@ type JobStorage = Arc<RwLock<HashMap<String, JobState>>>;
 /// The ELF file for the Succinct RISC-V zkVM.
 pub const ELF: &[u8] = include_bytes!("../../elf/sp1_program");
 
-#[post("/prove/async", data = "<input>")]
-async fn prove_async(input: Json<ProofInput>, jobs: &State<JobStorage>) -> Json<JobResponse> {
+#[post("/prove", data = "<input>")]
+async fn prove(input: Json<ProofInput>, jobs: &State<JobStorage>) -> Json<JobResponse> {
     let job_id = Uuid::new_v4().to_string();
     let job_id_for_task = job_id.clone();
 
@@ -90,8 +102,8 @@ async fn prove_async(input: Json<ProofInput>, jobs: &State<JobStorage>) -> Json<
     })
 }
 
-#[get("/prove/status/<job_id>")]
-async fn check_status(job_id: String, jobs: &State<JobStorage>) -> Json<JobResponse> {
+// #[get("/proof/status/<job_id>")]
+async fn check_status(job_id: String, jobs: &State<JobStorage>) -> JobResponse {
     let job_state = jobs
         .inner()
         .try_read()
@@ -101,28 +113,44 @@ async fn check_status(job_id: String, jobs: &State<JobStorage>) -> Json<JobRespo
         .unwrap_or(JobState::NotFound);
 
     match job_state {
-        JobState::Processing => Json(JobResponse {
+        JobState::Processing => JobResponse {
             job_id,
             status: "processing".to_string(),
             proof_data: None,
-        }),
-        JobState::Complete(proof_data) => Json(JobResponse {
+        },
+        JobState::Complete(proof_data) => JobResponse {
             job_id,
             status: "complete".to_string(),
             proof_data: Some(proof_data),
-        }),
-        JobState::Failed(_error) => Json(JobResponse {
+        },
+        JobState::Failed(_error) => JobResponse {
             job_id,
             status: "failed".to_string(),
             proof_data: None,
-        }),
-        JobState::NotFound => Json(JobResponse {
+        },
+        JobState::NotFound => JobResponse {
             job_id,
             status: "not_found".to_string(),
             proof_data: None,
-        }),
+        },
     }
 }
+
+#[get("/proof/<job_id>")]
+fn proof_ws<'r>(ws: WebSocket, job_id: String, jobs: &'r State<JobStorage>) -> Stream!['r] {
+    Stream! { ws =>
+        loop {
+            let job_response = check_status(job_id.clone(), &jobs).await;
+            yield Message::Text(serde_json::to_string(&job_response).unwrap());
+            if job_response.status == "complete" || job_response.status == "failed" {
+                return;
+            }
+            sleep(Duration::from_secs(5)).await;
+        }
+
+    }
+}
+
 async fn generate_proof(
     input: ProofInput,
 ) -> Result<ProofResponse, Box<dyn std::error::Error + Send>> {
@@ -145,7 +173,9 @@ async fn generate_proof(
         timeElapsed: _time_elapsed,
         isValid: is_valid,
     } = decoded;
-    let (pk, _vk) = client.setup(ELF);
+    let (pk, vk) = client.setup(ELF);
+    let bytes = vk.bytes32();
+    println!("Verification key: {:?}", bytes);
 
     match is_valid {
         true => {
@@ -193,7 +223,7 @@ impl Fairing for CORS {
             response.set_status(Status::NoContent);
             response.set_header(Header::new(
                 "Access-Control-Allow-Methods",
-                "POST, PATCH, GET, DELETE",
+                "POST, GET, OPTIONS",
             ));
             response.set_header(Header::new("Access-Control-Allow-Headers", "*"));
         }
@@ -213,7 +243,7 @@ async fn main() {
     rocket::build()
         .attach(CORS)
         .manage(state)
-        .mount("/", routes![prove_async, check_status])
+        .mount("/", routes![prove, proof_ws])
         .launch()
         .await
         .unwrap();
