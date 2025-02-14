@@ -109,30 +109,30 @@ export default function Brickles({ setShowBrickles, zIndex, handleBricklesWindow
 
   async function handleSaveOnChain() {
     try {
-    setProofStatus('Pending');
-    if(!account.isConnected) {
-      alert('Please connect your wallet to save your score on-chain.');
-      return;
-    }
-    const proofData = await submitProof(recordedActions, finalScoreAndTime[0], finalScoreAndTime[1]);
-    if (!proofData || !proofData.public_values || !proofData.proof) {
-      alert("Issue creating proof. Please try again.");
+      setProofStatus('Pending');
+      if (!account.isConnected) {
+        alert('Please connect your wallet to save your score on-chain.');
+        return;
+      }
+      const proofData = await submitProof(recordedActions, finalScoreAndTime[0], finalScoreAndTime[1]);
+      if (!proofData || !proofData.public_values || !proofData.proof) {
+        alert('Issue creating proof. Please try again.');
+        setProofStatus('none');
+        return;
+      }
+      setProofStatus('Created');
+      const result = await verifyProof(`0x${proofData.public_values}`, `0x${proofData.proof}`);
+      if (result) {
+        setProofStatus('Verified');
+      } else {
+        setProofStatus('none');
+        alert('Proof verification failed. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error saving on chain:', error);
+      alert('An error occurred while saving on chain. Please try again.');
       setProofStatus('none');
-      return;
     }
-    setProofStatus('Created');
-    const result = await verifyProof(`0x${proofData.public_values}`, `0x${proofData.proof}`);
-    if (result) {
-      setProofStatus('Verified');
-    } else {
-      setProofStatus('none');
-      alert('Proof verification failed. Please try again.');
-    }
-  } catch(error){
-    console.error('Error saving on chain:', error);
-    alert('An error occurred while saving on chain. Please try again.');
-    setProofStatus('none');
-  }
   }
 
   return (
