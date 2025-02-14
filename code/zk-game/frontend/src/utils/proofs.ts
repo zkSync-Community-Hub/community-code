@@ -50,11 +50,13 @@ async function getProofResult(jobID: string): Promise<any> {
 
     socket.addEventListener('message', (event) => {
       const data = JSON.parse(event.data);
-      if (data.status === 'failed') {
-        reject(new Error('Proof generation failed'));
+      if (data.status === 'processing') {
+        console.log('Proof is being processed...');
       } else if (data.status === 'complete') {
         socket.close();
         resolve(data);
+      } else if (data.status === 'failed' || data.status === 'not_found') {
+        reject(new Error('Proof generation failed'));
       }
     });
 
