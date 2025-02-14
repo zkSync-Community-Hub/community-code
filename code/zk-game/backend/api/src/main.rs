@@ -9,7 +9,7 @@ use rocket::{
     serde::{json::*, Deserialize, Serialize},
     tokio,
     tokio::{
-        sync::{broadcast, RwLock},
+        sync::RwLock,
         time::{sleep, Duration},
     },
     Request, Response, State,
@@ -142,7 +142,7 @@ fn proof_ws<'r>(ws: WebSocket, job_id: String, jobs: &'r State<JobStorage>) -> S
         loop {
             let job_response = check_status(job_id.clone(), &jobs).await;
             yield Message::Text(serde_json::to_string(&job_response).unwrap());
-            if(job_response.status == "complete" || job_response.status == "failed") {
+            if job_response.status == "complete" || job_response.status == "failed" {
                 return;
             }
             sleep(Duration::from_secs(5)).await;
