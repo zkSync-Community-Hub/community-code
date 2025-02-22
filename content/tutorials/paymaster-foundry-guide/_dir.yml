@@ -13,10 +13,10 @@ tags:
   - cheatcodes
 summary: Learn how to deploy a smart contract using a Gasless Paymaster in Foundry-ZKsync.
 description:
-  This tutorial guides you through deploying a `Counter` contract using `forge script`, leveraging a Gasless Paymaster
-  to cover gas fees.
+  This tutorial guides you through deploying a Counter contract using forge script, leveraging a Gasless Paymaster to
+  cover gas fees.
 what_you_will_learn:
-  - How to utilize the `IPaymaster` interface with Foundry-ZKsync
+  - How to utilize the Paymaster interfaces with Foundry-ZKsync
   - How to deploy a contract using a Gasless Paymaster
   - How to use paymaster cheatcodes in Foundry-ZKsync
 updated: 2025-02-21
