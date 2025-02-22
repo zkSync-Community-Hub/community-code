@@ -1,0 +1,24 @@
+title: Interacting with a Paymaster using Foundry-ZKsync
+featured: true
+authors:
+  - name: dustinbrickwood
+    url: https://github.com/dutterbutter
+    avatar: https://avatars.githubusercontent.com/u/29983536?v=4
+github_repo: https://github.com/ZKsync-Community-Hub
+tags:
+  - foundry-zksync
+  - account abstraction
+  - paymaster
+  - smart contracts
+  - cheatcodes
+summary: Learn how to deploy a smart contract using a Gasless Paymaster in Foundry-ZKsync.
+description:
+  This tutorial guides you through deploying a `Counter` contract using `forge script`, leveraging a Gasless Paymaster
+  to cover gas fees.
+what_you_will_learn:
+  - How to utilize the `IPaymaster` interface with Foundry-ZKsync
+  - How to deploy a contract using a Gasless Paymaster
+  - How to use paymaster cheatcodes in Foundry-ZKsync
+updated: 2025-02-21
+tools:
+  - Foundry-ZKsync
