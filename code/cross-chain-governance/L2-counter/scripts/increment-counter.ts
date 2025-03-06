@@ -1,28 +1,24 @@
-import { ethers } from 'hardhat';
+import { ethers, network } from 'hardhat';
 import { utils } from 'zksync-ethers';
-import * as GOVERNANCE_ABI_JSON from '../../L1-governance/artifacts/contracts/Governance.sol/Governance.json';
 import * as COUNTER_ABI_JSON from '../artifacts-zk/contracts/Counter.sol/Counter.json';
+import * as GOVERNANCE_ABI_JSON from '../../L1-governance/artifacts/contracts/Governance.sol/Governance.json';
+import { Wallet } from 'ethers';
 
 const COUNTER_ADDRESS = process.env.COUNTER_ADDRESS ?? '<COUNTER_ADDRESS>';
 const GOVERNANCE_ADDRESS = process.env.GOVERNANCE_ADDRESS ?? '<GOVERNANCE-ADDRESS>';
 
 async function main() {
-  const l1Provider = ethers.providerL1;
   // Set up the Governor wallet to be the same as the one that deployed the governance contract.
   const [wallet] = await ethers.getWallets();
-  // Set a constant that accesses the Layer 1 contract.
-  const govcontract = await ethers.getContractAt(GOVERNANCE_ABI_JSON.abi, GOVERNANCE_ADDRESS, wallet);
 
   // Initialize the L2 provider.
   const l2Provider = ethers.providerL2;
-  // Get the current address of the ZKsync L1 bridge.
-  const zkSyncAddress = await l2Provider.getMainContractAddress();
-  // Get the `Contract` object of the ZKsync bridge.
-  // const zkSyncContract = new Contract(zkSyncAddress, utils.ZKSYNC_MAIN_ABI, wallet);
+
+  // Initialize the L1 provider.
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const zksyncABI: any = utils.ZKSYNC_MAIN_ABI;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const zkSyncContract = await ethers.getContractAt(zksyncABI as any[], zkSyncAddress, wallet);
+  const networkInfo = network as any;
+  const l1RPCEndpoint = networkInfo.config.ethNetwork || '<YOUR_L1_RPC_ENDPOINT>';
+  const l1Provider = new ethers.Provider(l1RPCEndpoint);
 
   // Encoding the L1 transaction is done in the same way as it is done on Ethereum.
   // Use an Interface which gives access to the contract functions.
@@ -39,37 +35,41 @@ async function main() {
     calldata: data,
     caller: utils.applyL1ToL2Alias(GOVERNANCE_ADDRESS),
   });
-  // baseCost takes the price and limit and formats the total in wei.
-  // For more information on `REQUIRED_L1_TO_L2_GAS_PER_PUBDATA_LIMIT` see the [fee model documentation](../developer-guides/transactions/fee-model.md).
-  const baseCost = await zkSyncContract.l2TransactionBaseCost(
+
+  // Get the current address of the ZKsync L1 Bridge Hub.
+  const bridgeHubAddress = await l2Provider.getBridgehubContractAddress();
+
+  const l1ConnectedWallet = new Wallet(wallet.privateKey, l1Provider);
+  // Get the `Contract` object of the ZKsync Bridge Hub.
+  const bridgeHubContract = new ethers.Contract(bridgeHubAddress, utils.BRIDGEHUB_ABI, l1ConnectedWallet);
+
+  // Set a constant that accesses the Layer 1 governance contract.
+  const govcontract = new ethers.Contract(GOVERNANCE_ADDRESS, GOVERNANCE_ABI_JSON.abi, l1ConnectedWallet);
+
+  // Get the L2 chaind ID
+  const chainId = (await l2Provider.getNetwork()).chainId;
+
+  // Get the base cost of the transaction.
+  const baseCost = await bridgeHubContract.l2TransactionBaseCost(
+    chainId,
     gasPrice,
     gasLimit,
     utils.REQUIRED_L1_TO_L2_GAS_PER_PUBDATA_LIMIT
   );
 
-  // !! If you don't include the gasPrice and baseCost in the transaction, a re-estimation of fee may generate errors.
+  // Call the governance contract to increment the counter.
   const tx = await govcontract.callZkSync(
-    zkSyncAddress,
+    chainId,
+    bridgeHubAddress,
     COUNTER_ADDRESS,
     data,
     gasLimit,
     utils.REQUIRED_L1_TO_L2_GAS_PER_PUBDATA_LIMIT,
-    {
-      // Pass the necessary ETH `value` to cover the fee for the operation
-      value: baseCost,
-      gasPrice,
-    }
+    baseCost,
+    { gasPrice, value: baseCost }
   );
-
-  // Wait until the L1 tx is complete.
-  await tx.wait();
-
-  // Get the TransactionResponse object for the L2 transaction corresponding to the execution call.
-  const l2Response = await l2Provider.getL2TransactionFromPriorityOp(tx);
-
-  // Output the receipt of the L2 transaction corresponding to the call to the counter contract.
-  const l2Receipt = await l2Response.wait();
-  console.log(l2Receipt);
+  const result = await tx.wait();
+  console.log('result: ', result.status === 1 ? 'Successfully incremented the counter' : 'Transaction failed');
 }
 
 // We recommend always using this async/await pattern to properly handle errors.
