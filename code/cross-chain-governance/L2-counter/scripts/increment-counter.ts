@@ -17,7 +17,10 @@ async function main() {
   // Initialize the L1 provider.
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const networkInfo = network as any;
-  const l1RPCEndpoint = networkInfo.config.ethNetwork || '<YOUR_L1_RPC_ENDPOINT>';
+  const l1RPCEndpoint =
+    networkInfo.config.ethNetwork === 'http://localhost:8545'
+      ? networkInfo.config.ethNetwork
+      : '<YOUR_L1_RPC_ENDPOINT>';
   const l1Provider = new ethers.Provider(l1RPCEndpoint);
 
   // Encoding the L1 transaction is done in the same way as it is done on Ethereum.
@@ -58,7 +61,7 @@ async function main() {
   );
 
   // Call the governance contract to increment the counter.
-  const tx = await govcontract.callZkSync(
+  const l2Response = await govcontract.callZkSync(
     chainId,
     bridgeHubAddress,
     COUNTER_ADDRESS,
@@ -68,8 +71,9 @@ async function main() {
     baseCost,
     { gasPrice, value: baseCost }
   );
-  const result = await tx.wait();
-  console.log('result: ', result.status === 1 ? 'Successfully incremented the counter' : 'Transaction failed');
+  const l2Receipt = await l2Response.wait();
+  console.log(l2Receipt);
+  console.log(l2Receipt.status === 1 ? 'Successfully incremented the counter' : 'Transaction failed');
 }
 
 // We recommend always using this async/await pattern to properly handle errors.
