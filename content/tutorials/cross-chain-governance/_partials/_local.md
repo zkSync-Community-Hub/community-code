@@ -13,7 +13,7 @@ title: Cross Chain Tutorial on Local Nodes Part 1
 ### Starting a Local Node
 
 Open Docker Desktop so the Docker daemon is running in the background,
-and use `zksync-cli` to start a local in-memory node.
+and use `zksync-cli` to start a local node.
 
 First, configure the CLI to use a dockerized node:
 
