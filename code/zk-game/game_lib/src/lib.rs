@@ -160,7 +160,6 @@ pub struct GameState {
 fn create_bricks() -> Vec<Brick> {
     let mut bricks = Vec::new();
 
-    // Copied brick layout logic from original game
     let total_width = (RIGHT_WALL - LEFT_WALL) - 2.0 * GAP_BETWEEN_BRICKS_AND_SIDES;
     let bottom_edge = PADDLE_Y + GAP_BETWEEN_PADDLE_AND_BRICKS;
     let total_height = TOP_WALL - bottom_edge - GAP_BETWEEN_BRICKS_AND_CEILING;
@@ -227,7 +226,7 @@ impl GameState {
         self.paddle.move_horizontal(input, dt);
         self.ball.update(dt);
 
-        // Ball collision with walls - copied from original
+        // Ball collision with walls
         if self.ball.pos.x <= LEFT_WALL || self.ball.pos.x >= RIGHT_WALL {
             self.ball.vel.x = -self.ball.vel.x;
         }
@@ -235,8 +234,14 @@ impl GameState {
             self.ball.vel.y = -self.ball.vel.y;
         }
 
-        // Game over condition - copied from original
+        // Game over condition
         if self.ball.pos.y < PADDLE_Y - PADDLE_HEIGHT {
+            self.game_over = true;
+            return;
+        }
+
+        // Check win condition - game ends when all bricks are destroyed
+        if !self.bricks.iter().any(|brick| brick.active) {
             self.game_over = true;
             return;
         }
@@ -325,7 +330,7 @@ impl GameState {
         total_bricks_hit: u32,
     ) -> bool {
         let mut game = GameState::new(GameMode::Replay);
-        let dt = 1.0 / 60.0; // Fixed timestep
+        let dt = 1.0 / 60.0;
 
         for action in actions {
             for _ in 0..action.count {

@@ -39,8 +39,12 @@ export default function HighScores({
   }, [isConnected, address, highScores]);
 
   const formatTime = (timeString: string) => {
-    const endLimit = timeString.length - 3;
-    return `${timeString.substring(0, timeString.length - endLimit - 1)}.${timeString.substring(endLimit)}`;
+    if (timeString.length <= 3) {
+      return `0.${timeString.padStart(3, '0')}`;
+    }
+
+    const decimalPosition = timeString.length - 3;
+    return `${timeString.substring(0, decimalPosition)}.${timeString.substring(decimalPosition)}`;
   };
 
   return (

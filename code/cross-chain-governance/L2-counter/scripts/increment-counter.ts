@@ -49,7 +49,7 @@ async function main() {
   // Set a constant that accesses the Layer 1 governance contract.
   const govcontract = new ethers.Contract(GOVERNANCE_ADDRESS, GOVERNANCE_ABI_JSON.abi, l1ConnectedWallet);
 
-  // Get the L2 chaind ID
+  // Get the L2 chain ID
   const chainId = (await l2Provider.getNetwork()).chainId;
 
   // Get the base cost of the transaction.
