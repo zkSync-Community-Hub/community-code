@@ -10,13 +10,13 @@ tags:
   - cross-chain
 summary: Build and deploy a smart contract in L1 and send transactions that update the state of a contract in ZKsync.
 description:
-  In this tutorial we'll deploy a simple smart contract in ZKsync. Then we'll deploy another smart contract in L1 and
-  send transactions that update the state of the contract in ZKsync. We'll use the Mailbox
+  In this tutorial we'll deploy a simple smart contract on ZKsync Era. Then we'll deploy another smart contract on
+  Ethereum and send transactions that update the state of the contract on ZKsync Era using the ZKsync Bridge Hub.
 what_you_will_learn:
   - How to deploy smart contracts in L1 and L2.
   - How to send transactions in L1 that interact with contracts in L2.
-updated: 2025-02-05
+updated: 2025-03-07
 tools:
   - zksync-cli
-  - zksync-ethers
+  - ethers
   - Hardhat

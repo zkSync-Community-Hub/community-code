@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: Unlicense
 pragma solidity ^0.8.13;
 
-import '@matterlabs/zksync-contracts/l1/contracts/zksync/interfaces/IZkSync.sol';
+import { IBridgehub, L2TransactionRequestDirect } from '@matterlabs/zksync-contracts/contracts/l1-contracts/bridgehub/IBridgehub.sol';
 
 contract Governance {
   address public governor;
@@ -11,16 +11,20 @@ contract Governance {
   }
 
   function callZkSync(
-    address zkSyncAddress,
+    uint256 chainId,
+    address bridgeHubAddress,
     address contractAddr,
     bytes memory data,
     uint256 gasLimit,
-    uint256 gasPerPubdataByteLimit
+    uint256 gasPerPubdataByteLimit,
+    uint256 cost
   ) external payable {
     require(msg.sender == governor, 'Only governor is allowed');
 
-    IZkSync zksync = IZkSync(zkSyncAddress);
-    zksync.requestL2Transaction{ value: msg.value }(
+    IBridgehub zksyncBridgeHub = IBridgehub(bridgeHubAddress);
+    L2TransactionRequestDirect memory requestInput = L2TransactionRequestDirect(
+      chainId,
+      cost,
       contractAddr,
       0,
       data,
@@ -29,5 +33,6 @@ contract Governance {
       new bytes[](0),
       msg.sender
     );
+    zksyncBridgeHub.requestL2TransactionDirect{ value: msg.value }(requestInput);
   }
 }
