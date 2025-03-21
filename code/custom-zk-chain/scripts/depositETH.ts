@@ -1,10 +1,9 @@
 import { ethers } from 'hardhat';
 import { utils } from 'zksync-ethers';
-import { ETH_ADDRESS_IN_CONTRACTS } from 'zksync-ethers/build/utils';
 
 async function main() {
   const [wallet] = await ethers.getWallets();
-  const l2ETHAddress = await wallet.l2TokenAddress(ETH_ADDRESS_IN_CONTRACTS);
+  const l2ETHAddress = await wallet.l2TokenAddress(utils.ETH_ADDRESS_IN_CONTRACTS);
   console.log('L2 ETH Address:', l2ETHAddress);
 
   const initialBalance = await wallet.getBalance(l2ETHAddress);
