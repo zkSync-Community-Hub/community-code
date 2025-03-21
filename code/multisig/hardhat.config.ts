@@ -30,7 +30,7 @@ const config: HardhatUserConfig = {
     },
     anvilZKsync: {
       url: 'http://127.0.0.1:8011',
-      ethNetwork: 'localhost', // anvil doesn't support eth node; removing this line will cause an error
+      ethNetwork: 'localhost',
       zksync: true,
     },
     hardhat: {
