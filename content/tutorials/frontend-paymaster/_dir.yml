@@ -15,7 +15,7 @@ description:
 what_you_will_learn:
   - How to build frontend
   - How to send transactions through a paymaster
-updated: 2024-05-09
+updated: 2025-02-05
 tools:
   - zksync-cli
   - zksync-ethers

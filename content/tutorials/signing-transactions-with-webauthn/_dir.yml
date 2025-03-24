@@ -1,5 +1,5 @@
 title: Signing Transactions With WebAuthn
-featured: true
+featured: false
 authors:
   - name: sarahschwartz
     url: https://github.com/sarahschwartz
@@ -18,10 +18,9 @@ what_you_will_learn:
   - How to send transactions with custom signatures
   - How to validate WebAuthn signatures
   - How to use the P256Verify precompile
-updated: 2024-09-13
+updated: 2025-02-05
 tools:
   - WebAuthn
   - zksync-ethers
   - zksync-cli
-  - era_test_node
   - hardhat

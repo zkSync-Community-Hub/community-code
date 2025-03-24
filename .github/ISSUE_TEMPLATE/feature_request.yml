@@ -3,7 +3,7 @@ description: Is there a feature you would like to see in Code Community? Let us 
 title: "[Feature]: "
 labels: ["feature", "triage"]
 assignees:
-  - zkSync-Community-Hub/zksync-devrel
+  - zksync-community-hub/zksync-devrel
 body:
   - type: markdown
     attributes:
