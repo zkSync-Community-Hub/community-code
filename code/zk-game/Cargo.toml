@@ -1,0 +1,13 @@
+[workspace]
+members = [
+    "backend/api",
+    "backend/sp1_program",
+    "backend/script",
+    "frontend/web_game",
+    "game_lib"
+]
+resolver = "2"
+
+[workspace.dependencies]
+serde = { version = "1.0", features = ["derive"] }
+alloy-sol-types = "0.7.7"

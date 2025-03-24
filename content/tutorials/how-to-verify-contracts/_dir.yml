@@ -14,7 +14,7 @@ what_you_will_learn:
   - How to compile smart contracts.
   - How to verify contracts.
   - How to verify contracts with constructor arguments.
-updated: 2024-05-09
+updated: 2025-02-05
 tools:
   - hardhat-zksync-deploy
   - hardhat-zksync-verify

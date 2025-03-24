@@ -1,0 +1,29 @@
+[profile.default]
+src = "src"
+out = "out"
+libs = ["lib", "dependencies"]
+
+[profile.default.zksync]
+src                 = "src"
+out                 = "zkout"
+libs                = ["lib", "dependencies"]
+compile             = true
+startup             = true
+optimizer           = true
+optimizer_mode      = "3"
+suppressed_warnings = ["assemblycreate"]
+
+[dependencies]
+"@zksync-contracts" = "0.0.1"
+forge-zksync-std = "0.0.1"
+forge-std = "1.9.6"
+"@openzeppelin-contracts" = "5.2.0"
+
+[rpc_endpoints]
+anvil-zksync   = "http://localhost:8011"
+zksync-sepolia = "https://sepolia.era.zksync.dev"
+
+[etherscan]
+zksync-sepolia = { key = "ABCDEFG", url = "https://api-sepolia-era.zksync.network/api" }
+
+# See more config options https://github.com/foundry-rs/foundry/blob/master/crates/config/README.md#all-options

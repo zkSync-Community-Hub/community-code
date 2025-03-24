@@ -1,0 +1,29 @@
+title: Build a ZK Game
+featured: true
+authors:
+  - name: sarahschwartz
+    url: https://github.com/sarahschwartz
+    avatar: https://avatars.githubusercontent.com/u/58856580?v=4
+github_repo: https://github.com/ZKsync-Community-Hub
+tags:
+  - zk proofs
+  - account abstraction
+  - paymaster
+  - smart contracts
+  - frontend
+  - wagmi
+summary: Build a game using ZK proofs and account abstraction.
+description:
+  In this tutorial, you will build a game where users can prove and verify their high scores onchain. You will also
+  learn how to integrate ZKsync SSO.
+what_you_will_learn:
+  - How to generate and verify ZK proofs onchain
+  - A way to use ZK proofs with a game
+  - How to integrate ZKsync SSO
+updated: 2025-02-11
+tools:
+  - sso
+  - sp1
+  - wagmi
+  - zksync-ethers
+  - hardhat
