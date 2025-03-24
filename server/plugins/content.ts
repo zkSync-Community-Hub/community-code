@@ -75,7 +75,7 @@ function getCodeFromFilepath(filepath: string, removeESLintLines: boolean) {
 }
 
 function extractCommentBlock(content: string, comment: string | null) {
-  const commentTypes = ['<!--', '{/*', '//', '/*'];
+  const commentTypes = ['<!--', '{/*', '//', '/*', '#'];
 
   const lines = content.split(EOL);
   if (!comment) {
