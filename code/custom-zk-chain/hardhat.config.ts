@@ -6,9 +6,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const config: HardhatUserConfig = {
-  // ANCHOR: default-network
-  defaultNetwork: 'anvilZKsync',
-  // ANCHOR_END: default-network
+  defaultNetwork: 'dockerizedNode',
   networks: {
     ZKsyncEraSepolia: {
       url: 'https://sepolia.era.zksync.dev',
@@ -25,14 +23,16 @@ const config: HardhatUserConfig = {
       accounts: process.env.WALLET_PRIVATE_KEY ? [process.env.WALLET_PRIVATE_KEY] : [],
     },
     dockerizedNode: {
-      url: 'http://localhost:3050',
+      url: 'http://localhost:3150',
       ethNetwork: 'http://localhost:8545',
       zksync: true,
+      accounts: process.env.WALLET_PRIVATE_KEY ? [process.env.WALLET_PRIVATE_KEY] : [],
     },
     anvilZKsync: {
       url: 'http://127.0.0.1:8011',
       ethNetwork: 'localhost',
       zksync: true,
+      accounts: process.env.WALLET_PRIVATE_KEY ? [process.env.WALLET_PRIVATE_KEY] : [],
     },
     hardhat: {
       zksync: true,
@@ -46,7 +46,7 @@ const config: HardhatUserConfig = {
     },
   },
   solidity: {
-    version: '0.8.24',
+    version: '0.8.28',
   },
 };
 
