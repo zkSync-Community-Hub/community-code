@@ -19,7 +19,7 @@
     "wagmi": "^2.12.32"
   },
   "devDependencies": {
-    "@types/node": "^20",
+    "@types/node": "20.17.27",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "typescript": "^5"
