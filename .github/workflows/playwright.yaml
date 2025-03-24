@@ -27,7 +27,7 @@ jobs:
     - name: Install Playwright Browsers
       run: bun playwright install chromium --with-deps
     - name: Run anvil-zksync
-      uses: dutterbutter/anvil-zksync-action@v1.1.0
+      uses: dutterbutter/anvil-zksync-action@5b73149c26862fb7dc196e309e43e85dec4e57a4 # v1.1.0
     - name: Create Metamask Cache
       if: matrix.tutorial == 'frontend-paymaster'
       run: xvfb-run bun setup:mm
