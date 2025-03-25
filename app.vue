@@ -39,8 +39,7 @@ defineOgImageComponent('OgImageZK');
   <div>
     <NuxtLoadingIndicator />
 
-    <!-- FIXME: Hack, we want to pass computed property while `useHeaderNav` expects an array -->
-    <HeaderComponent :links="computed(() => headerLinks()) as any" />
+    <HeaderComponent :links="unref(computed(() => headerLinks()))" />
 
     <UMain>
       <NuxtLayout>
