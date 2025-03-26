@@ -1,6 +1,10 @@
 name: Test ZK Chain Tutorial
 
-on: workflow_dispatch
+on: 
+  workflow_dispatch:
+  # TODO: remove this before merging
+  pull_request:
+
   
 jobs:
   zk-chain-test:
