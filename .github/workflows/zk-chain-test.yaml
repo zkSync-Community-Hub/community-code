@@ -17,6 +17,24 @@ jobs:
     - name: Install Dependencies
       run: bun install --frozen-lockfile
     - uses: actions/setup-node@v4
+    - uses: dtolnay/rust-toolchain@nightly-2024-09-01
+    - name: Install Yarn
+      run: |
+        npm install -g yarn
+        yarn set version 1.22.19
+    - name: Install Cargo tools
+      run: |
+        cargo install cargo-nextest
+        cargo install sqlx-cli --version 0.8.1
+    - name: Install Foundry ZKSync
+      run: |
+        curl -L https://raw.githubusercontent.com/matter-labs/foundry-zksync/main/install-foundry-zksync | bash
+        source ~/.bashrc
+        foundryup-zksync
+    - name: Install ZKstack
+      run: |
+        curl -L https://raw.githubusercontent.com/matter-labs/zksync-era/main/zkstack_cli/zkstackup/install | bash
+        zkstackup
     - name: Install Playwright Browsers
       run: bun playwright install chromium --with-deps
     - name: Run test
