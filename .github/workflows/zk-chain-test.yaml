@@ -17,7 +17,7 @@ jobs:
     - name: Install Dependencies
       run: bun install --frozen-lockfile
     - uses: actions/setup-node@v4
-    - uses: dtolnay/rust-toolchain@nightly-2024-09-01
+    - uses: dtolnay/rust-toolchain@nightly
     - name: Install Yarn
       run: |
         npm install -g yarn
