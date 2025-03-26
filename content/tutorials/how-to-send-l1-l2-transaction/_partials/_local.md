@@ -12,39 +12,50 @@ like the example below:
 
 ```shell
 ? Private key of the wallet responsible for deploying contracts (optional)
-0x3d3cbc973389cb26f657686445bcc75662b415b656078503592ac8c1abb8810e
+0x7726827caac94a7f9e1b160f7ea819f172f7b6f9d2a97f992c38edeab82d4110
 ```
 
-Configure the ZKsync CLI to use a **Dockerized node**.
-Open Docker desktop so Docker is running in background.
+Next, you need to configure the ZKsync CLI to use a **Dockerized node**.
 
 ```bash
 npx zksync-cli dev config
 ```
 
-Start the nodes:
+Then, open Docker desktop so Docker is running in background,
+and start the nodes:
 
 ```bash
 npx zksync-cli dev start
 ```
 
-Deploy the `Greeter` contract:
+Once the node is running, change the default network in your `hardhat.config.ts` file to `dockerizedNode`.
+
+```ts [hardhat.config.ts]
+  defaultNetwork: 'dockerizedNode',
+```
+
+Let's use the default `Greeter` contract in the template to use for testing.
+Deploy the `Greeter` contract using the commands below:
 
 ::code-group
 
 ```bash [npm]
+npm run compile
 npm run deploy
 ```
 
 ```bash [yarn]
+yarn compile
 yarn run deploy
 ```
 
 ```bash [pnpm]
+pnpm compile
 pnpm run deploy
 ```
 
 ```bash [bun]
+bun compile
 bun run deploy
 ```
 
@@ -53,3 +64,7 @@ bun run deploy
 Save the contract address to use later.
 
 :display-partial{path="/tutorials/how-to-send-l1-l2-transaction/_partials/_main"}
+
+Update the `L2_CONTRACT_ADDRESS` variable with your deployed `Greeter` contract address.
+
+:display-partial{path="/tutorials/how-to-send-l1-l2-transaction/_partials/_run"}

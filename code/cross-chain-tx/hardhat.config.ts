@@ -6,7 +6,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const config: HardhatUserConfig = {
-  defaultNetwork: 'dockerizedNode',
+  defaultNetwork: 'ZKsyncEraSepolia',
   networks: {
     ZKsyncEraSepolia: {
       url: 'https://sepolia.era.zksync.dev',

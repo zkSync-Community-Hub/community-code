@@ -3,7 +3,6 @@ import GREETER_ABI_JSON from '../artifacts-zk/contracts/Greeter.sol/Greeter.json
 
 // ANCHOR: contract-address
 // L2 contract address on ZKsync sepolia
-// const L2_CONTRACT_ADDRESS = '0x543A5fBE705d040EFD63D9095054558FB4498F88';
 const L2_CONTRACT_ADDRESS = '0x543A5fBE705d040EFD63D9095054558FB4498F88';
 // ANCHOR_END: contract-address
 
@@ -39,7 +38,11 @@ async function main() {
 
   // ANCHOR: gas-limit
   // Estimate gas limit for L1-L2 tx
-  const l2GasLimit = await l2Provider.estimateGasL1(tx);
+  const l2GasLimit = await l2Provider.estimateL1ToL2Execute({
+    contractAddress: L2_CONTRACT_ADDRESS,
+    calldata: tx.data,
+    caller: wallet.address,
+  });
   console.log(`L2 gasLimit ${l2GasLimit.toString()}`);
   // ANCHOR_END: gas-limit
 
@@ -73,7 +76,6 @@ async function main() {
     },
   });
 
-  console.log('txReceipt :>> ', txReceipt);
   console.log(`L1 tx hash is ${txReceipt.hash}`);
   console.log('🎉 Transaction sent successfully');
   txReceipt.wait(1);
