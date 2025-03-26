@@ -26,11 +26,8 @@ jobs:
       run: |
         cargo install cargo-nextest
         cargo install sqlx-cli --version 0.8.1
-    - name: Install Foundry ZKSync
-      run: |
-        curl -L https://raw.githubusercontent.com/matter-labs/foundry-zksync/main/install-foundry-zksync | bash
-        source ~/.bashrc
-        foundryup-zksync
+    - name: Install Foundry-ZKsync
+      uses: dutterbutter/foundry-zksync-toolchain@v1
     - name: Install ZKstack
       run: |
         curl -L https://raw.githubusercontent.com/matter-labs/zksync-era/main/zkstack_cli/zkstackup/install | bash
