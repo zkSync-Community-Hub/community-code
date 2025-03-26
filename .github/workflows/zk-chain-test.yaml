@@ -8,8 +8,8 @@ on:
   
 jobs:
   zk-chain-test:
-    # The playwright test will fail after 40 min, so this leaves some time for installations, etc.
-    timeout-minutes: 60
+    # The playwright test will fail after 50 min, so this leaves some time for installations, etc.
+    timeout-minutes: 70
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4

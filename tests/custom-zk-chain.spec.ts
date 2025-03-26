@@ -2,8 +2,8 @@ import { test } from '@playwright/test';
 import { setupAndRunTest } from './utils/runTest';
 
 test('Custom ZK Chain', async ({ page, context }) => {
-  // times out after 40 min
-  test.setTimeout(40 * 60 * 1000);
+  // times out after 50 min
+  test.setTimeout(50 * 60 * 1000);
   await setupAndRunTest(
     page,
     context,

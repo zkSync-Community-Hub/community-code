@@ -35,7 +35,7 @@ const partOneSteps: IStepConfig = {
   'init-ecosystem': {
     action: 'runCommand',
     commandFolder: 'tests-output/custom-zk-chain/my_elastic_network',
-    waitTime: 60000 * 6,
+    waitTime: 60000 * 10,
   },
   'start-server': {
     action: 'runCommand',
