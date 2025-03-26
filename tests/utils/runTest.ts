@@ -100,7 +100,7 @@ export async function runTest(
         await checkIfBalanceIsZero(stepData.networkUrl, stepData.address);
         break;
       case 'extractDataToEnv':
-        extractDataToEnv(stepData.dataFilepath, stepData.envFilepath, stepData.regex, stepData.variableName);
+        extractDataToEnv(stepData.dataFilepath, stepData.envFilepath, stepData.variableName, stepData.selector);
         break;
       case 'clickButtonByText':
         clickButtonByText(page, stepData.buttonText);

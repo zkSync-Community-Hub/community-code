@@ -2,7 +2,9 @@ import { writeFileSync, appendFileSync, readFileSync } from 'node:fs';
 import { clickCopyButton } from './button';
 import { expect, type Page } from '@playwright/test';
 import { EOL } from 'os';
-import type { RangeOrIntArray } from './types';
+import type { RangeOrIntArray, Selector, YamlData } from './types';
+import YAML from 'yaml';
+import { ethers } from 'ethers';
 
 export async function writeToFile(
   page: Page,
@@ -97,10 +99,51 @@ function getContractId(deploymentFilePath: string) {
   return json.entries[0].address;
 }
 
-export function extractDataToEnv(dataFilepath: string, envFilepath: string, regex: RegExp, variableName: string) {
+export function extractDataToEnv(dataFilepath: string, envFilepath: string, variableName: string, selector: Selector) {
   const file = readFileSync(dataFilepath, { encoding: 'utf8' });
-  const regexMatches = file.match(regex);
-  const data = regexMatches?.[0];
-  console.log('DATA FROM REGEX:', data);
+  let data;
+
+  if ('regex' in selector) {
+    const regexMatches = file.match(selector.regex);
+    data = regexMatches?.[0];
+    console.log('DATA FROM REGEX:', data);
+  } else {
+    data = getYamlValue(file, selector);
+    console.log('DATA FROM YAML:', data);
+  }
+
+  if (file.includes(variableName)) {
+    // modify the existing variable
+    const lines = readFileSync(envFilepath, 'utf8').split('\n');
+    const newLines = lines.map((line) => {
+      if (line.includes(variableName)) {
+        return `${variableName}=${data}`;
+      }
+      return line;
+    });
+    writeFileSync(envFilepath, newLines.join('\n'));
+    return;
+  }
+
   appendFileSync(envFilepath, `\n${variableName}=${data}\n`);
+}
+
+function getYamlValue(file: string, selector: YamlData) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const data = YAML.parse(file, { intAsBigInt: true }) as Record<string, any>;
+  const keys = selector.yaml.split('.');
+  const value = keys.reduce((obj, k) => {
+    return obj && obj[k] !== undefined ? obj[k] : undefined;
+  }, data);
+
+  if (selector.isHexValue && typeof value === 'bigint') {
+    const hex = ethers.toBeHex(value);
+    return hex;
+  }
+
+  if (!value) {
+    throw new Error(`Key ${selector.yaml} not found in the yaml file`);
+  }
+
+  return value.toString();
 }
