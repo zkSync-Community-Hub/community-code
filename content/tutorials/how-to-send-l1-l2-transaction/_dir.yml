@@ -14,7 +14,7 @@ description:
 what_you_will_learn:
   - How L1-L2 communication works
   - How to send a transaction from ZKsync Ethereum to ZKsync.
-updated: 2024-08-18
+updated: 2025-03-27
 tools:
   - zksync-ethers
   - zksync-contracts
