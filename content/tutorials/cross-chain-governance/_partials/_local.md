@@ -6,7 +6,7 @@ title: Cross Chain Tutorial on Local Nodes Part 1
 ## Prerequisites
 
 - You must have [Docker](https://www.docker.com/products/docker-desktop/) installed.
-- You must have [Node.js](https://github.com/nvm-sh/nvm) installed.
+- A [Node.js](https://nodejs.org/en/download) installation running at minimum Node.js version `18`.
 
 :display-partial{path="/tutorials/cross-chain-governance/_partials/_intro"}
 
