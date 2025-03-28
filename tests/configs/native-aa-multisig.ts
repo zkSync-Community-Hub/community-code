@@ -128,7 +128,7 @@ export const steps: IStepConfig = {
   'get-deployed-account-address': {
     action: 'extractDataToEnv',
     dataFilepath: 'tests-output/native-aa-multisig/deployed-factory-address.txt',
-    regex: /0x[a-fA-F0-9]{40}/,
+    selector: { regex: /0x[a-fA-F0-9]{40}/ },
     variableName: 'AA_FACTORY_ADDRESS',
     envFilepath: 'tests-output/native-aa-multisig/.env',
   },

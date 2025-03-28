@@ -70,7 +70,7 @@ export const steps: IStepConfig = {
     dataFilepath: 'tests-output/frontend-paymaster/contracts/deployed-greeter.txt',
     envFilepath: 'tests-output/frontend-paymaster/frontend/.env',
     variableName: 'VITE_GREETER_CONTRACT_ADDRESS',
-    regex: /0x[a-fA-F0-9]{40}/,
+    selector: { regex: /0x[a-fA-F0-9]{40}/ },
   },
   'add-zksync-imports': {
     action: 'modifyFile',
