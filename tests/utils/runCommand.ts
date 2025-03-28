@@ -21,7 +21,7 @@ export async function runCommand(
   expectError?: string,
   replaceString?: string
 ) {
-  const thisWaitTime = waitTime ? waitTime : prompts ? 35000 : 5000;
+  const thisWaitTime = waitTime ? waitTime : prompts ? 35000 : 12000;
   console.log('WAIT TIME', thisWaitTime);
   let command = useSetCommand;
   if (!command) {
