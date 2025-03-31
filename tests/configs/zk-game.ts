@@ -93,7 +93,7 @@ cp code/zk-game/contracts/contracts/SP1VerifierGroth16.sol tests-output/zk-game/
     dataFilepath: 'tests-output/zk-game/contracts/verifier.txt',
     envFilepath: 'tests-output/zk-game/contracts/.env',
     variableName: 'VERIFIER_CONTRACT_ADDRESS',
-    regex: /0x[a-fA-F0-9]{40}/,
+    selector: { regex: /0x[a-fA-F0-9]{40}/ },
   },
 };
 
@@ -146,7 +146,7 @@ const programSteps: IStepConfig = {
     dataFilepath: 'tests-output/zk-game/contracts/game.txt',
     envFilepath: 'tests-output/zk-game/contracts/.env',
     variableName: 'GAME_CONTRACT_ADDRESS',
-    regex: /0x[a-fA-F0-9]{40}/,
+    selector: { regex: /0x[a-fA-F0-9]{40}/ },
   },
   'create-interact-script': {
     action: 'runCommand',
@@ -157,7 +157,7 @@ const programSteps: IStepConfig = {
     dataFilepath: 'tests-output/zk-game/contracts/paymaster.txt',
     envFilepath: 'tests-output/zk-game/contracts/.env',
     variableName: 'PAYMASTER_CONTRACT_ADDRESS',
-    regex: /0x[a-fA-F0-9]{40}/,
+    selector: { regex: /0x[a-fA-F0-9]{40}/ },
   },
   'interact-code': {
     action: 'writeToFile',
@@ -193,14 +193,14 @@ const frontendSteps: IStepConfig = {
     dataFilepath: 'tests-output/zk-game/contracts/game.txt',
     envFilepath: 'tests-output/zk-game/frontend/.env',
     variableName: 'GAME_CONTRACT_ADDRESS',
-    regex: /0x[a-fA-F0-9]{40}/,
+    selector: { regex: /0x[a-fA-F0-9]{40}/ },
   },
   'constants-paymaster': {
     action: 'extractDataToEnv',
     dataFilepath: 'tests-output/zk-game/contracts/paymaster.txt',
     envFilepath: 'tests-output/zk-game/frontend/.env',
     variableName: 'PAYMASTER_CONTRACT_ADDRESS',
-    regex: /0x[a-fA-F0-9]{40}/,
+    selector: { regex: /0x[a-fA-F0-9]{40}/ },
   },
   'wagmi-config-file': {
     action: 'runCommand',

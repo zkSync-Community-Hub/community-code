@@ -27,6 +27,8 @@ export interface IRunCommand {
   projectFolder?: string;
   // add something before the command
   preCommand?: string;
+  // how long to wait after running the command
+  waitTime?: number;
   // use this command instead of copying from the page
   useSetCommand?: string;
   // if the command has prompts, pass them here
@@ -38,6 +40,10 @@ export interface IRunCommand {
   checkForOutput?: string;
   // if the command is expected to fail, pass at least part of the error message here
   expectError?: string;
+  // replace a string in the command with another string
+  // ex: "<0x_YOUR_ADDRESS>:0x123"
+  // replaces "<0x_YOUR_ADDRESS>" with "0x123"
+  replaceString?: string;
 }
 
 export interface IWait {
@@ -78,16 +84,23 @@ export interface ICheckIfBalanceIsZero {
   address: string;
 }
 
+// the regex to match the data
+export type RegexData = { regex: RegExp };
+// the yaml variable to match the data
+// use '.' to separate nested objects like 'contract.address'
+export type YamlData = { yaml: string; isHexValue?: boolean };
+export type Selector = RegexData | YamlData;
+
 export interface IExtractDataToEnv {
   action: 'extractDataToEnv';
   // the file where the data is stored
   dataFilepath: string;
   // the filepath for the .env file to modify
   envFilepath: string;
-  // the regex to match the data
-  regex: RegExp;
   // the name of the env variable to store the data
   variableName: string;
+  // the selector for the data
+  selector: Selector;
 }
 
 export interface IClickButtonByText {
