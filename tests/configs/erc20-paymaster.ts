@@ -79,14 +79,14 @@ export const steps: IStepConfig = {
   'paymaster-address': {
     action: 'extractDataToEnv',
     dataFilepath: 'tests-output/erc20-paymaster/deployed.txt',
-    regex: /(?<=MyPaymaster deployed to )0x[a-fA-F0-9]{40}/,
+    selector: { regex: /(?<=MyPaymaster deployed to )0x[a-fA-F0-9]{40}/ },
     variableName: 'PAYMASTER_ADDRESS',
     envFilepath: 'tests-output/erc20-paymaster/.env',
   },
   'token-address': {
     action: 'extractDataToEnv',
     dataFilepath: 'tests-output/erc20-paymaster/deployed.txt',
-    regex: /(?<=MyERC20 deployed to )0x[a-fA-F0-9]{40}/,
+    selector: { regex: /(?<=MyERC20 deployed to )0x[a-fA-F0-9]{40}/ },
     variableName: 'TOKEN_ADDRESS',
     envFilepath: 'tests-output/erc20-paymaster/.env',
   },

@@ -109,14 +109,16 @@ export const steps: IStepConfig = {
   'get-deployed-account-address': {
     action: 'extractDataToEnv',
     dataFilepath: 'tests-output/daily-spend-limit/deploy-outputs.txt',
-    regex: /(?<=SC Account deployed on address\s)0x[a-fA-F0-9]{40}(?![\s\S]*SC Account deployed on address)/,
+    selector: {
+      regex: /(?<=SC Account deployed on address\s)0x[a-fA-F0-9]{40}(?![\s\S]*SC Account deployed on address)/,
+    },
     variableName: 'DEPLOYED_ACCOUNT_ADDRESS',
     envFilepath: 'tests-output/daily-spend-limit/.env',
   },
   'get-private-key': {
     action: 'extractDataToEnv',
     dataFilepath: 'tests-output/daily-spend-limit/deploy-outputs.txt',
-    regex: /0x[a-fA-F0-9a-zA-Z]{64,}/g,
+    selector: { regex: /0x[a-fA-F0-9a-zA-Z]{64,}/g },
     variableName: 'DEPLOYED_ACCOUNT_OWNER_PRIVATE_KEY',
     envFilepath: 'tests-output/daily-spend-limit/.env',
   },

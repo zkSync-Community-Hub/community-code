@@ -12,17 +12,28 @@ export async function runCommand(
   buttonName: string,
   goToFolder: string = 'tests-output',
   projectFolder: string = 'hardhat-project',
+  waitTime?: number,
   preCommand?: string,
   useSetCommand?: string,
   prompts?: string,
   saveOutput?: string,
   checkForOutput?: string,
-  expectError?: string
+  expectError?: string,
+  replaceString?: string
 ) {
+  const thisWaitTime = waitTime ? waitTime : prompts ? 35000 : 12000;
+  console.log('WAIT TIME', thisWaitTime);
   let command = useSetCommand;
   if (!command) {
     command = await clickCopyButton(page, buttonName);
     console.log('COPIED', command);
+  }
+  if (replaceString) {
+    const split = replaceString.split('|');
+    split.forEach((replaceString) => {
+      const splitReplace = replaceString.split(':');
+      command = command?.replace(splitReplace[0], splitReplace[1]);
+    });
   }
   const copied = command;
   const newHardhatProject = command.includes('npx hardhat init');
@@ -47,15 +58,16 @@ export async function runCommand(
     } else {
       await run(command, saveOutput, checkForOutput, expectError);
     }
+    await page.waitForTimeout(thisWaitTime);
+    console.log(`waited ${thisWaitTime / 1000} seconds`);
   }
-  await page.waitForTimeout(1500);
 }
 
 async function run(command: string, saveOutput?: string, checkForOutput?: string, expectError?: string): Promise<void> {
   console.log('RUNNING COMMAND:', command);
 
   return new Promise<void>((resolve, reject) => {
-    exec(command, { encoding: 'utf-8' }, (error, stdout, stderr) => {
+    exec(command, { encoding: 'utf-8', maxBuffer: 1024 * 1024 * 10 }, (error, stdout, stderr) => {
       if (error) {
         if (expectError) {
           console.log('EXPECT ERROR', expectError);
@@ -74,6 +86,7 @@ async function run(command: string, saveOutput?: string, checkForOutput?: string
       } else {
         if (checkForOutput) {
           expect(stdout).toContain(checkForOutput);
+          console.log('✅ FOUND OUTPUT:', checkForOutput);
         }
 
         if (saveOutput && stdout) {
@@ -149,7 +162,4 @@ export async function runWithPrompts(page: Page, command: string, prompts: strin
   });
 
   ptyProcess.write(command + '\r');
-
-  await page.waitForTimeout(35000);
-  console.log('waited 35 seconds');
 }
