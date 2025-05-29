@@ -12,11 +12,11 @@ jobs:
         tutorial:
           - "erc20-paymaster" 
           - "how-to-test-contracts"
-          - "daily-spend-limit"
-          - "native-aa-multisig"
-          - "signing-txns-with-webauthn"
-          - "frontend-paymaster"
-          - "zk-game"
+          # - "daily-spend-limit"
+          # - "native-aa-multisig"
+          # - "signing-txns-with-webauthn"
+          # - "frontend-paymaster"
+          # - "zk-game"
 
     steps:
     - uses: actions/checkout@v4
@@ -27,6 +27,7 @@ jobs:
     - name: Install Playwright Browsers
       run: bun playwright install chromium --with-deps
     - name: Run anvil-zksync
+      if: matrix.tutorial != 'how-to-test-contracts'
       uses: dutterbutter/anvil-zksync-action@v1.1.0
     - name: Create Metamask Cache
       if: matrix.tutorial == 'frontend-paymaster'

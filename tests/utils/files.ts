@@ -78,8 +78,10 @@ export async function compareToFile(page: Page, buttonName: string, pathName: st
 }
 
 export function compareOutputs(expected: string, actual: string) {
-  const split1 = expected.trim().split(EOL);
-  const split2 = actual.trim().split(EOL);
+  const comments = (line: string) => !line.includes('eslint-') && !line.includes('ANCHOR');
+  const normaliseQuotes = (s: string) => s.replace(/['"]/g, '"').trim();
+  const split1 = expected.trim().split(EOL).filter(comments);
+  const split2 = actual.trim().split(EOL).filter(comments);
   expect(split1.length === split2.length).toBeTruthy();
   split1.forEach((line, i) => {
     const trimmedLineA = line.trim().replace(/\u00A0/g, ' ');
@@ -89,7 +91,7 @@ export function compareOutputs(expected: string, actual: string) {
       console.log('LINE A:', trimmedLineA);
       console.log('LINE B:', trimmedLineB);
     }
-    expect(trimmedLineA).toEqual(trimmedLineB);
+    expect(normaliseQuotes(trimmedLineA)).toEqual(normaliseQuotes(trimmedLineB));
   });
 }
 

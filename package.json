@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "@matterlabs/docs-nuxt-template": "2.9.2",
+    "caniuse-lite": "^1.0.30001720",
     "dayjs": "1.11.13",
     "nuxt": "3.13.2",
     "nuxt-gtag": "3.0.2",
