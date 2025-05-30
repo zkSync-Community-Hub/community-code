@@ -11,7 +11,7 @@ jobs:
       matrix:
         tutorial:
           - "erc20-paymaster" 
-          - "how-to-test-contracts"
+          # - "how-to-test-contracts"
           # - "daily-spend-limit"
           # - "native-aa-multisig"
           # - "signing-txns-with-webauthn"
@@ -24,14 +24,19 @@ jobs:
     - name: Install Dependencies
       run: bun install --frozen-lockfile
     - uses: actions/setup-node@v4
-    - name: Install Playwright Browsers
-      run: bun playwright install chromium --with-deps
+
+    # Setup Anvil for local testing
+    # How to Test Contracts includes a step to start anvil
     - name: Run anvil-zksync
       if: matrix.tutorial != 'how-to-test-contracts'
       uses: dutterbutter/anvil-zksync-action@v1.1.0
+
+    # Setup Metamask for frontend paymaster
     - name: Create Metamask Cache
       if: matrix.tutorial == 'frontend-paymaster'
       run: xvfb-run bun setup:mm
+
+    # ZK Game Dependencies
     - name: Install Rust Toolchain
       if: matrix.tutorial == 'zk-game'
       uses: actions-rs/toolchain@v1
@@ -45,18 +50,12 @@ jobs:
         ~/.sp1/bin/sp1up 
         ~/.sp1/bin/cargo-prove prove --version
         echo "$HOME/.sp1/bin:${GITHUB_PATH}" >> $GITHUB_PATH
-    - name: Run test for ${{ matrix.tutorial }}
-      run: |
-        export TERM=xterm-256color
-        export COLUMNS=80
-        export LINES=24
-        xvfb-run bun test:headful tests/${{ matrix.tutorial }}.spec.ts
-    - uses: actions/upload-artifact@v4
-      if: always()
-      with:
-        name: playwright-report-${{ matrix.tutorial }}
-        path: |
-          ${{ github.workspace }}/playwright-report/
-        retention-days: 10
 
-  
+    - name: Start the docs
+      run: bun pm2 start 'PORT=3030 bun dev' --name docs
+    - name: Run test for ${{ matrix.tutorial }}
+      uses: sarahschwartz/tutorial-tester@main
+      with:
+        tutorial-paths: '["tutorials/erc20-paymaster"]'
+        config-path: 'tests/configs/erc20-paymaster.ts'
+        folder-name: 'erc20-paymaster'

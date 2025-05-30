@@ -1,6 +1,6 @@
 import type { IStepConfig } from '../utils/types';
 
-export const steps: IStepConfig = {
+const steps: IStepConfig = {
   'initialize-hardhat-project': {
     action: 'runCommand',
     prompts: 'Private key of the wallet: |❯ npm: ',
@@ -88,3 +88,5 @@ export const steps: IStepConfig = {
     commandFolder: 'tests-output/erc20-paymaster',
   },
 };
+
+export default steps;
