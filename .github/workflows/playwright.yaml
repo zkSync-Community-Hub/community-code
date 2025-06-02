@@ -2,6 +2,7 @@ name: Playwright Tests
 
 on:
   pull_request:
+  workflow_dispatch:
 
 jobs:
   test-tutorials:
@@ -41,8 +42,8 @@ jobs:
       if: matrix.tutorial == 'zk-game'
       uses: actions-rs/toolchain@v1
       with:
-            toolchain: 1.81.0
-            components: llvm-tools, rustc-dev
+        toolchain: 1.81.0
+        components: llvm-tools, rustc-dev
     - name: Install Cargo Prove
       if: matrix.tutorial == 'zk-game'
       run: |
