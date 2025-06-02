@@ -12,8 +12,8 @@ jobs:
       matrix:
         tutorial:
           - "erc20-paymaster" 
-          # - "how-to-test-contracts"
-          # - "daily-spend-limit"
+          - "how-to-test-contracts"
+          - "daily-spend-limit"
           # - "native-aa-multisig"
           # - "signing-txns-with-webauthn"
           # - "frontend-paymaster"
@@ -60,3 +60,4 @@ jobs:
         tutorial-paths: '["tutorials/erc20-paymaster"]'
         config-path: 'tests/configs/erc20-paymaster.ts'
         folder-name: 'erc20-paymaster'
+        wait-time: 70000

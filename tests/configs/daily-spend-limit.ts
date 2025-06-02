@@ -19,6 +19,8 @@ export const steps: IStepConfig = {
   'install-deps': {
     action: 'runCommand',
     commandFolder: 'tests-output/daily-spend-limit',
+    // TODO: REMOVE THIS
+    preCommand: '<COMMAND> @matterlabs/zksync-contracts@1.0.0-alpha.9',
   },
   'wait-for-install': {
     action: 'wait',
@@ -27,14 +29,14 @@ export const steps: IStepConfig = {
   'hardhat-config': {
     action: 'modifyFile',
     filepath: 'tests-output/daily-spend-limit/hardhat.config.ts',
-    atLine: 51,
-    removeLines: [51, '-->', 57],
+    atLine: 56,
+    removeLines: [56, '-->', 63],
   },
   'deploy-to-local-node': {
     action: 'modifyFile',
     filepath: 'tests-output/daily-spend-limit/hardhat.config.ts',
-    atLine: 9,
-    removeLines: [9],
+    atLine: 10,
+    removeLines: [10],
     useSetData: '  defaultNetwork: "anvilZKsync",',
   },
   'add-spend-limit-file': {
