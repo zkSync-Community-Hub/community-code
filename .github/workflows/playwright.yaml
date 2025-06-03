@@ -15,20 +15,28 @@ jobs:
             tutorial-paths: '["tutorials/erc20-paymaster"]'
             config-path: 'tests/configs/erc20-paymaster.ts'
             folder-name: 'erc20-paymaster'
+            mm-wallet: 'false'
           - test-file-name: "how-to-test-contracts"
             tutorial-paths: '["tutorials/how-to-test-contracts"]'
             config-path: 'tests/configs/how-to-test-contracts.ts'
             folder-name: 'how-to-test-contracts'
+            mm-wallet: 'false'
           - test-file-name: "daily-spend-limit"
             tutorial-paths: '["tutorials/daily-spend-limit-account"]'
             config-path: 'tests/configs/daily-spend-limit.ts'
             folder-name: 'daily-spend-limit'
+            mm-wallet: 'false'
           - test-file-name: "native-aa-multisig"
             tutorial-paths: '["tutorials/native-aa-multisig"]'
             config-path: 'tests/configs/native-aa-multisig.ts'
             folder-name: 'native-aa-multisig'
+            mm-wallet: 'false'
+          - test-file-name: "frontend-paymaster"
+            tutorial-paths: '["tutorials/frontend-paymaster"]'
+            config-path: 'tests/configs/frontend-paymaster.ts'
+            folder-name: 'frontend-paymaster'
+            mm-wallet: 'true'
           # - "signing-txns-with-webauthn"
-          # - "frontend-paymaster"
           # - "zk-game"
 
     steps:
@@ -67,4 +75,5 @@ jobs:
         tutorial-paths: ${{ matrix.tutorial.tutorial-paths }}
         config-path: ${{ matrix.tutorial.config-path }}
         folder-name: ${{ matrix.tutorial.folder-name }}
+        mm-wallet: ${{ matrix.tutorial.mm-wallet }}
         wait-time: 80000

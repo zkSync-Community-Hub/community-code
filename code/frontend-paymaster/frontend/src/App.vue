@@ -385,7 +385,7 @@ const loadMainScreen = async () => {
   mainLoading.value = false;
 };
 const addZkSyncSepolia = async () => {
-  // add zkSync testnet to Metamask
+  // add ZKsync testnet to Metamask
   await thisWindow.ethereum?.request({
     method: 'wallet_addEthereumChain',
     params: [

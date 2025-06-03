@@ -1,4 +1,4 @@
-import { deployer, ethers } from 'hardhat';
+import { ethers } from 'hardhat';
 
 const ALLOWED_TOKEN = process.env.ALLOWED_TOKEN;
 
@@ -6,15 +6,15 @@ async function main() {
   if (!ALLOWED_TOKEN) {
     throw new Error('ALLOWED_TOKEN env variable not set');
   }
-  const artifact = await deployer.loadArtifact('ApprovalPaymaster');
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const constructorArguments: any[] = [ALLOWED_TOKEN];
-  const contract = await deployer.deploy(artifact, constructorArguments);
+  const [signer] = await ethers.getSigners();
+  const contractFactory = await ethers.getContractFactory('ApprovalPaymaster');
+  const contract = await contractFactory.deploy(ALLOWED_TOKEN, signer.address);
+  await contract.waitForDeployment();
+
   const paymasterAddress = await contract.getAddress();
   console.log('PAYMASTER CONTRACT ADDRESS: ', paymasterAddress);
 
-  const [wallet] = await ethers.getWallets();
-  const tx = await wallet.sendTransaction({
+  const tx = await signer.sendTransaction({
     to: paymasterAddress,
     value: ethers.parseEther('10'),
   });
