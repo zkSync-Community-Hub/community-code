@@ -46,9 +46,9 @@ const contractSteps: IStepConfig = {
     action: 'runCommand',
     commandFolder: '.',
     useSetCommand:
-      'cp code/zk-game/contracts/contracts/ISP1Verifier.sol tests-output/zk-game/contracts/contracts && \
-cp code/zk-game/contracts/contracts/Groth16Verifier.sol tests-output/zk-game/contracts/contracts && \
-cp code/zk-game/contracts/contracts/SP1VerifierGroth16.sol tests-output/zk-game/contracts/contracts',
+      'cp $DIR_PATH/code/zk-game/contracts/contracts/ISP1Verifier.sol tests-output/zk-game/contracts/contracts && \
+  cp $DIR_PATH/code/zk-game/contracts/contracts/Groth16Verifier.sol tests-output/zk-game/contracts/contracts && \
+  cp $DIR_PATH/code/zk-game/contracts/contracts/SP1VerifierGroth16.sol tests-output/zk-game/contracts/contracts',
   },
   'create-deploy-scripts': {
     action: 'runCommand',
