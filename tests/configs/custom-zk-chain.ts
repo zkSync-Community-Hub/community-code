@@ -219,7 +219,9 @@ const partTwoSteps: IStepConfig = {
   },
 };
 
-export const steps: IStepConfig = {
+const steps: IStepConfig = {
   ...partOneSteps,
   ...partTwoSteps,
 };
+
+export default steps;

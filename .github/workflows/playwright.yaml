@@ -47,7 +47,11 @@ jobs:
             folder-name: 'signing-txns-with-webauthn'
             mm-wallet: 'false'
 
-          # - "zk-game"
+          - test-file-name: "zk-game"
+            tutorial-paths: '["tutorials//build-a-zk-game/building-the-contracts", "tutorials/build-a-zk-game/writing-the-program", "/build-a-zk-game/building-the-frontend"]'
+            config-path: 'tests/configs/zk-game.ts'
+            folder-name: 'zk-game'
+            mm-wallet: 'false'
 
     steps:
     - uses: actions/checkout@v4

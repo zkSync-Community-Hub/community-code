@@ -248,8 +248,10 @@ const frontendSteps: IStepConfig = {
   },
 };
 
-export const steps: IStepConfig = {
+const steps: IStepConfig = {
   ...contractSteps,
   ...programSteps,
   ...frontendSteps,
 };
+
+export default steps;

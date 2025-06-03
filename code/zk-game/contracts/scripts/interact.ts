@@ -22,7 +22,7 @@ async function main() {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const config: any = network.config;
   const provider = new Provider(config.url);
-  const [deployerWallet] = await ethers.getWallets();
+  const [deployerWallet] = await ethers.getSigners();
 
   // Initialize contract instance for interaction
   const contract = new ethers.Contract(GAME_CONTRACT_ADDRESS, contractArtifact.abi, deployerWallet);
