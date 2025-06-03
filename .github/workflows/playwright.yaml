@@ -86,4 +86,4 @@ jobs:
         config-path: ${{ matrix.tutorial.config-path }}
         folder-name: ${{ matrix.tutorial.folder-name }}
         mm-wallet: ${{ matrix.tutorial.mm-wallet }}
-        wait-time: 100000
+        wait-time: 110000
