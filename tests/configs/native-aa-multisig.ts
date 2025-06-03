@@ -1,6 +1,6 @@
 import type { IStepConfig } from '../utils/types';
 
-export const steps: IStepConfig = {
+const steps: IStepConfig = {
   'initialize-project': {
     action: 'runCommand',
     prompts: 'Private key of the wallet: |❯ npm: ',
@@ -138,3 +138,5 @@ export const steps: IStepConfig = {
     checkForOutput: 'Multisig account balance is now',
   },
 };
+
+export default steps;

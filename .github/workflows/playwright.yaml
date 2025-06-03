@@ -23,7 +23,10 @@ jobs:
             tutorial-paths: '["tutorials/daily-spend-limit-account"]'
             config-path: 'tests/configs/daily-spend-limit.ts'
             folder-name: 'daily-spend-limit'
-          # - "native-aa-multisig"
+          - test-file-name: "native-aa-multisig"
+            tutorial-paths: '["tutorials/native-aa-multisig"]'
+            config-path: 'tests/configs/native-aa-multisig.ts'
+            folder-name: 'native-aa-multisig'
           # - "signing-txns-with-webauthn"
           # - "frontend-paymaster"
           # - "zk-game"
