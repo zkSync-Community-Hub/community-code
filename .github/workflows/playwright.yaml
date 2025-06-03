@@ -36,6 +36,7 @@ jobs:
             config-path: 'tests/configs/frontend-paymaster.ts'
             folder-name: 'frontend-paymaster'
             mm-wallet: 'true'
+            
           # - "signing-txns-with-webauthn"
           # - "zk-game"
 
