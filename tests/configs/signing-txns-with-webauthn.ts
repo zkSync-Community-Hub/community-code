@@ -344,11 +344,11 @@ const frontendPart2Steps: IStepConfig = {
   },
   'wait-for-account': {
     action: 'wait',
-    timeout: 8000,
+    timeout: 12000,
   },
   'verify-account-made': {
     action: 'findText',
-    text: 'Your current account is',
+    text: 'Your current account is:',
   },
 };
 

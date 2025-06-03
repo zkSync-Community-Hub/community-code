@@ -27,8 +27,8 @@ const contractSteps: IStepConfig = {
   'hh-config': {
     action: 'modifyFile',
     filepath: 'tests-output/zk-game/contracts/hardhat.config.ts',
-    atLine: 9,
-    removeLines: [9],
+    atLine: 10,
+    removeLines: [10],
   },
   'create-game-contract': {
     action: 'runCommand',
@@ -60,10 +60,8 @@ const contractSteps: IStepConfig = {
     atLine: 9,
   },
   'add-env-pk': {
-    action: 'modifyFile',
+    action: 'writeToFile',
     filepath: 'tests-output/zk-game/contracts/.env',
-    atLine: 1,
-    removeLines: [1],
   },
   'verifier-script': {
     action: 'writeToFile',
