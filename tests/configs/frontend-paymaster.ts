@@ -3,7 +3,7 @@ import type { IStepConfig } from '../utils/types';
 const newGreeting1 = 'My name is Zeek';
 const newGreeting2 = 'Zeek is a cool cat';
 
-export const steps: IStepConfig = {
+const steps: IStepConfig = {
   'make-project-folder': {
     action: 'runCommand',
   },
@@ -250,3 +250,5 @@ export const steps: IStepConfig = {
     text: newGreeting2,
   },
 };
+
+export default steps;

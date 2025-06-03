@@ -1,16 +1,16 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
-import '@matterlabs/zksync-contracts/l2/system-contracts/interfaces/IAccount.sol';
-import '@matterlabs/zksync-contracts/l2/system-contracts/libraries/TransactionHelper.sol';
+import '@matterlabs/zksync-contracts/contracts/system-contracts/interfaces/IAccount.sol';
+import '@matterlabs/zksync-contracts/contracts/system-contracts/libraries/TransactionHelper.sol';
 import '@openzeppelin/contracts/interfaces/IERC1271.sol';
 // Used for signature validation
 import '@openzeppelin/contracts/utils/cryptography/ECDSA.sol';
 // Access ZKsync system contracts for nonce validation via NONCE_HOLDER_SYSTEM_CONTRACT
-import '@matterlabs/zksync-contracts/l2/system-contracts/Constants.sol';
+import '@matterlabs/zksync-contracts/contracts/system-contracts/Constants.sol';
 // to call non-view function of system contracts
-import '@matterlabs/zksync-contracts/l2/system-contracts/libraries/SystemContractsCaller.sol';
-import "@openzeppelin/contracts/utils/Base64.sol";
+import '@matterlabs/zksync-contracts/contracts/system-contracts/libraries/SystemContractsCaller.sol';
+import '@openzeppelin/contracts/utils/Base64.sol';
 
 contract Account is IAccount, IERC1271 {
   // to get transaction hash
@@ -32,7 +32,7 @@ contract Account is IAccount, IERC1271 {
 
   // webauthn user flags
   bytes1 constant AUTH_DATA_MASK = 0x05;
-  
+
   bytes4 constant EIP1271_SUCCESS_RETURN_VALUE = 0x1626ba7e;
 
   modifier onlyBootloader() {
@@ -42,8 +42,8 @@ contract Account is IAccount, IERC1271 {
   }
 
   modifier onlySelf() {
-      require(msg.sender == address(this), "Only the contract itself allowed to call this function");
-      _;
+    require(msg.sender == address(this), 'Only the contract itself allowed to call this function');
+    _;
   }
 
   constructor(address _owner) {
@@ -244,7 +244,7 @@ contract Account is IAccount, IERC1271 {
 
     // check if the webauthn user flags are set
     if (authenticatorData[32] & AUTH_DATA_MASK != AUTH_DATA_MASK) {
-        return false;
+      return false;
     }
 
     bytes32 clientDataHash = sha256(clientData);
@@ -298,29 +298,29 @@ contract Account is IAccount, IERC1271 {
   }
 
   function txHashToBase64Url(bytes32 txHash) public pure returns (string memory) {
-        // Convert txHash to hex string
-        bytes memory hexString = new bytes(66);  // '0x' + 64 hex characters
-        hexString[0] = '0';
-        hexString[1] = 'x';
-        bytes memory hexChars = "0123456789abcdef";
-        for (uint256 i = 0; i < 32; i++) {
-            uint8 b = uint8(txHash[i]);
-            hexString[2 + i * 2] = hexChars[b >> 4];
-            hexString[3 + i * 2] = hexChars[b & 0x0f];
-        }
-        
-        // Encode to base64
-        string memory base64String = Base64.encode(hexString);
-
-        // Convert to base64url (replace '+' with '-' and '/' with '_')
-        bytes memory base64Bytes = bytes(base64String);
-        for (uint256 i = 0; i < base64Bytes.length; i++) {
-            if (base64Bytes[i] == '+') base64Bytes[i] = '-';
-            if (base64Bytes[i] == '/') base64Bytes[i] = '_';
-        }
-        
-        return string(base64Bytes);
+    // Convert txHash to hex string
+    bytes memory hexString = new bytes(66); // '0x' + 64 hex characters
+    hexString[0] = '0';
+    hexString[1] = 'x';
+    bytes memory hexChars = '0123456789abcdef';
+    for (uint256 i = 0; i < 32; i++) {
+      uint8 b = uint8(txHash[i]);
+      hexString[2 + i * 2] = hexChars[b >> 4];
+      hexString[3 + i * 2] = hexChars[b & 0x0f];
     }
+
+    // Encode to base64
+    string memory base64String = Base64.encode(hexString);
+
+    // Convert to base64url (replace '+' with '-' and '/' with '_')
+    bytes memory base64Bytes = bytes(base64String);
+    for (uint256 i = 0; i < base64Bytes.length; i++) {
+      if (base64Bytes[i] == '+') base64Bytes[i] = '-';
+      if (base64Bytes[i] == '/') base64Bytes[i] = '_';
+    }
+
+    return string(base64Bytes);
+  }
 
   fallback() external {
     // fallback of default account shouldn't be called by bootloader under no circumstances
