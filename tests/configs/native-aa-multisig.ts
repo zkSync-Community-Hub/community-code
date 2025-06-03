@@ -19,14 +19,14 @@ const steps: IStepConfig = {
   'hardhat-config': {
     action: 'modifyFile',
     filepath: 'tests-output/native-aa-multisig/hardhat.config.ts',
-    atLine: 51,
-    removeLines: [51, '-->', 57],
+    atLine: 56,
+    removeLines: [56, '-->', 63],
   },
   'use-local-node': {
     action: 'modifyFile',
     filepath: 'tests-output/native-aa-multisig/hardhat.config.ts',
-    atLine: 9,
-    removeLines: [9],
+    atLine: 10,
+    removeLines: [10],
     useSetData: '  defaultNetwork: "anvilZKsync",',
   },
   'make-multisig-contract': {

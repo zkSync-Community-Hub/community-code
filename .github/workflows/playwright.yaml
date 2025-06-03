@@ -44,11 +44,6 @@ jobs:
       if: matrix.tutorial.test-file-name != 'how-to-test-contracts'
       uses: dutterbutter/anvil-zksync-action@v1.1.0
 
-    # Setup Metamask for frontend paymaster
-    - name: Create Metamask Cache
-      if: matrix.tutorial.test-file-name == 'frontend-paymaster'
-      run: xvfb-run bun setup:mm
-
     # ZK Game Dependencies
     - name: Install Rust Toolchain
       if: matrix.tutorial.test-file-name == 'zk-game'
@@ -72,4 +67,4 @@ jobs:
         tutorial-paths: ${{ matrix.tutorial.tutorial-paths }}
         config-path: ${{ matrix.tutorial.config-path }}
         folder-name: ${{ matrix.tutorial.folder-name }}
-        wait-time: 70000
+        wait-time: 80000
