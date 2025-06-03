@@ -1,6 +1,6 @@
 import type { IStepConfig } from '../utils/types';
 
-export const steps: IStepConfig = {
+const steps: IStepConfig = {
   'initialize-project': {
     action: 'runCommand',
     prompts: 'Private key of the wallet: |❯ npm: ',
@@ -19,8 +19,6 @@ export const steps: IStepConfig = {
   'install-deps': {
     action: 'runCommand',
     commandFolder: 'tests-output/daily-spend-limit',
-    // TODO: REMOVE THIS
-    preCommand: '<COMMAND> @matterlabs/zksync-contracts@1.0.0-alpha.9',
   },
   'wait-for-install': {
     action: 'wait',
@@ -153,3 +151,5 @@ export const steps: IStepConfig = {
     expectError: 'execution reverted',
   },
 };
+
+export default steps;
