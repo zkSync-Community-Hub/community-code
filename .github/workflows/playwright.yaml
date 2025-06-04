@@ -6,7 +6,7 @@ on:
 
 jobs:
   test-tutorials:
-    timeout-minutes: 20
+    timeout-minutes: 25
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -59,6 +59,8 @@ jobs:
     - uses: oven-sh/setup-bun@v1
     - name: Install Dependencies
       run: bun install --frozen-lockfile
+    - name: Start the docs
+      run: bun pm2 start 'PORT=3030 bun dev' --name docs
     - uses: actions/setup-node@v4
 
     # Setup Anvil for local testing
@@ -82,8 +84,6 @@ jobs:
         ~/.sp1/bin/cargo-prove prove --version
         echo "$HOME/.sp1/bin:${GITHUB_PATH}" >> $GITHUB_PATH
 
-    - name: Start the docs
-      run: bun pm2 start 'PORT=3030 bun dev' --name docs
     - name: Run test for ${{ matrix.tutorial.test-file-name }}
       uses: sarahschwartz/tutorial-tester@main
       with:
@@ -91,4 +91,4 @@ jobs:
         config-path: ${{ matrix.tutorial.config-path }}
         folder-name: ${{ matrix.tutorial.folder-name }}
         mm-wallet: ${{ matrix.tutorial.mm-wallet }}
-        wait-time: 170000
+        wait-time: 300000

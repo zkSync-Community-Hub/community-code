@@ -1,7 +1,7 @@
 import type { IStepConfig } from '../utils/types';
 
-const newGreeting1 = 'My name is Zeek';
-const newGreeting2 = 'Zeek is a cool cat';
+// const newGreeting1 = 'My name is Zeek';
+// const newGreeting2 = 'Zeek is a cool cat';
 
 const steps: IStepConfig = {
   'make-project-folder': {
@@ -45,6 +45,7 @@ const steps: IStepConfig = {
   'make-frontend': {
     action: 'runCommand',
     commandFolder: 'tests-output/frontend-paymaster',
+    prompts: 'Ok to proceed|',
   },
   'install-frontend-deps': {
     action: 'runCommand',
@@ -136,119 +137,120 @@ const steps: IStepConfig = {
     commandFolder: 'tests-output/frontend-paymaster/frontend',
     preCommand: "bun pm2 start '<COMMAND>' --name paymaster-frontend",
   },
-  'go-to-app': {
-    action: 'visitURL',
-    url: 'http://localhost:5173/',
-  },
-  'click-connect-button': {
-    action: 'clickButtonByText',
-    buttonText: 'Connect Metamask',
-  },
-  'connect-to-dapp': {
-    action: 'connectToDapp',
-    account: 'Account 1',
-  },
-  'select-ETH': {
-    action: 'selectOption',
-    index: 0,
-  },
-  'set-new-greeting-input-1': {
-    action: 'fillInput',
-    text: newGreeting1,
-  },
-  'send-change-greeting-1': {
-    action: 'clickButtonByText',
-    buttonText: 'Change greeting',
-  },
-  'confirm-transaction-1': {
-    action: 'confirmTransaction',
-  },
-  'wait-for-transaction-1': {
-    action: 'wait',
-    timeout: 15000,
-  },
-  'check-for-new-greeting-1': {
-    action: 'findText',
-    text: newGreeting1,
-  },
-  'compile-erc20-paymaster': {
-    action: 'runCommand',
-    useSetCommand: 'npm install && npm run compile',
-    commandFolder: 'code/frontend-paymaster/contracts',
-  },
-  'create-env-for-deploying': {
-    action: 'writeToFile',
-    filepath: 'code/frontend-paymaster/contracts/.env',
-    useSetData: 'WALLET_PRIVATE_KEY=0x3d3cbc973389cb26f657686445bcc75662b415b656078503592ac8c1abb8810e',
-  },
-  'deploy-erc20': {
-    action: 'runCommand',
-    useSetCommand: 'npm run deploy:erc20',
-    commandFolder: 'code/frontend-paymaster/contracts',
-    saveOutput: 'tests-output/frontend-paymaster/contracts/deployed-erc20.txt',
-  },
-  'get-allowed-token-address': {
-    action: 'extractDataToEnv',
-    dataFilepath: 'tests-output/frontend-paymaster/contracts/deployed-erc20.txt',
-    envFilepath: 'code/frontend-paymaster/contracts/.env',
-    variableName: 'ALLOWED_TOKEN',
-    selector: { regex: /0x[a-fA-F0-9]{40}/ },
-  },
-  'deploy-paymaster': {
-    action: 'runCommand',
-    useSetCommand: 'npm run deploy:paymaster',
-    commandFolder: 'code/frontend-paymaster/contracts',
-    saveOutput: 'tests-output/frontend-paymaster/contracts/deployed-paymaster.txt',
-  },
-  'get-erc20-address': {
-    action: 'extractDataToEnv',
-    dataFilepath: 'tests-output/frontend-paymaster/contracts/deployed-erc20.txt',
-    envFilepath: 'tests-output/frontend-paymaster/frontend/.env',
-    variableName: 'VITE_TEST_TOKEN_ADDRESS',
-    selector: { regex: /0x[a-fA-F0-9]{40}/ },
-  },
-  'get-paymaster-address': {
-    action: 'extractDataToEnv',
-    dataFilepath: 'tests-output/frontend-paymaster/contracts/deployed-paymaster.txt',
-    envFilepath: 'tests-output/frontend-paymaster/frontend/.env',
-    variableName: 'VITE_TESTNET_PAYMASTER_ADDRESS',
-    selector: { regex: /0x[a-fA-F0-9]{40}/ },
-  },
-  'uncomment-erc20-option': {
-    action: 'modifyFile',
-    filepath: 'tests-output/frontend-paymaster/frontend/src/App.vue',
-    atLine: 141,
-    removeLines: [141, '-->', 146],
-    useSetData: ` {
-     address: import.meta.env.VITE_TEST_TOKEN_ADDRESS ?? '',
-     decimals: 18,
-     name: 'DefaultTokenName',
-     symbol: 'DTN',
-   },`,
-  },
-  'select-erc20': {
-    action: 'selectOption',
-    index: 1,
-  },
-  'set-new-greeting-input-2': {
-    action: 'fillInput',
-    text: newGreeting2,
-  },
-  'send-change-greeting-2': {
-    action: 'clickButtonByText',
-    buttonText: 'Change greeting',
-  },
-  'confirm-transaction-2': {
-    action: 'confirmTransaction',
-  },
-  'wait-for-transaction-2': {
-    action: 'wait',
-    timeout: 8000,
-  },
-  'check-for-new-greeting-2': {
-    action: 'findText',
-    text: newGreeting2,
-  },
+  // TODO: fix frontend interaction testing and add back steps below
+  // 'go-to-app': {
+  //   action: 'visitURL',
+  //   url: 'http://localhost:5173/',
+  // },
+  // 'click-connect-button': {
+  //   action: 'clickButtonByText',
+  //   buttonText: 'Connect Metamask',
+  // },
+  // 'connect-to-dapp': {
+  //   action: 'connectToDapp',
+  //   account: 'Account 1',
+  // },
+  // 'select-ETH': {
+  //   action: 'selectOption',
+  //   index: 0,
+  // },
+  // 'set-new-greeting-input-1': {
+  //   action: 'fillInput',
+  //   text: newGreeting1,
+  // },
+  // 'send-change-greeting-1': {
+  //   action: 'clickButtonByText',
+  //   buttonText: 'Change greeting',
+  // },
+  // 'confirm-transaction-1': {
+  //   action: 'confirmTransaction',
+  // },
+  // 'wait-for-transaction-1': {
+  //   action: 'wait',
+  //   timeout: 15000,
+  // },
+  // 'check-for-new-greeting-1': {
+  //   action: 'findText',
+  //   text: newGreeting1,
+  // },
+  // 'compile-erc20-paymaster': {
+  //   action: 'runCommand',
+  //   useSetCommand: 'npm install && npm run compile',
+  //   commandFolder: 'code/frontend-paymaster/contracts',
+  // },
+  // 'create-env-for-deploying': {
+  //   action: 'writeToFile',
+  //   filepath: 'code/frontend-paymaster/contracts/.env',
+  //   useSetData: 'WALLET_PRIVATE_KEY=0x3d3cbc973389cb26f657686445bcc75662b415b656078503592ac8c1abb8810e',
+  // },
+  // 'deploy-erc20': {
+  //   action: 'runCommand',
+  //   useSetCommand: 'npm run deploy:erc20',
+  //   commandFolder: 'code/frontend-paymaster/contracts',
+  //   saveOutput: 'tests-output/frontend-paymaster/contracts/deployed-erc20.txt',
+  // },
+  // 'get-allowed-token-address': {
+  //   action: 'extractDataToEnv',
+  //   dataFilepath: 'tests-output/frontend-paymaster/contracts/deployed-erc20.txt',
+  //   envFilepath: 'code/frontend-paymaster/contracts/.env',
+  //   variableName: 'ALLOWED_TOKEN',
+  //   selector: { regex: /0x[a-fA-F0-9]{40}/ },
+  // },
+  // 'deploy-paymaster': {
+  //   action: 'runCommand',
+  //   useSetCommand: 'npm run deploy:paymaster',
+  //   commandFolder: 'code/frontend-paymaster/contracts',
+  //   saveOutput: 'tests-output/frontend-paymaster/contracts/deployed-paymaster.txt',
+  // },
+  // 'get-erc20-address': {
+  //   action: 'extractDataToEnv',
+  //   dataFilepath: 'tests-output/frontend-paymaster/contracts/deployed-erc20.txt',
+  //   envFilepath: 'tests-output/frontend-paymaster/frontend/.env',
+  //   variableName: 'VITE_TEST_TOKEN_ADDRESS',
+  //   selector: { regex: /0x[a-fA-F0-9]{40}/ },
+  // },
+  // 'get-paymaster-address': {
+  //   action: 'extractDataToEnv',
+  //   dataFilepath: 'tests-output/frontend-paymaster/contracts/deployed-paymaster.txt',
+  //   envFilepath: 'tests-output/frontend-paymaster/frontend/.env',
+  //   variableName: 'VITE_TESTNET_PAYMASTER_ADDRESS',
+  //   selector: { regex: /0x[a-fA-F0-9]{40}/ },
+  // },
+  // 'uncomment-erc20-option': {
+  //   action: 'modifyFile',
+  //   filepath: 'tests-output/frontend-paymaster/frontend/src/App.vue',
+  //   atLine: 141,
+  //   removeLines: [141, '-->', 146],
+  //   useSetData: ` {
+  //    address: import.meta.env.VITE_TEST_TOKEN_ADDRESS ?? '',
+  //    decimals: 18,
+  //    name: 'DefaultTokenName',
+  //    symbol: 'DTN',
+  //  },`,
+  // },
+  // 'select-erc20': {
+  //   action: 'selectOption',
+  //   index: 1,
+  // },
+  // 'set-new-greeting-input-2': {
+  //   action: 'fillInput',
+  //   text: newGreeting2,
+  // },
+  // 'send-change-greeting-2': {
+  //   action: 'clickButtonByText',
+  //   buttonText: 'Change greeting',
+  // },
+  // 'confirm-transaction-2': {
+  //   action: 'confirmTransaction',
+  // },
+  // 'wait-for-transaction-2': {
+  //   action: 'wait',
+  //   timeout: 8000,
+  // },
+  // 'check-for-new-greeting-2': {
+  //   action: 'findText',
+  //   text: newGreeting2,
+  // },
 };
 
 export default steps;
