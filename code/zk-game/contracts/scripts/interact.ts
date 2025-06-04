@@ -1,9 +1,9 @@
 import { deployer, network, ethers } from 'hardhat';
-import { DEFAULT_GAS_PER_PUBDATA_LIMIT, getPaymasterParams } from 'zksync-ethers/build/utils';
-import { Provider, SmartAccount, type types, Wallet } from 'zksync-ethers';
+import { Provider, SmartAccount, type types, Wallet, utils } from 'zksync-ethers';
 
 // Address of the contract to interact with
 const GAME_CONTRACT_ADDRESS = process.env.GAME_CONTRACT_ADDRESS ?? '0x...';
+// Address of the paymaster contract
 const PAYMASTER_CONTRACT_ADDRESS = process.env.PAYMASTER_CONTRACT_ADDRESS ?? '0x...';
 
 const exampleProofs: { publicValues: string; proofBytes: string }[] = [
@@ -82,13 +82,13 @@ export async function getTransaction(to: string, from: string, value: string, da
 }
 
 export async function getPaymasterOverrides() {
-  const paymasterParams = getPaymasterParams(PAYMASTER_CONTRACT_ADDRESS, {
+  const paymasterParams = utils.getPaymasterParams(PAYMASTER_CONTRACT_ADDRESS, {
     type: 'General',
     innerInput: new Uint8Array(),
   });
   return {
     customData: {
-      gasPerPubdata: DEFAULT_GAS_PER_PUBDATA_LIMIT,
+      gasPerPubdata: utils.DEFAULT_GAS_PER_PUBDATA_LIMIT,
       paymasterParams,
     },
     // eslint-disable-next-line @typescript-eslint/no-explicit-any

@@ -99,9 +99,9 @@
 import { ref, onMounted } from 'vue';
 import GREETER_CONTRACT_ABI from '../../contracts/artifacts-zk/contracts/Greeter.sol/Greeter.json';
 // ANCHOR: zksync-ethers-imports
-import { Contract, BrowserProvider, Provider, utils, Signer, type Wallet } from 'zksync-ethers';
-import { L2_BASE_TOKEN_ADDRESS } from 'zksync-ethers/build/utils';
-import type { TransactionLike } from 'zksync-ethers/build/types';
+
+import { Contract, BrowserProvider, Provider, utils, type types, Signer, type Wallet } from 'zksync-ethers';
+
 // ANCHOR_END: zksync-ethers-imports
 // ANCHOR: ethers-imports
 import { formatUnits } from 'ethers';
@@ -118,7 +118,7 @@ interface Token {
 
 const allowedTokens: Token[] = [
   {
-    address: L2_BASE_TOKEN_ADDRESS,
+    address: utils.L2_BASE_TOKEN_ADDRESS,
     decimals: 18,
     name: 'Ether',
     symbol: 'ETH',
@@ -239,8 +239,8 @@ const getBalance = async () => {
 // ANCHOR: get-overrides-first-part
 const getOverrides = async () => {
   const from = await signer?.getAddress();
-  let overrides: TransactionLike = { from };
-  if (selectedToken?.value?.l2Address != L2_BASE_TOKEN_ADDRESS) {
+  let overrides: types.TransactionLike = { from };
+  if (selectedToken?.value?.l2Address != utils.L2_BASE_TOKEN_ADDRESS) {
     let testnetPaymaster = import.meta.env.VITE_TESTNET_PAYMASTER_ADDRESS;
     if (!testnetPaymaster) {
       testnetPaymaster = await provider!.getTestnetPaymasterAddress();
