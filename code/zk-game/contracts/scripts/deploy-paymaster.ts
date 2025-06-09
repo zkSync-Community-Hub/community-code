@@ -11,7 +11,7 @@ async function main() {
   // Fund the paymaster contract
   const tx = await signer.sendTransaction({
     to: address,
-    value: ethers.parseEther('0.5'),
+    value: ethers.parseEther('0.1'),
   });
 
   await tx.wait();
