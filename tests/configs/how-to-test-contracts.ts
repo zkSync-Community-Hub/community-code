@@ -1,6 +1,6 @@
 import type { IStepConfig } from '../utils/types';
 
-export const steps: IStepConfig = {
+const steps: IStepConfig = {
   'initialize-hardhat-project': {
     action: 'runCommand',
   },
@@ -75,3 +75,5 @@ export const steps: IStepConfig = {
     commandFolder: 'tests-output/hardhat-project',
   },
 };
+
+export default steps;

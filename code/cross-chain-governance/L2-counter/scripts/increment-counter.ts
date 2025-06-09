@@ -12,7 +12,7 @@ async function main() {
   const [wallet] = await ethers.getWallets();
 
   // Initialize the L2 provider.
-  const l2Provider = ethers.providerL2;
+  const l2Provider = new ethers.Provider(network.config.url);
 
   // Initialize the L1 provider.
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

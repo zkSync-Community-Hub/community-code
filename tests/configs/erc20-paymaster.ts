@@ -1,6 +1,6 @@
 import type { IStepConfig } from '../utils/types';
 
-export const steps: IStepConfig = {
+const steps: IStepConfig = {
   'initialize-hardhat-project': {
     action: 'runCommand',
     prompts: 'Private key of the wallet: |❯ npm: ',
@@ -36,16 +36,9 @@ export const steps: IStepConfig = {
     action: 'runCommand',
     commandFolder: 'tests-output/erc20-paymaster',
   },
-  'add-env-file': {
-    action: 'runCommand',
-    commandFolder: 'tests-output/erc20-paymaster',
-    useSetCommand: 'touch .env',
-  },
   'add-testing-private-key': {
-    action: 'modifyFile',
+    action: 'writeToFile',
     filepath: 'tests-output/erc20-paymaster/.env',
-    atLine: 1,
-    removeLines: [1],
     useSetData: 'WALLET_PRIVATE_KEY=0x7726827caac94a7f9e1b160f7ea819f172f7b6f9d2a97f992c38edeab82d4110',
   },
   'add-deploy-script': {
@@ -59,8 +52,8 @@ export const steps: IStepConfig = {
   'use-local-network': {
     action: 'modifyFile',
     filepath: 'tests-output/erc20-paymaster/hardhat.config.ts',
-    atLine: 9,
-    removeLines: [9],
+    atLine: 10,
+    removeLines: [10],
     useSetData: '  defaultNetwork: "anvilZKsync",',
   },
   'deploy-contracts': {
@@ -95,3 +88,5 @@ export const steps: IStepConfig = {
     commandFolder: 'tests-output/erc20-paymaster',
   },
 };
+
+export default steps;

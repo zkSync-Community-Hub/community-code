@@ -7,7 +7,7 @@ const AA_FACTORY_ADDRESS = process.env.AA_FACTORY_ADDRESS ?? '<FACTORY_ADDRESS>'
 
 async function main() {
   const [signer] = await ethers.getSigners();
-  const aaFactory = await ethers.getContractAt('AAFactory', AA_FACTORY_ADDRESS, signer);
+  const aaFactory = await ethers.getContractAt('AAFactory', AA_FACTORY_ADDRESS, signer as any); // eslint-disable-line @typescript-eslint/no-explicit-any
   console.log('AA factory address:', aaFactory.target);
 
   // The two owners of the multisig
@@ -37,7 +37,7 @@ async function main() {
   // ANCHOR: send-funds
   console.log('Sending funds to multisig account');
   // Send funds to the multisig account we just deployed
-  const [wallet] = await ethers.getWallets();
+  const [wallet] = await ethers.getSigners();
   await (
     await wallet.sendTransaction({
       to: multisigAddress,
@@ -47,7 +47,7 @@ async function main() {
     })
   ).wait();
 
-  const provider = ethers.providerL2;
+  const provider = ethers.provider;
   let multisigBalance = await provider.getBalance(multisigAddress);
 
   console.log(`Multisig account balance is ${multisigBalance.toString()}`);
@@ -65,14 +65,14 @@ async function main() {
 
   // ANCHOR: tx-gas
   const gasLimit = await provider.estimateGas({ ...aaTx, from: wallet.address });
-  const gasPrice = await provider.getGasPrice();
+  const gasPrice = (await provider.getFeeData()).gasPrice || undefined;
 
   aaTx = {
     ...aaTx,
     // deploy a new account using the multisig
     from: multisigAddress,
-    gasLimit: gasLimit,
-    gasPrice: gasPrice,
+    gasLimit,
+    gasPrice,
     chainId: (await provider.getNetwork()).chainId,
     nonce: await provider.getTransactionCount(multisigAddress),
     type: 113,

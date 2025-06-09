@@ -1,6 +1,6 @@
 import type { IStepConfig } from '../utils/types';
 
-export const steps: IStepConfig = {
+const steps: IStepConfig = {
   'initialize-project': {
     action: 'runCommand',
     prompts: 'Private key of the wallet: |❯ npm: ',
@@ -19,14 +19,14 @@ export const steps: IStepConfig = {
   'hardhat-config': {
     action: 'modifyFile',
     filepath: 'tests-output/native-aa-multisig/hardhat.config.ts',
-    atLine: 51,
-    removeLines: [51, '-->', 57],
+    atLine: 56,
+    removeLines: [56, '-->', 63],
   },
   'use-local-node': {
     action: 'modifyFile',
     filepath: 'tests-output/native-aa-multisig/hardhat.config.ts',
-    atLine: 9,
-    removeLines: [9],
+    atLine: 10,
+    removeLines: [10],
     useSetData: '  defaultNetwork: "anvilZKsync",',
   },
   'make-multisig-contract': {
@@ -52,10 +52,8 @@ export const steps: IStepConfig = {
     useSetCommand: 'touch .env',
   },
   'env-pk': {
-    action: 'modifyFile',
+    action: 'writeToFile',
     filepath: 'tests-output/native-aa-multisig/.env',
-    atLine: 1,
-    removeLines: [1],
     useSetData: 'WALLET_PRIVATE_KEY=0x7726827caac94a7f9e1b160f7ea819f172f7b6f9d2a97f992c38edeab82d4110',
   },
   'make-deploy-script': {
@@ -138,3 +136,5 @@ export const steps: IStepConfig = {
     checkForOutput: 'Multisig account balance is now',
   },
 };
+
+export default steps;

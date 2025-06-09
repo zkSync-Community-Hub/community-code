@@ -27,8 +27,8 @@ const contractSteps: IStepConfig = {
   'hh-config': {
     action: 'modifyFile',
     filepath: 'tests-output/zk-game/contracts/hardhat.config.ts',
-    atLine: 9,
-    removeLines: [9],
+    atLine: 10,
+    removeLines: [10],
   },
   'create-game-contract': {
     action: 'runCommand',
@@ -46,9 +46,9 @@ const contractSteps: IStepConfig = {
     action: 'runCommand',
     commandFolder: '.',
     useSetCommand:
-      'cp code/zk-game/contracts/contracts/ISP1Verifier.sol tests-output/zk-game/contracts/contracts && \
-cp code/zk-game/contracts/contracts/Groth16Verifier.sol tests-output/zk-game/contracts/contracts && \
-cp code/zk-game/contracts/contracts/SP1VerifierGroth16.sol tests-output/zk-game/contracts/contracts',
+      'cp $DIR_PATH/code/zk-game/contracts/contracts/ISP1Verifier.sol tests-output/zk-game/contracts/contracts && \
+  cp $DIR_PATH/code/zk-game/contracts/contracts/Groth16Verifier.sol tests-output/zk-game/contracts/contracts && \
+  cp $DIR_PATH/code/zk-game/contracts/contracts/SP1VerifierGroth16.sol tests-output/zk-game/contracts/contracts',
   },
   'create-deploy-scripts': {
     action: 'runCommand',
@@ -60,10 +60,8 @@ cp code/zk-game/contracts/contracts/SP1VerifierGroth16.sol tests-output/zk-game/
     atLine: 9,
   },
   'add-env-pk': {
-    action: 'modifyFile',
+    action: 'writeToFile',
     filepath: 'tests-output/zk-game/contracts/.env',
-    atLine: 1,
-    removeLines: [1],
   },
   'verifier-script': {
     action: 'writeToFile',
@@ -248,8 +246,10 @@ const frontendSteps: IStepConfig = {
   },
 };
 
-export const steps: IStepConfig = {
+const steps: IStepConfig = {
   ...contractSteps,
   ...programSteps,
   ...frontendSteps,
 };
+
+export default steps;

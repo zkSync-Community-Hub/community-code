@@ -1,15 +1,15 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import '@matterlabs/zksync-contracts/l2/system-contracts/interfaces/IAccount.sol';
-import '@matterlabs/zksync-contracts/l2/system-contracts/libraries/TransactionHelper.sol';
+import '@matterlabs/zksync-contracts/contracts/system-contracts/interfaces/IAccount.sol';
+import '@matterlabs/zksync-contracts/contracts/system-contracts/libraries/TransactionHelper.sol';
 import '@openzeppelin/contracts/interfaces/IERC1271.sol';
 // Used for signature validation
 import '@openzeppelin/contracts/utils/cryptography/ECDSA.sol';
 // Access ZKsync system contracts for nonce validation via NONCE_HOLDER_SYSTEM_CONTRACT
-import '@matterlabs/zksync-contracts/l2/system-contracts/Constants.sol';
+import '@matterlabs/zksync-contracts/contracts/system-contracts/Constants.sol';
 // to call non-view function of system contracts
-import '@matterlabs/zksync-contracts/l2/system-contracts/libraries/SystemContractsCaller.sol';
+import '@matterlabs/zksync-contracts/contracts/system-contracts/libraries/SystemContractsCaller.sol';
 import './SpendLimit.sol';
 
 contract Account is IAccount, IERC1271, SpendLimit {
@@ -90,7 +90,7 @@ contract Account is IAccount, IERC1271, SpendLimit {
 
     // Call SpendLimit contract to ensure that ETH `value` doesn't exceed the daily spending limit
     if (value > 0) {
-      _checkSpendingLimit(address(ETH_TOKEN_SYSTEM_CONTRACT), value);
+      _checkSpendingLimit(address(BASE_TOKEN_SYSTEM_CONTRACT), value);
     }
 
     if (to == address(DEPLOYER_SYSTEM_CONTRACT)) {

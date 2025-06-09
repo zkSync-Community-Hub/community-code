@@ -13,17 +13,10 @@ const contractSteps: IStepConfig = {
     action: 'wait',
     timeout: 5000,
   },
-  // 'make-env-file': {
-  //   action: 'runCommand',
-  //   commandFolder: 'tests-output/zksync-webauthn/contracts',
-  //   useSetCommand: 'touch .env',
-  // },
   'add-env-pk': {
-    action: 'modifyFile',
+    action: 'writeToFile',
     filepath: 'tests-output/zksync-webauthn/contracts/.env',
     useSetData: 'WALLET_PRIVATE_KEY=0x7726827caac94a7f9e1b160f7ea819f172f7b6f9d2a97f992c38edeab82d4110',
-    atLine: 1,
-    removeLines: [1],
   },
   'remove-template-files': {
     action: 'runCommand',
@@ -345,23 +338,24 @@ const frontendPart2Steps: IStepConfig = {
     action: 'visitURL',
     url: 'http://localhost:3000/create-account',
   },
-  // TODO: add these back
-  // 'create-new-account': {
-  //   action: 'clickButtonByText',
-  //   buttonText: 'Create a New Account',
-  // },
-  // 'wait-for-account': {
-  //   action: 'wait',
-  //   timeout: 5000,
-  // },
-  // 'verify-account-made': {
-  //   action: 'findText',
-  //   text: 'Your current account is',
-  // },
+  'create-new-account': {
+    action: 'clickButtonByText',
+    buttonText: 'Create a New Account',
+  },
+  'wait-for-account': {
+    action: 'wait',
+    timeout: 12000,
+  },
+  'verify-account-made': {
+    action: 'findText',
+    text: 'Your current account is:',
+  },
 };
 
-export const steps: IStepConfig = {
+const steps: IStepConfig = {
   ...contractSteps,
   ...frontendPart1Steps,
   ...frontendPart2Steps,
 };
+
+export default steps;

@@ -1,4 +1,3 @@
-import { DEFAULT_GAS_PER_PUBDATA_LIMIT, getPaymasterParams } from 'zksync-ethers/build/utils';
 import { type Wallet, type Provider, type types, utils } from 'zksync-ethers';
 import { ethers } from 'ethers';
 import accountAbiJSON from '../../contracts/artifacts-zk/contracts/Account.sol/Account.json';
@@ -25,13 +24,13 @@ export async function getTransaction(to: string, from: string, value: string, da
 
 export async function getPaymasterOverrides() {
   const PAYMASTER_ADDRESS = process.env.NEXT_PUBLIC_PAYMASTER_ADDRESS || '';
-  const paymasterParams = getPaymasterParams(PAYMASTER_ADDRESS, {
+  const paymasterParams = utils.getPaymasterParams(PAYMASTER_ADDRESS, {
     type: 'General',
     innerInput: new Uint8Array(),
   });
   return {
     customData: {
-      gasPerPubdata: DEFAULT_GAS_PER_PUBDATA_LIMIT,
+      gasPerPubdata: utils.DEFAULT_GAS_PER_PUBDATA_LIMIT,
       paymasterParams,
     },
     // eslint-disable-next-line @typescript-eslint/no-explicit-any

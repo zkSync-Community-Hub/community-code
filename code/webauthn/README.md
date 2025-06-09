@@ -11,10 +11,10 @@ Run `npm install` in both the `frontend` and `contracts` folders.
 
 ### Start a local node
 
-Run a local in-memory node with `era_test_node`:
+Run a local in-memory node with `anvil-zksync`:
 
-```shell
-era_test_node run
+```bash
+anvil-zksync
 ```
 
 ### Deploying the Contracts
@@ -33,7 +33,7 @@ npm run deploy
 
 Once deployed, create a `frontend/.env.local` file based example in `frontend/.env.example` and add the deployed addresses.
 
-```env
+```.env
 NEXT_PUBLIC_AA_FACTORY_ADDRESS=<0x_YOUR_AA_CONTRACT_ADDRESS>
 NEXT_PUBLIC_NFT_CONTRACT_ADDRESS=<0x_YOUR_NFT_CONTRACT_ADDRESS>
 NEXT_PUBLIC_PAYMASTER_ADDRESS=<0x_YOUR_PAYMASTER_CONTRACT_ADDRESS>

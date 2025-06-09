@@ -2,60 +2,93 @@ name: Playwright Tests
 
 on:
   pull_request:
+  workflow_dispatch:
 
 jobs:
   test-tutorials:
-    timeout-minutes: 17
+    timeout-minutes: 25
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         tutorial:
-          - "erc20-paymaster" 
-          - "how-to-test-contracts"
-          - "daily-spend-limit"
-          - "native-aa-multisig"
-          - "signing-txns-with-webauthn"
-          - "frontend-paymaster"
-          - "zk-game"
+          - test-file-name: "erc20-paymaster"
+            tutorial-paths: '["tutorials/erc20-paymaster"]'
+            config-path: 'tests/configs/erc20-paymaster.ts'
+            folder-name: 'erc20-paymaster'
+            mm-wallet: 'false'
+
+          - test-file-name: "how-to-test-contracts"
+            tutorial-paths: '["tutorials/how-to-test-contracts"]'
+            config-path: 'tests/configs/how-to-test-contracts.ts'
+            folder-name: 'how-to-test-contracts'
+            mm-wallet: 'false'
+
+          - test-file-name: "daily-spend-limit"
+            tutorial-paths: '["tutorials/daily-spend-limit-account"]'
+            config-path: 'tests/configs/daily-spend-limit.ts'
+            folder-name: 'daily-spend-limit'
+            mm-wallet: 'false'
+
+          - test-file-name: "native-aa-multisig"
+            tutorial-paths: '["tutorials/native-aa-multisig"]'
+            config-path: 'tests/configs/native-aa-multisig.ts'
+            folder-name: 'native-aa-multisig'
+            mm-wallet: 'false'
+
+          - test-file-name: "frontend-paymaster"
+            tutorial-paths: '["tutorials/frontend-paymaster"]'
+            config-path: 'tests/configs/frontend-paymaster.ts'
+            folder-name: 'frontend-paymaster'
+            mm-wallet: 'true'
+            
+          - test-file-name: "signing-txns-with-webauthn"
+            tutorial-paths: '["tutorials/signing-transactions-with-webauthn/building-the-contracts", "tutorials/signing-transactions-with-webauthn/building-the-frontend", "tutorials/signing-transactions-with-webauthn/completing-the-frontend"]'
+            config-path: 'tests/configs/signing-txns-with-webauthn.ts'
+            folder-name: 'signing-txns-with-webauthn'
+            mm-wallet: 'false'
+
+          - test-file-name: "zk-game"
+            tutorial-paths: '["tutorials/build-a-zk-game/building-the-contracts", "tutorials/build-a-zk-game/writing-the-program", "tutorials/build-a-zk-game/building-the-frontend"]'
+            config-path: 'tests/configs/zk-game.ts'
+            folder-name: 'zk-game'
+            mm-wallet: 'false'
 
     steps:
     - uses: actions/checkout@v4
     - uses: oven-sh/setup-bun@v1
     - name: Install Dependencies
       run: bun install --frozen-lockfile
+    - name: Start the docs
+      run: bun pm2 start 'PORT=3030 bun dev' --name docs
     - uses: actions/setup-node@v4
-    - name: Install Playwright Browsers
-      run: bun playwright install chromium --with-deps
+
+    # Setup Anvil for local testing
+    # How to Test Contracts includes a step to start anvil
     - name: Run anvil-zksync
+      if: matrix.tutorial.test-file-name != 'how-to-test-contracts'
       uses: dutterbutter/anvil-zksync-action@v1.1.0
-    - name: Create Metamask Cache
-      if: matrix.tutorial == 'frontend-paymaster'
-      run: xvfb-run bun setup:mm
+
+    # ZK Game Dependencies
     - name: Install Rust Toolchain
-      if: matrix.tutorial == 'zk-game'
+      if: matrix.tutorial.test-file-name == 'zk-game'
       uses: actions-rs/toolchain@v1
       with:
-            toolchain: 1.81.0
-            components: llvm-tools, rustc-dev
+        toolchain: 1.81.0
+        components: llvm-tools, rustc-dev
     - name: Install Cargo Prove
-      if: matrix.tutorial == 'zk-game'
+      if: matrix.tutorial.test-file-name == 'zk-game'
       run: |
         curl -L https://sp1.succinct.xyz | bash
         ~/.sp1/bin/sp1up 
         ~/.sp1/bin/cargo-prove prove --version
         echo "$HOME/.sp1/bin:${GITHUB_PATH}" >> $GITHUB_PATH
-    - name: Run test for ${{ matrix.tutorial }}
-      run: |
-        export TERM=xterm-256color
-        export COLUMNS=80
-        export LINES=24
-        xvfb-run bun test:headful tests/${{ matrix.tutorial }}.spec.ts
-    - uses: actions/upload-artifact@v4
-      if: always()
-      with:
-        name: playwright-report-${{ matrix.tutorial }}
-        path: |
-          ${{ github.workspace }}/playwright-report/
-        retention-days: 10
 
-  
+    - name: Run test for ${{ matrix.tutorial.test-file-name }}
+      uses: sarahschwartz/tutorial-tester@main
+      with:
+        tutorial-paths: ${{ matrix.tutorial.tutorial-paths }}
+        config-path: ${{ matrix.tutorial.config-path }}
+        folder-name: ${{ matrix.tutorial.folder-name }}
+        mm-wallet: ${{ matrix.tutorial.mm-wallet }}
+        wait-time: 300000
