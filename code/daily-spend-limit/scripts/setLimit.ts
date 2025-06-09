@@ -15,7 +15,6 @@ async function main() {
   );
 
   const provider = ethers.provider;
-  // const l2Provider = new ethers.Provider(network.config.url);
 
   setLimitTx = {
     ...setLimitTx,

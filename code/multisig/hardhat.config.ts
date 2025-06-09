@@ -25,20 +25,6 @@ const config: HardhatUserConfig = {
       accounts: process.env.WALLET_PRIVATE_KEY ? [process.env.WALLET_PRIVATE_KEY] : [],
     },
     // ANCHOR_END: networks
-    SophonMainnet: {
-      url: 'https://rpc.sophon.xyz',
-      ethNetwork: 'mainnet',
-      verifyURL: 'https://verification-explorer.sophon.xyz/contract_verification',
-      zksync: true,
-      accounts: process.env.WALLET_PRIVATE_KEY ? [process.env.WALLET_PRIVATE_KEY] : [],
-    },
-    SophonTestnet: {
-      url: 'https://rpc.testnet.sophon.xyz',
-      ethNetwork: 'sepolia',
-      verifyURL: 'https://api-explorer-verify.testnet.sophon.xyz/contract_verification',
-      zksync: true,
-      accounts: process.env.WALLET_PRIVATE_KEY ? [process.env.WALLET_PRIVATE_KEY] : [],
-    },
     dockerizedNode: {
       url: 'http://localhost:3050',
       ethNetwork: 'http://localhost:8545',
