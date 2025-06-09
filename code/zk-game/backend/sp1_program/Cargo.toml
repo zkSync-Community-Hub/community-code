@@ -6,6 +6,6 @@ edition = "2021"
 # ANCHOR: program-deps
 [dependencies]
 alloy-sol-types = { workspace = true }
-sp1-zkvm = "4.0.0-rc.3"
+sp1-zkvm = "5.0.0"
 game-lib = { path = "../../game_lib" }
 # ANCHOR_END: program-deps
