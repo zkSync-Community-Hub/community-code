@@ -12,7 +12,7 @@ const config: HardhatUserConfig = {
   // ANCHOR: config
   solidity: '0.8.28',
   zksolc: {
-    version: 'latest',
+    version: '1.5.15',
     settings: {
       codegen: 'yul',
       suppressedErrors: ['sendtransfer'],
