@@ -20,7 +20,7 @@ what_you_will_learn:
   - How to generate and verify ZK proofs onchain
   - A way to use ZK proofs with a game
   - How to integrate ZKsync SSO
-updated: 2025-02-11
+updated: 2025-06-09
 tools:
   - sso
   - sp1
