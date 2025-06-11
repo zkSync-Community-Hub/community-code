@@ -39,7 +39,7 @@ const wagmiAdapter = new WagmiAdapter({
   ssr: true,
 });
 
-// 5. Create modal
+// 5. Create Apptkit
 createAppKit({
   adapters: [wagmiAdapter],
   networks,
@@ -58,7 +58,6 @@ export function AppKitProvider({ children }: { children: React.ReactNode }) {
   );
 }
 
-// 4. Create modal
 const Connect = () => {
   const { address } = useAccount();
   return (
