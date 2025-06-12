@@ -7,7 +7,7 @@ import {
   // zksyncLocalNode
 } from 'viem/chains';
 import greeterAbi from '../utils/Greeter.json';
-import { type Dispatch, type SetStateAction } from 'react';
+import type { Dispatch, SetStateAction } from 'react';
 import { publicClient } from '../utils/client';
 
 const Write = ({ update }: { update: Dispatch<SetStateAction<number>> }) => {
