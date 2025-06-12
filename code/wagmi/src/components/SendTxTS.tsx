@@ -1,4 +1,4 @@
-import { sendTx } from '@/utils/sendTx';
+import { sendTx } from '../utils/sendTx';
 import { useState } from 'react';
 
 export function SendTxTS() {

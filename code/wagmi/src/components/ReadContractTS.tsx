@@ -1,4 +1,4 @@
-import { readERC20Contract } from '@/utils/read';
+import { readERC20Contract } from '../utils/read';
 import { useState } from 'react';
 
 export function ReadContractTS() {

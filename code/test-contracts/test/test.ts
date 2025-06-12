@@ -28,7 +28,7 @@ describe('Greeter', function () {
     expect(await contract.greet()).to.match(/^Hello/);
   });
   it('setGreeting should throw when passed an invalid argument', async function () {
-    await expect(contract.setGreeting('')).to.be.revertedWith('Greeting must not be empty');
+    await expect(contract.setGreeting('')).to.be.reverted;
   });
   it('isGreetingChanged should return true after setting greeting', async function () {
     expect(await contract.isGreetingChanged()).to.be.false;

@@ -1,4 +1,4 @@
-import { fetchBalance } from '@/utils/balance';
+import { fetchBalance } from '../utils/balance';
 import { useState } from 'react';
 
 export function BalanceTS() {

@@ -1,4 +1,4 @@
-import { prepareTx } from '@/utils/prepareTx';
+import { prepareTx } from '../utils/prepareTx';
 import { useState } from 'react';
 import { config } from '../../wagmi-config';
 import { sendTransaction } from '@wagmi/core';

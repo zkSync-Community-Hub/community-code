@@ -1,5 +1,5 @@
-import { connectWallet } from '@/utils/connect';
-import { fetchConnectors } from '@/utils/connectors';
+import { connectWallet } from '../utils/connect';
+import { fetchConnectors } from '../utils/connectors';
 
 export function ShowConnectorsTS() {
   const connectors = fetchConnectors();

@@ -1,4 +1,4 @@
-import { getSignedMessage } from '@/utils/message';
+import { getSignedMessage } from '../utils/message';
 import { useState } from 'react';
 
 export function SignMessageTS() {
