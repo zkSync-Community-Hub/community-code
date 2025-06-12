@@ -44,6 +44,9 @@ export interface IRunCommand {
   // ex: "<0x_YOUR_ADDRESS>:0x123"
   // replaces "<0x_YOUR_ADDRESS>" with "0x123"
   replaceString?: string;
+  // if false, the command runs from the github action repo root (default)
+  // if true, it runs from the source directory
+  runFromSourceDir?: boolean;
 }
 
 export interface IWait {

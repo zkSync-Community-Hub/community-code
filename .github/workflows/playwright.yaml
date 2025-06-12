@@ -54,6 +54,12 @@ jobs:
             folder-name: 'zk-game'
             mm-wallet: 'false'
 
+          - test-file-name: "viem"
+            tutorial-paths: '["tutorials/guide-viem"]'
+            config-path: 'tests/configs/viem.ts'
+            folder-name: 'viem'
+            mm-wallet: 'false'
+
     steps:
     - uses: actions/checkout@v4
     - uses: oven-sh/setup-bun@v1
@@ -66,7 +72,7 @@ jobs:
     # Setup Anvil for local testing
     # How to Test Contracts includes a step to start anvil
     - name: Run anvil-zksync
-      if: matrix.tutorial.test-file-name != 'how-to-test-contracts'
+      if: matrix.tutorial.test-file-name != 'how-to-test-contracts' && matrix.tutorial.test-file-name != 'viem'
       uses: dutterbutter/anvil-zksync-action@v1.1.0
 
     # ZK Game Dependencies
