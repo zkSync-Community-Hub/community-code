@@ -24,12 +24,6 @@
               class="orbit-icon"
             />
           </li>
-          <li>
-            <img
-              src="/logos/web3js.svg"
-              class="orbit-icon"
-            />
-          </li>
         </ul>
       </li>
 
@@ -79,12 +73,6 @@
           </li>
           <li>
             <img
-              src="/logos/web3js.svg"
-              class="orbit-icon"
-            />
-          </li>
-          <li>
-            <img
               src="/logos/Solidity_logo.svg"
               class="orbit-icon"
             />
@@ -98,12 +86,6 @@
           <li>
             <img
               src="/logos/remix_logo.svg"
-              class="orbit-icon"
-            />
-          </li>
-          <li>
-            <img
-              src="/logos/web3js.svg"
               class="orbit-icon"
             />
           </li>
