@@ -1,4 +1,4 @@
-import { connectWallet } from '@/utils/connect';
+import { connectWallet } from '../utils/connect';
 import { useConnectors } from 'wagmi';
 
 export function ShowConnectors() {

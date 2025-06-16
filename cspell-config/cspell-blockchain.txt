@@ -43,6 +43,8 @@ Pyth
 Pythnet
 Rabby
 regenesis
+Reown
+reown
 Reth
 reth
 satoshi

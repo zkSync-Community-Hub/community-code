@@ -1,4 +1,4 @@
-import { fetchLatestBlockNumber } from '@/utils/block';
+import { fetchLatestBlockNumber } from '../utils/block';
 import { useState } from 'react';
 
 export function BlockTS() {

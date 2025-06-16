@@ -54,6 +54,12 @@ jobs:
             folder-name: 'zk-game'
             mm-wallet: 'false'
 
+          - test-file-name: "walletconnect"
+            tutorial-paths: '["tutorials/guide-walletconnect"]'
+            config-path: 'tests/configs/walletconnect.ts'
+            folder-name: 'walletconnect'
+            mm-wallet: 'false'
+            
           - test-file-name: "viem"
             tutorial-paths: '["tutorials/guide-viem"]'
             config-path: 'tests/configs/viem.ts'
@@ -70,9 +76,8 @@ jobs:
     - uses: actions/setup-node@v4
 
     # Setup Anvil for local testing
-    # How to Test Contracts includes a step to start anvil
     - name: Run anvil-zksync
-      if: matrix.tutorial.test-file-name != 'how-to-test-contracts' && matrix.tutorial.test-file-name != 'viem'
+      if: matrix.tutorial.test-file-name != 'how-to-test-contracts' && matrix.tutorial.test-file-name != 'walletconnect' && matrix.tutorial.test-file-name != 'viem'
       uses: dutterbutter/anvil-zksync-action@v1.1.0
 
     # ZK Game Dependencies

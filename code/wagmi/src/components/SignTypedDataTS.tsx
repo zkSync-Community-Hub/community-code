@@ -1,4 +1,4 @@
-import { getSignedTypedData } from '@/utils/signTyped';
+import { getSignedTypedData } from '../utils/signTyped';
 import { useState } from 'react';
 
 export function SignTypedDataTS() {
