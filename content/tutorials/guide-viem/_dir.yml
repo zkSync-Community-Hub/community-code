@@ -1,5 +1,5 @@
 title: Using viem with ZKsync
-featured: false
+featured: true
 authors:
   - name: MatterLabs
     url: https://matter-labs.io
@@ -17,6 +17,6 @@ what_you_will_learn:
   - How to install viem and the ZKsync plugin
   - How to send RPC requests to ZKsync
   - How to use ZKsync-specific methods
-updated: 2024-05-09
+updated: 2025-06-11
 tools:
   - viem
