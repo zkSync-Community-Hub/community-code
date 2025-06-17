@@ -78,7 +78,7 @@ jobs:
     # Setup Anvil for local testing
     - name: Run anvil-zksync
       if: matrix.tutorial.test-file-name != 'how-to-test-contracts' && matrix.tutorial.test-file-name != 'walletconnect' && matrix.tutorial.test-file-name != 'viem'
-      uses: dutterbutter/anvil-zksync-action@v1.1.0
+      uses: dutterbutter/anvil-zksync-action@ea1a042822e83d30d15cdb9751681123b74192b9 # v1.2.0
 
     # ZK Game Dependencies
     - name: Install Rust Toolchain
