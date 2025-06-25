@@ -30,7 +30,7 @@ jobs:
           requireScope: false
           wip: true
 
-      - uses: marocchino/sticky-pull-request-comment@v2.9.0
+      - uses: marocchino/sticky-pull-request-comment@d2ad0de260ae8b0235ce059e63f2949ba9e05943 # v2.9.3
         # When the previous steps fails, the workflow would stop. By adding this
         # condition you can continue the execution with the populated error message.
         if: always() && (steps.lint_pr_title.outputs.error_message != null)
@@ -52,7 +52,7 @@ jobs:
 
       # Delete a previous comment when the issue has been resolved
       - if: ${{ steps.lint_pr_title.outputs.error_message == null }}
-        uses: marocchino/sticky-pull-request-comment@v2.9.0
+        uses: marocchino/sticky-pull-request-comment@d2ad0de260ae8b0235ce059e63f2949ba9e05943 # v2.9.3
         with:
           header: pr-title-lint-error
           GITHUB_TOKEN: ${{ github.token }}
