@@ -70,7 +70,7 @@ jobs:
     - uses: actions/checkout@v4
     - uses: oven-sh/setup-bun@v1
     - name: Install Dependencies
-      run: bun install --frozen-lockfile
+      run: bun install
     - name: Start the docs
       run: bun pm2 start 'PORT=3030 bun dev' --name docs
     - uses: actions/setup-node@v4
