@@ -19,6 +19,8 @@
   },
   "dependencies": {
     "@matterlabs/docs-nuxt-template": "2.9.2",
+    "@matterlabs/hardhat-zksync": "^1.6.1",
+    "@matterlabs/zksync-contracts": "^28.0.1",
     "caniuse-lite": "^1.0.30001720",
     "dayjs": "1.11.13",
     "nuxt": "3.13.2",
