@@ -64,6 +64,11 @@ const steps: IStepConfig = {
     action: 'writeToFile',
     filepath: 'tests-output/frontend-paymaster/frontend/src/App.vue',
   },
+  'add-env': {
+    action: 'runCommand',
+    commandFolder: 'tests-output/frontend-paymaster/frontend',
+    useSetCommand: 'touch .env',
+  },
   'contract-env-var': {
     action: 'extractDataToEnv',
     dataFilepath: 'tests-output/frontend-paymaster/contracts/deployed-greeter.txt',

@@ -60,6 +60,12 @@ jobs:
             folder-name: 'walletconnect'
             mm-wallet: 'false'
             
+          - test-file-name: "viem"
+            tutorial-paths: '["tutorials/guide-viem"]'
+            config-path: 'tests/configs/viem.ts'
+            folder-name: 'viem'
+            mm-wallet: 'false'
+
     steps:
     - uses: actions/checkout@v4
     - uses: oven-sh/setup-bun@v1
@@ -71,7 +77,7 @@ jobs:
 
     # Setup Anvil for local testing
     - name: Run anvil-zksync
-      if: matrix.tutorial.test-file-name != 'how-to-test-contracts' && matrix.tutorial.test-file-name != 'walletconnect'
+      if: matrix.tutorial.test-file-name != 'how-to-test-contracts' && matrix.tutorial.test-file-name != 'walletconnect' && matrix.tutorial.test-file-name != 'viem'
       uses: dutterbutter/anvil-zksync-action@v1.1.0
 
     # ZK Game Dependencies
