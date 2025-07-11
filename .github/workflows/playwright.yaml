@@ -77,7 +77,8 @@ jobs:
 
     # Setup Anvil for local testing
     - name: Run anvil-zksync
-      if: matrix.tutorial.test-file-name != 'how-to-test-contracts' && matrix.tutorial.test-file-name != 'walletconnect' && matrix.tutorial.test-file-name != 'viem'
+      # temporarily running anvil-zksync node for how-to-test-contracts tutorial
+      if: matrix.tutorial.test-file-name != 'walletconnect' && matrix.tutorial.test-file-name != 'viem'
       uses: dutterbutter/anvil-zksync-action@v1.3.0
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
