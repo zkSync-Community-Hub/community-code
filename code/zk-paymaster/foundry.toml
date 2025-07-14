@@ -14,7 +14,7 @@ optimizer_mode      = "3"
 suppressed_warnings = ["assemblycreate"]
 
 [dependencies]
-"@zksync-contracts" = "0.0.1"
+"@zksync-contracts" = "28.0.0"
 forge-zksync-std = "0.0.1"
 forge-std = "1.9.6"
 "@openzeppelin-contracts" = "5.2.0"
