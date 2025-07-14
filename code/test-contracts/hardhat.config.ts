@@ -22,12 +22,6 @@ const config: HardhatUserConfig = {
     hardhat: {
       zksync: true,
     },
-    anvilZKsync: {
-      url: 'http://127.0.0.1:8011',
-      ethNetwork: 'http://localhost:8545',
-      zksync: true,
-      accounts: process.env.WALLET_PRIVATE_KEY ? [process.env.WALLET_PRIVATE_KEY] : [],
-    },
   },
   // ANCHOR_END: config
 };

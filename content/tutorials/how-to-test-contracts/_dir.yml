@@ -12,11 +12,11 @@ tags:
 summary: Learn how to test smart contracts with Hardhat
 description: This how-to guide explains how to test smart contracts on ZKsync using Hardhat.
 what_you_will_learn:
-  - How to install era-test-node.
-  - How to write local tests for smart contracts.
-updated: 2025-07-09
+  - How to write local tests for smart contracts
+  - How to test with anvil-zksync
+updated: 2025-07-14
 tools:
   - zksync-ethers
   - hardhat-zksync-deploy
   - hardhat-chai-matchers
-  - era-test-node
+  - anvil-zksync
