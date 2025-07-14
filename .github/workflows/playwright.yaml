@@ -70,7 +70,7 @@ jobs:
     - uses: actions/checkout@v4
     - uses: oven-sh/setup-bun@v1
     - name: Install Dependencies
-      run: bun install --frozen-lockfile
+      run: bun install
     - name: Start the docs
       run: bun pm2 start 'PORT=3030 bun dev' --name docs
     - uses: actions/setup-node@v4
@@ -79,7 +79,9 @@ jobs:
     - name: Run anvil-zksync
       # temporarily running anvil-zksync node for how-to-test-contracts tutorial
       if: matrix.tutorial.test-file-name != 'walletconnect' && matrix.tutorial.test-file-name != 'viem'
-      uses: dutterbutter/anvil-zksync-action@v1.1.0
+      uses: dutterbutter/anvil-zksync-action@v1.3.0
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
 
     # ZK Game Dependencies
     - name: Install Rust Toolchain
