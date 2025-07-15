@@ -1,8 +1,8 @@
 {
   "name": "hardhat-project",
   "devDependencies": {
-    "@matterlabs/hardhat-zksync": "^1.6.0",
+    "@matterlabs/hardhat-zksync": "^1.6.1",
     "@nomicfoundation/hardhat-toolbox": "^5.0.0",
-    "hardhat": "^2.24.1"
+    "hardhat": "^2.25.0"
   }
 }

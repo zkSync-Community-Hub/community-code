@@ -1,4 +1,4 @@
-title: Building a Custom ZK Chain
+title: Building a Custom ZKsync Chain
 featured: true
 authors:
   - name: MatterLabs
@@ -7,14 +7,14 @@ authors:
 github_repo: https://github.com/ZKsync-Community-Hub
 tags:
   - elastic chain
-summary: Create, customize, and run your first ZK chain locally.
+summary: Create, customize, and run your first ZKsync Chain locally.
 description:
   In this tutorial, you will get familiar with the ZK Inception CLI. You will create a local Elastic Chain ecosystem and
-  deploy a contract to a ZK chain. Next, you will create a new ZK chain that uses a custom ERC20 base token.
+  deploy a contract to a ZKsync Chain. Next, you will create a new ZKsync Chain that uses a custom ERC20 base token.
 what_you_will_learn:
   - How to create and locally run an Elastic Chain ecosystem.
-  - How to create a ZK chain and deploy a contract to it.
-  - How to setup a ZK chain with a custom base token.
+  - How to create a ZKsync Chain and deploy a contract to it.
+  - How to setup a ZKsync Chain with a custom base token.
 updated: 2025-03-21
 tools:
   - zkstack

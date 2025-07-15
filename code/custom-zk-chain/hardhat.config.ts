@@ -39,7 +39,7 @@ const config: HardhatUserConfig = {
     },
   },
   zksolc: {
-    version: 'latest',
+    version: '1.5.15',
     settings: {
       // find all available options in the official documentation
       // https://docs.zksync.io/build/tooling/hardhat/hardhat-zksync-solc#configuration

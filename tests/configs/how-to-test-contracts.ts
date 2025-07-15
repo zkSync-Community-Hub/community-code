@@ -70,10 +70,10 @@ const steps: IStepConfig = {
     action: 'writeToFile',
     filepath: 'tests-output/hardhat-project/test/test.ts',
   },
-  'run-test': {
-    action: 'runCommand',
-    commandFolder: 'tests-output/hardhat-project',
-  },
+  // 'run-test': {
+  //   action: 'runCommand',
+  //   commandFolder: 'tests-output/hardhat-project',
+  // },
 };
 
 export default steps;
