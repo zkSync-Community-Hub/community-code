@@ -1,4 +1,4 @@
-title: How to test contracts with Hardhat
+title: How to test EraVM contracts with Hardhat
 authors:
   - name: Matter Labs
     url: https://matter-labs.io
@@ -9,8 +9,8 @@ tags:
   - how-to
   - testing
   - hardhat
-summary: Learn how to test smart contracts with Hardhat
-description: This how-to guide explains how to test smart contracts on ZKsync using Hardhat.
+summary: Learn how to test EraVM smart contracts with Hardhat
+description: This how-to guide explains how to test EraVM smart contracts on ZKsync using Hardhat.
 what_you_will_learn:
   - How to write local tests for smart contracts
   - How to test with anvil-zksync
