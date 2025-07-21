@@ -1,4 +1,5 @@
 @openzeppelin-contracts/=dependencies/@openzeppelin-contracts-5.2.0/
+@zksync-contracts-28.0.0/=dependencies/@zksync-contracts-28.0.0/
 @zksync-contracts/=dependencies/@zksync-contracts-0.0.1/
 forge-std/=dependencies/forge-std-1.9.6/
 forge-zksync-std/=dependencies/forge-zksync-std-0.0.1/
