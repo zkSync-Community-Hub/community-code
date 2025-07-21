@@ -1,19 +1,24 @@
-title: SSO React Native
+title: Build a Mobile Payment App
+featured: true
 authors:
   - name: sarahschwartz
     url: https://github.com/sarahschwartz
     avatar: https://avatars.githubusercontent.com/u/58856580?v=4
 github_repo: https://github.com/ZKsync-Community-Hub
 tags:
-  - SSO
-  - React Native
-  - Passkeys
-summary: Build a mobile payment application with SSO in React Native
+  - ZKsync SSO
+  - react-native
+  - passkeys
+  - account abstraction
+summary: Authenticate mobile payments with Face ID using ZKsync SSO and React Native
 description:
-  This how-to guide explains how to implement Single Sign-On (SSO) in a React Native application using Passkeys.
+  This how-to guide explains how to implement ZKsync Smart Sign On in a React Native application using asskeys.
 what_you_will_learn:
   - How to set up ZKsync SSO in a React Native app.
+  - How to authenticate transactions with Face ID.
 updated: 2025-08-01
 tools:
   - zksync-sso-react-native
   - zksync-ethers
+  - react-native
+  - expo
