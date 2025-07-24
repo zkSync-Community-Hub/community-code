@@ -1,6 +1,6 @@
 <template>
   <UButton
-    icon="i-lucide-rocket"
+    icon="i-heroicons-rocket-launch"
     size="md"
     variant="outline"
     :to="url"
