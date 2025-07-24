@@ -64,6 +64,7 @@ export default defineNuxtConfig({
         'heroicons:hashtag-20-solid',
         'heroicons:chevron-down-20-solid',
         'heroicons:moon-20-solid',
+        'heroicons:sun-20-solid',
         'heroicons:x-mark-20-solid',
         'heroicons:rocket-launch',
         'heroicons:arrow-up-right-20-solid',
