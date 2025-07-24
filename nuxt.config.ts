@@ -75,6 +75,7 @@ export default defineNuxtConfig({
         'vscode-icons:file-type-pnpm',
         'vscode-icons:file-type-yarn',
         'vscode-icons:file-type-typescript',
+        'vscode-icons:file-type-solidity',
       ],
     },
   },
