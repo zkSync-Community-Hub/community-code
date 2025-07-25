@@ -35,6 +35,6 @@ export async function sendETHWithSSO(fromAccount: FromAccount, toAddress: `0x${s
     const response = await accountClient.sendTransaction(transaction as Transaction);
     return response;
   } catch (err) {
-    console.error('Error preparing transaction:', err);
+    console.error('Error sending transaction:', err);
   }
 }
