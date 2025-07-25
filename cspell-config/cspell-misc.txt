@@ -93,12 +93,14 @@ sstore
 syncvm
 tlsv1
 tokio
+Venmo
 viem
 Viem
 vkey
 vue
 Vue
 Yubikey
+xcworkspace
 Zerion
 zext
 ZKBT

@@ -11,6 +11,7 @@ tags:
   - smart contracts
   - frontend
   - next.js
+  - passkeys
 summary: Learn how to use WebAuthn to sign transactions for smart accounts.
 description: In this tutorial, you will learn how to use WebAuthn to sign transactions for smart accounts.
 what_you_will_learn:
@@ -21,6 +22,7 @@ what_you_will_learn:
 updated: 2025-02-05
 tools:
   - WebAuthn
+  - passkeys
   - zksync-ethers
   - zksync-cli
   - hardhat

@@ -2,6 +2,7 @@
 boojum
 !MatterLabs
 Matter Labs
+zeek
 Zeek
 Zeeks
 zkcast
