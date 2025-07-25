@@ -12,7 +12,7 @@ tags:
   - account abstraction
 summary: Authenticate mobile payments with Face ID using ZKsync SSO and React Native
 description:
-  This how-to guide explains how to implement ZKsync Smart Sign On in a React Native application using asskeys.
+  This how-to guide explains how to implement ZKsync Smart Sign On in a React Native application using passkeys.
 what_you_will_learn:
   - How to set up ZKsync SSO in a React Native app.
   - How to authenticate transactions with Face ID.
