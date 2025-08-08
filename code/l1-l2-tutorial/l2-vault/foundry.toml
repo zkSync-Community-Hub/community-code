@@ -1,0 +1,17 @@
+[profile.default]
+src = "src"
+out = "out"
+libs = ["dependencies"]
+
+[profile.default.zksync] 
+compile = true 
+startup = true
+enable_eravm_extensions = true
+suppressed_warnings = ["assemblycreate"]
+
+[dependencies]
+forge-std = "1.9.6"
+"@zksync-contracts" = "0.0.1"
+
+[rpc_endpoints]
+anvil-zksync-l2="http://localhost:8011"
