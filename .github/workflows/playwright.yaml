@@ -71,7 +71,7 @@ jobs:
     - uses: oven-sh/setup-bun@v1
     - name: Install Dependencies
       run: bun install
-    - name: Start the docs
+    - name: Start docs
       run: bun pm2 start 'PORT=3030 bun dev' --name docs
     - uses: actions/setup-node@v4
 
