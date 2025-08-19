@@ -31,13 +31,18 @@ The `L2-counter` code includes all ZKsync dependencies and configurations for L2
   cd L1-governance
   ```
 
-1. Initialise and set up the L1 project.
+1. Initialize and set up the L1 project.
 
   ```sh
-  npx hardhat init
+  npx hardhat --init
   ```
 
-  Select the option **Create a Typescript project** and accept the defaults for everything else.
+  Select the option to use `hardhat-2` with `typscript` and `mocha-ethers`.
+  Select yes to install the default dependencies.
+
+::callout{icon="i-heroicons-exclamation-circle"}
+Hardhat v3 is not fully supported for `@matterlabs/hardhat-zksync`.
+::
 
 ::callout{icon="i-heroicons-exclamation-circle"}
 To interact with the ZKsync bridge contract using Solidity, you need
