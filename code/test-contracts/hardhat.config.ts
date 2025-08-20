@@ -1,5 +1,5 @@
 // eslint-disable-next-line @typescript-eslint/consistent-type-imports
-import { HardhatUserConfig } from 'hardhat/config';
+import type { HardhatUserConfig } from 'hardhat/config';
 import '@nomicfoundation/hardhat-toolbox';
 // ANCHOR: import
 import '@matterlabs/hardhat-zksync';

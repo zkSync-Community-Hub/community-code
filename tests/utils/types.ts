@@ -23,7 +23,7 @@ export interface IRunCommand {
   action: 'runCommand';
   // the directory where it should run the command
   commandFolder?: string;
-  // what to name the project folder (only used for npx hardhat init)
+  // what to name the project folder (only used for npx hardhat --init)
   projectFolder?: string;
   // add something before the command
   preCommand?: string;
