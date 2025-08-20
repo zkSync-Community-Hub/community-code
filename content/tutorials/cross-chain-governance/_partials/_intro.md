@@ -37,7 +37,7 @@ The `L2-counter` code includes all ZKsync dependencies and configurations for L2
   npx hardhat --init
   ```
 
-  Select the option to use `hardhat-2` with `typscript` and `mocha-ethers`.
+  Select the option to use `hardhat-2` with `typescript` and `mocha-ethers`.
   Select yes to install the default dependencies.
 
 ::callout{icon="i-heroicons-exclamation-circle"}
