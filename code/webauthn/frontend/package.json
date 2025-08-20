@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@simplewebauthn/browser": "^10.0.0",
+    "@simplewebauthn/browser": "^13.0.0",
     "@simplewebauthn/server": "^10.0.1",
     "cbor": "^9.0.2",
     "ethers": "^5.7.2",
