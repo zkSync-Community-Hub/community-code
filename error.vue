@@ -28,25 +28,25 @@ const cards = [
   {
     title: 'Quickstart',
     description: 'Get started building applications on ZKsync with our quickstart guide.',
-    to: '/zksync-era/guides/quick-start',
+    to: 'https://docs.zksync.io/zksync-era/guides/quick-start',
     icon: 'i-heroicons-code-bracket-16-solid',
   },
   {
     title: 'ZKsync Stack',
     description: 'Learn how to run your own ZKsync chain with our chain operator quickstart guide.',
-    to: '/zk-stack/running/quickstart',
+    to: 'https://docs.zksync.io/zk-stack/running/quickstart',
     icon: 'i-heroicons-square-3-stack-3d-16-solid',
   },
   {
     title: 'ZKsync Airbender',
     description: 'Explore the fastest RISC-V prover powering the next-generation of ZKsync chains.',
-    to: '/zksync-protocol/zksync-airbender/overview',
+    to: 'https://docs.zksync.io/zksync-protocol/zksync-airbender/overview',
     icon: 'i-heroicons-rocket-launch-solid',
   },
   {
     title: 'Step-by-step Tutorials',
     description: 'Follow along with step-by-step tutorials made by the ZKsync community.',
-    to: 'https://code.zksync.io/',
+    to: '/',
     icon: 'i-heroicons-beaker-solid',
   },
 ];
@@ -95,7 +95,7 @@ const cards = [
                   label="Return to Home"
                   variant="outline"
                   size="lg"
-                  to="/"
+                  to="https://docs.zksync.io"
                 />
               </div>
             </UContainer>
