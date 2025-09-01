@@ -46,8 +46,6 @@ const partOneSteps: IStepConfig = {
   'deposit-eth': {
     action: 'runCommand',
     commandFolder: 'tests-output/custom-zk-chain/my_elastic_network',
-    prompts:
-      'Amount to deposit:9|Private key of the sender:0x7726827caac94a7f9e1b160f7ea819f172f7b6f9d2a97f992c38edeab82d4110|Recipient address on L2:',
   },
   'check-balance': {
     action: 'runCommand',
