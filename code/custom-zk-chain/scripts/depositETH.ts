@@ -1,8 +1,12 @@
-import { ethers } from 'hardhat';
-import { utils } from 'zksync-ethers';
+import { ethers, network } from 'hardhat';
+import { utils, Wallet, Provider } from 'zksync-ethers';
 
 async function main() {
-  const [wallet] = await ethers.getWallets();
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const config = network.config as any;
+  const l1Provider = new Provider(config.ethNetwork);
+  const l2Provider = new Provider(config.url);
+  const wallet = new Wallet(process.env.WALLET_PRIVATE_KEY!, l2Provider, l1Provider);
   const l2ETHAddress = await wallet.l2TokenAddress(utils.ETH_ADDRESS_IN_CONTRACTS);
   console.log('L2 ETH Address:', l2ETHAddress);
 
