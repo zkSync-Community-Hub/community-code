@@ -13,7 +13,7 @@
     "@simplewebauthn/server": "^10.0.1",
     "cbor": "^9.0.2",
     "ethers": "^5.7.2",
-    "next": "14.2.25",
+    "next": "14.2.32",
     "react": "^18",
     "react-dom": "^18",
     "zksync-ethers": "^5.1.0"
