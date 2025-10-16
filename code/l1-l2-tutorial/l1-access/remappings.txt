@@ -1,0 +1,2 @@
+@zksync-contracts/=dependencies/@zksync-contracts-0.0.1/contracts/
+forge-std/=dependencies/forge-std-1.9.6/
