@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { NuxtError } from '#app';
-import { headerLinks } from './header-links';
 
 useSeoMeta({
   title: 'Page not found',
@@ -54,7 +53,7 @@ const cards = [
 
 <template>
   <div>
-    <HeaderComponent :links="unref(computed(() => headerLinks()))" />
+    <HeaderComponent />
 
     <UMain>
       <UContainer>

@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { headerLinks } from './header-links';
-
 provideHeadlessUseId(() => useId());
 const { seo } = useAppConfig();
 
@@ -39,7 +37,7 @@ defineOgImageComponent('OgImageZK');
   <div>
     <NuxtLoadingIndicator />
 
-    <HeaderComponent :links="unref(computed(() => headerLinks()))" />
+    <HeaderComponent />
 
     <UMain>
       <NuxtLayout>
