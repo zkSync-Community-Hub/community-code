@@ -40,7 +40,7 @@ jobs:
             tutorial-paths: '["tutorials/frontend-paymaster"]'
             config-path: 'tests/configs/frontend-paymaster.ts'
             folder-name: 'frontend-paymaster'
-            mm-wallet: 'true'
+            mm-wallet: 'false'
             
           - test-file-name: "signing-txns-with-webauthn"
             tutorial-paths: '["tutorials/signing-transactions-with-webauthn/building-the-contracts", "tutorials/signing-transactions-with-webauthn/building-the-frontend", "tutorials/signing-transactions-with-webauthn/completing-the-frontend"]'
