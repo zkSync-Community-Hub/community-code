@@ -11,12 +11,14 @@ tags:
   - smart contracts
   - frontend
 summary: Learn how to send and verify an interop message from any ZKsync chain.
-description: This guide explains how to broadcast and verify an arbitrary message on any ZKsync chain.
+description:
+  This guide explains how to broadcast and verify an arbitrary message on any ZKsync chain by building a crosschain DeFi
+  app.
 what_you_will_learn:
   - How interop messaging works
   - How to broadcast an interop message
   - How to verify the message on a ZKsync chain.
-updated: 2025-10-15
+updated: 2025-10-22
 tools:
   - zksync-ethers
   - hardhat
