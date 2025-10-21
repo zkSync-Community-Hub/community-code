@@ -18,7 +18,7 @@ what_you_will_learn:
   - How interop messaging works
   - How to broadcast an interop message
   - How to verify the message on a ZKsync chain.
-updated: 2025-10-22
+updated: 2025-10-23
 tools:
   - zksync-ethers
   - hardhat

@@ -4,7 +4,7 @@ import { getChainInfo, getContractAddress } from '../config/wagmi';
 import { TOKEN_CONTRACT_ADDRESS } from '../config/constants';
 import type { Abi } from 'viem';
 import { Provider } from 'zksync-ethers';
-import { checkIfTxIsFinalized, getProveScoreArgs, updateLocalChainInteropRoot } from '../utils/prove';
+import { checkIfTxIsFinalized, getProveScoreArgs, waitForChainInteropRoot } from '../utils/prove-local';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const TOKEN_JSON = { abi: [] as any };
@@ -46,7 +46,7 @@ export default function MintForm() {
       return;
     }
     setIsFinalized(true);
-    await updateLocalChainInteropRoot(txHash, provider);
+    await waitForChainInteropRoot(txHash, provider);
     setIsRootUpdated(true);
     const args = await getProveScoreArgs(txHash, provider);
 
