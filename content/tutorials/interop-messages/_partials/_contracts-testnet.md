@@ -11,7 +11,7 @@ title: Contracts Testnet
 For each chain we are using `configVariable('<WALLET_PRIVATE_KEY_NAME>')` for the deployer accounts.
 Right now these are configured to different accounts in the keystore, but you can change them as needed.
 
-To configure this using Hardhat keystore,
+To configure your private key(s) using Hardhat keystore,
 run the command below:
 
 ::code-group

@@ -10,7 +10,7 @@ title: Contracts Local
 
 For each chain we are using `configVariable('WALLET_PRIVATE_KEY')` for the deployer account.
 
-To configure this using Hardhat keystore,
+To configure your private key using Hardhat keystore,
 run the command below:
 
 ::code-group
