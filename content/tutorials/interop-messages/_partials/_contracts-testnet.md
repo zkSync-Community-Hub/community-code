@@ -53,13 +53,12 @@ Add some scripts to `package.json` to make it easier to compile and deploy the c
 "scripts": {
   "compile": "hardhat compile",
   "deploy:abstract": "hardhat ignition deploy ignition/modules/Staking.ts --network abstract",
-  "deploy:lens": "hardhat ignition deploy ignition/modules/Staking.ts --network lens",
   "deploy:sophon": "hardhat ignition deploy ignition/modules/Staking.ts --network sophon",
   "deploy:token": "hardhat ignition deploy ignition/modules/InteropToken.ts --network era"
 },
 ```
 
-Here we are deploying the token contract to ZKsync Era Sepolia, and the staking contracts to Abstract, Lens, and Sophon,
+Here we are deploying the token contract to ZKsync Era Sepolia, and the staking contracts to Abstract and Sophon testnets,
 but you can change the networks if you want.
 
 Now you can compile the contracts with:
@@ -102,26 +101,6 @@ pnpm deploy:abstract
 
 ```bash [bun]
 bun deploy:abstract
-```
-
-::
-
-::code-group
-
-```bash [npm]
-npm run deploy:lens
-```
-
-```bash [yarn]
-yarn deploy:lens
-```
-
-```bash [pnpm]
-pnpm deploy:lens
-```
-
-```bash [bun]
-bun deploy:lens
 ```
 
 ::

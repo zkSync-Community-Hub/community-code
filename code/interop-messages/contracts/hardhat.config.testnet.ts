@@ -41,12 +41,6 @@ const config: HardhatUserConfig = {
       chainType: 'generic',
       accounts: [configVariable('SOPH_WALLET_PRIVATE_KEY')],
     },
-    lens: {
-      type: 'http',
-      url: 'https://rpc.testnet.lens.xyz',
-      chainType: 'generic',
-      accounts: [configVariable('LENS_WALLET_PRIVATE_KEY')],
-    },
     abstract: {
       type: 'http',
       url: 'https://api.testnet.abs.xyz',
