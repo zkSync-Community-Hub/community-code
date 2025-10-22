@@ -25,7 +25,7 @@ and we can use the transaction hash to fetch the required input arguments for on
 
 Before the message can be verified, though,
 the transaction must be finalized,
-and the interop roots on gateway and the rewards chain must be updated.
+and the interop roots on Gateway and the rewards chain must be updated.
 We will add some functions below to check these statuses, and fetch the input arguments for minting.
 
 Copy and paste the functions below:

@@ -3,7 +3,8 @@ import { buildModule } from '@nomicfoundation/hardhat-ignition/modules';
 const STAKING_CHAIN_1_CONTRACT_ADDRESS = '0x...';
 const STAKING_CHAIN_2_CONTRACT_ADDRESS = '0x...';
 
-const STAKING_CHAIN_1_ID = '34234';
+// make sure chain ids match the chains you created in the ecosystem setup
+const STAKING_CHAIN_1_ID = '34234';  
 const STAKING_CHAIN_2_ID = '5328';
 
 export default buildModule('InteropTokenModule', (m) => {
