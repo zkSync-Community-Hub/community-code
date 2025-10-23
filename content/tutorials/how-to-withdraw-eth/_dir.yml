@@ -7,7 +7,7 @@ github_repo: https://github.com/ZKsync-Community-Hub
 tags:
   - hardhat
   - how-to
-  - cross-chain
+  - crosschain
 summary: Learn how to withdraw Ether from ZKsync.
 description: This how-to guide explains how to create a script that withdraws Ether from ZKsync.
 what_you_will_learn:

@@ -1,4 +1,4 @@
-title: Cross-chain governance
+title: Crosschain governance
 featured: false
 authors:
   - name: MatterLabs
@@ -7,7 +7,7 @@ authors:
 github_repo: https://github.com/ZKsync-Community-Hub
 tags:
   - smart contracts
-  - cross-chain
+  - crosschain
 summary: Build and deploy a smart contract in L1 and send transactions that update the state of a contract in ZKsync.
 description:
   In this tutorial we'll deploy a simple smart contract on ZKsync Era. Then we'll deploy another smart contract on

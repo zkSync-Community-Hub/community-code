@@ -7,7 +7,7 @@ github_repo: https://github.com/ZKsync-Community-Hub
 tags:
   - smart contracts
   - how-to
-  - cross-chain
+  - crosschain
 summary: Learn how to send a message from ZKsync to Ethereum L1.
 description: This how-to guide explains how to send an arbitrary message from ZKsync to Ethereum L1.
 what_you_will_learn:
