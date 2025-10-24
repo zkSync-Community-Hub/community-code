@@ -35,7 +35,7 @@
     "@vue/test-utils": "2.4.6",
     "cspell": "8.14.4",
     "eslint": "9.11.1",
-    "ethers": "6.13.3",
+    "ethers": "6.15.0",
     "hardhat": "2.22.12",
     "husky": "9.1.6",
     "lint-staged": "15.2.10",
