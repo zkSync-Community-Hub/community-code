@@ -67,13 +67,13 @@ jobs:
             mm-wallet: 'false'
 
     steps:
-    - uses: actions/checkout@v4
-    - uses: oven-sh/setup-bun@v1
+    - uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4
+    - uses: oven-sh/setup-bun@f4d14e03ff726c06358e5557344e1da148b56cf7 # v1
     - name: Install Dependencies
       run: bun install
     - name: Start the docs
       run: bun pm2 start 'PORT=3030 bun dev' --name docs
-    - uses: actions/setup-node@v4
+    - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
 
     # Setup Anvil for local testing
     - name: Run anvil-zksync
@@ -85,7 +85,7 @@ jobs:
     # ZK Game Dependencies
     - name: Install Rust Toolchain
       if: matrix.tutorial.test-file-name == 'zk-game'
-      uses: actions-rs/toolchain@v1
+      uses: actions-rs/toolchain@16499b5e05bf2e26879000db0c1d13f7e13fa3af # v1
       with:
         toolchain: 1.81.0
         components: llvm-tools, rustc-dev
