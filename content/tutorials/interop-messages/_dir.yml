@@ -1,0 +1,28 @@
+title: Build a Crosschain App
+featured: true
+authors:
+  - name: sarahschwartz
+    url: https://github.com/sarahschwartz
+    avatar: https://avatars.githubusercontent.com/u/58856580?v=4
+github_repo: https://github.com/ZKsync-Community-Hub
+tags:
+  - interop
+  - crosschain
+  - smart contracts
+  - frontend
+summary: Learn how to send and verify an interop message from any ZKsync chain.
+description:
+  This guide explains how to broadcast and verify an arbitrary message on any ZKsync chain by building a crosschain DeFi
+  app.
+what_you_will_learn:
+  - How interop messaging works
+  - How to broadcast an interop message
+  - How to verify the message on a ZKsync chain.
+updated: 2025-10-23
+tools:
+  - zksync-ethers
+  - hardhat
+  - zksync-contracts
+  - wagmi
+  - viem
+  - zkstack

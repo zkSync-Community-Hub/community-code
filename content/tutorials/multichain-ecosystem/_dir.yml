@@ -1,0 +1,18 @@
+title: Setup a Multichain Local Ecosystem
+featured: true
+authors:
+  - name: MatterLabs
+    url: https://matter-labs.io
+    avatar: https://avatars.githubusercontent.com/u/42489169?s=200&v=4
+github_repo: https://github.com/ZKsync-Community-Hub
+tags:
+  - zkstack
+  - elastic chain
+summary: Learn how to setup multiple interoperable ZKsync chains with ZKsync Gateway.
+what_you_will_learn:
+  - How to setup multiple ZKsync chains in a local ecosystem
+  - How to setup a local ZKsync Gateway
+  - How to migrate local chains to use ZKsync Gateway
+updated: 2025-10-23
+tools:
+  - zkstack
