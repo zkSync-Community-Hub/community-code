@@ -23,7 +23,7 @@
     "@matterlabs/zksync-contracts": "^28.0.1",
     "caniuse-lite": "^1.0.30001720",
     "dayjs": "1.11.13",
-    "nuxt": "3.13.2",
+    "nuxt": "3.19.0",
     "nuxt-gtag": "3.0.2",
     "rehype-katex": "7.0.1",
     "remark-math": "6.0.0",
