@@ -36,7 +36,7 @@
     "cspell": "8.14.4",
     "eslint": "9.11.1",
     "ethers": "6.13.3",
-    "hardhat": "2.22.12",
+    "hardhat": "2.26.5",
     "husky": "9.1.6",
     "lint-staged": "15.2.10",
     "markdownlint": "0.35.0",
@@ -46,6 +46,6 @@
     "prettier-eslint": "16.3.0",
     "prettier-plugin-tailwindcss": "0.6.8",
     "yaml": "^2.7.0",
-    "zksync-ethers": "6.13.0"
+    "zksync-ethers": "6.21.0"
   }
 }
