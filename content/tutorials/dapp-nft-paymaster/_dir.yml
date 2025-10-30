@@ -9,6 +9,7 @@ tags:
   - frontend
   - next.js
   - erc721
+  - eravm
 summary: Build a frontend that allows users to interact smart contracts with zero transaction fees wif they hold an NFT.
 description:
   This tutorial will guide you through the process of building a frontend that interacts with smart contracts on ZKsync.
