@@ -9,12 +9,12 @@
     "interop": "hardhat run ./scripts/interop-test.ts"
   },
   "devDependencies": {
-    "@matterlabs/zksync-contracts": "^29.0.0",
-    "@nomicfoundation/hardhat-ignition": "^3.0.0",
-    "@nomicfoundation/hardhat-keystore": "^3.0.1",
-    "@nomicfoundation/hardhat-toolbox-mocha-ethers": "^3.0.0",
-    "@nomicfoundation/hardhat-toolbox-viem": "^5.0.0",
-    "@openzeppelin/contracts": "^5.4.0",
+    "@matterlabs/zksync-contracts": "29.0.0",
+    "@nomicfoundation/hardhat-ignition": "3.0.3",
+    "@nomicfoundation/hardhat-keystore": "3.0.2",
+    "@nomicfoundation/hardhat-toolbox-mocha-ethers": "3.0.0",
+    "@nomicfoundation/hardhat-toolbox-viem": "5.0.0",
+    "@openzeppelin/contracts": "5.4.0",
     "@types/chai": "^4.3.20",
     "@types/chai-as-promised": "^8.0.2",
     "@types/mocha": "^10.0.10",
@@ -22,10 +22,10 @@
     "chai": "^5.3.3",
     "ethers": "^6.15.0",
     "forge-std": "github:foundry-rs/forge-std#v1.9.4",
-    "hardhat": "^3.0.1",
+    "hardhat": "3.0.10",
     "mocha": "^11.7.1",
     "typescript": "~5.8.0",
-    "zksync-ethers": "^6.21.0"
+    "zksync-ethers": "6.21.0"
   },
   "dependencies": {
     "dotenv": "^17.2.1"
