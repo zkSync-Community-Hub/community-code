@@ -13,6 +13,7 @@ tags:
   - smart contracts
   - frontend
   - wagmi
+  - eravm
 summary: Build a game using ZK proofs and account abstraction.
 description:
   In this tutorial, you will build a game where users can prove and verify their high scores onchain. You will also

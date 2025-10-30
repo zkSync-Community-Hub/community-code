@@ -59,7 +59,7 @@ useSeoMeta({
                 v-for="(tag, tagIndex) of guide.tags"
                 :key="tagIndex"
                 :label="tag"
-                color="blue"
+                :color="tag === 'eravm' ? 'violet' : 'blue'"
                 size="xs"
                 variant="subtle"
                 class="mr-2"
