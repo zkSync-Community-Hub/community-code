@@ -12,7 +12,7 @@
         "@tsconfig/node20": "^20.1.4",
         "@types/node": "^20.14.5",
         "@vitejs/plugin-vue": "^5.0.5",
-        "@vue/tsconfig": "^0.5.1",
+        "@vue/tsconfig": "^0.8.0",
         "npm-run-all2": "^6.2.0",
         "typescript": "~5.4.0",
         "vite": "^5.3.1",
@@ -151,7 +151,7 @@
 
     "@vue/shared": ["@vue/shared@3.5.11", "", {}, "sha512-W8GgysJVnFo81FthhzurdRAWP/byq3q2qIw70e0JWblzVhjgOMiC2GyovXrZTFQJnFVryYaKGP3Tc9vYzYm6PQ=="],
 
-    "@vue/tsconfig": ["@vue/tsconfig@0.5.1", "", {}, "sha512-VcZK7MvpjuTPx2w6blwnwZAu5/LgBUtejFOi3pPGQFXQN5Ela03FUtd2Qtg4yWGGissVL0dr6Ro1LfOFh+PCuQ=="],
+    "@vue/tsconfig": ["@vue/tsconfig@0.8.1", "", { "peerDependencies": { "typescript": "5.x", "vue": "^3.4.0" }, "optionalPeers": ["typescript", "vue"] }, "sha512-aK7feIWPXFSUhsCP9PFqPyFOcz4ENkb8hZ2pneL6m2UjCkccvaOhC/5KCKluuBufvp2KzkbdA2W2pk20vLzu3g=="],
 
     "aes-js": ["aes-js@4.0.0-beta.5", "", {}, "sha512-G965FqalsNyrPqgEGON7nIx1e/OVENSgiEIzyC63haUMuvNnwIgIjMs52hlTCKhkBny7A2ORNlfY9Zu+jmGk1Q=="],
 
