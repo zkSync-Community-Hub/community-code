@@ -22,9 +22,9 @@
     "@matterlabs/hardhat-zksync": "^1.6.1",
     "@matterlabs/zksync-contracts": "^28.0.1",
     "caniuse-lite": "^1.0.30001720",
-    "dayjs": "1.11.13",
+    "dayjs": "1.11.19",
     "nuxt": "3.13.2",
-    "nuxt-gtag": "3.0.2",
+    "nuxt-gtag": "3.0.3",
     "rehype-katex": "7.0.1",
     "remark-math": "6.0.0",
     "vue-tsc": "2.1.6"
