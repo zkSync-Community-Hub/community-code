@@ -21,7 +21,7 @@
     "@types/node": "^22.18.0",
     "chai": "^5.3.3",
     "ethers": "^6.15.0",
-    "forge-std": "github:foundry-rs/forge-std#v1.9.4",
+    "forge-std": "github:foundry-rs/forge-std#v1.11.0",
     "hardhat": "^3.0.1",
     "mocha": "^11.7.1",
     "typescript": "~5.8.0",
