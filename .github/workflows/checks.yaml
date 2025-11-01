@@ -14,8 +14,8 @@ jobs:
     name: code_format
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: oven-sh/setup-bun@v1
+      - uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4
+      - uses: oven-sh/setup-bun@f4d14e03ff726c06358e5557344e1da148b56cf7 # v1
       - name: Install Dependencies
         run: bun install
       - name: Runs Prettier Formatter
@@ -25,8 +25,8 @@ jobs:
     name: spelling
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: oven-sh/setup-bun@v1
+      - uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4
+      - uses: oven-sh/setup-bun@f4d14e03ff726c06358e5557344e1da148b56cf7 # v1
       - name: Install Dependencies
         run: bun install
       - name: Runs cSpell Spell Checker
@@ -36,8 +36,8 @@ jobs:
     name: markdown_lint
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: oven-sh/setup-bun@v1
+      - uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4
+      - uses: oven-sh/setup-bun@f4d14e03ff726c06358e5557344e1da148b56cf7 # v1
       - name: Install Dependencies
         run: bun install
       - name: Runs Markdown Linter
@@ -47,8 +47,8 @@ jobs:
     name: code_lint
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: oven-sh/setup-bun@v1
+      - uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4
+      - uses: oven-sh/setup-bun@f4d14e03ff726c06358e5557344e1da148b56cf7 # v1
       - name: Install Dependencies
         run: bun install
       - name: Runs ESLint
