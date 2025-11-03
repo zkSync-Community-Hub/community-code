@@ -12,6 +12,7 @@ tags:
   - frontend
   - next.js
   - passkeys
+  - eravm
 summary: Learn how to use WebAuthn to sign transactions for smart accounts.
 description: In this tutorial, you will learn how to use WebAuthn to sign transactions for smart accounts.
 what_you_will_learn:

@@ -93,7 +93,7 @@ const filteredGuides = computed(() => {
                   v-for="tag in guide.tags"
                   :key="tag"
                   :label="tag"
-                  color="blue"
+                  :color="tag === 'eravm' ? 'violet' : 'blue'"
                   size="sm"
                   variant="subtle"
                   class="mb-2 mr-2"

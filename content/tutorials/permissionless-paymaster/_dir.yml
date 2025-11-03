@@ -8,6 +8,7 @@ github_repo: https://github.com/ondefy/permissionless-multisigner-paymaster
 tags:
   - paymaster
   - account abstraction
+  - eravm
 summary:
   Integrate Zyfi's signature based permissionless multi-signer paymaster in your Dapp to sponsor gas funds for your
   users.

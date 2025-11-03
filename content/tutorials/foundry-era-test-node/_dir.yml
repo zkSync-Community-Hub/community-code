@@ -10,6 +10,7 @@ tags:
   - foundry
   - cast
   - uniswap
+  - eravm
 summary: Set up a local ZKsync Era environment and perform token swaps using Foundry.
 description: |
   In this tutorial, you will set up a local ZKsync Era environment using era_test_node, leverage Foundry's cast tool to interact with contracts, and perform token swaps on Uniswap. You will learn how to check balances, deposit ETH for WETH, transfer WETH, and swap tokens using Uniswap's Swap Router.

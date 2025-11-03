@@ -10,6 +10,7 @@ tags:
   - react-native
   - passkeys
   - account abstraction
+  - eravm
 summary: Authenticate mobile payments with Face ID using ZKsync SSO and React Native
 description:
   This how-to guide explains how to implement ZKsync Smart Sign On in a React Native application using passkeys.

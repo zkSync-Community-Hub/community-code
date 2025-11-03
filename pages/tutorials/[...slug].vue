@@ -122,10 +122,19 @@ const communityLinks = [
           >{{ metadata?.title }}: {{ page?.title }}</span
         >
         <UPage v-if="isIndex && metadata">
-          <UPageHeader
-            :title="page?.title"
-            :description="page?.description"
-          />
+          <div class="flex flex-col">
+            <UBadge
+              v-show="metadata.tags.includes('eravm')"
+              class="mt-6 w-[62px]"
+              label="EraVm"
+              color="violet"
+              size="md"
+            />
+            <UPageHeader
+              :title="page?.title"
+              :description="page?.description"
+            />
+          </div>
           <div class="grid grid-cols-8 gap-4 py-5">
             <div class="col-span-5">
               <AuthorsList
