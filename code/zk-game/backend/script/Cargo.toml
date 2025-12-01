@@ -5,7 +5,7 @@ edition = "2021"
 
 # ANCHOR: script-deps
 [dependencies]
-sp1-sdk = "5.0.0"
+sp1-sdk = "5.2.3"
 hex = "0.4.3"
 alloy-sol-types = { workspace = true }
 game-lib = { path = "../../game_lib" }
