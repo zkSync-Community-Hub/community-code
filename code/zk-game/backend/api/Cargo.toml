@@ -4,7 +4,7 @@ edition = "2021"
 
 [dependencies]
 rocket = { version = "0.5.1", features = ["json"] }
-sp1-sdk = "5.0.0"
+sp1-sdk = "5.2.3"
 hex = "0.4.3"
 uuid = { version = "1.11.0", features = ["v4"] }
 rocket_ws = { version ="0.1.1" }

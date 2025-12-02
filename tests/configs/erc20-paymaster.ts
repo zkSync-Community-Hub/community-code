@@ -1,7 +1,7 @@
 import type { IStepConfig } from '../utils/types';
 
 const steps: IStepConfig = {
-  'initialize-hardhat-project': {
+  'init-paymaster-project': {
     action: 'runCommand',
     prompts: 'Private key of the wallet: |❯ npm: ',
   },
