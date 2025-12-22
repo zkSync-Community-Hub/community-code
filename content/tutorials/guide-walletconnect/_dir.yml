@@ -10,12 +10,11 @@ tags:
   - walletconnect
   - reown
   - frontend
-summary: Learn how to use Reown (WalletConnect) to create React apps that interact with contracts on ZKsync.
-description:
-  This guide outlines how to use Reown (WalletConnect) to create React apps that interact with contracts on ZKsync.
+summary: Learn how to use Reown (WalletConnect) to create apps that interact with contracts on ZKsync.
+description: This guide outlines how to use Reown (WalletConnect) to create apps that interact with contracts on ZKsync.
 what_you_will_learn:
   - How to use Reown (WalletConnect) with wagmi
-updated: 2025-06-10
+updated: 2025-12-22
 tools:
   - walletconnect
   - reown
