@@ -19,11 +19,11 @@ const steps: IStepConfig = {
   },
   'app-file': {
     action: 'writeToFile',
-    filepath: 'tests-output/walletconnect/react/src/App.tsx',
+    filepath: 'tests-output/walletconnect/src/App.tsx',
   },
   'add-project-id': {
     action: 'modifyFile',
-    filepath: 'tests-output/walletconnect/react/src/App.tsx',
+    filepath: 'tests-output/walletconnect/src/App.tsx',
     atLine: 17,
     removeLines: [17],
     useSetData: `const projectId = 'd4a7167a6eed6a53c8364631aaeca861';`,
