@@ -1,0 +1,13 @@
+[[dependencies]]
+name = "@zksync-contracts"
+version = "0.0.1"
+url = "https://soldeer-revisions.s3.amazonaws.com/@zksync-contracts/0_0_1_21-02-2025_14:54:41_v2-testnet-contracts.zip"
+checksum = "4436901ebe1e2f4c5248e0314451731db85437694ee2a1fb168ccd2d9acd7419"
+integrity = "2fdb134b27489797615361ffd0707c3f758c369eab25322784e9ab8513687455"
+
+[[dependencies]]
+name = "forge-std"
+version = "1.9.6"
+url = "https://soldeer-revisions.s3.amazonaws.com/forge-std/1_9_6_01-02-2025_20:49:10_forge-std-1.9.zip"
+checksum = "55f341818321b3f925161a72fd0dcd62e4a0a4b66785a7a932bf2bfaf96fb9d1"
+integrity = "e9ecdc364d152157431e5df5aa041ffddbe9bb1c1ad81634b1e72df9e23814e8"

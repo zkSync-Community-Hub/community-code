@@ -1,0 +1,24 @@
+title: Local L1-L2 Messaging with Anvil-ZKsync
+featured: true
+authors:
+  - name: dustinbrickwood
+    url: https://github.com/dutterbutter
+    avatar: https://avatars.githubusercontent.com/u/29983536?v=4
+github_repo: https://github.com/ZKsync-Community-Hub
+tags:
+  - anvil-zksync
+  - foundry-zksync
+  - L1-L2 communication
+  - smart contracts
+  - debugging
+summary: Spin up a local environment to test L1→L2 interactions with Anvil-ZKsync.
+description: Learn how to build, deploy, and test cross-chain contracts using Anvil-ZKsync.
+what_you_will_learn:
+  - How to launch Anvil-ZKsync for cross-chain testing
+  - How to deploy contracts on both L1 and L2 locally
+  - How to send L1→L2 calls
+  - How to debug and use VM tracing locally
+updated: 2025-03-25
+tools:
+  - Anvil-ZKsync
+  - Foundry-ZKsync
