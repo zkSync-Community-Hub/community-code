@@ -14,7 +14,7 @@ jobs:
     name: code_format
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
       - uses: oven-sh/setup-bun@v1
       - name: Install Dependencies
         run: bun install
@@ -25,7 +25,7 @@ jobs:
     name: spelling
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
       - uses: oven-sh/setup-bun@v1
       - name: Install Dependencies
         run: bun install
@@ -36,7 +36,7 @@ jobs:
     name: markdown_lint
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
       - uses: oven-sh/setup-bun@v1
       - name: Install Dependencies
         run: bun install
@@ -47,7 +47,7 @@ jobs:
     name: code_lint
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
       - uses: oven-sh/setup-bun@v1
       - name: Install Dependencies
         run: bun install
