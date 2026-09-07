@@ -24,7 +24,7 @@ jobs:
     outputs:
       output_urls: "${{ steps.preview_deploy.outputs.urls }}"
     steps:
-      - uses: actions/checkout@v4 # v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
 
       - uses: oven-sh/setup-bun@v1
 
