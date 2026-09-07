@@ -73,7 +73,7 @@ jobs:
       run: bun install
     - name: Start the docs
       run: bun pm2 start 'PORT=3030 bun dev' --name docs
-    - uses: actions/setup-node@v4
+    - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7
 
     # Setup Anvil for local testing
     - name: Run anvil-zksync
