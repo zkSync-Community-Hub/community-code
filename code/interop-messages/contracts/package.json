@@ -24,7 +24,7 @@
     "forge-std": "github:foundry-rs/forge-std#v1.9.4",
     "hardhat": "^3.0.1",
     "mocha": "^11.7.1",
-    "typescript": "~5.8.0",
+    "typescript": "5.8.3",
     "zksync-ethers": "^6.21.0"
   },
   "dependencies": {
