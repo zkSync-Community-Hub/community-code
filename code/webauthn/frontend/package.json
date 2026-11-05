@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@simplewebauthn/browser": "^10.0.0",
-    "@simplewebauthn/server": "^10.0.1",
+    "@simplewebauthn/server": "^13.0.0",
     "cbor": "^9.0.2",
     "ethers": "^5.7.2",
     "next": "14.2.25",
